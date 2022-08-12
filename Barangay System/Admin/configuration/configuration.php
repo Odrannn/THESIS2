@@ -29,7 +29,7 @@
             <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between">
                 <span><i class="fa-solid fa-file-lines"></i>&nbsp;File Received</span>
                 <span class="bg-dark rounded-pill text-white py-0 px-2">02</span></a></li>
-            <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Announcement</a></li>
+            <li class=""><a href="../announcement/announcement.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Announcement</a></li>
             <li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gear"></i>&nbsp;Configuration</a></li>
             </ul>
         </div>
@@ -236,7 +236,7 @@
                 </div>
             </div>
             <div class="card mt-2 mx-3">
-                <h5 class="card-header">Logo</h5>
+                <h5 class="card-header">Address Fields</h5>
                 <div class="card-body">
                     <table class="table table-borderless">
                         <tr>
@@ -373,20 +373,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        $(".sidebar ul li").on('click', function() {
-            $(".sidebar ul li.active").removeClass('active');
-            $(this).addClass('active') 
-        });
-
-        $('.open-btn').on('click', function(){
-            $('.sidebar').addClass('active');
-        });
-
-        $('.close-btn').on('click', function(){
-            $('.sidebar').removeClass('active');
-        });
-    </script>
 </body>
 </html>

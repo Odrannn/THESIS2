@@ -25,11 +25,11 @@
                 <button class="btn d-md-none d-block close-btn px-1 py-0 text-white"><i class="fa-solid fa-bars-staggered"></i></button>
             </div>
             <ul class="list-unstyled px-2">
-            <li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gauge"></i>&nbsp;Dashboard</a></li>
+            <li class=""><a href="../dashboard/dashboard.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gauge"></i>&nbsp;Dashboard</a></li>
             <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between">
                 <span><i class="fa-solid fa-file-lines"></i>&nbsp;File Received</span>
                 <span class="bg-dark rounded-pill text-white py-0 px-2">02</span></a></li>
-            <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Announcement</a></li>
+            <li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Announcement</a></li>
             <li class=""><a href="../configuration/configuration.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gear"></i>&nbsp;Configuration</a></li>
             </ul>
         </div>
@@ -57,119 +57,38 @@
                 </div>
             </nav>
             <div class="dashboard-content px-3 py-4">
-                <h2 class="text fs-5">Dashboard</h2>
+                <h2 class="text fs-5">Announcement</h2>
                 <br>
-                <?php include('../configuration/modules_available.php');
-                    if($availability[0] == 'yes'){ ?>
-                        <div class="card mb-3 me-2 hover-shadow " style="width: 18rem;display: inline-block;">
-                            <a href="../case_management/case_management.html" class="text-decoration-none text-dark">
-                            <img src="../icons/complaint2.jpg" class="card-img-top" style="filter: brightness(50%);">
-                            <div class="card-body">
-                                <h5 class="card-title">Case Management</h5>
-                                <p class="card-text">Manage active and inactive complaints and other cases.</p>
-                            </div></a>
+                <div class="card mt-2">
+                <h5 class="card-header">Create Announcemet</h5>
+                <div class="card-body">
+                    <form class="g-3" action="update_bgy_info.php" method="post">
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                <td class="align-middle"><h5>Topic/Title</h5></td>
+                                <td class="w-75 align-middle"><input class="form-control w-50" type="text" placeholder="topic/title..." name= "bgy_name"></td>
+                                </tr>
+                                <tr>
+                                <td class="align-middle"><h5>Image</h5></td>
+                                <td class="w-75 align-middle"><input class="form-control w-50" type="file" name="logo"></td>
+                                </tr>
+                                <tr>
+                                <td colspan="1"><h5 class="card-title">Description</h5></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <textarea class="form-control" name= "mission" rows="10"></textarea>
+                        <div class="row mt-4 d-flex flex-row-reverse">
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-primary mb-3" name="BI_save" value="Save">Save</button>
+                            </div>  
                         </div>
-                    <?php
-                    }
-                ?>
-                <?php include('../configuration/modules_available.php');
-                    if($availability[1] == 'yes'){ ?>
-                        <div class="card mb-3 me-2" style="width: 18rem;display: inline-block;">
-                            <a href="../resident_management/resident_management.html" class="text-decoration-none text-dark">
-                            <img src="../icons/resident.jpg" class="card-img-top" style="filter: brightness(50%);">
-                            <div class="card-body">
-                                <h5 class="card-title">Resident Management</h5>
-                                <p class="card-text">Manage resident's profile within the barangay.</p>
-                            </div></a>
-                        </div>
-                    <?php
-                    }
-                ?>
-                <?php include('../configuration/modules_available.php');
-                    if($availability[2] == 'yes'){ ?>
-                        <div class="card mb-3 me-2" style="width: 18rem;display: inline-block;">
-                            <a href="../healthcare_center/healthcare_center.html" class="text-decoration-none text-dark">
-                            <img src="../icons/health.jpg" class="card-img-top" style="filter: brightness(50%);">
-                            <div class="card-body">
-                                <h5 class="card-title">Healthcare Center</h5>
-                                <p class="card-text">Manage healthcare Center official announcements.</p>
-                            </div></a>
-                        </div>
-                    <?php
-                    }
-                ?>
-                <?php include('../configuration/modules_available.php');
-                    if($availability[3] == 'yes'){ ?>
-                        <div class="card mb-3 me-2" style="width: 18rem;display: inline-block;">
-                            <a href="../document_request/document_request.html" class="text-decoration-none text-dark">
-                            <img src="../icons/request.jpg" class="card-img-top" style="filter: brightness(50%);">
-                            <div class="card-body">
-                                <h5 class="card-title">Request Verification</h5>
-                                <p class="card-text">Manage all of the documents being requested.</p>
-                            </div></a>
-                        </div>
-                        <?php
-                    }
-                ?>
-                <?php include('../configuration/modules_available.php');
-                    if($availability[4] == 'yes'){ ?>
-                        <div class="card mb-3 me-2" style="width: 18rem;display: inline-block;">
-                            <a href="../official_management/official_management.html" class="text-decoration-none text-dark">
-                            <img src="../icons/admin.jpg" class="card-img-top" style="filter: brightness(50%);">
-                            <div class="card-body">
-                                <h5 class="card-title">Officials Management</h5>
-                                <p class="card-text">Manage the profile of the barangay officials.</p>
-                            </div></a>
-                        </div>
-                        <?php
-                    }
-                ?>
-                <?php include('../configuration/modules_available.php');
-                    if($availability[5] == 'yes'){ ?>
-                        <div class="card mb-3 me-2" style="width: 18rem;display: inline-block;">
-                            <a href="../user_management/user_management.html" class="text-decoration-none text-dark">
-                            <img src="../icons/user.jpg" class="card-img-top" style="filter: brightness(50%);">
-                            <div class="card-body">
-                                <h5 class="card-title">User Management</h5>
-                                <p class="card-text">Manage all of the users on the Barangay system.</p>
-                            </div></a>
-                        </div>
-                        <?php
-                    }
-                ?>
+                    </form>
+                </div>
+            </div>
             </div>
         </div>
     </div>
-    <script>
-        $(".sidebar ul li").on('click', function() {
-            $(".sidebar ul li.active").removeClass('active');
-            $(this).addClass('active') 
-        });
-
-        $('.open-btn').on('click', function(){
-            $('.sidebar').addClass('active');
-        });
-
-        $('.close-btn').on('click', function(){
-            $('.sidebar').removeClass('active');
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-        // executes when HTML-Document is loaded and DOM is ready
-        console.log("document is ready");
-        
-
-        $( ".card" ).hover(
-        function() {
-            $(this).addClass('shadow').css('cursor', 'pointer'); 
-        }, function() {
-            $(this).removeClass('shadow');
-        }
-        );
-        
-        // document ready  
-        });
-    </script>
 </body>
 </html>
