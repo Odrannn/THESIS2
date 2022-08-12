@@ -1,0 +1,415 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 78px;
+    background: #03254c;
+    padding: 6px 14px;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active{
+    width: 240px;
+}
+
+.sidebar .logo_content .logo{
+    color: #fff;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active .logo_content .logo{
+    opacity: 1;
+    pointer-events: none;
+}
+
+.logo_content .logo i{
+    font-size: 28px;
+    margin-right: 5px;
+}
+
+.logo_content .logo .logo_name{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.sidebar #btn_menu{
+    position: absolute;
+    color: #fff;
+    left: 50%;
+    top: 6px;
+    font-size: 20px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    transform: translateX(-50%);
+}
+
+.sidebar.active #btn_menu{
+    left: 90%;
+}
+
+.sidebar ul{
+    margin-top: 20px;
+}
+
+.sidebar ul li{
+    position: 20px;
+    height: 50px;
+    width: 100%;
+    margin: 0 5px;
+    list-style: none;
+    line-height: 50px;
+    
+}
+
+.sidebar ul li a{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.sidebar ul li a:hover{
+    color: #11101d;
+    background: #fff;
+}
+
+.sidebar ul li a i{
+    font-size: 28px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.sidebar .profile_content{
+    position: absolute;
+    color: #fff;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.sidebar .profile_content .profile{
+    position: relative;
+    padding: 10px 6px;
+    height: 60px;
+    background: #032c5a;
+}
+
+.profile_content .profile .profile_details{
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+}
+.sidebar.active .profile .profile_details{
+    opacity: 1;
+    pointer-events: auto;
+}
+.profile .profile_details img{
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.profile .profile_details .name_type{
+    margin-left: 10px;
+}
+
+.profile .profile_details .name{
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.profile .profile_details .type{
+    font-size: 12px;
+}
+
+.profile a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.profile #log_out{
+    position: absolute;
+    left: 50%;
+    bottom: 5px;
+    transform: translateX(-50%);
+    min-width: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.sidebar.active .profile #log_out{
+    left: 88%;
+}
+.sidebar .links_name{
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active .links_name{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.resman_content{
+    color: #03254c;
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 78px);
+    left: 78px;
+    transition: all 0.5s ease;
+    overflow-y: auto;
+}
+.content{
+    padding: 20px 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.resman_content .text{
+    font-size: 25px;
+    color: #1d1b31;
+    margin: 12px;
+    padding: 0 12px;
+} 
+
+.resman_content .resident_table{
+    width: 100%;
+    display: block;
+    align-items: center;
+    flex-wrap: wrap;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.resman_content .resident_table .header{
+    padding: 10px 15px;
+    color: rgb(0, 0, 0);
+    background-color: #f0f0f0;
+    border-top-left-radius: 8px; 
+    border-top-right-radius: 8px;
+}
+
+.resman_content .resident_table .header i{
+    color:rgb(0, 158, 53);
+    font-size: 26px;
+}
+
+.resman_content .resident_table .filter{
+    padding: 10px 10px;
+    text-align: right;
+}
+.resman_content .resident_table .filter a{
+    color: #03254c;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.resman_content .resident_table .filter i{
+    font-size: 28px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center;
+}
+
+
+.resman_content .resident_table .filter label{
+    color: #000000;
+    display: inline-block;
+}
+
+
+.resman_content .resident_table .filter select{
+    width: 100px;
+    height: 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+}
+
+.resman_content .resident_table .restab{
+    margin: 10px;
+}
+
+.resident_table table{
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    color: #000000;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.resident_table table, th,td{
+    border:1px solid #000000;
+    font-size: 13px;
+    padding: 10px;
+}
+
+.resident_table th{
+    background-color: #335ed6;
+    color: #ffffff;
+}
+
+.resident_table tr:nth-child(even){background-color: #f2f2f2;}
+
+.resident_table tr:hover {background-color: #ddd;}
+
+.resident_table table i{
+    text-align: center;
+    font-size: 20px;
+}
+
+.resident_table table .bx-edit{
+    color: #c7ad17;
+}
+
+.resident_table table .bxs-x-circle{
+    color: #ff5858;
+}
+
+.resman_content .resident_table a:hover{
+    filter: brightness(50%);
+}
+
+
+.pedit{
+    width: 800px;
+    background: #fff;
+    border-radius: 6px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0.1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    transition: transform 0.4s, top 0.4s;
+    visibility: hidden;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2)
+}
+
+.pedit h2{
+    font-size: 38px;
+    font-weight: 500;
+    margin:30px 0 10px;
+}
+
+.pedit button.save{
+    width: 100%;
+    margin-top: 5px;
+    padding: 10px 0;
+    background: #04AA6D;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2)
+}
+.pedit button.cancel{
+    width: 100%;
+    margin-top: 5px;
+    padding: 10px 0;
+    background: #aa0404;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2)
+}
+
+.pedit button.save:hover {
+    background-color: #005c3a;
+}
+
+.pedit button.cancel:hover {
+    background-color: #5c0000;
+}
+
+.open-pedit{
+    visibility: visible;
+    transform: translate(-50%,-50%) scale(1);
+}
+
+.pedit table{
+	padding:0px;
+	margin:0px;
+}
+.pedit table, th, td {
+    border: none;
+    border-collapse: collapse;
+    padding:10px;
+    text-align: left;
+}
+
+.pedit th{
+	font-size: 12px;
+    text-align: left;
+}
+
+#date{
+	width:100%;
+}
+#birthplace{
+	width:100%;
+}
+#address{
+	width:100%;
+}
+
+.pedit div.reg_form{
+	padding: 20px;
+}
+
+.pedit input[type=text],input[type=number], input[type=date], .pedit select{
+	width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+

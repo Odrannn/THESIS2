@@ -1,0 +1,378 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 78px;
+    background: #03254c;
+    padding: 6px 14px;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active{
+    width: 240px;
+}
+
+.sidebar .logo_content .logo{
+    color: #fff;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active .logo_content .logo{
+    opacity: 1;
+    pointer-events: none;
+}
+
+.logo_content .logo i{
+    font-size: 28px;
+    margin-right: 5px;
+}
+
+.logo_content .logo .logo_name{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.sidebar #btn_menu{
+    position: absolute;
+    color: #fff;
+    left: 50%;
+    top: 6px;
+    font-size: 20px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    transform: translateX(-50%);
+}
+
+.sidebar.active #btn_menu{
+    left: 90%;
+}
+
+.sidebar ul{
+    margin-top: 20px;
+}
+
+.sidebar ul li{
+    position: 20px;
+    height: 50px;
+    width: 100%;
+    margin: 0 5px;
+    list-style: none;
+    line-height: 50px;
+    
+}
+
+.sidebar ul li a{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.sidebar ul li a:hover{
+    color: #11101d;
+    background: #fff;
+}
+
+.sidebar ul li a i{
+    font-size: 28px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.sidebar .profile_content{
+    position: absolute;
+    color: #fff;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.sidebar .profile_content .profile{
+    position: relative;
+    padding: 10px 6px;
+    height: 60px;
+    background: #032c5a;
+}
+
+.profile_content .profile .profile_details{
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+}
+.sidebar.active .profile .profile_details{
+    opacity: 1;
+    pointer-events: auto;
+}
+.profile .profile_details img{
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.profile .profile_details .name_type{
+    margin-left: 10px;
+}
+
+.profile .profile_details .name{
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.profile .profile_details .type{
+    font-size: 12px;
+}
+
+.profile a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.profile #log_out{
+    position: absolute;
+    left: 50%;
+    bottom: 5px;
+    transform: translateX(-50%);
+    min-width: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.sidebar.active .profile #log_out{
+    left: 88%;
+}
+.sidebar .links_name{
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active .links_name{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.blotman_content{
+    color: #03254c;
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 78px);
+    left: 78px;
+    transition: all 0.5s ease;
+    overflow-y: auto;
+}
+.content{
+    padding: 20px 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.blotman_content .text{
+    font-size: 25px;
+    color: #1d1b31;
+    margin: 12px;
+    padding: 0 12px;
+} 
+
+.blotman_content .blotter_table{
+    width: 80%;
+    display: block;
+    align-items: center;
+    flex-wrap: wrap;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.blotman_content .blotter_table .header{
+    padding: 10px 15px;
+    color: rgb(0, 0, 0);
+    background-color: #f0f0f0;
+    border-top-left-radius: 8px; 
+    border-top-right-radius: 8px;
+}
+
+.blotman_content .blotter_table .header i{
+    color:rgb(0, 158, 53);
+    font-size: 26px;
+}
+
+.blotman_content .blotter_table .filter{
+    padding: 10px 10px;
+    text-align: right;
+}
+.blotman_content .blotter_table .filter a{
+    color: #03254c;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.blotman_content .blotter_table .filter i{
+    font-size: 28px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center;
+}
+
+
+.blotman_content .blotter_table .filter label{
+    color: #000000;
+    display: inline-block;
+}
+
+
+.blotman_content .blotter_table .filter select{
+    width: 100px;
+    height: 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+}
+
+.blotman_content .blotter_table .blottab{
+    margin: 10px;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    color: #000000;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+table, th,td{
+    border:1px solid #000000;
+    font-size: 13px;
+    padding: 10px;
+}
+
+th{
+    background-color: #335ed6;
+    color: #ffffff;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+table i{
+    text-align: center;
+    font-size: 20px;
+}
+
+table .bxs-calendar{
+    color: #3352ff;
+}
+
+table .bx-edit{
+    color: #c7ad17;
+}
+
+table .bxs-x-circle{
+    color: #ff5858;
+}
+
+.blotman_content .blotter_table a:hover{
+    filter: brightness(50%);
+}
+
+.blotman_content .blotter_table .imex{
+    text-align: right;
+    margin: 10px;
+}
+
+.blotman_content .blotter_table .imex i{
+    font-size: 20px;
+    padding: 7px 15px;
+}
+
+.blotman_content .cards{
+    padding: 20px 15px;
+    display: block;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.blotman_content .cards .card{
+    width: 300px;
+    height: 150px;
+    margin: 10px 10px;
+    border:2px solid #000000;
+    display: flex;
+    color: #ffffff;
+}
+
+.blotman_content .cards .card img{
+    width: 95px;
+}
+
+.blotman_content .cards .card p{
+    font-size: 20px;
+}
+
+.blotman_content .cards .card .box{
+    text-align: left;
+    padding: 10px 20px;
+}
+
+.sidebar.active ~ .blotman_content{
+    width: calc(100% - 240px);
+    left: 240px;
+}
+
+.blotman_content .cards .card .icon{
+    width: 100px;
+    padding: 20px 15px;
+    display: block;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.blotman_content .cards .card .num{
+    width: 200px;
+    padding: 20px 15px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    vertical-align: middle;
+}
+
