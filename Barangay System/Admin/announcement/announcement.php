@@ -60,34 +60,42 @@
                 <h2 class="text fs-5">Announcement</h2>
                 <br>
                 <div class="card mt-2">
-                <h5 class="card-header">Create Announcemet</h5>
-                <div class="card-body">
-                    <form class="g-3" action="update_bgy_info.php" method="post">
-                        <table class="table table-borderless">
-                            <tbody>
-                                <tr>
-                                <td class="align-middle"><h5>Topic/Title</h5></td>
-                                <td class="w-75 align-middle"><input class="form-control w-50" type="text" placeholder="topic/title..." name= "bgy_name"></td>
-                                </tr>
-                                <tr>
-                                <td class="align-middle"><h5>Image</h5></td>
-                                <td class="w-75 align-middle"><input class="form-control w-50" type="file" name="logo"></td>
-                                </tr>
-                                <tr>
-                                <td colspan="1"><h5 class="card-title">Description</h5></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <textarea class="form-control" name= "mission" rows="10"></textarea>
-                        <div class="row mt-4 d-flex flex-row-reverse">
-                            <div class="col-auto">
-                                <button type="submit" class="btn btn-primary mb-3" name="BI_save" value="Save">Save</button>
-                            </div>  
-                        </div>
-                    </form>
+                    <h5 class="card-header">Create Announcemet</h5>
+                    <div class="card-body">
+                        <form class="g-3" action="post_announcement.php" method="post" enctype="multipart/form-data">
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                    <td class="align-middle"><h5>Topic/Title</h5></td>
+                                    <td class="w-75 align-middle"><input class="form-control w-50" type="text" placeholder="topic/title..." name= "title"></td>
+                                    </tr>
+                                    <tr>
+                                    <td class="align-middle"><h5>Image</h5></td>
+                                    <td class="w-75 align-middle"><input class="form-control w-50" type="file" name="ann_image"></td>
+                                    </tr>
+                                    <tr>
+                                    <td colspan="1"><h5 class="card-title">Description</h5></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <textarea class="form-control" name= "description" rows="10"></textarea>
+                            <div class="row mt-4 d-flex flex-row-reverse">
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-primary mb-3" name="post" value="Post">Post</button>
+                                </div>  
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-            </div>
+
+            <img src="../../announcement_uploads/<?php
+                    $conn = new mysqli("localhost", "root", "", "bgy_system") or die("Unable to connect");
+                    $query = "SELECT * FROM announcement where id = 5"; // "id=5" depende sa database mo kung anong value ng id
+                    $result = $conn -> query($query);
+                    $row = $result -> fetch_array();
+                    echo $row['img_url'];
+            ?>"  class="img-thumbnail">
         </div>
     </div>
 </body>
