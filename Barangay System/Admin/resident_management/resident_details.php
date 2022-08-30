@@ -6,46 +6,41 @@ if(isset($_POST['userid'])){
     $query = "SELECT * FROM resident_table WHERE id = '".$_POST['userid']."'";
     $result = $conn -> query($query); 
     $row = mysqli_fetch_array($result)?>
-
-    <div class='table-responsive'><table class='table table-bordered'>
-        <tr>
-            <td colspan='4'><b>Name: </b><?php echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"] ?></td>
-            <td><b>Gender: </b><?php echo $row["gender"] ?></td>
-        </tr>
-        <tr>
-            <td><b>Place Birth: </b><?php echo $row["birthplace"] ?></td>
-            <td><b>Age: </b><?php echo $row["age"] ?></td>
-            <td colspan='2'><b>Birthday: </b><?php echo $row["birthday"] ?></td>
-            <td><b>Civil Status: </b><?php echo $row["civilstatus"] ?></td>
-        </tr>
-        <tr><td colspan='5'><b>Address</b></td></tr>
-        <tr>
-            <td><b>Household: </b><?php echo $row["unitnumber"] ?></td>
-            <td><b>Purok: </b><?php echo $row["purok"] ?></td>
-            <td><b>Sitio: </b><?php echo $row["purok"] ?></td>
-            <td><b>Street: </b><?php echo $row["purok"] ?></td>
-            <td><b>Subdivision: </b><?php echo $row["purok"] ?></td>
-
-            
-        <tr>
-            <th>Contact Number</th>
-            <th>Religion</th>
-            <th>Occupation</th>
-            <th colspan='2'>Email</th>
-        </tr>
-        <tr>
-            <td><?php echo $row["contactnumber"] ?></td>
-            <td><?php echo $row["religion"] ?></td>
-            <td><?php echo $row["occupation"] ?></td>
-            <td colspan='2'><?php echo $row["email"] ?></td>
-        </tr>
-        <tr>
-            <td colspan='2'><b>Highest Educational Attainment: </b><?php echo $row["education"] ?></td>
-            <td><b>Nationality: </b><?php echo $row["nationality"] ?></td>
-            <td><b>Disability: </b><?php echo $row["disability"] ?></td>
-            <td><b>Status: </b><?php echo $row["status"] ?></td>
-        </tr>
-    </table></div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Resident Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col pt-2">
+                        <img src="" alt="resident image.." class="img-fluid"    >
+                    </div>
+                    <div class="col pt-2">
+                        <p class="m-0"><b>Name: </b><?php echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"] ?></p>
+                        <p class="m-0"><b>Gender: </b><?php echo $row["gender"] ?></p>
+                        <p class="m-0"><b>Place Birth: </b><?php echo $row["birthplace"] ?></p>
+                        <p class="m-0"><b>Age: </b><?php echo $row["age"] ?></p>
+                        <p class="m-0"><b>Birthday: </b><?php echo $row["birthday"] ?></p>
+                        <p class="m-0"><b>Civil Status: </b><?php echo $row["civilstatus"] ?></p>
+                        <p class="m-0"><b>Address: </b><?php echo $row["unitnumber"] . " " . $row["sitio"] . " " . $row["purok"] . " " . $row["subdivision"] . " " . $row["street"] . ", Manila City"?></p>
+                        <p class="m-0"><b>Contact Number: </b><?php echo $row["contactnumber"] ?></p>
+                        <p class="m-0"><b>Religion: </b><?php echo $row["religion"] ?></p>
+                        <p class="m-0"><b>Occupation: </b><?php echo $row["occupation"] ?></p>
+                        <p class="m-0"><b>Email: </b><?php echo $row["email"] ?></p>
+                        <p class="m-0"><b>Highest Educational Attainment: </b><?php echo $row["civilstatus"] ?></p>
+                        <p class="m-0"><b>Nationality: </b><?php echo $row["nationality"] ?></p>
+                        <p class="m-0"><b>Disability: </b><?php echo $row["disability"] ?></p>
+                        <p class="m-0"><b>Status: </b><?php echo $row["status"] ?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+    </div>
     <?php
 } ?>
 

@@ -12,26 +12,21 @@
         $error = $_FILES['logo']['error'];
 
         if ($error === 0) {
-            if ($img_size > 125000) {
-                echo "Sorry, your file is too large.";
-            }
-            else {
-                $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
-                $img_ex_lc = strtolower($img_ex);
+            $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+            $img_ex_lc = strtolower($img_ex);
 
-                $allowed_exs = array("jpg", "jpeg", "png");
+            $allowed_exs = array("jpg", "jpeg", "png");
 
-                if (in_array($img_ex_lc, $allowed_exs)) {
-                    $new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
-                    $img_upload_path = 'uploads/'.$new_img_name;
-                    move_uploaded_file($tmp_name, $img_upload_path);
+            if (in_array($img_ex_lc, $allowed_exs)) {
+                $new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
+                $img_upload_path = 'uploads/'.$new_img_name;
+                move_uploaded_file($tmp_name, $img_upload_path);
 
-                    //insert to db
-                    $query = "UPDATE bgy_info SET logo_url = '$new_img_name' WHERE id = 1";
-                    $result = $conn -> query($query);
-                } else {
-                    echo "You can't upload files of this type.";
-                }
+                //insert to db
+                $query = "UPDATE bgy_info SET logo_url = '$new_img_name' WHERE id = 1";
+                $result = $conn -> query($query);
+            } else {
+                echo "You can't upload files of this type.";
             }
         }
         header("location:configuration.php");

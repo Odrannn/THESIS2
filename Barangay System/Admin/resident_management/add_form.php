@@ -1,3 +1,4 @@
+<form action="add_resident.php" method="post">
 <div class="modal-content">
     <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Add Resident</h5>
@@ -19,14 +20,14 @@
                     <h6 class="mb-2 pb-1">Gender: </h6>
 
                     <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
-                        value="option1" checked />
+                    <input class="form-check-input" type="radio" name="gender" id="femaleGender"
+                        value="female" checked />
                     <label class="form-check-label" for="femaleGender">Female</label>
                     </div>
 
                     <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
-                        value="option2" />
+                    <input class="form-check-input" type="radio" name="gender" id="maleGender"
+                        value="male" />
                     <label class="form-check-label" for="maleGender">Male</label>
                     </div>
                 </div>
@@ -61,8 +62,8 @@
                         <?php 
                         include("../../phpfiles/address_fields.php");
                         while($row = $result -> fetch_array()) {
-                            if($row["purok"] != ''){ ?>?>
-                                <option value="<? echo $row['purok']; php?>"><?php echo $row['purok'];?></option>
+                            if($row["purok"] != ''){ ?>
+                                <option value="<?php echo $row['purok'];?>"><?php echo $row['purok'];?></option>
                         <?php }
                         } ?>
 					</select>
@@ -73,8 +74,8 @@
                         <?php 
                         include("../../phpfiles/address_fields.php");
                         while($row = $result -> fetch_array()) {
-                            if($row["sitio"] != ''){ ?>?>
-                                <option value="<? echo $row['sitio']; php?>"><?php echo $row['sitio'];?></option>
+                            if($row["sitio"] != ''){ ?>
+                                <option value="<?php echo $row['sitio'];?>"><?php echo $row['sitio'];?></option>
                         <?php }
                         } ?>
 					</select>
@@ -85,8 +86,8 @@
                         <?php 
                         include("../../phpfiles/address_fields.php");
                         while($row = $result -> fetch_array()) {
-                            if($row["street"] != ''){ ?>?>
-                                <option value="<? echo $row['street']; php?>"><?php echo $row['street'];?></option>
+                            if($row["street"] != ''){ ?>
+                                <option value="<?php echo $row['street'];?>"><?php echo $row['street'];?></option>
                         <?php }
                         } ?>
 					</select>
@@ -94,22 +95,22 @@
             </div>
             <div class="row">
                 <div class="col pt-2">
-                    <select class="form-control" id="purokno" name="subdivision">
-                        <option value="1">--Select--</option>
+                    <select class="form-control" name="subdivision">
+                        <option value="1">--Select Subdivision--</option>
                         <?php 
                         include("../../phpfiles/address_fields.php");
                         while($row = $result -> fetch_array()) {
-                            if($row["subdivision"] != ''){ ?>?>
-                                <option value="<? echo $row['subdivision']; php?>"><?php echo $row['subdivision'];?></option>
+                            if($row["subdivision"] != ''){ ?>
+                                <option value="<?php echo $row['subdivision'];?>"><?php echo $row['subdivision'];?></option>
                         <?php }
                         } ?>
 					</select>
                 </div>
                 <div class="col pt-2">
-                    <input class="form-control" type="number" id="fname" name="contactnumber" placeholder="+63">
+                    <input class="form-control" type="text" name="contactnumber" placeholder="09..">
                 </div>
                 <div class="col pt-2">
-                    <input class="form-control" type="text" id="mname" name="email" placeholder="Email">
+                    <input class="form-control" type="text" name="email" placeholder="Email">
                 </div>
                 <div class="col pt-2">
                     <select class="form-control" id="status" name="religion">
@@ -122,7 +123,7 @@
                         <option value="Seventh-day Adventist">Seventh-day Adventist</option>
                         <option value="Bible Baptist Church">Bible Baptist Church</option>
                         <option value="United Church of Christ in the Philippines">United Church of Christ in the Philippines</option>
-                        <option value="Jehovah's Witnesses">Jehovah's Witnesses</option>
+                        <option value="Jehovah''s Witnesses">Jehovah's Witnesses</option>
                         <option value="None">None</option>
                     </select>
                 </div>
@@ -151,10 +152,9 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success">Add</button>
+        <input type="submit" class="btn btn-success" name="add_resident" value="Add">
     </div>
 </div>
-    <?php
-?>
+</form>
 
     

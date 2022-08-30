@@ -49,9 +49,14 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul class="navbar-nav mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Profile</a>
+                                <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-bell px-2"></i></a>
                             </li>
-                            
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-user px-2"></i>Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../Login/login.php" class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -145,40 +150,35 @@
         </div>
     </div>
     <!--View Modal-->
-    <div class="modal fade modal-lg" id="appModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade modal-lg" id="viewModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Resident Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
+            
                     
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
+                
         </div>
     </div>
     <!--Add Modal-->
     <div class="modal fade modal-xl" id="addModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Resident</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Accept</button>
-                </div>
-            </div>
+            
         </div>
     </div>
-    
+
+    <!--Edit Modal-->
+    <div class="modal fade modal-xl" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            
+        </div>
+    </div>
+
+    <script>
+        $('.open-btn').on('click', function(){
+            $('.sidebar').addClass('active');
+        });
+        $('.close-btn').on('click', function(){
+            $('.sidebar').removeClass('active');
+        });
+    </script>
 
     <script>
         $(document).ready(function(){
@@ -189,9 +189,9 @@
                 data: {userid:userid},
                     
                 success: function(result){
-                    $(".modal-body").html(result);
+                    $(".modal-dialog").html(result);
                 }});
-                $('#appModal').modal('show');
+                $('#viewModal').modal('show');
             });
         });
     </script>
@@ -221,9 +221,9 @@
                 data: {userid:userid},
                     
                 success: function(result){
-                    $(".modal-body").html(result);
+                    $(".modal-dialog").html(result);
                 }});
-                $('#addModal').modal('show');
+                $('#editModal').modal('show');
             });
         });
     </script>
