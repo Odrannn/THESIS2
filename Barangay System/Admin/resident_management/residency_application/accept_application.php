@@ -32,6 +32,11 @@
         $new_query = "INSERT INTO resident_table(fname,mname,lname,gender,birthplace,civilstatus,birthday,age,unitnumber,purok,sitio,street,subdivision,contactnumber,email,religion,occupation,education,nationality,disability,status)
         VALUES('$fname','$mname','$lname','$gender','$birthplace','$civilstatus','$birthday','$age','$unitnumber','$purok','$sitio','$street','$subdivision','$contactnumber','$email','$religion','$occupation','$education','$nationality','$disability','active')";
         $new_result = $conn -> query($new_query); 
+
+        $query = "INSERT INTO tbluser(username, password, type)
+        VALUES('$contactnumber', '12345678', 'user')";
+        $result = $conn -> query($query); 
+        
         header("location:residency_application.php");
     }
 ?>

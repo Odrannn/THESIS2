@@ -74,7 +74,7 @@
                     $result = $connection -> query($query);
                 ?>
                 <div class="card">
-                    <h5 class="card-header">Resident List<button data-id="<?php echo $row['id']; ?>" class="addresident btn btn-success" style="float: right">Add</button></h5>
+                    <h5 class="card-header">Resident List<button class="addresident btn btn-success" style="float: right">Add</button></h5>
                     <a class="text-decoration-none mx-4 pt-2" href="residency_application/residency_application.php">
                         <i class="fa-solid fa-user-plus"></i>&nbsp;<span>Residency Registration</span>
                     </a>
@@ -199,10 +199,7 @@
     <script>
         $(document).ready(function(){
             $('.addresident').click(function(){
-                var userid = $(this).data('id');
                 $.ajax({url: "add_form.php",
-                method:'post',
-                data: {userid:userid},
                     
                 success: function(result){
                     $(".modal-dialog").html(result);

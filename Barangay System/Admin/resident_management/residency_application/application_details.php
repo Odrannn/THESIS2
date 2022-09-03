@@ -53,7 +53,7 @@ if(isset($_POST['userid'])){
                     </tr>
                     <tr>
                         <td colspan='4'>
-                            <img src='../icons/sample.jpg' style='width: 100%;'>
+                            <img src='../../../Login/validID/<?php echo $row["img_path"] ?>' style='width: 100%;'>
                         </td>
                     </tr>
                 </table>

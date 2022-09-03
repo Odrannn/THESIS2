@@ -1,75 +1,75 @@
-<?php 
-/*session_start();
-	include 'db.php';
-	$_SESSION['message']='';
-	
-		if($_SERVER['REQUEST_METHOD'] == "POST")
-	{
-		//something was posted
-		$user_name = $_POST['user_name'];
-		$password = $_POST['password'];
-
-		if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
-		{
-
-			//read from database
-			$query = "select * from login where user_name = '$user_name' limit 1";
-			$result = mysqli_query($conn, $query);
-
-			if($result)
-			{
-				if($result && mysqli_num_rows($result) > 0)
-				{
-
-					$user_data = mysqli_fetch_assoc($result);
-					
-					if($user_data['password'] === $password)
-					{
-
-						$_SESSION['user_id'] = $user_data['user_id'];
-						echo "LOGIN SUCCESS";
-						die;
-					}
-				}
-			}
-			
-			echo "wrong username or password!";
-		}else
-		{
-			echo "wrong username or password!";
-		}
-	}
-*/
-?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="style.css">
+    <title>Log in</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Login Form</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"/>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 </head>
-<body background="background.png">
-	<div class="container">
-		<form action="#" method="POST" class="login-email">
-			<p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
-			<div class="input-group">
-				<input type="text" placeholder="Email" name="user_name" value="" required>
-			</div>
-			<div class="input-group" class="passwordbtn">
-				<input type="password" placeholder="Password" name="password" value="" required>
-			</div>
-			<p class="login-forget-text" style="text-align:right"><a href="register.php">Forget Password?</a></p>
-			<hr>
-			<div class="input-group">
-				<button name="submit" class="btn">Login</button>
-			</div>
-			<p class="login-register-text">Don't have an account? <a href="register.php">Register Here</a>.</p>
-		</form>
-	</div>
+
+<body background="images/<?php
+        include("../phpfiles/bgy_info.php");
+        echo $row[7];
+        ?>">
+    
+    <div class="login">
+
+        <h1 class="text-center">Login</h1>
+        
+        <form action="login_account.php" method="post">
+            <div class="form-group was-validated">
+                <label class="form-label" for="username">Username</label>
+                <input class="form-control" type="text" name="username" id="username" required>
+                <div class="invalid-feedback">
+                    Please enter your username
+                </div>
+            </div>
+            <div class="form-group was-validated">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control" type="password" name="password" id="password" required>
+                <div class="invalid-feedback">
+                    Please enter your password
+                </div>
+            </div>
+            <div class="form-group form-check">
+                <input class="form-check-input" type="checkbox" id="check">
+                <label class="form-check-label" for="check">Remember me</label>
+            </div>
+            <button type="button" class="btn btn-link p-0">Forgot Password?</button>
+            <input class="btn btn-success w-100" type="submit" value="LOG IN">
+        </form>
+        <h6 class="d-inline align-middle">Don't have an account?</h6><button class="register btn btn-link p-0">Register Here</button>
+    </div>
+    <!--register Modal-->
+    <div class="modal fade modal-xl" id="regModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            
+        </div>
+    </div>
+    <!-- register script-->
+    <script>
+        $(document).ready(function(){
+            $('.register').click(function(){
+                $.ajax({url: "register_form.php",
+                    
+                success: function(result){
+                    $(".modal-dialog").html(result);
+                }});
+                $('#regModal').modal('show');
+            });
+        });
+    </script>
 </body>
+
 </html>

@@ -55,7 +55,7 @@
                                 <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-user px-2"></i>Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
+                                <a class="nav-link active" aria-current="page" href="../../Login/login.php"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
                             </li>
                         </ul>
                     </div>
@@ -91,11 +91,21 @@
                 <h5 class="card-header">Logo</h5>
                 <div class="card-body">
                     <form class="row g-3" action="change_logo.php" method="post" enctype="multipart/form-data">
-                        <div class="col-auto">
-                            <h5 class="card-title">Barangay logo</h5>
+                        <div class="row mt-3">
+                            <div class="col-auto">
+                                <h5 class="card-title">Barangay logo</h5>
+                            </div>
+                            <div class="col-auto">
+                                <input class="form-control" type="file" name="logo">
+                            </div>
                         </div>
-                        <div class="col-auto">
-                            <input class="form-control" type="file" name="logo">
+                        <div class="row mt-3">
+                            <div class="col-auto">
+                                <h5 class="card-title">Login Background</h5>
+                            </div>
+                            <div class="col-auto">
+                                <input class="form-control" type="file" name="background">
+                            </div>
                         </div>
                         <div class="col-auto">
                             <button type="submit" class="btn btn-primary mb-3" name="upload" value="Upload">Upload</button>
@@ -115,6 +125,16 @@
                                 <input class="form-control" type="text" placeholder="barangay name/number" name= "bgy_name" value="<?php
                                     include("../../phpfiles/bgy_info.php");
                                     echo $row[3]?>">
+                            </div><br>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-auto">
+                                <h5 class="card-title">City/Municipality</h5>
+                            </div>
+                            <div class="col-auto">
+                                <input class="form-control" type="text" placeholder="city/municipality" name= "city" value="<?php
+                                    include("../../phpfiles/bgy_info.php");
+                                    echo $row[6]?>">
                             </div><br>
                         </div>
                         <div class="row mt-2">
