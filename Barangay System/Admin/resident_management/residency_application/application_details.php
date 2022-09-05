@@ -64,7 +64,12 @@ if(isset($_POST['userid'])){
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                 <form action="accept_application.php" method="post">
                     <input type="hidden" name="app_id" value="<?php echo $_POST['userid'] ?>">
-                    <input type="submit" class="btn btn-primary" name="accept_application" value="Accept">
+                    <input type="submit" class="btn btn-primary" name="accept_application" value="Accept" 
+                    <?php
+                        if($row["status"]=="accepted"){
+                            echo "disabled";
+                        }
+                    ?>>
                 </form>
             </div>
         </div>

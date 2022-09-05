@@ -1,9 +1,11 @@
 <?php
+    $conn = new mysqli("localhost", "root", "", "bgy_system") or die("Unable to connect");
+    /* getting existing number */
+    $exquery = "SELECT contactnumber FROM resident_table;";
+    $exresult = $conn -> query($exquery); 
+    $exrow = mysqli_fetch_array($exresult);
     
-
     if (isset($_POST['register']) && isset($_FILES['validID'])) {
-        $conn = new mysqli("localhost", "root", "", "bgy_system") or die("Unable to connect");
-
         $fname = $_POST['fname'];
         $mname = $_POST['mname'];
         $lname = $_POST['lname'];
@@ -32,40 +34,48 @@
         } else {
             $disability = $_POST['disability'];
         }
-
-        
-
-        echo "<pre>";
-        print_r($_FILES['validID']);
-        echo "<pre>";
-
-        $img_name = $_FILES['validID']['name'];
-        $img_size = $_FILES['validID']['size'];
-        $tmp_name = $_FILES['validID']['tmp_name'];
-        $error = $_FILES['validID']['error'];
-
-        if ($error === 0) {
-            $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
-            $img_ex_lc = strtolower($img_ex);
-
-            $allowed_exs = array("jpg", "jpeg", "png");
-
-            if (in_array($img_ex_lc, $allowed_exs)) {
-                $new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
-                $img_upload_path = 'validID/'.$new_img_name;
-                move_uploaded_file($tmp_name, $img_upload_path);
-
-                //insert to db
-                $query = "INSERT INTO registration(fname,mname,lname,gender,birthplace,civilstatus,birthday,age,unitnumber,purok,sitio,street,subdivision,contactnumber,email,religion,occupation,educational,nationality,disability,status,img_path)
-                VALUES('$fname','$mname','$lname','$gender','$birthplace','$civilstatus','$birthday','$age','$unitnumber','$purok','$sitio','$street','$subdivision','$contactnumber','$email','$religion','$occupation','$education','$nationality','$disability','pending','$new_img_name')";
-        
-                $result = $conn -> query($query);
-                echo $img_ex_lc . "\n";
-            } else {
-                echo "You can't upload files of this type.";
+    
+        if (in_array("$contactnumber", $exrow)){
+            echo "<pre>";
+            print_r($_FILES['validID']);
+            echo "<pre>";
+    
+            $img_name = $_FILES['validID']['name'];
+            $img_size = $_FILES['validID']['size'];
+            $tmp_name = $_FILES['validID']['tmp_name'];
+            $error = $_FILES['validID']['error'];
+    
+            if ($error === 0) {
+                $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+                $img_ex_lc = strtolower($img_ex);
+    
+                $allowed_exs = array("jpg", "jpeg", "png");
+    
+                if (in_array($img_ex_lc, $allowed_exs)) {
+                    $new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
+                    $img_upload_path = 'validID/'.$new_img_name;
+                    move_uploaded_file($tmp_name, $img_upload_path);
+    
+                    //insert to db
+                    $query = "INSERT INTO registration(fname,mname,lname,gender,birthplace,civilstatus,birthday,age,unitnumber,purok,sitio,street,subdivision,contactnumber,email,religion,occupation,educational,nationality,disability,status,img_path)
+                    VALUES('$fname','$mname','$lname','$gender','$birthplace','$civilstatus','$birthday','$age','$unitnumber','$purok','$sitio','$street','$subdivision','$contactnumber','$email','$religion','$occupation','$education','$nationality','$disability','pending','$new_img_name')";
+            
+                    $result = $conn -> query($query);
+                    echo $img_ex_lc . "\n";
+                } else {
+                    echo "You can't upload files of this type.";
+                }
             }
+            header("location:login.php");
+        } else {
+            echo "contact num already exists!!";
         }
+        
+    } else {
+        echo "error";
     }
 
-    header("location:login.php");
+    
+
+    
 ?>

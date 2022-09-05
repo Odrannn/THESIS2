@@ -63,6 +63,9 @@
             </nav>
             
             <div class="dashboard-content px-3 py-4">
+                <a href="../dashboard/dashboard.php"><button type="button" class="btn btn-dark">Back</button></a>
+                <br>
+                <br>
                 <h2 class="fs-5">Resident Management</h2>
                 <p>Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length:
                     a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality,

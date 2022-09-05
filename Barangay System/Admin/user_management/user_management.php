@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>User Management</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -17,7 +17,7 @@
 <body>
     <div class="main_container d-flex">
         <div class="sidebar" id="side_nav" style="background: <?php
-        include("../../../phpfiles/bgy_info.php");
+        include("../../phpfiles/bgy_info.php");
         echo $row[1];
         ?>">
             <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
@@ -25,12 +25,12 @@
                 <button class="btn d-md-none d-block close-btn px-1 py-0 text-white"><i class="fa-solid fa-bars-staggered"></i></button>
             </div>
             <ul class="list-unstyled px-2">
-            <li class=""><a href="../../dashboard/dashboard.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gauge"></i>&nbsp;Dashboard</a></li>
+            <li class=""><a href="../dashboard/dashboard.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gauge"></i>&nbsp;Dashboard</a></li>
             <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between">
                 <span><i class="fa-solid fa-file-lines"></i>&nbsp;File Received</span>
                 <span class="bg-dark rounded-pill text-white py-0 px-2">02</span></a></li>
-            <li class=""><a href="../../announcement/announcement.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Announcement</a></li>
-            <li class=""><a href="../../configuration/configuration.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gear"></i>&nbsp;Configuration</a></li>
+            <li class=""><a href="../announcement/announcement.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Announcement</a></li>
+            <li class=""><a href="../configuration/configuration.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gear"></i>&nbsp;Configuration</a></li>
             </ul>
         </div>
 
@@ -55,7 +55,7 @@
                                 <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-user px-2"></i>Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../../../Login/login.php" class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
+                                <a href="../../Login/login.php" class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
                             </li>
                         </ul>
                     </div>
@@ -63,21 +63,21 @@
             </nav>
             
             <div class="dashboard-content px-3 py-4">
-                <a href="../resident_management.php"><button type="button" class="btn btn-dark">Back</button></a>
+                <a href="../dashboard/dashboard.php"><button type="button" class="btn btn-dark">Back</button></a>
                 <br>
                 <br>
-                <h2 class="fs-5">Residency Application</h2>
+                <h2 class="fs-5">User Management</h2>
                 <p>Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length:
                     a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality,
                     though, the unity and coherence of ideas among sentences is what constitutes a paragraph.</p>
 
                 <?php
                     $connection = new mysqli("localhost", "root", "", "bgy_system");
-                    $query = "SELECT * FROM registration";
+                    $query = "SELECT U.id, U.username, U.password, S.fname, S.mname, S.lname, U.type FROM tbluser U INNER JOIN resident_table S ON U.id = S.id;";
                     $result = $connection -> query($query);
                 ?>
                 <div class="card">
-                    <h5 class="card-header">Resident List</h5>
+                    <h5 class="card-header">User List<button class="adduser btn btn-success" style="float: right">Add</button></h5>
                     <div class="card-body">
                         <div class="container-fluid">
                             <div class="table-responsive" style="width: 100%;">
@@ -85,55 +85,24 @@
                                     <thead>
                                         <tr class="align-top">
                                             <th>ID</th>
-                                            <th>First Name</th>
-                                            <th>Middle Name</th>
-                                            <th>Last Name</th>
-                                            <th>Gender</th>
-                                            <th>Birthplace</th>
-                                            <th>Civil Status</th>
-                                            <th>Birthday</th>
-                                            <th>Age</th>
-                                            <th>Household ID</th>
-                                            <th>Purok</th>
-                                            <th>Sitio</th>
-                                            <th>Street</th>
-                                            <th>Subdivision</th>
-                                            <th>Contact No.</th>
-                                            <th>E-mail</th>
-                                            <th>Religion</th>
-                                            <th>Occupation</th>
-                                            <th>Educational Attainment</th>
-                                            <th>Nationality</th>
-                                            <th>Disability</th> 
-                                            <th>Status</th> 
+                                            <th>Full name</th>
+                                            <th>Username</th>
+                                            <th>Password</th>
+                                            <th>Type</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <?php while($row = $result->fetch_assoc()){ ?>
                                     <tr>
                                         <td><?php echo $row["id"]; ?></td>
-                                        <td><?php echo $row["fname"]; ?></td>
-                                        <td><?php echo $row["mname"]; ?></td>
-                                        <td><?php echo $row["lname"]; ?></td>
-                                        <td><?php echo $row["gender"]; ?></td>
-                                        <td><?php echo $row["birthplace"]; ?></td>
-                                        <td><?php echo $row["civilstatus"]; ?></td>
-                                        <td><?php echo $row["birthday"]; ?></td>
-                                        <td><?php echo $row["age"]; ?></td>
-                                        <td><?php echo $row["unitnumber"]; ?></td>
-                                        <td><?php echo $row["purok"]; ?></td>
-                                        <td><?php echo $row["sitio"]; ?></td>
-                                        <td><?php echo $row["street"]; ?></td>
-                                        <td><?php echo $row["subdivision"]; ?></td>
-                                        <td><?php echo $row["contactnumber"]; ?></td>
-                                        <td><?php echo $row["email"]; ?></td>
-                                        <td><?php echo $row["religion"]; ?></td>
-                                        <td><?php echo $row["occupation"]; ?></td>
-                                        <td><?php echo $row["educational"]; ?></td>
-                                        <td><?php echo $row["nationality"]; ?></td>
-                                        <td><?php echo $row["disability"]; ?></td>
-                                        <td><?php echo $row["status"]; ?></td>
-                                        <td><button data-id="<?php echo $row['id']; ?>" class="userinfo btn btn-primary">View</button></td>
+                                        <td><?php echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"]; ?></td>
+                                        <td><?php echo $row["username"]; ?></td>
+                                        <td><?php echo $row["password"]; ?></td>
+                                        <td><?php echo $row["type"]; ?></td>
+                                        <td><div class="btn-group" role="group" aria-label="Basic example">
+                                            <button data-id="<?php echo $row['id']; ?>" class="edituser btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <?php } ?>
                                 </table>
@@ -141,27 +110,59 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
-    <!--Application Modal-->
-    <div class="modal fade modal-lg" id="appModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+    <!--Add Modal-->
+    <div class="modal fade modal-md" id="addModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            
+        </div>
+    </div>
+
+    <!--Edit Modal-->
+    <div class="modal fade modal-md" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            
         </div>
     </div>
 
     <script>
+        $('.open-btn').on('click', function(){
+            $('.sidebar').addClass('active');
+        });
+        $('.close-btn').on('click', function(){
+            $('.sidebar').removeClass('active');
+        });
+    </script>
+
+    <!-- Add user script-->
+    <script>
         $(document).ready(function(){
-            $('.userinfo').click(function(){
+            $('.adduser').click(function(){
+                $.ajax({url: "add_form.php",
+                    
+                success: function(result){
+                    $(".modal-dialog").html(result);
+                }});
+                $('#addModal').modal('show');
+            });
+        });
+    </script>
+    <!-- Edit user script-->
+    <script>
+        $(document).ready(function(){
+            $('.edituser').click(function(){
                 var userid = $(this).data('id');
-                $.ajax({url: "application_details.php",
+                $.ajax({url: "edit_form.php",
                 method:'post',
                 data: {userid:userid},
                     
                 success: function(result){
                     $(".modal-dialog").html(result);
                 }});
-                $('#appModal').modal('show');
+                $('#editModal').modal('show');
             });
         });
     </script>

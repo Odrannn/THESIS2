@@ -29,13 +29,26 @@
         $nationality = $row['nationality'];
         $disability = $row['disability'];
 
-        $new_query = "INSERT INTO resident_table(fname,mname,lname,gender,birthplace,civilstatus,birthday,age,unitnumber,purok,sitio,street,subdivision,contactnumber,email,religion,occupation,education,nationality,disability,status)
-        VALUES('$fname','$mname','$lname','$gender','$birthplace','$civilstatus','$birthday','$age','$unitnumber','$purok','$sitio','$street','$subdivision','$contactnumber','$email','$religion','$occupation','$education','$nationality','$disability','active')";
+        /* User creation query */
+        $new_query = "INSERT INTO tbluser(username, password, type)
+        VALUES('$contactnumber', '12345678', 'user');";
         $new_result = $conn -> query($new_query); 
 
-        $query = "INSERT INTO tbluser(username, password, type)
-        VALUES('$contactnumber', '12345678', 'user')";
-        $result = $conn -> query($query); 
+        /* getting the user id for resident foreignkey */
+        $uinfoquery = "SELECT * FROM tbluser WHERE username = '$contactnumber';";
+        $uinforesult = $conn -> query($uinfoquery); 
+        $uinforow = mysqli_fetch_array($uinforesult);
+
+        $userid = $uinforow['id'];
+
+        /* resident creation query */
+        $new_query = "INSERT INTO resident_table(user_id,fname,mname,lname,gender,birthplace,civilstatus,birthday,age,unitnumber,purok,sitio,street,subdivision,contactnumber,email,religion,occupation,education,nationality,disability,status)
+        VALUES('$userid','$fname','$mname','$lname','$gender','$birthplace','$civilstatus','$birthday','$age','$unitnumber','$purok','$sitio','$street','$subdivision','$contactnumber','$email','$religion','$occupation','$education','$nationality','$disability','active');
+        
+        UPDATE registration
+        SET status = 'accepted'
+        WHERE id = '".$_POST['app_id']."'";
+        $new_result = $conn -> multi_query($new_query); 
         
         header("location:residency_application.php");
     }
