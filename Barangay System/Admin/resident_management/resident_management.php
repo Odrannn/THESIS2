@@ -88,6 +88,7 @@
                                     <thead>
                                         <tr class="align-top">
                                             <th>ID</th>
+                                            <th>User ID</th>
                                             <th>First Name</th>
                                             <th>Middle Name</th>
                                             <th>Last Name</th>
@@ -115,6 +116,7 @@
                                     <?php while($row = $result->fetch_assoc()){ ?>
                                     <tr>
                                         <td><?php echo $row["id"]; ?></td>
+                                        <td><?php echo $row["user_id"]; ?></td>
                                         <td><?php echo $row["fname"]; ?></td>
                                         <td><?php echo $row["mname"]; ?></td>
                                         <td><?php echo $row["lname"]; ?></td>

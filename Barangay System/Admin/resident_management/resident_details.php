@@ -29,7 +29,7 @@ if(isset($_POST['userid'])){
                         <p class="m-0"><b>Religion: </b><?php echo $row["religion"] ?></p>
                         <p class="m-0"><b>Occupation: </b><?php echo $row["occupation"] ?></p>
                         <p class="m-0"><b>Email: </b><?php echo $row["email"] ?></p>
-                        <p class="m-0"><b>Highest Educational Attainment: </b><?php echo $row["civilstatus"] ?></p>
+                        <p class="m-0"><b>Highest Educational Attainment: </b><?php echo $row["education"] ?></p>
                         <p class="m-0"><b>Nationality: </b><?php echo $row["nationality"] ?></p>
                         <p class="m-0"><b>Disability: </b><?php echo $row["disability"] ?></p>
                         <p class="m-0"><b>Status: </b><?php echo $row["status"] ?></p>

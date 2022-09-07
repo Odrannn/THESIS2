@@ -1,5 +1,9 @@
 <?php
-    $conn = new mysqli("localhost", "root", "", "bgy_system");
+    $conn = new mysqli("localhost", "root", "", "bgy_system") or die("Unable to connect");
+    /* getting existing number */
+    $exquery = "SELECT contactnumber FROM resident_table;";
+    $exresult = $conn -> query($exquery); 
+    $exrow = mysqli_fetch_array($exresult);
 
     $fname = $_POST['fname'];
     $mname = $_POST['mname'];
@@ -29,15 +33,33 @@
     } else {
         $disability = $_POST['disability'];
     }
-    
 
-    $query = "INSERT INTO resident_table(fname,mname,lname,gender,birthplace,civilstatus,birthday,age,unitnumber,purok,sitio,street,subdivision,contactnumber,email,religion,occupation,education,nationality,disability,status)
-    VALUES('$fname','$mname','$lname','$gender','$birthplace','$civilstatus','$birthday','$age','$unitnumber','$purok','$sitio','$street','$subdivision','$contactnumber','$email','$religion','$occupation','$education','$nationality','$disability','active')";
-    $result = $conn -> query($query); 
+    $num = array();
 
-    $query = "INSERT INTO tbluser(username, password, type)
-    VALUES('$contactnumber', '12345678', 'user')";
-    $result = $conn -> query($query); 
+    while($exrow = mysqli_fetch_array($exresult)){
+        $num[] = $exrow[0];
+    }
 
-    header("location:resident_management.php");
+    if (in_array($contactnumber , $num)){
+        echo "contact num already exists!!";
+        
+    } else {
+        $query = "INSERT INTO tbluser(username, password, type)
+        VALUES('$contactnumber', '12345678', 'user')";
+        $result = $conn -> query($query); 
+
+        /* getting the user id for resident foreignkey */
+        $uinfoquery = "SELECT * FROM tbluser WHERE username = '$contactnumber';";
+        $uinforesult = $conn -> query($uinfoquery); 
+        $uinforow = mysqli_fetch_array($uinforesult);
+
+        $userid = $uinforow['id'];
+
+        /* resident creation query */
+        $query = "INSERT INTO resident_table(user_id,fname,mname,lname,gender,birthplace,civilstatus,birthday,age,unitnumber,purok,sitio,street,subdivision,contactnumber,email,religion,occupation,education,nationality,disability,status)
+        VALUES('$userid','$fname','$mname','$lname','$gender','$birthplace','$civilstatus','$birthday','$age','$unitnumber','$purok','$sitio','$street','$subdivision','$contactnumber','$email','$religion','$occupation','$education','$nationality','$disability','active')";
+        $result = $conn -> query($query);
+
+        header("location:resident_management.php");
+    }
 ?>

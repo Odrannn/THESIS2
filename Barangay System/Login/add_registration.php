@@ -34,8 +34,17 @@
         } else {
             $disability = $_POST['disability'];
         }
-    
-        if (in_array("$contactnumber", $exrow)){
+        
+        $num = array();
+
+        while($exrow = mysqli_fetch_array($exresult)){
+            $num[] = $exrow[0];
+        }
+
+        if (in_array($contactnumber , $num)){
+            echo "contact num already exists!!";
+            
+        } else {
             echo "<pre>";
             print_r($_FILES['validID']);
             echo "<pre>";
@@ -67,10 +76,7 @@
                 }
             }
             header("location:login.php");
-        } else {
-            echo "contact num already exists!!";
         }
-        
     } else {
         echo "error";
     }

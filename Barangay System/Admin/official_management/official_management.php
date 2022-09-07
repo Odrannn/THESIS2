@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>User Management</title>
+    <title></title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -66,41 +66,47 @@
                 <a href="../dashboard/dashboard.php"><button type="button" class="btn btn-dark">Back</button></a>
                 <br>
                 <br>
-                <h2 class="fs-5">User Management</h2>
+                <h2 class="fs-5">Official Management</h2>
                 <p>Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length:
                     a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality,
                     though, the unity and coherence of ideas among sentences is what constitutes a paragraph.</p>
 
                 <?php
                     $connection = new mysqli("localhost", "root", "", "bgy_system");
-                    $query = "SELECT U.id, U.username, U.password, S.fname, S.mname, S.lname, U.type FROM tbluser U INNER JOIN resident_table S ON U.id = S.user_id;";
+                    $query = "SELECT * FROM tblofficial";
                     $result = $connection -> query($query);
                 ?>
                 <div class="card">
-                    <h5 class="card-header">User List<button class="adduser btn btn-success" style="float: right">Add</button></h5>
+                    <h5 class="card-header">Official List<button class="addresident btn btn-success" style="float: right">Add</button></h5>
                     <div class="card-body">
                         <div class="container-fluid">
                             <div class="table-responsive" style="width: 100%;">
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr class="align-top">
-                                            <th>ID</th>
-                                            <th>Full name</th>
-                                            <th>Username</th>
-                                            <th>Password</th>
-                                            <th>Type</th>
+                                            <th>Official ID</th>
+                                            <th>Resident ID</th>
+                                            <th>User ID</th>
+                                            <th>Name</th>
+                                            <th>Position</th>
+                                            <th>Term Start</th>
+                                            <th>Term End</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <?php while($row = $result->fetch_assoc()){ ?>
                                     <tr>
-                                        <td><?php echo $row["id"]; ?></td>
-                                        <td><?php echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"]; ?></td>
-                                        <td><?php echo $row["username"]; ?></td>
-                                        <td><?php echo $row["password"]; ?></td>
-                                        <td><?php echo $row["type"]; ?></td>
+                                        <td><?php echo $row["official_id"]; ?></td>
+                                        <td><?php echo $row["resident_id"]; ?></td>
+                                        <td><?php echo $row["user_id"]; ?></td>
+                                        <td><?php echo $row["name"]; ?></td>
+                                        <td><?php echo $row["position"]; ?></td>
+                                        <td><?php echo $row["term_start"]; ?></td>
+                                        <td><?php echo $row["term_end"]; ?></td>
+                                        <td><?php echo $row["status"]; ?></td>
                                         <td><div class="btn-group" role="group" aria-label="Basic example">
-                                            <button data-id="<?php echo $row['id']; ?>" class="edituser btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button data-id="<?php echo $row['official_id']; ?>" class="editofficial btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
                                             </div>
                                         </td>
                                     </tr>
@@ -115,14 +121,14 @@
         </div>
     </div>
     <!--Add Modal-->
-    <div class="modal fade modal-md" id="addModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+    <div class="modal fade modal-lg" id="addModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
             
         </div>
     </div>
 
     <!--Edit Modal-->
-    <div class="modal fade modal-md" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             
         </div>
@@ -136,11 +142,10 @@
             $('.sidebar').removeClass('active');
         });
     </script>
-
-    <!-- Add user script-->
+    <!-- Add resident script-->
     <script>
         $(document).ready(function(){
-            $('.adduser').click(function(){
+            $('.addresident').click(function(){
                 $.ajax({url: "add_form.php",
                     
                 success: function(result){
@@ -150,10 +155,10 @@
             });
         });
     </script>
-    <!-- Edit user script-->
+    <!-- Edit resident script-->
     <script>
         $(document).ready(function(){
-            $('.edituser').click(function(){
+            $('.editofficial').click(function(){
                 var userid = $(this).data('id');
                 $.ajax({url: "edit_form.php",
                 method:'post',

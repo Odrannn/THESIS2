@@ -119,7 +119,7 @@
                 <?php include('../configuration/modules_available.php');
                     if($availability[4] == 'yes'){ ?>
                         <div class="card mb-3 me-2" style="width: 18rem;display: inline-block;">
-                            <a href="../official_management/official_management.html" class="text-decoration-none text-dark">
+                            <a href="../official_management/official_management.php" class="text-decoration-none text-dark">
                             <img src="../icons/admin.jpg" class="card-img-top" style="filter: brightness(50%);">
                             <div class="card-body">
                                 <h5 class="card-title">Officials Management</h5>

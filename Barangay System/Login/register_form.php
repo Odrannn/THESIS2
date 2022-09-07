@@ -30,6 +30,12 @@
                             value="male" />
                         <label class="form-check-label" for="maleGender">Male</label>
                         </div>
+
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="otherGender"
+                            value="other" />
+                        <label class="form-check-label" for="otherGender">Other</label>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
