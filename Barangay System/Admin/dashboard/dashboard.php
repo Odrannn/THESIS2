@@ -67,7 +67,7 @@
                 <?php include('../configuration/modules_available.php');
                     if($availability[0] == 'yes'){ ?>
                         <div class="card mb-3 me-2 hover-shadow " style="width: 18rem;display: inline-block;">
-                            <a href="../case_management/case_management.html" class="text-decoration-none text-dark">
+                            <a href="../case_management/case_management.php" class="text-decoration-none text-dark">
                             <img src="../icons/complaint2.jpg" class="card-img-top" style="filter: brightness(50%);">
                             <div class="card-body">
                                 <h5 class="card-title">Case Management</h5>
