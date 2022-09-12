@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 06, 2022 at 05:46 PM
+-- Generation Time: Sep 12, 2022 at 06:15 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -91,6 +91,28 @@ CREATE TABLE `bgy_info` (
 
 INSERT INTO `bgy_info` (`id`, `color_theme`, `logo_url`, `bgy_name`, `vision`, `mission`, `city`, `background_url`) VALUES
 (1, '#006275', 'IMG-6310af57d8cd99.26288049.png', '310', 'We envision the Barangay Pico to be more progressive, loving and peaceful place to live in where people and residents enjoy harmonious way of life, business, at work and at home, and most especially for a more directed and progressive Barangay Governance.', 'We commit to perform better duties and responsibilities to carry out the plans and objectives of the barangay thru voluntary and excellent performance, most especially in the delivery of the basic needs such as improved roads and environment, water system, health care, education, housing and agricultural farming needs of the farmers and residents of the barangay.', 'Manila City', 'IMG-6310b1e4de2736.84526520.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `case_option`
+--
+
+CREATE TABLE `case_option` (
+  `id` int(11) NOT NULL,
+  `complaint_nature` varchar(50) NOT NULL,
+  `suggestion_nature` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `case_option`
+--
+
+INSERT INTO `case_option` (`id`, `complaint_nature`, `suggestion_nature`) VALUES
+(1, 'Dirty Barangay', ''),
+(2, 'Gossip Mongers', ''),
+(3, 'Drugs', ''),
+(4, 'Noise', '');
 
 -- --------------------------------------------------------
 
@@ -232,7 +254,10 @@ INSERT INTO `tblofficial` (`official_id`, `resident_id`, `user_id`, `name`, `pos
 (1, 12, 13, 'Michael Jordan', 'Chairman', '2016-12-01', '2023-06-01', 'active'),
 (2, 13, 14, 'Kobe Bryant', 'Kagawad', '2016-12-01', '2023-06-01', 'active'),
 (3, 14, 15, 'Lebron James', 'Kagawad', '2016-12-01', '2023-06-01', 'active'),
-(4, 17, 18, 'John Wall', 'Kagawad', '2016-12-01', '2023-06-01', 'active');
+(4, 17, 18, 'John Wall', 'Kagawad', '2016-12-01', '2023-06-01', 'active'),
+(5, 8, 8, 'Bernard Kabiling Mazo', 'Exo', '2022-09-22', '2022-09-19', 'active'),
+(6, 7, 7, 'Lenz Janielle Lim Gerongco', 'Secretary', '2022-08-02', '2023-12-28', 'active'),
+(8, 9, 9, 'Christian Philip Diff Orsolino', 'Kagawad', '2022-09-14', '2022-09-28', 'active');
 
 -- --------------------------------------------------------
 
@@ -285,6 +310,12 @@ ALTER TABLE `bgy_info`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `case_option`
+--
+ALTER TABLE `case_option`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `modules_available`
 --
 ALTER TABLE `modules_available`
@@ -307,7 +338,8 @@ ALTER TABLE `resident_table`
 -- Indexes for table `tblofficial`
 --
 ALTER TABLE `tblofficial`
-  ADD PRIMARY KEY (`official_id`);
+  ADD PRIMARY KEY (`official_id`),
+  ADD KEY `residency` (`resident_id`);
 
 --
 -- Indexes for table `tbluser`
@@ -338,6 +370,12 @@ ALTER TABLE `bgy_info`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `case_option`
+--
+ALTER TABLE `case_option`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `modules_available`
 --
 ALTER TABLE `modules_available`
@@ -359,7 +397,7 @@ ALTER TABLE `resident_table`
 -- AUTO_INCREMENT for table `tblofficial`
 --
 ALTER TABLE `tblofficial`
-  MODIFY `official_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `official_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbluser`
@@ -376,6 +414,12 @@ ALTER TABLE `tbluser`
 --
 ALTER TABLE `resident_table`
   ADD CONSTRAINT `test` FOREIGN KEY (`user_id`) REFERENCES `tbluser` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
+
+--
+-- Constraints for table `tblofficial`
+--
+ALTER TABLE `tblofficial`
+  ADD CONSTRAINT `residency` FOREIGN KEY (`resident_id`) REFERENCES `resident_table` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

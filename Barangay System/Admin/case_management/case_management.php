@@ -12,6 +12,32 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          <?php
+          include('../../phpfiles/case_option.php');
+          while($row = $result -> fetch_array()){
+            if($row["complaint_nature"] != ''){ ?>
+                ['<?php echo $row['complaint_nature'];?>',     11],
+            <?php }
+            } ?>
+          ['Other',    7]
+        ]);
+
+        var options = {
+          pieHole: 0.4
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
 </head>
 
 <body>
@@ -74,16 +100,59 @@
                     </div>
                 </div>
                 <br>
-                <h2 class="fs-5">Complaint Management</h2>
-                <p>Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length:
-                    a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality,
-                    though, the unity and coherence of ideas among sentences is what constitutes a paragraph.</p>
-
                 <?php
                     $connection = new mysqli("localhost", "root", "", "bgy_system");
                     $query = "SELECT * FROM tblofficial";
                     $result = $connection -> query($query);
                 ?>
+                <h2 class="fs-5">Complaint Management</h2>
+                <p>This module contains a list of every complaint filed by barangay residents.
+                    It has a feature that enables barangay officials to see the overall number of complaints sent to them,
+                    the number of pending complaints so they can see what issues still need to be fixed, and the number
+                    of resolved complaints.</p>
+                
+                <div id="donutchart" style="width: 500px; height: 300px;display: inline-block;  vertical-align:top;"></div>
+                <div style="display: inline-block; vertical-align:top;">
+                    <table class="table table-borderless">
+                        <tr>
+                            <td><h5>Most Complained</h5></td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: top;">
+                                <table>
+                                <?php
+                                    include('../../phpfiles/case_option.php');
+                                    while($row = $result -> fetch_array()){
+
+                                    if($row["complaint_nature"] != ''){ ?>
+
+                                    <form action="" method="post">
+                                        <tr>
+                                        <td><?php echo $row["complaint_nature"]; ?></td>
+                                        <input type="hidden" name = "id" value = "<?php echo $row['id']?>">
+                                        <td><input class="btn btn-danger mx-3" type='submit' name='delete_option' value='Delete'></td>
+                                        </tr>
+                                    </form>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <form action="add_option.php" method="post">
+                                <td><input class="form-control" type="text" name= "complaint" placeholder="enter nature...">
+                                <div class="d-flex flex-row-reverse">
+                                    <input class="mt-2 btn btn-success" type="submit" name="add_option" value="Add">
+                                </div></td>
+                            </form>
+                        </tr>
+                    </table>   
+                </div> 
+                    
+                
+                
                 <div class="d-flex justify-content-center">
                     <div>
                         <div class="card mb-3 me-2 bg-primary" style="width: 18rem;display: inline-block;">
@@ -109,21 +178,22 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="card">
-                    <h5 class="card-header">Official List<button class="addresident btn btn-success" style="float: right">Add</button></h5>
+                    <h5 class="card-header">Complaint Records<button class="addresident btn btn-success" style="float: right">Add</button></h5>
                     <div class="card-body">
                         <div class="container-fluid">
                             <div class="table-responsive" style="width: 100%;">
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr class="align-top">
-                                            <th>Official ID</th>
+                                            <th>Complaint ID</th>
+                                            <th>Official in Charge</th>
                                             <th>Resident ID</th>
-                                            <th>User ID</th>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Term Start</th>
-                                            <th>Term End</th>
+                                            <th>Nature</th>
+                                            <th>Description</th>
+                                            <th>Date</th>
+                                            <th>Proof</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
