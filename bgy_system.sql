@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2022 at 06:15 AM
+-- Generation Time: Sep 12, 2022 at 05:23 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -109,10 +109,10 @@ CREATE TABLE `case_option` (
 --
 
 INSERT INTO `case_option` (`id`, `complaint_nature`, `suggestion_nature`) VALUES
-(1, 'Dirty Barangay', ''),
-(2, 'Gossip Mongers', ''),
-(3, 'Drugs', ''),
-(4, 'Noise', '');
+(1, 'Dirty Barangay', 'Barangay Improvement'),
+(2, 'Gossip Mongers', 'Education'),
+(3, 'Drugs', 'Sports'),
+(4, 'Noise', 'Health');
 
 -- --------------------------------------------------------
 

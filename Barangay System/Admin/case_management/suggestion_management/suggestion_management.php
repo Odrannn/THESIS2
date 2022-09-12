@@ -12,12 +12,38 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          <?php
+          include('../../../phpfiles/case_option.php');
+          while($row = $result -> fetch_array()){
+            if($row["suggestion_nature"] != ''){ ?>
+                ['<?php echo $row['suggestion_nature'];?>',     11],
+            <?php }
+            } ?>
+          ['Others',    7]
+        ]);
+
+        var options = {
+          pieHole: 0.4
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
 </head>
 
 <body>
     <div class="main_container d-flex">
         <div class="sidebar" id="side_nav" style="background: <?php
-        include("../../phpfiles/bgy_info.php");
+        include("../../../phpfiles/bgy_info.php");
         echo $row[1];
         ?>">
             <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
@@ -25,12 +51,12 @@
                 <button class="btn d-md-none d-block close-btn px-1 py-0 text-white"><i class="fa-solid fa-bars-staggered"></i></button>
             </div>
             <ul class="list-unstyled px-2">
-            <li class=""><a href="../dashboard/dashboard.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gauge"></i>&nbsp;Dashboard</a></li>
+            <li class=""><a href="../../dashboard/dashboard.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gauge"></i>&nbsp;Dashboard</a></li>
             <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between">
                 <span><i class="fa-solid fa-file-lines"></i>&nbsp;File Received</span>
                 <span class="bg-dark rounded-pill text-white py-0 px-2">02</span></a></li>
-            <li class=""><a href="../announcement/announcement.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Announcement</a></li>
-            <li class=""><a href="../configuration/configuration.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gear"></i>&nbsp;Configuration</a></li>
+            <li class=""><a href="../../announcement/announcement.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Announcement</a></li>
+            <li class=""><a href="../../configuration/configuration.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gear"></i>&nbsp;Configuration</a></li>
             </ul>
         </div>
 
@@ -63,44 +89,103 @@
             </nav>
             
             <div class="dashboard-content px-3 py-4">
-                <a href="../dashboard/dashboard.php"><button type="button" class="btn btn-dark">Back</button></a>
+                <a href="../../dashboard/dashboard.php"><button type="button" class="btn btn-dark">Back</button></a>
                 <br>
                 <br>
                 <div class="d-flex justify-content-center">
                     <div class="btn-group">
-                        <button class="btn btn-outline-dark active">Complaints</button>
-                        <button class="btn btn-outline-dark">Suggestion</button>
-                        <button class="btn btn-outline-dark">Blotter</button>
-                    </div><br><br>
+                        <a href="../case_management.php"class="btn btn-outline-dark">Complaints</an>
+                        <a href="suggestion_management/suggestion_management.php" class="btn btn-outline-dark active">Suggestion</a>
+                        <a class="btn btn-outline-dark">Blotter</a>
+                    </div>
                 </div>
-                
-                
-                <h2 class="fs-5">Complaint Management</h2>
-                <p>Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length:
-                    a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality,
-                    though, the unity and coherence of ideas among sentences is what constitutes a paragraph.</p>
-
+                <br>
                 <?php
                     $connection = new mysqli("localhost", "root", "", "bgy_system");
                     $query = "SELECT * FROM tblofficial";
                     $result = $connection -> query($query);
                 ?>
+                <h2 class="fs-5">Suggestion Management</h2>
+                <p>The Suggestion module compiles every suggestion submitted by barangay residents. It has a function that enables barangay officials to look at the overall number
+                    of suggestions that have been submitted to them, the number of pending ideas so they can understand which topics the barangay is most concerned about,
+                    and the number of issues that have been resolved.</p>
+                
+                <div id="donutchart" style="width: 500px; height: 300px;display: inline-block;  vertical-align:top;"></div>
+                <div style="display: inline-block; vertical-align:top;">
+                    <table class="table table-borderless">
+                        <tr>
+                            <td><h5>Most Suggested</h5></td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: top;">
+                                <table>
+                                <?php
+                                    include('../../../phpfiles/case_option.php');
+                                    while($row = $result -> fetch_array()){
+
+                                    if($row["suggestion_nature"] != ''){ ?>
+
+                                    <form action="delete_option.php" method="post">
+                                        <tr>
+                                        <td><?php echo $row["suggestion_nature"]; ?></td>
+                                        <input type="hidden" name = "id" value = "<?php echo $row['id']?>">
+                                        <td><input class="btn btn-danger mx-3" type='submit' name='delete_option' value='Delete'></td>
+                                        </tr>
+                                    </form>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <form action="../add_option.php" method="post">
+                                <td><input class="form-control" type="text" name= "suggestion" placeholder="enter nature...">
+                                <div class="d-flex flex-row-reverse">
+                                    <input class="mt-2 btn btn-success" type="submit" name="add_suggestion" value="Add">
+                                </div></td>
+                            </form>
+                        </tr>
+                    </table>   
+                </div> 
+                    
+                
+                
+                <div class="d-flex justify-content-center">
+                    <div>
+                        <div class="card mb-3 me-2 bg-primary" style="width: 18rem;display: inline-block;">
+                            <div class="card-body">
+                                <div class="d-inline text-white">
+                                    <i class="fa-solid fa-lightbulb"></i>&nbsp;<h5 class="d-inline">Total: 21</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-3 me-2 bg-warning" style="width: 18rem;display: inline-block;">
+                            <div class="card-body">
+                                <div class="d-inline text-white">
+                                    <i class="fa-sharp fa-solid fa-spinner"></i>&nbsp;<h5 class="d-inline">Pending: 21</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="card">
-                    <h5 class="card-header">Official List<button class="addresident btn btn-success" style="float: right">Add</button></h5>
+                    <h5 class="card-header">Suggestion Records</h5>
                     <div class="card-body">
                         <div class="container-fluid">
                             <div class="table-responsive" style="width: 100%;">
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr class="align-top">
-                                            <th>Official ID</th>
+                                            <th>Suggestion ID</th>
+                                            <th>Official in Charge</th>
                                             <th>Resident ID</th>
-                                            <th>User ID</th>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Term Start</th>
-                                            <th>Term End</th>
-                                            <th>Status</th>
+                                            <th>Nature</th>
+                                            <th>Description</th>
+                                            <th>Date</th>
+                                            <th>Feedback</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>

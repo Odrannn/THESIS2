@@ -27,7 +27,7 @@
                 ['<?php echo $row['complaint_nature'];?>',     11],
             <?php }
             } ?>
-          ['Other',    7]
+          ['Others',    7]
         ]);
 
         var options = {
@@ -94,9 +94,9 @@
                 <br>
                 <div class="d-flex justify-content-center">
                     <div class="btn-group">
-                        <button class="btn btn-outline-dark active">Complaints</button>
-                        <button class="btn btn-outline-dark">Suggestion</button>
-                        <button class="btn btn-outline-dark">Blotter</button>
+                        <a class="btn btn-outline-dark active">Complaints</an>
+                        <a href="suggestion_management/suggestion_management.php" class="btn btn-outline-dark">Suggestion</a>
+                        <a class="btn btn-outline-dark">Blotter</a>
                     </div>
                 </div>
                 <br>
@@ -126,7 +126,7 @@
 
                                     if($row["complaint_nature"] != ''){ ?>
 
-                                    <form action="" method="post">
+                                    <form action="delete_option.php" method="post">
                                         <tr>
                                         <td><?php echo $row["complaint_nature"]; ?></td>
                                         <input type="hidden" name = "id" value = "<?php echo $row['id']?>">
@@ -180,7 +180,7 @@
                 </div>
                 
                 <div class="card">
-                    <h5 class="card-header">Complaint Records<button class="addresident btn btn-success" style="float: right">Add</button></h5>
+                    <h5 class="card-header">Complaint Records</h5>
                     <div class="card-body">
                         <div class="container-fluid">
                             <div class="table-responsive" style="width: 100%;">
