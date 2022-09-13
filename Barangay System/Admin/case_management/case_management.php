@@ -47,7 +47,10 @@
         echo $row[1];
         ?>">
             <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
-                <h1 class=fs-4><span class="bg-white text-dark rounded shadow px-2 me-2">BS</span><span class="text-white">E-Barangay</span></h1>
+                <h1 class=fs-4><span class="bg-white text-dark rounded shadow px-2 me-2">BS</span><span class="text-white">Barangay <?php
+                                                                                                                                    include("../../phpfiles/bgy_info.php");
+                                                                                                                                    echo $row[3];
+                                                                                                                                    ?></span></h1>
                 <button class="btn d-md-none d-block close-btn px-1 py-0 text-white"><i class="fa-solid fa-bars-staggered"></i></button>
             </div>
             <ul class="list-unstyled px-2">
@@ -96,7 +99,7 @@
                     <div class="btn-group">
                         <a class="btn btn-outline-dark active">Complaints</an>
                         <a href="suggestion_management/suggestion_management.php" class="btn btn-outline-dark">Suggestion</a>
-                        <a class="btn btn-outline-dark">Blotter</a>
+                        <a href="blotter_management/blotter_management.php" class="btn btn-outline-dark">Blotter</a>
                     </div>
                 </div>
                 <br>

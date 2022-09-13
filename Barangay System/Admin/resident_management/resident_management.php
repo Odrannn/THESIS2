@@ -21,7 +21,10 @@
         echo $row[1];
         ?>">
             <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
-                <h1 class=fs-4><span class="bg-white text-dark rounded shadow px-2 me-2">BS</span><span class="text-white">E-Barangay</span></h1>
+                <h1 class=fs-4><span class="bg-white text-dark rounded shadow px-2 me-2">BS</span><span class="text-white">Barangay <?php
+                                                                                                                                    include("../../phpfiles/bgy_info.php");
+                                                                                                                                    echo $row[3];
+                                                                                                                                    ?></span></h1>
                 <button class="btn d-md-none d-block close-btn px-1 py-0 text-white"><i class="fa-solid fa-bars-staggered"></i></button>
             </div>
             <ul class="list-unstyled px-2">
@@ -71,6 +74,58 @@
                     a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality,
                     though, the unity and coherence of ideas among sentences is what constitutes a paragraph.</p>
 
+                <div class="d-flex justify-content-center">
+                <?php
+                    $conn = new mysqli("localhost", "root", "", "bgy_system") or die("Unable to connect");
+                    $tquery = "SELECT count(id) FROM resident_table;";
+                    $tresult = $conn -> query($tquery);
+                    $trow = $tresult -> fetch_array();
+                ?>
+                    <div>
+                        <div class="card mb-3 me-2 bg-dark" style="width: 18rem;display: inline-block;">
+                            <div class="card-body">
+                                <div class="d-inline text-white">
+                                <i class="fa-solid fa-people-group"></i>&nbsp;<h5 class="d-inline">Total: <?php
+                                echo $trow[0]?></h5>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-3 me-2 bg-dark" style="width: 18rem;display: inline-block;">
+                            <div class="card-body">
+                                <div class="d-inline text-white">
+                                    <i class="fa-solid fa-house"></i>&nbsp;<h5 class="d-inline">Household: 21</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                            $mquery = "SELECT count(id) FROM resident_table WHERE gender = 'male';";
+                            $mresult = $conn -> query($mquery);
+                            $mrow = $mresult -> fetch_array();
+                        ?>
+                        <div class="card mb-3 me-2 bg-dark" style="width: 18rem;display: inline-block;">
+                            <div class="card-body">
+                                <div class="d-inline text-white">
+                                    <i class="fa-solid fa-mars"></i>&nbsp;<h5 class="d-inline">Male: <?php
+                                    echo $mrow[0]?></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                            $fquery = "SELECT count(id) FROM resident_table WHERE gender = 'male';";
+                            $fresult = $conn -> query($fquery);
+                            $frow = $fresult -> fetch_array();
+                        ?>
+                        <div class="card mb-3 me-2 bg-dark" style="width: 18rem;display: inline-block;">
+                            <div class="card-body">
+                                <div class="d-inline text-white">
+                                    <i class="fa-solid fa-venus"></i>&nbsp;<h5 class="d-inline">Female: <?php
+                                echo $frow[0]?></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <?php
                     $connection = new mysqli("localhost", "root", "", "bgy_system");
                     $query = "SELECT * FROM resident_table";
