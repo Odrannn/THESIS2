@@ -1,7 +1,6 @@
 <?php
     if (isset($_POST['upload']) && isset($_FILES['logo']) || isset($_FILES['background'])) {
-        $conn = new mysqli("localhost", "root", "", "bgy_system") or die("Unable to connect");
-
+        include("../../phpfiles/connection.php");
         echo "<pre>";
         print_r($_FILES['logo']);
         echo "<pre>";

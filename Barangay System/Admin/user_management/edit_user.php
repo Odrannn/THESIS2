@@ -1,5 +1,5 @@
 <?php
-    $conn = new mysqli("localhost", "root", "", "bgy_system");
+    include("../../phpfiles/connection.php");
     if(isset($_POST['edit_user']))
     {
         $userID = $_POST['user_id'];

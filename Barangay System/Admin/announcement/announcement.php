@@ -96,14 +96,6 @@
                     </div>
                 </div>
             </div>
-
-            <img src="../../announcement_uploads/<?php
-                    $conn = new mysqli("localhost", "root", "", "bgy_system") or die("Unable to connect");
-                    $query = "SELECT * FROM announcement where id = 5"; // "id=5" depende sa database mo kung anong value ng id
-                    $result = $conn -> query($query);
-                    $row = $result -> fetch_array();
-                    echo $row['img_url'];
-            ?>"  class="img-thumbnail">
         </div>
     </div>
     <script>

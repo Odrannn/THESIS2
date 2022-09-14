@@ -1,5 +1,5 @@
 <?php
-    $conn = new mysqli("localhost", "root", "", "bgy_system") or die("Unable to connect");
+    include("../phpfiles/connection.php");
     /* getting existing number */
     $exquery = "SELECT contactnumber FROM resident_table;";
     $exresult = $conn -> query($exquery); 

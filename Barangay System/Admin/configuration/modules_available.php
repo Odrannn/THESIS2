@@ -1,5 +1,5 @@
 <?php
-    $conn = new mysqli("localhost", "root", "", "bgy_system") or die("Unable to connect");
+    include("../../phpfiles/connection.php");
     $query = "SELECT availability FROM modules_available;";
     $result = $conn -> query($query);
 

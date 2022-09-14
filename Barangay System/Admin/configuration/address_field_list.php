@@ -1,5 +1,5 @@
 <?php
-    $conn = new mysqli("localhost", "root", "", "bgy_system") or die("Unable to connect");
+    include("../../phpfiles/connection.php");
     $query = "SELECT * FROM address_fields;";
     $result = $conn -> query($query);
 ?>

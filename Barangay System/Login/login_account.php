@@ -11,7 +11,7 @@
 		{
 
 			//read from database
-            $conn = new mysqli("localhost", "root", "", "bgy_system") or die("Unable to connect");
+            include("../phpfiles/connection.php");
 			$query = "select * from tbluser where username = '$username' limit 1";
 			$result = mysqli_query($conn, $query);
 

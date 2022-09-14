@@ -103,11 +103,7 @@
                     </div>
                 </div>
                 <br>
-                <?php
-                    $connection = new mysqli("localhost", "root", "", "bgy_system");
-                    $query = "SELECT * FROM tblofficial";
-                    $result = $connection -> query($query);
-                ?>
+                
                 <h2 class="fs-5">Complaint Management</h2>
                 <p>This module contains a list of every complaint filed by barangay residents.
                     It has a feature that enables barangay officials to see the overall number of complaints sent to them,

@@ -1,5 +1,5 @@
 <?php
-    $conn = new mysqli("localhost", "root", "", "bgy_system") or die("Unable to connect");
+    include("connection.php");
     $query = "SELECT * FROM tbluser;";
     $result = $conn -> query($query);
     $row = $result -> fetch_array();

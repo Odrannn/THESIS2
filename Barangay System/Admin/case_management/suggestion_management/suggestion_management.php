@@ -103,11 +103,6 @@
                     </div>
                 </div>
                 <br>
-                <?php
-                    $connection = new mysqli("localhost", "root", "", "bgy_system");
-                    $query = "SELECT * FROM tblofficial";
-                    $result = $connection -> query($query);
-                ?>
                 <h2 class="fs-5">Suggestion Management</h2>
                 <p>The Suggestion module compiles every suggestion submitted by barangay residents. It has a function that enables barangay officials to look at the overall number
                     of suggestions that have been submitted to them, the number of pending ideas so they can understand which topics the barangay is most concerned about,

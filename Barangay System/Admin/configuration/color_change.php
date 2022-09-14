@@ -1,6 +1,5 @@
 <?php
-    $conn = new mysqli("localhost", "root", "", "bgy_system") or die("Unable to connect");
-
+    include("../../phpfiles/connection.php");
     if(isset($_POST['save']))
     {
         $prime = $_POST['prime'];

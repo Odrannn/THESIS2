@@ -75,9 +75,9 @@
                     though, the unity and coherence of ideas among sentences is what constitutes a paragraph.</p>
 
                 <?php
-                    $connection = new mysqli("localhost", "root", "", "bgy_system");
+                    include("../../../phpfiles/connection.php");
                     $query = "SELECT * FROM registration";
-                    $result = $connection -> query($query);
+                    $result = $conn -> query($query);
                 ?>
                 <div class="card">
                     <h5 class="card-header">Resident List</h5>
@@ -152,7 +152,16 @@
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         </div>
     </div>
-
+    
+    <script>
+        $('.open-btn').on('click', function(){
+            $('.sidebar').addClass('active');
+        });
+        $('.close-btn').on('click', function(){
+            $('.sidebar').removeClass('active');
+        });
+    </script>
+    
     <script>
         $(document).ready(function(){
             $('.userinfo').click(function(){

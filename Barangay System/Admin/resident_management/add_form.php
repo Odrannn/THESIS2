@@ -71,7 +71,7 @@
                         <select class="form-control" id="civilstatus" name="civilstatus">
                             <option value="Single">Single</option>
                             <option value="Married">Married</option>
-                            <option value="Windowed">Windowed</option>
+                            <option value="Widowed">Widowed</option>
                             <option value="Divorced">Divorced</option>
                         </select>
                         <label for="civilstatus">Civil Status</label>

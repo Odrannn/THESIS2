@@ -1,6 +1,5 @@
 <?php
-    $conn = new mysqli("localhost", "root", "", "bgy_system") or die("Unable to connect");
-    if(isset($_POST['add_purok']))
+    include("../../phpfiles/connection.php");
     {
         $purok = $_POST['purok'];
         $id = 0;

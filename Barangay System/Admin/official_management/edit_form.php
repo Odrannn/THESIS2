@@ -1,7 +1,7 @@
 <?php 
 if(isset($_POST['userid'])){
 
-    $conn = new mysqli("localhost", "root", "", "bgy_system");
+    include("../../phpfiles/connection.php");
     $query = "SELECT * FROM tblofficial WHERE official_id = '".$_POST['userid']."'";
     $result = $conn -> query($query); 
     $row1 = mysqli_fetch_array($result)?>

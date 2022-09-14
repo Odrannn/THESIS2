@@ -1,6 +1,6 @@
 <?php
     if (isset($_POST['post']) && isset($_FILES['ann_image'])) {
-        $conn = new mysqli("localhost", "root", "", "bgy_system") or die("Unable to connect");
+        include("../../phpfiles/connection.php");
 
         echo "<pre>";
         print_r($_FILES['ann_image']);

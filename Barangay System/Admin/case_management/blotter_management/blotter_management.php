@@ -80,11 +80,6 @@
                     </div>
                 </div>
                 <br>
-                <?php
-                    $connection = new mysqli("localhost", "root", "", "bgy_system");
-                    $query = "SELECT * FROM tblofficial";
-                    $result = $connection -> query($query);
-                ?>
                 <h2 class="fs-5">Blotter Management</h2>
                 <p>Every blotter that is issued in the barangay is compiled by the blotter module, which also contains a function that allows barangay
                     authorities to see how many blotters have been submitted in total, how many cases are still pending, and how many issues have been resolved.

@@ -10,9 +10,9 @@
                     <div class="col-md pt-2">
                         <div class="form-floating">
                         <?php
-                            $connection = new mysqli("localhost", "root", "", "bgy_system");
+                            include("../../phpfiles/connection.php");
                             $query = "SELECT * FROM resident_table WHERE user_id IS NULL" ;
-                            $result = $connection -> query($query);
+                            $result = $conn -> query($query);
                         ?>
                             <select class="form-control" name="type" id="type">
                            

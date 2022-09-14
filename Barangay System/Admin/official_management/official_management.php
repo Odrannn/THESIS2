@@ -75,9 +75,9 @@
                     though, the unity and coherence of ideas among sentences is what constitutes a paragraph.</p>
 
                 <?php
-                    $connection = new mysqli("localhost", "root", "", "bgy_system");
+                    include("../../phpfiles/connection.php");
                     $query = "SELECT * FROM tblofficial";
-                    $result = $connection -> query($query);
+                    $result = $conn -> query($query);
                 ?>
                 <div class="card">
                     <h5 class="card-header">Official List<button class="addresident btn btn-success" style="float: right">Add</button></h5>

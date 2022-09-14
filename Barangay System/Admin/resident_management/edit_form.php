@@ -1,7 +1,7 @@
 <?php 
 if(isset($_POST['userid'])){
 
-    $conn = new mysqli("localhost", "root", "", "bgy_system");
+    include("../../phpfiles/connection.php");
     $query = "SELECT * FROM resident_table WHERE id = '".$_POST['userid']."'";
     $result = $conn -> query($query); 
     $row1 = mysqli_fetch_array($result)?>
@@ -60,7 +60,7 @@ if(isset($_POST['userid'])){
                         <select class="form-control" id="status" name="civilstatus" value="<?php echo $row1["civilstatus"];?>">
                             <option value="Single">Single</option>
                             <option value="Married">Married</option>
-                            <option value="Windowed">Windowed</option>
+                            <option value="Widowed">Widowed</option>
                             <option value="Divorced">Divorced</option>
                         </select>
                     </div>

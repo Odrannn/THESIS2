@@ -2,7 +2,7 @@
 
 
 if(isset($_POST['userid'])){
-    $conn = new mysqli("localhost", "root", "", "bgy_system");
+    include("../../../phpfiles/connection.php");
     $query = "SELECT * FROM registration WHERE id = '".$_POST['userid']."'";
     $result = $conn -> query($query); 
     $row = mysqli_fetch_array($result)?>

@@ -1,5 +1,5 @@
 <?php
-    $conn = new mysqli("localhost", "root", "", "bgy_system") or die("Unable to connect");
+    include("../../phpfiles/connection.php");
     /* getting existing resident from official table*/
     $exquery = "SELECT resident_id FROM tblofficial;";
     $exresult = $conn -> query($exquery); 

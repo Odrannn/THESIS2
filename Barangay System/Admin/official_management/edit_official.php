@@ -1,5 +1,5 @@
 <?php
-    $conn = new mysqli("localhost", "root", "", "bgy_system") or die("Unable to connect");
+    include("../../phpfiles/connection.php");
 
     $officialid = $_POST['official_id'];
     $position = $_POST['position'];

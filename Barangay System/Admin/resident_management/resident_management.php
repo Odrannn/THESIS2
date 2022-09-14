@@ -1,3 +1,6 @@
+<?php
+include("../../phpfiles/connection.php");
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -76,7 +79,6 @@
 
                 <div class="d-flex justify-content-center">
                 <?php
-                    $conn = new mysqli("localhost", "root", "", "bgy_system") or die("Unable to connect");
                     $tquery = "SELECT count(id) FROM resident_table;";
                     $tresult = $conn -> query($tquery);
                     $trow = $tresult -> fetch_array();
@@ -127,9 +129,8 @@
                     </div>
                 </div>
                 <?php
-                    $connection = new mysqli("localhost", "root", "", "bgy_system");
                     $query = "SELECT * FROM resident_table";
-                    $result = $connection -> query($query);
+                    $result = $conn -> query($query);
                 ?>
                 <div class="card">
                     <h5 class="card-header">Resident List<button class="addresident btn btn-success" style="float: right">Add</button></h5>

@@ -1,6 +1,6 @@
 <?php
-    $conn = new mysqli("localhost", "root", "", "bgy_system");
-
+    include("../../phpfiles/connection.php");
+    
     $resID = $_POST['resident_id'];
     $fname = $_POST['fname'];
     $mname = $_POST['mname'];
