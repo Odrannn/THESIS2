@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php include("../../phpfiles/connection.php");?>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
@@ -69,47 +70,71 @@
                 <a href="../dashboard/dashboard.php"><button type="button" class="btn btn-dark">Back</button></a>
                 <br>
                 <br>
-                <h2 class="fs-5">Request Managemet</h2>
+                <h2 class="fs-5">Healthcare Center</h2>
                 <p>Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length:
                     a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality,
                     though, the unity and coherence of ideas among sentences is what constitutes a paragraph.</p>
 
+                
                 <?php
-                    include("../../phpfiles/connection.php");
-                    $query = "SELECT U.id, U.username, U.password, S.fname, S.mname, S.lname, U.type FROM tbluser U INNER JOIN resident_table S ON U.id = S.user_id;";
+                    $query = "SELECT * FROM healthcare_availability";
+                    $result = $conn -> query($query);
+                    $row = $result->fetch_assoc()
+                ?>
+                <div class="card">
+                    <h5 class="card-header">Availability</h5>
+                    <?php echo $row['time_end']; ?>
+                    
+                    <div class="card-body">
+                        <form class="row g-3" action="save_time.php" method="post">
+                            <div class="row">
+                                <div class="col-md pt-2">
+                                    <div class="form-floating">
+                                        <input class="form-control" type="time" id="start" name="start" value="">
+                                        <label for="start">Time Start</label>
+                                    </div>
+                                </div>
+                                <div class="col-md pt-2">
+                                    <div class="form-floating">
+                                        <input class="form-control" type="time" id="end" name="end" value="<?php echo $row['time_end']; ?>">
+                                        <label for="end">Time End</label>
+                                    </div>
+                                </div>
+                                <div class="col-auto pt-2">
+                                    <button type="submit" class="btn btn-success mb-3" name="save" value="Save">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <br>
+                <?php
+                    $query = "SELECT * FROM healthcare_logs";
                     $result = $conn -> query($query);
                 ?>
                 <div class="card">
-                    <h5 class="card-header">Request List</h5>
+                    <h5 class="card-header">Healthcare logs<button class="addresident btn btn-success" style="float: right">Add</button></h5>
                     <div class="card-body">
                         <div class="container-fluid">
                             <div class="table-responsive" style="width: 100%;">
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr class="align-top">
-                                            <th>Request ID</th>
-                                            <th>Official in Charge</th>
-                                            <th>Resident</th>
-                                            <th>Document ID</th>
-                                            <th>Purpose</th>
-                                            <th>Quantity</th>
-                                            <th>Payment</th>
+                                            <th>ID</th>
+                                            <th>Patient ID</th>
                                             <th>Date</th>
-                                            <th>Status</th>
+                                            <th>Time</th>
+                                            <th>Reason For Visit</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <?php while($row = $result->fetch_assoc()){ ?>
                                     <tr>
                                         <td><?php echo $row["id"]; ?></td>
-                                        <td><?php echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"]; ?></td>
-                                        <td><?php echo $row["username"]; ?></td>
-                                        <td><?php echo $row["password"]; ?></td>
-                                        <td><?php echo $row["type"]; ?></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td><?php echo $row["patient_id"]; ?></td>
+                                        <td><?php echo $row["date"]; ?></td>
+                                        <td><?php echo $row["time"]; ?></td>
+                                        <td><?php echo $row["reason"]; ?></td>
                                         <td><div class="btn-group" role="group" aria-label="Basic example">
                                             <button data-id="<?php echo $row['id']; ?>" class="edituser btn btn-primary"><i class="fa-solid fa-eye"></i></button>
                                             </div>

@@ -114,7 +114,7 @@ include("../../phpfiles/connection.php");
                             </div>
                         </div>
                         <?php
-                            $fquery = "SELECT count(id) FROM resident_table WHERE gender = 'male';";
+                            $fquery = "SELECT count(id) FROM resident_table WHERE gender = 'female';";
                             $fresult = $conn -> query($fquery);
                             $frow = $fresult -> fetch_array();
                         ?>
@@ -153,7 +153,7 @@ include("../../phpfiles/connection.php");
                                             <th>Civil Status</th>
                                             <th>Birthday</th>
                                             <th>Age</th>
-                                            <th>Household ID</th>
+                                            <th>Unit Number</th>
                                             <th>Purok</th>
                                             <th>Sitio</th>
                                             <th>Street</th>

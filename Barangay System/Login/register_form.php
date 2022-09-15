@@ -125,10 +125,10 @@
                             <option value="Iglesia ni Cristo">Iglesia ni Cristo</option>
                             <option value="Non-Roman Catholic and Protestant">Non-Roman Catholic and Protestant (NCCP)</option>
                             <option value="Aglipayan">Aglipayan</option>
-                            <option value="Seventh-day Adventist">>Seventh-day Adventist</option>
+                            <option value="Seventh-day Adventist">Seventh-day Adventist</option>
                             <option value="Bible Baptist Church">Bible Baptist Church</option>
                             <option value="United Church of Christ in the Philippines">United Church of Christ in the Philippines</option>
-                            <option value="Jehovah''s Witnesses">Jehovah's Witnesses</option>
+                            <option value="Jehovah''''s Witnesses">Jehovah's Witnesses</option>
                             <option value="None">None</option>
                         </select>
                     </div>
@@ -142,7 +142,7 @@
                             <option value="Less Than Highschool">Less Than Highschool</option>
                             <option value="Highschool">Highschool</option>
                             <option value="College">College</option>
-                            <option value="Bachelor''s Degree">Bachelor's Degree</option>
+                            <option value="Bachelor''''s Degree">Bachelor's Degree</option>
                         </select>
                     </div>
                     <div class="col-md pt-2">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2022 at 05:23 PM
+-- Generation Time: Sep 15, 2022 at 05:21 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -90,7 +90,7 @@ CREATE TABLE `bgy_info` (
 --
 
 INSERT INTO `bgy_info` (`id`, `color_theme`, `logo_url`, `bgy_name`, `vision`, `mission`, `city`, `background_url`) VALUES
-(1, '#006275', 'IMG-6310af57d8cd99.26288049.png', '310', 'We envision the Barangay Pico to be more progressive, loving and peaceful place to live in where people and residents enjoy harmonious way of life, business, at work and at home, and most especially for a more directed and progressive Barangay Governance.', 'We commit to perform better duties and responsibilities to carry out the plans and objectives of the barangay thru voluntary and excellent performance, most especially in the delivery of the basic needs such as improved roads and environment, water system, health care, education, housing and agricultural farming needs of the farmers and residents of the barangay.', 'Manila City', 'IMG-6310b1e4de2736.84526520.png');
+(1, '#293132', 'IMG-6321b8b45097c1.16490257.jpg', '310', 'We envision the Barangay Pico to be more progressive, loving and peaceful place to live in where people and residents enjoy harmonious way of life, business, at work and at home, and most especially for a more directed and progressive Barangay Governance.', 'We commit to perform better duties and responsibilities to carry out the plans and objectives of the barangay thru voluntary and excellent performance, most especially in the delivery of the basic needs such as improved roads and environment, water system, health care, education, housing and agricultural farming needs of the farmers and residents of the barangay.', 'Manila City', 'IMG-6310b1e4de2736.84526520.png');
 
 -- --------------------------------------------------------
 
@@ -113,6 +113,39 @@ INSERT INTO `case_option` (`id`, `complaint_nature`, `suggestion_nature`) VALUES
 (2, 'Gossip Mongers', 'Education'),
 (3, 'Drugs', 'Sports'),
 (4, 'Noise', 'Health');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `healthcare_availability`
+--
+
+CREATE TABLE `healthcare_availability` (
+  `id` int(10) NOT NULL,
+  `time_start` time(6) NOT NULL,
+  `time_end` time(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `healthcare_availability`
+--
+
+INSERT INTO `healthcare_availability` (`id`, `time_start`, `time_end`) VALUES
+(1, '00:00:00.000000', '19:14:00.000000');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `healthcare_logs`
+--
+
+CREATE TABLE `healthcare_logs` (
+  `id` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `time` time(6) NOT NULL,
+  `reason` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -179,7 +212,10 @@ INSERT INTO `registration` (`id`, `fname`, `mname`, `lname`, `gender`, `birthpla
 (8, 'Bernard', 'Kabiling', 'Mazo', 'male', 'Manila', 'Single', '2001-03-27', 21, 1759, 'purok 1', 'sitio 1', 'TELECOM', 'tinagan', '09616064483', 'nard_mazo@gmail.com', 'Roman Catholic', 'Programmer', 'College', 'Filipino', 'none', 'accepted', 'IMG-63121afc4c1067.08242643.jpg'),
 (9, 'Christian Philip', 'Diff', 'Orsolino', 'male', 'Manila', 'Single', '2000-12-11', 21, 1000, 'purok 1', 'sitio 2', 'TELECOM', 'tinagan', '09283523142', 'chris.orsolino@gmail.com', 'Roman Catholic', 'Dancer', 'College', 'Filipino', 'none', 'accepted', 'IMG-6315e248db3a50.51752994.jpg'),
 (10, 'Charles Wilcent', 'Ilustre', 'Urbano', 'male', 'Manila', 'Single', '2000-12-02', 22, 4598, 'purok 2', 'sitio 3', 'TELECOM', 'sevilla street', '09264561231', 'wilson.urbano@gmail.con', 'Roman Catholic', 'Axie player', 'College', 'Filipino', 'none', 'accepted', 'IMG-6315e7787044d0.53015656.jpg'),
-(11, 'Jehan', '', 'Hadji Said', 'male', 'Manila', 'Single', '2012-06-12', 10, 12312, 'purok 2', 'sitio 2', 'kalyepogi', 'parking', '09108418705', 'jehan.said@gmail.com', 'Islam', 'Web developer', 'College', 'Filipino', 'none', 'accepted', 'IMG-6316093cd6aa57.65981626.jpg');
+(11, 'Jehan', '', 'Hadji Said', 'male', 'Manila', 'Single', '2012-06-12', 10, 12312, 'purok 2', 'sitio 2', 'kalyepogi', 'parking', '09108418705', 'jehan.said@gmail.com', 'Islam', 'Web developer', 'College', 'Filipino', 'none', 'accepted', 'IMG-6316093cd6aa57.65981626.jpg'),
+(14, '', '', '', '', '', 'Single', '0000-00-00', 0, 0, '1', '1', '1', '1', '09222222333', '', 'Roman Catholic', 'none', 'Less Than Highschool', '', 'none', 'accepted', 'IMG-6321cbd044d947.20913323.jpg'),
+(15, 'john daniel', 'san juan', 'policarpio', 'male', 'mindoro', 'Married', '2022-09-28', 2, 1004, 'purok 2', 'sitio 3', 'LRC', 'sevilla street', '09789789788', 'juan.delecaruz123', 'Roman Catholic', 'Web developer', 'Less Than Highschool', 'russian', 'pogi', 'pending', 'IMG-6322a81c7d8017.79649686.jpg'),
+(16, 'john daniel', 'san juan', 'policarpio', 'male', 'mindoro', 'Widowed', '2022-09-20', 123, 1004, '1', 'sitio 1', 'kalyepogi', 'tinagan', '09123123123', 'juan.delecaruz123', 'Jehovah\'\'s Witnesses', 'programmer', 'Bachelor\'\'s Degree', 'Filipino', 'pogi', 'accepted', 'IMG-6322a861ded505.42428598.jpg');
 
 -- --------------------------------------------------------
 
@@ -227,7 +263,9 @@ INSERT INTO `resident_table` (`id`, `user_id`, `fname`, `mname`, `lname`, `gende
 (12, 13, 'Michael', '', 'Jordan', 'male', 'Manila', 'Married', '1963-02-17', 58, 2345, 'purok 2', 'sitio 1', 'LRC', 'parking', '09781234567', 'michaejordan@gmail.com', 'Roman Catholic', 'none', 'College', 'American', 'none', '', 'active'),
 (13, 14, 'Kobe', '', 'Bryant', 'male', 'Manila', 'Married', '1978-08-23', 44, 2408, 'Purok 3', 'sitio 3', 'grove', 'sevilla street', '09244567897', 'kobe.bryant@gmail.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'American', 'none', '', 'active'),
 (14, 15, 'Lebron', '', 'James', 'male', 'Manila', 'Single', '1984-12-30', 37, 2306, 'purok 2', 'sitio 2', 'TELECOM', 'parking', '09623456781', 'lebronjames@gmail.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'American', 'none', '', 'active'),
-(17, 18, 'John', '', 'Wall', 'male', 'Manila', 'Single', '1990-09-06', 0, 202, 'purok 1', 'sitio 1', 'Oroqueta', 'tinagan', '09020146545', 'john.wall@gmail.com', 'Roman Catholic', 'none', 'College', 'American', 'none', '', 'active');
+(17, 18, 'John', '', 'Wall', 'male', 'Manila', 'Single', '1990-09-06', 0, 202, 'purok 1', 'sitio 1', 'Oroqueta', 'tinagan', '09020146545', 'john.wall@gmail.com', 'Roman Catholic', 'none', 'College', 'American', 'none', '', 'active'),
+(28, 29, '', '', '', 'female', '', 'Single', '0000-00-00', 0, 0, '1', '1', '1', '1', '09222222333', '', 'Jehovah\'s Witnesses', 'none', 'Less Than Highschool', '', 'none', '', 'active'),
+(29, 30, 'john daniel', 'san juan', 'policarpio', 'male', 'mindoro', 'Widowed', '2022-09-20', 123, 1004, '1', 'sitio 1', 'kalyepogi', 'tinagan', '09123123123', 'juan.delecaruz123', 'Jehovah\'s Witnesses', 'programmer', 'Bachelor\'s Degree', 'Filipino', 'pogi', '', 'active');
 
 -- --------------------------------------------------------
 
@@ -285,7 +323,9 @@ INSERT INTO `tbluser` (`id`, `username`, `password`, `type`) VALUES
 (13, '09781234567', '12345678', 'admin'),
 (14, '09244567897', '12345678', 'admin'),
 (15, '09623456781', '12345678', 'admin'),
-(18, '09020146545', '12345678', 'admin');
+(18, '09020146545', '12345678', 'admin'),
+(29, '09222222333', '12345678', 'user'),
+(30, '09123123123', '12345678', 'user');
 
 --
 -- Indexes for dumped tables
@@ -313,6 +353,18 @@ ALTER TABLE `bgy_info`
 -- Indexes for table `case_option`
 --
 ALTER TABLE `case_option`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `healthcare_availability`
+--
+ALTER TABLE `healthcare_availability`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `healthcare_logs`
+--
+ALTER TABLE `healthcare_logs`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -376,6 +428,18 @@ ALTER TABLE `case_option`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `healthcare_availability`
+--
+ALTER TABLE `healthcare_availability`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `healthcare_logs`
+--
+ALTER TABLE `healthcare_logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `modules_available`
 --
 ALTER TABLE `modules_available`
@@ -385,13 +449,13 @@ ALTER TABLE `modules_available`
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `resident_table`
 --
 ALTER TABLE `resident_table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `tblofficial`
@@ -403,7 +467,7 @@ ALTER TABLE `tblofficial`
 -- AUTO_INCREMENT for table `tbluser`
 --
 ALTER TABLE `tbluser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Constraints for dumped tables
