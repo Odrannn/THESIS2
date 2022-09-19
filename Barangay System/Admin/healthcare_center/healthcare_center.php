@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>User Management</title>
+    <title>Healthcare Availability</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -71,26 +71,23 @@
                 <br>
                 <br>
                 <h2 class="fs-5">Healthcare Center</h2>
-                <p>Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length:
-                    a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality,
-                    though, the unity and coherence of ideas among sentences is what constitutes a paragraph.</p>
+                <p>The enhancement of one's health through the prevention, diagnosis, treatment, amelioration, or cure of disease, illness, injury, and other physical and mental impairments
+                    in humans is known as health care or healthcare. Health professionals and other allied health areas provide healthcare..</p>
 
-                
                 <?php
                     $query = "SELECT * FROM healthcare_availability";
                     $result = $conn -> query($query);
                     $row = $result->fetch_assoc()
                 ?>
                 <div class="card">
-                    <h5 class="card-header">Availability</h5>
-                    <?php echo $row['time_end']; ?>
+                    <h5 class="card-header">Availability</h5>   
                     
                     <div class="card-body">
                         <form class="row g-3" action="save_time.php" method="post">
                             <div class="row">
                                 <div class="col-md pt-2">
                                     <div class="form-floating">
-                                        <input class="form-control" type="time" id="start" name="start" value="">
+                                        <input class="form-control" type="time" id="start" name="start" value="<?php echo $row['time_start']; ?>">
                                         <label for="start">Time Start</label>
                                     </div>
                                 </div>
@@ -113,7 +110,7 @@
                     $result = $conn -> query($query);
                 ?>
                 <div class="card">
-                    <h5 class="card-header">Healthcare logs<button class="addresident btn btn-success" style="float: right">Add</button></h5>
+                    <h5 class="card-header">Healthcare logs<button class="addlog btn btn-success" style="float: right">Add</button></h5>
                     <div class="card-body">
                         <div class="container-fluid">
                             <div class="table-responsive" style="width: 100%;">
@@ -122,6 +119,7 @@
                                         <tr class="align-top">
                                             <th>ID</th>
                                             <th>Patient ID</th>
+                                            <th>Fullname</th>
                                             <th>Date</th>
                                             <th>Time</th>
                                             <th>Reason For Visit</th>
@@ -132,11 +130,12 @@
                                     <tr>
                                         <td><?php echo $row["id"]; ?></td>
                                         <td><?php echo $row["patient_id"]; ?></td>
+                                        <td><?php echo $row["fullname"]; ?></td>
                                         <td><?php echo $row["date"]; ?></td>
                                         <td><?php echo $row["time"]; ?></td>
                                         <td><?php echo $row["reason"]; ?></td>
                                         <td><div class="btn-group" role="group" aria-label="Basic example">
-                                            <button data-id="<?php echo $row['id']; ?>" class="edituser btn btn-primary"><i class="fa-solid fa-eye"></i></button>
+                                            <button data-id="<?php echo $row['id']; ?>" class="editlog btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
                                             </div>
                                         </td>
                                     </tr>
@@ -149,20 +148,23 @@
                 
             </div>
         </div>
+        
     </div>
     <!--Add Modal-->
-    <div class="modal fade modal-md" id="addModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+    <div class="modal fade" id="addModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered">
             
         </div>
     </div>
 
     <!--Edit Modal-->
-    <div class="modal fade modal-md" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             
         </div>
     </div>
+
+    
 
     <script>
         $('.open-btn').on('click', function(){
@@ -173,10 +175,10 @@
         });
     </script>
 
-    <!-- Add user script-->
+    <!-- Add logs script-->
     <script>
         $(document).ready(function(){
-            $('.adduser').click(function(){
+            $('.addlog').click(function(){
                 $.ajax({url: "add_form.php",
                     
                 success: function(result){
@@ -189,7 +191,7 @@
     <!-- Edit user script-->
     <script>
         $(document).ready(function(){
-            $('.edituser').click(function(){
+            $('.editlog').click(function(){
                 var userid = $(this).data('id');
                 $.ajax({url: "edit_form.php",
                 method:'post',

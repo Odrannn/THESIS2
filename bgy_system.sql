@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 15, 2022 at 05:21 PM
+-- Generation Time: Sep 19, 2022 at 04:42 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -122,8 +122,8 @@ INSERT INTO `case_option` (`id`, `complaint_nature`, `suggestion_nature`) VALUES
 
 CREATE TABLE `healthcare_availability` (
   `id` int(10) NOT NULL,
-  `time_start` time(6) NOT NULL,
-  `time_end` time(6) NOT NULL
+  `time_start` time NOT NULL,
+  `time_end` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -131,7 +131,7 @@ CREATE TABLE `healthcare_availability` (
 --
 
 INSERT INTO `healthcare_availability` (`id`, `time_start`, `time_end`) VALUES
-(1, '00:00:00.000000', '19:14:00.000000');
+(1, '07:00:00', '19:00:00');
 
 -- --------------------------------------------------------
 
@@ -142,10 +142,27 @@ INSERT INTO `healthcare_availability` (`id`, `time_start`, `time_end`) VALUES
 CREATE TABLE `healthcare_logs` (
   `id` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
+  `fullname` varchar(100) DEFAULT NULL,
   `date` date NOT NULL,
-  `time` time(6) NOT NULL,
+  `time` time NOT NULL,
   `reason` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `healthcare_logs`
+--
+
+INSERT INTO `healthcare_logs` (`id`, `patient_id`, `fullname`, `date`, `time`, `reason`) VALUES
+(2, 8, 'Bernard Kabiling Mazo', '2022-09-19', '15:51:01', 'pogi'),
+(3, 9, 'Christian Philip Diff Orsolino', '2022-09-19', '15:52:12', 'allergy'),
+(4, 0, '', '2022-09-19', '16:19:02', 'nothing'),
+(5, 0, '', '2022-09-19', '16:21:05', 'asdas'),
+(6, 0, '', '2022-09-19', '16:25:41', 'ads'),
+(7, 0, 'Denver Mazo', '2022-09-19', '16:29:04', 'nothing'),
+(8, 0, '10', '2022-09-19', '16:29:17', 'Varsity'),
+(9, 0, '10', '2022-09-19', '16:29:55', 'varsity'),
+(10, 10, 'Charles Wilcent Ilustre Urbano', '2022-09-19', '16:40:47', 'Varsity'),
+(11, 0, 'Charles', '2022-09-19', '16:41:23', '12121');
 
 -- --------------------------------------------------------
 
@@ -437,7 +454,7 @@ ALTER TABLE `healthcare_availability`
 -- AUTO_INCREMENT for table `healthcare_logs`
 --
 ALTER TABLE `healthcare_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `modules_available`

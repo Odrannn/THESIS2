@@ -1,4 +1,4 @@
-<form action="edit_user.php" method="post">
+<form action="add_user.php" method="post">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
@@ -44,7 +44,7 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
             <input type="hidden" name="user_id" value="<?php echo $row1['id'];?>">
-            <input type="submit" class="btn btn-success" name="edit_user" value="Update">
+            <input type="submit" class="btn btn-success" name="edit_user" value="Add">
         </div>
     </div>
 </form>
