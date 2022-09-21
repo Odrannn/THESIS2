@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2022 at 04:42 PM
+-- Generation Time: Sep 21, 2022 at 05:37 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -113,6 +113,51 @@ INSERT INTO `case_option` (`id`, `complaint_nature`, `suggestion_nature`) VALUES
 (2, 'Gossip Mongers', 'Education'),
 (3, 'Drugs', 'Sports'),
 (4, 'Noise', 'Health');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `document_request`
+--
+
+CREATE TABLE `document_request` (
+  `request_ID` int(11) NOT NULL,
+  `official_ID` int(11) NOT NULL,
+  `resident_ID` int(11) NOT NULL,
+  `document_ID` int(11) NOT NULL,
+  `purpose` varchar(100) NOT NULL,
+  `quantity` int(10) NOT NULL,
+  `payment` varchar(50) NOT NULL,
+  `request_date` date NOT NULL,
+  `status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `document_request`
+--
+
+INSERT INTO `document_request` (`request_ID`, `official_ID`, `resident_ID`, `document_ID`, `purpose`, `quantity`, `payment`, `request_date`, `status`) VALUES
+(1, 0, 7, 1, 'school requirement', 1, 'payment.jpg', '2022-09-22', 'pending');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `document_type`
+--
+
+CREATE TABLE `document_type` (
+  `id` int(11) NOT NULL,
+  `document_type` varchar(50) NOT NULL,
+  `price` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `document_type`
+--
+
+INSERT INTO `document_type` (`id`, `document_type`, `price`) VALUES
+(1, 'Barangay Clearance', '75.00'),
+(2, 'Barangay Clearance', '75.00');
 
 -- --------------------------------------------------------
 
@@ -373,6 +418,18 @@ ALTER TABLE `case_option`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `document_request`
+--
+ALTER TABLE `document_request`
+  ADD PRIMARY KEY (`request_ID`);
+
+--
+-- Indexes for table `document_type`
+--
+ALTER TABLE `document_type`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `healthcare_availability`
 --
 ALTER TABLE `healthcare_availability`
@@ -443,6 +500,18 @@ ALTER TABLE `bgy_info`
 --
 ALTER TABLE `case_option`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `document_request`
+--
+ALTER TABLE `document_request`
+  MODIFY `request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `document_type`
+--
+ALTER TABLE `document_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `healthcare_availability`

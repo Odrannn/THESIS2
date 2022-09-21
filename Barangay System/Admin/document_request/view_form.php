@@ -1,0 +1,51 @@
+<?php 
+include("../../phpfiles/connection.php"); 
+$query = "SELECT * FROM document_request WHERE request_ID = '".$_POST['userid']."';";
+$result = $conn -> query($query);
+$row = $result->fetch_assoc();
+?>
+
+<div class="modal-content">
+    <form action="generate_file.php" method="post">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Request Information</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td class="m-0 p-0"><b>Document type:</b></td>
+                        <td class="m-0 p-0"><?php echo $row['request_ID']?></td>
+                    </tr>
+                    <tr>
+                        <td class="m-0 p-0"><b>Purpose:</b></td>
+                        <td class="m-0 p-0"><?php echo $row['purpose']?></td>
+                    </tr>
+                    <tr>
+                        <td class="m-0 p-0"><b>Quantity:</b></td>
+                        <td class="m-0 p-0"><?php echo $row['quantity']?></td>
+                    </tr>
+                    <tr>
+                        <td class="m-0 p-0"><b>Date:</b></td>
+                        <td class="m-0 p-0"><?php echo $row['request_date']?></td>
+                    </tr>
+                    <tr>
+                        <td class="mx-0 px-0"><b>Payment:</b></td>
+                    </tr>
+                    <tr>
+                        <td class="m-0 p-0" colspan="2"><img src="receipt/sample.jpg" class="rounded" style='width: 100%;'></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <input type="hidden" name="id" value="<?php echo $row['request_ID'];?>">
+        <input type="submit" class="btn btn-success" name="generate" value="Generate Document">
+    </div>
+    </form>
+</div>
+

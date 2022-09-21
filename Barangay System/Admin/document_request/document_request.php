@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>User Management</title>
+    <title>Document Requests</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -73,12 +73,48 @@
                 <p>Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length:
                     a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality,
                     though, the unity and coherence of ideas among sentences is what constitutes a paragraph.</p>
-
+                
                 <?php
                     include("../../phpfiles/connection.php");
-                    $query = "SELECT U.id, U.username, U.password, S.fname, S.mname, S.lname, U.type FROM tbluser U INNER JOIN resident_table S ON U.id = S.user_id;";
+                    $query1 = "SELECT * FROM document_type;";
+                    $result1 = $conn -> query($query1);
+                ?>
+                <div class="card">
+                    <h5 class="card-header">Document List <button class="adddocument btn btn-success" style="float: right">Add</button></h5>
+                    <div class="card-body">
+                        <div class="container-fluid">
+                            <div class="table-responsive" style="width: 100%;">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr class="align-top">
+                                            <th>Document ID</th>
+                                            <th>Document Type</th>
+                                            <th>Price (PHP)</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <?php while($row1 = $result1->fetch_assoc()){ ?>
+                                    <tr>
+                                        <td><?php echo $row1["id"]; ?></td>
+                                        <td><?php echo $row1["document_type"]; ?></td>
+                                        <td><?php echo $row1["price"]; ?></td>
+                                        <td><div class="btn-group" role="group" aria-label="Basic example">
+                                            <button data-id="<?php echo $row['id']; ?>" class="viewreq btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </table>
+                            </div>  
+                        </div>
+                    </div>    
+                </div>
+                <br>
+                <?php
+                    $query = "SELECT * FROM document_request;";
                     $result = $conn -> query($query);
                 ?>
+
                 <div class="card">
                     <h5 class="card-header">Request List</h5>
                     <div class="card-body">
@@ -89,7 +125,7 @@
                                         <tr class="align-top">
                                             <th>Request ID</th>
                                             <th>Official in Charge</th>
-                                            <th>Resident</th>
+                                            <th>Resident ID</th>
                                             <th>Document ID</th>
                                             <th>Purpose</th>
                                             <th>Quantity</th>
@@ -101,17 +137,17 @@
                                     </thead>
                                     <?php while($row = $result->fetch_assoc()){ ?>
                                     <tr>
-                                        <td><?php echo $row["id"]; ?></td>
-                                        <td><?php echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"]; ?></td>
-                                        <td><?php echo $row["username"]; ?></td>
-                                        <td><?php echo $row["password"]; ?></td>
-                                        <td><?php echo $row["type"]; ?></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td><?php echo $row["request_ID"]; ?></td>
+                                        <td><?php echo $row["official_ID"]; ?></td>
+                                        <td><?php echo $row["resident_ID"]; ?></td>
+                                        <td><?php echo $row["document_ID"]; ?></td>
+                                        <td><?php echo $row["purpose"]; ?></td>
+                                        <td><?php echo $row["quantity"]; ?></td>
+                                        <td><?php echo $row["payment"]; ?></td>
+                                        <td><?php echo $row["request_date"]; ?></td>
+                                        <td><?php echo $row["status"]; ?></td>
                                         <td><div class="btn-group" role="group" aria-label="Basic example">
-                                            <button data-id="<?php echo $row['id']; ?>" class="edituser btn btn-primary"><i class="fa-solid fa-eye"></i></button>
+                                            <button data-id="<?php echo $row['request_ID']; ?>" class="viewreq btn btn-primary"><i class="fa-solid fa-eye"></i></button>
                                             </div>
                                         </td>
                                     </tr>
@@ -132,8 +168,8 @@
         </div>
     </div>
 
-    <!--Edit Modal-->
-    <div class="modal fade modal-md" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!--View Modal-->
+    <div class="modal fade modal-md" id="viewModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             
         </div>
@@ -148,10 +184,10 @@
         });
     </script>
 
-    <!-- Add user script-->
+    <!-- Add document script-->
     <script>
         $(document).ready(function(){
-            $('.adduser').click(function(){
+            $('.adddocument').click(function(){
                 $.ajax({url: "add_form.php",
                     
                 success: function(result){
@@ -161,19 +197,19 @@
             });
         });
     </script>
-    <!-- Edit user script-->
+    <!-- View request script-->
     <script>
         $(document).ready(function(){
-            $('.edituser').click(function(){
+            $('.viewreq').click(function(){
                 var userid = $(this).data('id');
-                $.ajax({url: "edit_form.php",
+                $.ajax({url: "view_form.php",
                 method:'post',
                 data: {userid:userid},
                     
                 success: function(result){
                     $(".modal-dialog").html(result);
                 }});
-                $('#editModal').modal('show');
+                $('#viewModal').modal('show');
             });
         });
     </script>
