@@ -99,7 +99,7 @@
                                         <td><?php echo $row1["document_type"]; ?></td>
                                         <td><?php echo $row1["price"]; ?></td>
                                         <td><div class="btn-group" role="group" aria-label="Basic example">
-                                            <button data-id="<?php echo $row['id']; ?>" class="viewreq btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button data-id="<?php echo $row1['id']; ?>" class="editdoc btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
                                             </div>
                                         </td>
                                     </tr>
@@ -175,6 +175,13 @@
         </div>
     </div>
 
+    <!--Edit document Modal-->
+    <div class="modal fade modal-md" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            
+        </div>
+    </div>
+
     <script>
         $('.open-btn').on('click', function(){
             $('.sidebar').addClass('active');
@@ -210,6 +217,22 @@
                     $(".modal-dialog").html(result);
                 }});
                 $('#viewModal').modal('show');
+            });
+        });
+    </script>
+    <!-- edit document script-->
+    <script>
+        $(document).ready(function(){
+            $('.editdoc').click(function(){
+                var userid = $(this).data('id');
+                $.ajax({url: "editdoc_form.php",
+                method:'post',
+                data: {userid:userid},
+                    
+                success: function(result){
+                    $(".modal-dialog").html(result);
+                }});
+                $('#editModal').modal('show');
             });
         });
     </script>

@@ -266,137 +266,178 @@
             <div class="card mt-2 mx-3">
                 <h5 class="card-header">Address Fields</h5>
                 <div class="card-body">
-                    <table class="table table-borderless">
-                        <tr>
-                            <td><h5>Puroks</h5></td>
-                            <td><h5>Sitios</h5></td>
-                            <td><h5>Streets</h5></td>
-                            <td><h5>Subdivisions</h5></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: top;">
-                                <table>
-                                <?php
-                                    include('address_field_list.php');
-                                    while($row = $result -> fetch_array()){
+                    <div class="row">
+                        <div class="col-md pt-2">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><h5>Puroks</h5></td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align: top;">
+                                        <table>
+                                        <?php
+                                            include('address_field_list.php');
+                                            while($row = $result -> fetch_array()){
 
-                                    if($row["purok"] != ''){ ?>
+                                            if($row["purok"] != ''){ ?>
 
-                                    <form action="delete_field_list.php" method="post">
-                                        <tr>
-                                        <td><?php echo $row["purok"]; ?></td>
-                                        <input type="hidden" name = "id" value = "<?php echo $row['id']?>">
-                                        <td><input class="btn btn-danger mx-3" type='submit' name='delete_purok' value='Delete'></td>
-                                        </tr>
-                                    </form>
-                                    <?php
-                                        }
-                                    }
-                                    ?>
-                                </table>
-                            </td>
-                            <td style="vertical-align: top;">
-                                    <table>
-                                    <?php
-                                        include('address_field_list.php');
-                                        while($row = $result -> fetch_array()){
-
-                                        if($row["sitio"] != ''){ ?>
                                             <form action="delete_field_list.php" method="post">
                                                 <tr>
-                                                <td><?php echo $row["sitio"]; ?></td>
+                                                <td><?php echo $row["purok"]; ?></td>
                                                 <input type="hidden" name = "id" value = "<?php echo $row['id']?>">
-                                                <td><input class="btn btn-danger mx-3" type='submit' name='delete_sitio' value='Delete'></td>
+                                                <td><input class="btn btn-danger mx-3" type='submit' name='delete_purok' value='Delete'></td>
                                                 </tr>
                                             </form>
-                                        <?php
+                                            <?php
+                                                }
                                             }
-                                        }
-                                        ?>
-                                    </table>
-                                </td>
-                                <td style="vertical-align: top;">
-                                    <table>
-                                    <?php
-                                        include('address_field_list.php');
+                                            ?>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md pt-2">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><h5>Sitios</h5></td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align: top;">
+                                            <table>
+                                            <?php
+                                                include('address_field_list.php');
+                                                while($row = $result -> fetch_array()){
 
-                                        while($row = $result -> fetch_array()){
-
-                                        if($row["street"] != ''){ ?>
-                                            <form action="delete_field_list.php" method="post">
-                                                <tr>
-                                                <td><?php echo $row["street"]; ?></td>
-                                                <input type="hidden" name = "id" value = "<?php echo $row['id']?>">
-                                                <td><input class="btn btn-danger mx-3" type='submit' name='delete_street' value='Delete'></td>
-                                                </tr>
-                                            </form>
+                                                if($row["sitio"] != ''){ ?>
+                                                    <form action="delete_field_list.php" method="post">
+                                                        <tr>
+                                                        <td><?php echo $row["sitio"]; ?></td>
+                                                        <input type="hidden" name = "id" value = "<?php echo $row['id']?>">
+                                                        <td><input class="btn btn-danger mx-3" type='submit' name='delete_sitio' value='Delete'></td>
+                                                        </tr>
+                                                    </form>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                            </table>
+                                        </td>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md pt-2">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><h5>Streets</h5></td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align: top;">
+                                        <table>
                                         <?php
-                                            }
-                                        }
-                                        ?>
-                                    </table>
-                                </td>
-                                <td style="vertical-align: top;">
-                                    <table>
-                                    <?php
-                                        include('address_field_list.php');
-                                        while($row = $result -> fetch_array()){
+                                            include('address_field_list.php');
 
-                                        if($row["subdivision"] != ''){ ?>
-                                            <form action="delete_field_list.php" method="post">
-                                                <tr>
-                                                <td><?php echo $row["subdivision"]; ?></td>
-                                                <input type="hidden" name = "id" value = "<?php echo $row['id']?>">
-                                                <td><input class="btn btn-danger mx-3" type='submit' name='delete_subdivision' value='Delete'></td>
-                                                </tr>
-                                            </form>
-                                        <?php
+                                            while($row = $result -> fetch_array()){
+
+                                            if($row["street"] != ''){ ?>
+                                                <form action="delete_field_list.php" method="post">
+                                                    <tr>
+                                                    <td><?php echo $row["street"]; ?></td>
+                                                    <input type="hidden" name = "id" value = "<?php echo $row['id']?>">
+                                                    <td><input class="btn btn-danger mx-3" type='submit' name='delete_street' value='Delete'></td>
+                                                    </tr>
+                                                </form>
+                                            <?php
+                                                }
                                             }
-                                        }
-                                        ?>
-                                    </table>
-                                </td>
-                            </tr>
-                            <tr>
+                                            ?>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md pt-2">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><h5>Subdivisions</h5></td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align: top;">
+                                        <table>
+                                        <?php
+                                            include('address_field_list.php');
+                                            while($row = $result -> fetch_array()){
+
+                                            if($row["subdivision"] != ''){ ?>
+                                                <form action="delete_field_list.php" method="post">
+                                                    <tr>
+                                                    <td><?php echo $row["subdivision"]; ?></td>
+                                                    <input type="hidden" name = "id" value = "<?php echo $row['id']?>">
+                                                    <td><input class="btn btn-danger mx-3" type='submit' name='delete_subdivision' value='Delete'></td>
+                                                    </tr>
+                                                </form>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md pt-2">
                             <form action="add_field_list.php" method="post">
                                 <td><input class="form-control" type="text" name= "purok" placeholder="enter purok name...">
                                 <div class="d-flex flex-row-reverse">
                                     <input class="mt-2 btn btn-success" type="submit" name="add_purok" value="Add">
                                 </div></td>
-
+                            </form>
+                        </div>
+                        <div class="col-md pt-2">
+                            <form action="add_field_list.php" method="post">
                                 <td><input class="form-control input-sm" type="text" name= "sitio" placeholder="enter sitio name...">
                                 <div class="d-flex flex-row-reverse">
                                     <input class="mt-2 btn btn-success" type="submit" name="add_sitio" value="Add">
                                 </div></td>
-
+                            </form>
+                        </div>
+                        <div class="col-md pt-2">
+                            <form action="add_field_list.php" method="post">
                                 <td><input class="form-control input-sm" type="text" name= "street" placeholder="enter street name...">
                                 <div class="d-flex flex-row-reverse">
                                     <input class="mt-2 btn btn-success" type="submit" name="add_street" value="Add">
                                 </div></td>
-                                
+                            </form>
+                        </div>
+                        <div class="col-md pt-2">
+                            <form action="add_field_list.php" method="post">
                                 <td><input class="form-control input-sm" type="text" name= "subdivision" placeholder="enter subdivision name...">
                                 <div class="d-flex flex-row-reverse">
                                     <input class="mt-2 btn btn-success" type="submit" name="add_subdivision" value="Add">
                                 </div></td>
                             </form>
-                            </tr>
-                        </table>
-                        <?php
-                            $empty_records = array();
-
-                            include('address_field_list.php');
-                            while($row = $result -> fetch_array()){
-                                if($row['purok'] == '' && $row['sitio'] == '' && $row['street'] == '' && $row['subdivision'] == ''){
-                                    array_push($empty_records,$row['id']);
-                                }
-                            }
-
-                            foreach($empty_records as $emp_rec){
-                                $query = "DELETE FROM address_fields WHERE id = $emp_rec;";
-                                $result = $conn -> query($query);
-                            }
-                        ?>
+                        </div>
                     </div>
+                    
+                    
+                    <?php
+                        $empty_records = array();
+
+                        include('address_field_list.php');
+                        while($row = $result -> fetch_array()){
+                            if($row['purok'] == '' && $row['sitio'] == '' && $row['street'] == '' && $row['subdivision'] == ''){
+                                array_push($empty_records,$row['id']);
+                            }
+                        }
+
+                        foreach($empty_records as $emp_rec){
+                            $query = "DELETE FROM address_fields WHERE id = $emp_rec;";
+                            $result = $conn -> query($query);
+                        }
+                    ?>
                 </div>
             </div>
         </div>

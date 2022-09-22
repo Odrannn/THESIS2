@@ -112,7 +112,7 @@
                         </select>
                     </div>
                     <div class="col-md pt-2">
-                        <input class="form-control" type="text" name="contactnumber" placeholder="+63">
+                        <input class="form-control" type="text" name="contactnumber" placeholder="09...">
                     </div>
                     <div class="col-md pt-2">
                         <input class="form-control" type="text" name="email" placeholder="Email">

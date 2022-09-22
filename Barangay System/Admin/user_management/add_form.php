@@ -1,30 +1,28 @@
-<form action="add_user.php" method="post">
-    <div class="modal-content">
+<?php 
+include("../../phpfiles/connection.php"); 
+$query = "SELECT id, concat_ws(' ',fname,mname,lname) as Fullname FROM resident_table WHERE user_id = ''
+            ORDER BY Fullname ASC;";
+$result = $conn -> query($query);
+?>
+
+<div class="modal-content">
+    <form action="add_user.php" autocomplete="off" method="post">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body" style = "height: 50%;overflow-y: auto;">
-            <div class="container">
+        <div class="modal-body">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-md pt-2">
-                        <div class="form-floating">
-                        <?php
-                            include("../../phpfiles/connection.php");
-                            $query = "SELECT * FROM resident_table WHERE user_id IS NULL" ;
-                            $result = $conn -> query($query);
-                        ?>
-                            <select class="form-control" name="type" id="type">
-                           
-                                <option value="">-Select-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                </option>
-                                <?php while($row = $result->fetch_assoc()){ ?>
-                                    <option value=""><?php echo $row["id"]; ?></option>
-                                <?php
-                                } ?>
-                            </select>
-                            <label for="type">Resident ID</label>
+                        <div>
+                            <label for="id">Resident ID (Search the name of the resident.)</label>
+                            <input class="form-control" type="text" id="id" name="id" list="reslist" placeholder="Enter the resident ID..." required>
+                            <datalist id="reslist">
+                                <?php while($row = $result -> fetch_array()) { ?>
+                                    <option value="<?php echo $row['id']?>"><?php echo $row['Fullname']?></option>
+                                <?php } ?>
+                            </datalist>
                         </div>
                     </div>
                 </div>
@@ -43,8 +41,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-            <input type="hidden" name="user_id" value="<?php echo $row1['id'];?>">
             <input type="submit" class="btn btn-success" name="edit_user" value="Add">
         </div>
-    </div>
-</form>
+    </form>
+</div>

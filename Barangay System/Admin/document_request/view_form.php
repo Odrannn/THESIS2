@@ -1,8 +1,12 @@
 <?php 
-include("../../phpfiles/connection.php"); 
-$query = "SELECT * FROM document_request WHERE request_ID = '".$_POST['userid']."';";
+include("../../phpfiles/connection.php");
+$query = "SELECT R.*, T.document_type, T.price FROM document_request R INNER JOIN document_type T ON R.document_ID = T.id WHERE request_ID = '".$_POST['userid']."';";
 $result = $conn -> query($query);
 $row = $result->fetch_assoc();
+
+$quantity = (int)$row['quantity'];
+$price = (float)$row['price'];
+$total = (float)($quantity * $price);
 ?>
 
 <div class="modal-content">
@@ -17,11 +21,15 @@ $row = $result->fetch_assoc();
                 <tbody>
                     <tr>
                         <td class="m-0 p-0"><b>Document type:</b></td>
-                        <td class="m-0 p-0"><?php echo $row['request_ID']?></td>
+                        <td class="m-0 p-0"><?php echo $row['document_type']?></td>
                     </tr>
                     <tr>
                         <td class="m-0 p-0"><b>Purpose:</b></td>
                         <td class="m-0 p-0"><?php echo $row['purpose']?></td>
+                    </tr>
+                    <tr>
+                        <td class="m-0 p-0"><b>Price:</b></td>
+                        <td class="m-0 p-0"><?php echo $row['price']?></td>
                     </tr>
                     <tr>
                         <td class="m-0 p-0"><b>Quantity:</b></td>
@@ -30,6 +38,10 @@ $row = $result->fetch_assoc();
                     <tr>
                         <td class="m-0 p-0"><b>Date:</b></td>
                         <td class="m-0 p-0"><?php echo $row['request_date']?></td>
+                    </tr>
+                    <tr>
+                        <td class="m-0 p-0"><b>Total amount:</b></td>
+                        <td class="m-0 p-0"><?php echo $total?></td>
                     </tr>
                     <tr>
                         <td class="mx-0 px-0"><b>Payment:</b></td>
