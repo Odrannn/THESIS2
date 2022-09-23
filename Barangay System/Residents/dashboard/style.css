@@ -8,13 +8,15 @@ body{
     transition: all 0.3s;
 }
 
+#health{
+	background: url(img/health.jpg);
+    background-size: cover;
+	padding: 5px;
+}
+
 .content{
     min-height: 100vh;
     width: 100%;
-}
-
-hr.h-color{
-    background: #fff;
 }
 
 .sidebar li.active{
@@ -42,3 +44,4 @@ hr.h-color{
         margin-left: 0;
     }
 }
+

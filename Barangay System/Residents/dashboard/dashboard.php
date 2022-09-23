@@ -21,11 +21,19 @@
         echo $row[1];
         ?>">
             <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
-                <h1 class=fs-4><span class="bg-white text-dark rounded shadow px-2 me-2">BS</span><span class="text-white">E-Barangay</span></h1>
+                <h1 class=fs-4><span class="bg-white text-dark rounded shadow px-2 me-2">BS</span><span class="text-white">Barangay <?php
+                                                                                                                            include("../../phpfiles/bgy_info.php");
+                                                                                                                            echo $row[3];
+                                                                                                                            ?></span></h1>
                 <button class="btn d-md-none d-block close-btn px-1 py-0 text-white"><i class="fa-solid fa-bars-staggered"></i></button>
             </div>
             <ul class="list-unstyled px-2">
             <li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gauge"></i>&nbsp;Dashboard</a></li>
+            <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between">
+                <span><i class="fa-solid fa-headset"></i>&nbsp;Complain</span>
+            <li class=""><a href="../announcement/announcement.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Suggest</a></li>
+            <li class=""><a href="../configuration/configuration.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-stamp"></i>&nbsp;Blotter</a></li>
+			<li class=""><a href="../configuration/configuration.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-file"></i>&nbsp;Request Document</a></li>
             </ul>
         </div>
 
@@ -56,35 +64,99 @@
                     </div>
                 </div>
             </nav>
-            <div class="dashboard-content px-3 py-4">
+            <div class="dashboard_content px-3 py-4">
                 <h2 class="text fs-5">Dashboard</h2>
                 <br>
-            </div>
-            <?php
-                include("../../phpfiles/connection.php");
-                $query = "SELECT * FROM announcement";
-                $result = $conn -> query($query);
+                <?php include('../../phpfiles/modules_available.php');
+                    if($availability[0] == 'yes'){ ?>
+                        <div class="card mb-3 me-2 hover-shadow " style="width: 18rem;display: inline-block;">
+                            <a href="../case_management/case_management.php" class="text-decoration-none text-dark">
+                            <img src="img/complaint2.jpg" class="card-img-top" style="filter: brightness(50%);">
+                            <div class="card-body">
+                                <h5 class="card-title">File Complaint</h5>
+                                <p class="card-text">Manage active and inactive complaints and other cases.</p>
+                            </div></a>
+                        </div>
+                    <?php
+                    }
+                ?>
+                <?php if($availability[0] == 'yes'){ ?>
+                        <div class="card mb-3 me-2 hover-shadow " style="width: 18rem;display: inline-block;">
+                            <a href="../case_management/case_management.php" class="text-decoration-none text-dark">
+                            <img src="img/suggestion.jpg" class="card-img-top" style="filter: brightness(50%);">
+                            <div class="card-body">
+                                <h5 class="card-title">Send Suggestion</h5>
+                                <p class="card-text">Manage active and inactive complaints and other cases.</p>
+                            </div></a>
+                        </div>
+                    <?php
+                    }
+                ?>
+                <?php if($availability[0] == 'yes'){ ?>
+                        <div class="card mb-3 me-2 hover-shadow " style="width: 18rem;display: inline-block;">
+                            <a href="../case_management/case_management.php" class="text-decoration-none text-dark">
+                            <img src="img/blotter.jpg" class="card-img-top" style="filter: brightness(50%);">
+                            <div class="card-body">
+                                <h5 class="card-title">File Blotter</h5>
+                                <p class="card-text">Manage active and inactive complaints and other cases.</p>
+                            </div></a>
+                        </div>
+                    <?php
+                    }
+                ?>
+                <?php if($availability[3] == 'yes'){ ?>
+                        <div class="card mb-3 me-2" style="width: 18rem;display: inline-block;">
+                            <a href="../document_request/document_request.php" class="text-decoration-none text-dark">
+                            <img src="img/request.jpg" class="card-img-top" style="filter: brightness(50%);">
+                            <div class="card-body">
+                                <h5 class="card-title">Request Document</h5>
+                                <p class="card-text">Manage all of the documents being requested.</p>
+                            </div></a>
+                        </div>
+                        <?php
+                    }
+                ?>
                 
-
-                while($row = $result->fetch_assoc()) {
-            ?>
-            <div class="card mb-3 mx-3" style="width: 95%;">
-                <div class="row no-gutters">
-                    <div class="col-md-3">
-                        <img src="../../announcement_uploads/<?php echo $row['img_url'];
-                        ?>" class="card-img" alt="..." width="100">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $row['title'];
-                            ?></h5>
-                            <p class="card-text"><?php echo $row['descrip'];
-                            ?></p>
+                <?php include('../../phpfiles/healthcare_time.php');?>
+                <div class="card mb-3 me-2" id="health">
+                    <div class="container-fluid">
+                        <div class="status">
+                            <h1>Healthcare Center Availability</h1>
+                            <h3>Time Available (24 hour Time Format): <br><?php echo $rowh[1]; ?> - <?php echo $rowh[2]; ?></h3>
                         </div>
                     </div>
                 </div>
+                <hr>
+                <div class="d-flex justify-content-center">
+                    <h2 class="text fs-5" >Announcements</h2>
+                </div>
+
+                
+                <hr>
+                <?php
+                    $query = "SELECT * FROM announcement";
+                    $result = $conn -> query($query);
+                    
+
+                    while($row = $result->fetch_assoc()) {
+                ?>
+                    
+                    <div class="card mb-3 me-2">
+                        <div class="row no-gutters">
+                            <div class="col-md-3">
+                                <img src="../../announcement_uploads/<?php echo $row['img_url'];
+                                ?>" class="card-img" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $row['title'];?></h5>
+                                    <p class="card-text"><?php echo $row['descrip'];?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
-            <?php } ?>
         </div>
     </div>
 </body>

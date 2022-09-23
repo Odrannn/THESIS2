@@ -177,7 +177,7 @@
                             <div class="col-auto">
                                 <div class="form-check form-switch">
                                     <input type="checkbox" class="form-check-input" name="modules[]" value="Case Management" <?php
-                                        include('modules_available.php');
+                                        include('../../phpfiles/modules_available.php');
                                         if($availability[0] == 'yes'){
                                             echo 'checked';
                                         }?>></div>  
@@ -190,7 +190,6 @@
                             <div class="col-auto">
                                 <div class="form-check form-switch">
                                     <input type="checkbox" class="form-check-input" name="modules[]" value="Resident Management" <?php
-                                        include('modules_available.php');
                                         if($availability[1] == 'yes'){
                                             echo 'checked';
                                         }?>></div>
@@ -203,7 +202,6 @@
                             <div class="col-auto">
                                 <div class="form-check form-switch">
                                     <input type="checkbox" class="form-check-input" name="modules[]" value="Healthcare Center" <?php
-                                    include('modules_available.php');
                                     if($availability[2] == 'yes'){
                                         echo 'checked';
                                         }?>>
@@ -217,7 +215,6 @@
                             <div class="col-auto">
                                 <div class="form-check form-switch">
                                     <input type="checkbox" class="form-check-input" name="modules[]" value="Request Verification" <?php
-                                    include('modules_available.php');
                                     if($availability[3] == 'yes'){
                                         echo 'checked';
                                     }?>>
@@ -231,7 +228,6 @@
                             <div class="col-auto">
                                 <div class="form-check form-switch">
                                     <input type="checkbox" class="form-check-input" name="modules[]" value="Official Management" <?php
-                                    include('modules_available.php');
                                     if($availability[4] == 'yes'){
                                         echo 'checked';
                                     }?>>
@@ -245,7 +241,6 @@
                             <div class="col-auto">
                                 <div class="form-check form-switch">
                                     <input type="checkbox" class="form-check-input" name="modules[]" value="User Management" <?php
-                                    include('modules_available.php');
                                     if($availability[5] == 'yes'){
                                         echo 'checked';
                                     }?>>

@@ -67,7 +67,7 @@
             <div class="dashboard-content px-3 py-4">
                 <h2 class="text fs-5">Dashboard</h2>
                 <br>
-                <?php include('../configuration/modules_available.php');
+                <?php include('../../phpfiles/modules_available.php');
                     if($availability[0] == 'yes'){ ?>
                         <div class="card mb-3 me-2 hover-shadow " style="width: 18rem;display: inline-block;">
                             <a href="../case_management/case_management.php" class="text-decoration-none text-dark">
@@ -80,8 +80,7 @@
                     <?php
                     }
                 ?>
-                <?php include('../configuration/modules_available.php');
-                    if($availability[1] == 'yes'){ ?>
+                <?php if($availability[1] == 'yes'){ ?>
                         <div class="card mb-3 me-2" style="width: 18rem;display: inline-block;">
                             <a href="../resident_management/resident_management.php" class="text-decoration-none text-dark">
                             <img src="../icons/resident.jpg" class="card-img-top" style="filter: brightness(50%);">
@@ -93,8 +92,7 @@
                     <?php
                     }
                 ?>
-                <?php include('../configuration/modules_available.php');
-                    if($availability[2] == 'yes'){ ?>
+                <?php if($availability[2] == 'yes'){ ?>
                         <div class="card mb-3 me-2" style="width: 18rem;display: inline-block;">
                             <a href="../healthcare_center/healthcare_center.php" class="text-decoration-none text-dark">
                             <img src="../icons/health.jpg" class="card-img-top" style="filter: brightness(50%);">
@@ -106,8 +104,7 @@
                     <?php
                     }
                 ?>
-                <?php include('../configuration/modules_available.php');
-                    if($availability[3] == 'yes'){ ?>
+                <?php if($availability[3] == 'yes'){ ?>
                         <div class="card mb-3 me-2" style="width: 18rem;display: inline-block;">
                             <a href="../document_request/document_request.php" class="text-decoration-none text-dark">
                             <img src="../icons/request.jpg" class="card-img-top" style="filter: brightness(50%);">
@@ -119,8 +116,7 @@
                         <?php
                     }
                 ?>
-                <?php include('../configuration/modules_available.php');
-                    if($availability[4] == 'yes'){ ?>
+                <?php if($availability[4] == 'yes'){ ?>
                         <div class="card mb-3 me-2" style="width: 18rem;display: inline-block;">
                             <a href="../official_management/official_management.php" class="text-decoration-none text-dark">
                             <img src="../icons/admin.jpg" class="card-img-top" style="filter: brightness(50%);">
@@ -132,8 +128,7 @@
                         <?php
                     }
                 ?>
-                <?php include('../configuration/modules_available.php');
-                    if($availability[5] == 'yes'){ ?>
+                <?php if($availability[5] == 'yes'){ ?>
                         <div class="card mb-3 me-2" style="width: 18rem;display: inline-block;">
                             <a href="../user_management/user_management.php" class="text-decoration-none text-dark">
                             <img src="../icons/user.jpg" class="card-img-top" style="filter: brightness(50%);">
