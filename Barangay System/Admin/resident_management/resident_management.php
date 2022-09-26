@@ -1,5 +1,10 @@
-<?php
-include("../../phpfiles/connection.php");
+<?php 
+session_start();
+include('../../phpfiles/connection.php');
+
+if($_SESSION['user_id'] == '') {
+    header("location:../../Login/login.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -61,7 +66,7 @@ include("../../phpfiles/connection.php");
                                 <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-user px-2"></i>Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../../Login/login.php" class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
+                                <a href="../../Login/logout.php" class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
                             </li>
                         </ul>
                     </div>

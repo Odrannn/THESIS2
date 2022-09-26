@@ -1,47 +1,46 @@
 <?php 
-	$_SESSION['message']='';
-	
-	if($_SERVER['REQUEST_METHOD'] == "POST")
+session_start();
+
+if(isset($_POST['login']))
+{
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+
+	if(!empty($username) && !empty($password))
 	{
-		//something was posted
-		$username = $_POST['username'];
-		$password = $_POST['password'];
 
-		if(!empty($username) && !empty($password))
+		//read from database
+		include("../phpfiles/connection.php");
+		$query = "select * from tbluser where username = '$username' limit 1";
+		$result = mysqli_query($conn, $query);
+
+		if($result)
 		{
-
-			//read from database
-            include("../phpfiles/connection.php");
-			$query = "select * from tbluser where username = '$username' limit 1";
-			$result = mysqli_query($conn, $query);
-
-			if($result)
+			if($result && mysqli_num_rows($result) > 0)
 			{
-				if($result && mysqli_num_rows($result) > 0)
+
+				$user_data = mysqli_fetch_assoc($result);
+				
+				if($user_data['password'] == $password)
 				{
 
-					$user_data = mysqli_fetch_assoc($result);
-					
-					if($user_data['password'] === $password)
-					{
-
-						$_SESSION['user_id'] = $user_data['id'];
-                        if($user_data['type'] == 'user'){
-                            header("location:../Residents/dashboard/dashboard.php");
-                        }else if($user_data['type'] == 'admin'){
-                            header("location:../Admin/dashboard/dashboard.php");
-                        } 
-                        die;
-					}
+					$_SESSION['user_id'] = $user_data['id'];
+					if($user_data['type'] == 'user'){
+						header("location:../Residents/dashboard/dashboard.php");
+					}else if($user_data['type'] == 'admin'){
+						header("location:../Admin/dashboard/dashboard.php");
+					} 
+					die;
 				}
 			}
-			$_SESSION['message'] = "wrong username or password!";
-            header("location:login.php");
-		} else
-		{
-			$_SESSION['message'] = "wrong username or password!";
-            header("location:login.php");
 		}
+		$_SESSION['message'] = "Wrong username or password!";
+		header("location:login.php");
+	} else
+	{
+		$_SESSION['message'] = "Wrong username or password!";
+		header("location:login.php");
 	}
+}
 
 ?>

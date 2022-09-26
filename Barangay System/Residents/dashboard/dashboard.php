@@ -1,3 +1,11 @@
+<?php 
+session_start();
+include('../../phpfiles/connection.php');
+
+if($_SESSION['user_id'] == '') {
+    header("location:../../Login/login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -29,11 +37,11 @@
             </div>
             <ul class="list-unstyled px-2">
             <li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gauge"></i>&nbsp;Dashboard</a></li>
-            <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between">
+            <li class=""><a href="../file_case/file_complaint.php" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between">
                 <span><i class="fa-solid fa-headset"></i>&nbsp;Complain</span>
-            <li class=""><a href="../announcement/announcement.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Suggest</a></li>
-            <li class=""><a href="../configuration/configuration.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-stamp"></i>&nbsp;Blotter</a></li>
-			<li class=""><a href="../configuration/configuration.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-file"></i>&nbsp;Request Document</a></li>
+            <li class=""><a href="../file_case/send_suggestion/send_suggestion.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Suggest</a></li>
+            <li class=""><a href="../file_case/file_blotter/file_blotter.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-stamp"></i>&nbsp;Blotter</a></li>
+			<li class=""><a href="../request_document/request_document.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-file"></i>&nbsp;Request Document</a></li>
             </ul>
         </div>
 
@@ -58,46 +66,29 @@
                                 <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-user px-2"></i>Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="../../Login/login.php"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
+                                <a class="nav-link active" aria-current="page" href="../../Login/logout.php"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
             <div class="dashboard_content px-3 py-4">
+                <?php
+                $query = "SELECT * FROM resident_table WHERE user_id = '" . $_SESSION['user_id'] . "'";
+                $result = $conn -> query($query);
+                $row = $result -> fetch_array();
+                ?>
+
                 <h2 class="text fs-5">Dashboard</h2>
+                <h2 class="text fs-5">Welcome <?php echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname']?></h2>
                 <br>
                 <?php include('../../phpfiles/modules_available.php');
                     if($availability[0] == 'yes'){ ?>
                         <div class="card mb-3 me-2 hover-shadow " style="width: 18rem;display: inline-block;">
-                            <a href="../case_management/case_management.php" class="text-decoration-none text-dark">
+                            <a href="../file_case/file_complaint.php" class="text-decoration-none text-dark">
                             <img src="img/complaint2.jpg" class="card-img-top" style="filter: brightness(50%);">
                             <div class="card-body">
-                                <h5 class="card-title">File Complaint</h5>
-                                <p class="card-text">Manage active and inactive complaints and other cases.</p>
-                            </div></a>
-                        </div>
-                    <?php
-                    }
-                ?>
-                <?php if($availability[0] == 'yes'){ ?>
-                        <div class="card mb-3 me-2 hover-shadow " style="width: 18rem;display: inline-block;">
-                            <a href="../case_management/case_management.php" class="text-decoration-none text-dark">
-                            <img src="img/suggestion.jpg" class="card-img-top" style="filter: brightness(50%);">
-                            <div class="card-body">
-                                <h5 class="card-title">Send Suggestion</h5>
-                                <p class="card-text">Manage active and inactive complaints and other cases.</p>
-                            </div></a>
-                        </div>
-                    <?php
-                    }
-                ?>
-                <?php if($availability[0] == 'yes'){ ?>
-                        <div class="card mb-3 me-2 hover-shadow " style="width: 18rem;display: inline-block;">
-                            <a href="../case_management/case_management.php" class="text-decoration-none text-dark">
-                            <img src="img/blotter.jpg" class="card-img-top" style="filter: brightness(50%);">
-                            <div class="card-body">
-                                <h5 class="card-title">File Blotter</h5>
+                                <h5 class="card-title">File Case</h5>
                                 <p class="card-text">Manage active and inactive complaints and other cases.</p>
                             </div></a>
                         </div>

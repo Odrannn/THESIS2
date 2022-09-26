@@ -1,3 +1,11 @@
+<?php 
+session_start();
+include('../../phpfiles/connection.php');
+
+if($_SESSION['user_id'] == '') {
+    header("location:../../Login/login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -58,14 +66,21 @@
                                 <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-user px-2"></i>Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../../Login/login.php" class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
+                                <a href="../../Login/logout.php" class="nav-link active" aria-current="page"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
             <div class="dashboard-content px-3 py-4">
+                <?php
+                $query = "SELECT * FROM resident_table WHERE user_id = '" . $_SESSION['user_id'] . "'";
+                $result = $conn -> query($query);
+                $row = $result -> fetch_array();
+                ?>
+
                 <h2 class="text fs-5">Dashboard</h2>
+                <h2 class="text fs-5">Welcome <?php echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname']?></h2>
                 <br>
                 <?php include('../../phpfiles/modules_available.php');
                     if($availability[0] == 'yes'){ ?>

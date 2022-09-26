@@ -1,3 +1,11 @@
+<?php 
+session_start();
+include('../../phpfiles/connection.php');
+
+if($_SESSION['user_id'] == '') {
+    header("location:../../Login/login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -84,7 +92,7 @@
                                 <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-user px-2"></i>Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../../Login/login.php" class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
+                                <a href="../../Login/logout.php" class="nav-link active" aria-current="page"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
                             </li>
                         </ul>
                     </div>
@@ -197,18 +205,21 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <?php while($row = $result->fetch_assoc()){ ?>
+                                    <?php 
+                                    $query = "SELECT * FROM complaint_table";
+                                    $result = $conn -> query($query);
+                                    while($row = $result->fetch_assoc()){ ?>
                                     <tr>
-                                        <td><?php echo $row["official_id"]; ?></td>
-                                        <td><?php echo $row["resident_id"]; ?></td>
-                                        <td><?php echo $row["user_id"]; ?></td>
-                                        <td><?php echo $row["name"]; ?></td>
-                                        <td><?php echo $row["position"]; ?></td>
-                                        <td><?php echo $row["term_start"]; ?></td>
-                                        <td><?php echo $row["term_end"]; ?></td>
-                                        <td><?php echo $row["status"]; ?></td>
+                                        <td><?php echo $row["complaint_ID"]; ?></td>
+                                        <td><?php echo $row["official_ID"]; ?></td>
+                                        <td><?php echo $row["sender_ID"]; ?></td>
+                                        <td><?php echo $row["complaint_nature"]; ?></td>
+                                        <td><?php echo $row["comp_desc"]; ?></td>
+                                        <td><?php echo $row["complaint_date"]; ?></td>
+                                        <td><?php echo $row["img_proof"]; ?></td>
+                                        <td><?php echo $row["complaint_status"]; ?></td>
                                         <td><div class="btn-group" role="group" aria-label="Basic example">
-                                            <button data-id="<?php echo $row['official_id']; ?>" class="editofficial btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button data-id="<?php echo $row['complaint_ID']; ?>" class="editofficial btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
                                             </div>
                                         </td>
                                     </tr>

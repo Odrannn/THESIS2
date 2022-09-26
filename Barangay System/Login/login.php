@@ -1,4 +1,23 @@
+<?php 
+session_start();
+include("../phpfiles/connection.php");
+if(isset($_SESSION['user_id']))
+{ 
+$query = "select * from tbluser where id = '" . $_SESSION['user_id'] . "' limit 1";
+$result = mysqli_query($conn, $query);
+$user_data = mysqli_fetch_assoc($result);
 
+  
+if($_SESSION['user_id'] != ""){
+    if($user_data['type'] == 'user'){
+        header("location:../Residents/dashboard/dashboard.php");
+    }else if($user_data['type'] == 'admin'){
+        header("location:../Admin/dashboard/dashboard.php");
+    } 
+}
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,9 +65,18 @@
                 <input class="form-check-input" type="checkbox" id="check">
                 <label class="form-check-label" for="check">Remember me</label>
             </div>
+            
             <button type="button" class="btn btn-link p-0">Forgot Password?</button>
-            <input class="btn btn-success w-100" type="submit" value="LOG IN">
+            <input class="btn btn-success w-100" type="submit" name ="login" value="LOG IN">
         </form>
+        
+        <?php 
+        if(isset($_SESSION['message']))
+        {
+            if($_SESSION['message'] != ''){?>
+            <div class="alert alert-danger mt-2" role="alert"><?php echo $_SESSION['message'];?></div> 
+        <?php }
+        } ?>
         <h6 class="d-inline align-middle">Don't have an account?</h6><button class="register btn btn-link p-0">Register Here</button>
     </div>
     <!--register Modal-->
@@ -57,6 +85,7 @@
             
         </div>
     </div>
+    
     <!-- register script-->
     <script>
         $(document).ready(function(){

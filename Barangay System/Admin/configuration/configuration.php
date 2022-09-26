@@ -1,3 +1,11 @@
+<?php 
+session_start();
+include('../../phpfiles/connection.php');
+
+if($_SESSION['user_id'] == '') {
+    header("location:../../Login/login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -58,7 +66,7 @@
                                 <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-user px-2"></i>Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="../../Login/login.php"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
+                                <a class="nav-link active" aria-current="page" href="../../Login/logout.php"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
                             </li>
                         </ul>
                     </div>
