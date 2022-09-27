@@ -219,7 +219,7 @@ if($_SESSION['user_id'] == '') {
                                         <td><?php echo $row["img_proof"]; ?></td>
                                         <td><?php echo $row["complaint_status"]; ?></td>
                                         <td><div class="btn-group" role="group" aria-label="Basic example">
-                                            <button data-id="<?php echo $row['complaint_ID']; ?>" class="editofficial btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button data-id="<?php echo $row['complaint_ID']; ?>" class="editcomplaint btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
                                             </div>
                                         </td>
                                     </tr>
@@ -268,12 +268,12 @@ if($_SESSION['user_id'] == '') {
             });
         });
     </script>
-    <!-- Edit resident script-->
+    <!-- Edit complaint script-->
     <script>
         $(document).ready(function(){
-            $('.editofficial').click(function(){
+            $('.editcomplaint').click(function(){
                 var userid = $(this).data('id');
-                $.ajax({url: "edit_form.php",
+                $.ajax({url: "edit_complaint_form.php",
                 method:'post',
                 data: {userid:userid},
                     

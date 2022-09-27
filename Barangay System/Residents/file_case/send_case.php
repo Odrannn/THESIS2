@@ -1,4 +1,7 @@
 <?php
+    session_start();
+
+
     if (isset($_POST['send_complaint'])) {
         include("../../phpfiles/connection.php");
 
@@ -6,6 +9,7 @@
         $img_size = $_FILES['comp_image']['size'];
         $tmp_name = $_FILES['comp_image']['tmp_name'];
         $error = $_FILES['comp_image']['error'];
+        $senderID = $_SESSION['user_id'];
         $nature = $_POST['nature'];
         $description = $_POST['description'];
         $date = date("Y-m-d");
@@ -26,8 +30,8 @@
                 move_uploaded_file($tmp_name, $img_upload_path);
 
                 //insert to db
-                $query = "INSERT INTO complaint_table(complaint_nature, img_proof, comp_desc, complaint_date,complaint_status)
-                VALUES ('$nature', '$new_img_name', '$description', '$date', 'pending');";
+                $query = "INSERT INTO complaint_table(sender_ID, complaint_nature, img_proof, comp_desc, complaint_date,complaint_status)
+                VALUES ('$senderID','$nature', '$new_img_name', '$description', '$date', 'pending');";
                 $result = $conn -> query($query);
             } else {
                 echo "You can't upload files of this type.";

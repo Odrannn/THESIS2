@@ -78,11 +78,13 @@ if($_SESSION['user_id'] == '') {
                 <a href="../dashboard/dashboard.php"><button type="button" class="btn btn-dark">Back</button></a>
                 <br>
                 <br>
-                <div class="d-flex justify-content-center">
-                    <div class="btn-group">
-                        <a class="btn btn-outline-dark active">Complaints</an>
-                        <a href="send_suggestion/send_suggestion.php" class="btn btn-outline-dark">Suggestion</a>
-                        <a href="file_blotter/file_blotter.php" class="btn btn-outline-dark">Blotter</a>
+                <div>
+                    <div class="d-flex justify-content-center">
+                        <div class="btn-group">
+                            <a class="btn btn-outline-dark active">Complaints</an>
+                            <a href="send_suggestion/send_suggestion.php" class="btn btn-outline-dark">Suggestion</a>
+                            <a href="file_blotter/file_blotter.php" class="btn btn-outline-dark">Blotter</a>
+                        </div>
                     </div>
                 </div>
                 <br>

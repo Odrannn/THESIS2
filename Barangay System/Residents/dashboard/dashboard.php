@@ -150,5 +150,30 @@ if($_SESSION['user_id'] == '') {
             </div>
         </div>
     </div>
+    <script>
+        $('.open-btn').on('click', function(){
+            $('.sidebar').addClass('active');
+        });
+        $('.close-btn').on('click', function(){
+            $('.sidebar').removeClass('active');
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+        // executes when HTML-Document is loaded and DOM is ready
+        console.log("document is ready");
+        
+
+        $( ".card" ).hover(
+        function() {
+            $(this).addClass('shadow').css('cursor', 'pointer'); 
+        }, function() {
+            $(this).removeClass('shadow');
+        }
+        );
+        
+        // document ready  
+        });
+    </script>
 </body>
 </html>

@@ -13,10 +13,6 @@ body{
     width: 100%;
 }
 
-hr.h-color{
-    background: #fff;
-}
-
 .sidebar li.active{
     background: #eee;
     border-radius: 8px;
