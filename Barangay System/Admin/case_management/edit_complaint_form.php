@@ -1,4 +1,6 @@
 <?php 
+session_start();
+
 if(isset($_POST['userid'])){
 
     include("../../phpfiles/connection.php");
@@ -37,14 +39,23 @@ if(isset($_POST['userid'])){
                     
                 </div>
                 <div class="row">
-                    <img src='../../complaint_uploads/<?php echo $row1["img_proof"] ?>' style='width: 100%;'>
+                    <img src='../../complaint_uploads/<?php echo $row1["img_proof"] ?>' style='width: 100%;' alt="NO PROOF">
                 </div>
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
             <input type="hidden" name="user_id" value="<?php echo $row1['complaint_ID']; ?>">
-            <input type="submit" class="btn btn-success" name="solve" value="Mark as Solve">
+            <?php
+                if($row1['complaint_status'] == 'solved'){?>
+                    <input type="submit" class="btn btn-success" name="pending" value="Mark as Pending" <?php if($row2['user_id'] != $_SESSION['user_id'])
+                                                                                                    {
+                                                                                                       echo "disabled"; 
+                                                                                                    } ?>>
+                <?php } else { ?>
+                    <input type="submit" class="btn btn-success" name="solve" value="Mark as Solve">
+                    <?php }
+            ?>
         </div>
     </div>
     </form>

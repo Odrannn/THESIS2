@@ -90,24 +90,31 @@ if($_SESSION['user_id'] == '') {
                 <br>
                 
                 <h2 class="text fs-5">File Complaint</h2>
-                <p>This module contains a list of every complaint filed by barangay residents.
-                    It has a feature that enables barangay officials to see the overall number of complaints sent to them,
-                    the number of pending complaints so they can see what issues still need to be fixed, and the number
-                    of resolved complaints.</p>
+                <p>In this module, locals can complain to the barangay and voice their concerns. Users might also choose to submit a specific issue under the jurisdiction of their barangay.</p>
                 <div class="card mt-2">
                     <h5 class="card-header">Complaint Form</h5>
                     <div class="card-body">
+                        <?php 
+                        if(isset($_SESSION['complaint_message']))
+                        {
+                            if($_SESSION['complaint_message'] != ''){?>
+                            <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Thank you!</h4>
+                            <p><?php echo $_SESSION['complaint_message'];?></p>
+                            </div> 
+                        <?php }
+                            $_SESSION['complaint_message'] = '';
+                        } ?>
                         <form class="g-3" action="send_case.php" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-md pt-2">
                                     <label class="pb-2" for="nature">Nature of Complaint</label>
                                     <select class="form-control" id="nature" name="nature">
-                                        <option>--Select--</option>
                                         <?php include("../../phpfiles/case_option.php"); 
                                         while($row = $result->fetch_assoc()){?>
                                         <option value="<?php echo $row['complaint_nature']; ?>"><?php echo $row['complaint_nature']; ?></option>
                                         <?php } ?>
-                                        <option value="other">Other</option>
+                                        <option value="Other">Other</option>
                                     </select>
                                 </div>
                                 <div class="col-md pt-2">

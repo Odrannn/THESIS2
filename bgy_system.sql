@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2022 at 03:49 PM
+-- Generation Time: Sep 28, 2022 at 07:08 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -122,7 +122,7 @@ INSERT INTO `case_option` (`id`, `complaint_nature`, `suggestion_nature`) VALUES
 
 CREATE TABLE `complaint_table` (
   `complaint_ID` int(11) NOT NULL,
-  `official_ID` int(11) NOT NULL,
+  `official_ID` int(11) DEFAULT NULL,
   `sender_ID` int(11) NOT NULL,
   `complaint_nature` varchar(20) NOT NULL,
   `comp_desc` varchar(100) NOT NULL,
@@ -136,8 +136,17 @@ CREATE TABLE `complaint_table` (
 --
 
 INSERT INTO `complaint_table` (`complaint_ID`, `official_ID`, `sender_ID`, `complaint_nature`, `comp_desc`, `complaint_date`, `img_proof`, `complaint_status`) VALUES
-(1, 0, 0, 'Dirty Barangay', 'sad', '2022-09-26', 'IMG-6331aa2bdf2245.84869776.png', 'pending'),
-(2, 0, 0, 'Drugs', 'drugs drugs drugs drugs drugs', '2022-09-26', 'IMG-6331aa8ac786d0.08725937.png', 'pending');
+(1, 5, 9, 'Dirty Barangay', 'sad', '2022-09-26', 'IMG-6331aa2bdf2245.84869776.png', 'solved'),
+(2, 5, 9, 'Drugs', 'drugs drugs drugs drugs drugs', '2022-09-26', 'IMG-6331aa8ac786d0.08725937.png', 'solved'),
+(3, 5, 9, 'Gossip Mongers', 'Wilcent urbano ang ngalan', '2022-09-27', 'IMG-6332ec0067dd74.43852234.png', 'solved'),
+(4, 5, 9, 'Noise', 'Noisy Karaoke', '2022-09-27', 'IMG-6332ece1b2b828.26135177.png', 'solved'),
+(7, 5, 9, 'Drugs', 'sdfdsf', '2022-09-27', 'IMG-6333053e5fcb96.27694649.png', 'solved'),
+(9, 6, 9, 'Gossip Mongers', 'tsismosa', '2022-09-28', '', 'solved'),
+(10, 6, 9, 'Other', 'SUGALAN SA KANTO', '2022-09-28', '', 'solved'),
+(11, NULL, 9, 'Other', 'illegal parking', '2022-09-28', '', 'pending'),
+(12, NULL, 9, 'Other', 'sugalan', '2022-09-28', 'IMG-633453d006e131.68377680.jpg', 'pending'),
+(13, NULL, 9, 'Other', 'illegal parking', '2022-09-28', 'IMG-633453de511e23.56622787.jpg', 'pending'),
+(14, NULL, 9, 'Dirty Barangay', 'street 1 is very dirty', '2022-09-28', 'IMG-63346d10292875.87716455.jpg', 'pending');
 
 -- --------------------------------------------------------
 
@@ -360,6 +369,39 @@ INSERT INTO `resident_table` (`id`, `user_id`, `fname`, `mname`, `lname`, `gende
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `suggestion_table`
+--
+
+CREATE TABLE `suggestion_table` (
+  `suggestion_ID` int(11) NOT NULL,
+  `official_ID` int(11) DEFAULT NULL,
+  `sender_ID` int(11) NOT NULL,
+  `suggestion_nature` varchar(50) NOT NULL,
+  `suggestion_desc` varchar(100) NOT NULL,
+  `suggestion_date` date NOT NULL,
+  `suggestion_feedback` varchar(100) NOT NULL,
+  `suggestion_status` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `suggestion_table`
+--
+
+INSERT INTO `suggestion_table` (`suggestion_ID`, `official_ID`, `sender_ID`, `suggestion_nature`, `suggestion_desc`, `suggestion_date`, `suggestion_feedback`, `suggestion_status`) VALUES
+(1, 6, 9, 'Education', 'school supplies', '2022-09-28', 'ok', 'noticed'),
+(2, 5, 9, 'Barangay Improvement', '', '2022-09-28', 'sge', 'noticed'),
+(3, NULL, 9, 'Barangay Improvement', 'asda', '2022-09-28', '', 'pending'),
+(4, NULL, 9, 'Sports', 'please organize a basketball league', '2022-09-28', '', 'pending'),
+(5, 5, 9, 'Sports', 'please organize a basketball league', '2022-09-28', 'Sige sabi mo eh', 'noticed'),
+(6, NULL, 9, 'Health', 'Conduct operation tuli', '2022-09-28', '', 'pending'),
+(7, NULL, 9, 'Barangay Improvement', 'your hall looks dirty, do some operation cleaning!!', '2022-09-28', '', 'pending'),
+(8, NULL, 9, 'Sports', 'please conduct a summer league', '2022-09-28', '', 'pending'),
+(9, NULL, 9, 'Barangay Improvement', 'clean the purok 1', '2022-09-28', '', 'pending'),
+(10, NULL, 9, 'Other', 'asndlnalsd', '2022-09-28', '', 'pending');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tblofficial`
 --
 
@@ -405,7 +447,7 @@ CREATE TABLE `tbluser` (
 --
 
 INSERT INTO `tbluser` (`id`, `username`, `password`, `type`) VALUES
-(7, '09123456789', '12345678', 'admin'),
+(7, 'lenzay', '456', 'admin'),
 (8, 'Odrannn', '123', 'admin'),
 (9, '09283523142', '12345678', 'user'),
 (10, '09264561231', '12345678', 'user'),
@@ -451,7 +493,9 @@ ALTER TABLE `case_option`
 -- Indexes for table `complaint_table`
 --
 ALTER TABLE `complaint_table`
-  ADD PRIMARY KEY (`complaint_ID`);
+  ADD PRIMARY KEY (`complaint_ID`),
+  ADD KEY `INCHARGE` (`official_ID`),
+  ADD KEY `SENDER` (`sender_ID`);
 
 --
 -- Indexes for table `document_request`
@@ -498,11 +542,18 @@ ALTER TABLE `resident_table`
   ADD KEY `test` (`user_id`);
 
 --
+-- Indexes for table `suggestion_table`
+--
+ALTER TABLE `suggestion_table`
+  ADD PRIMARY KEY (`suggestion_ID`);
+
+--
 -- Indexes for table `tblofficial`
 --
 ALTER TABLE `tblofficial`
   ADD PRIMARY KEY (`official_id`),
-  ADD KEY `residency` (`resident_id`);
+  ADD KEY `residency` (`resident_id`),
+  ADD KEY `ACCOUNT` (`user_id`);
 
 --
 -- Indexes for table `tbluser`
@@ -542,7 +593,7 @@ ALTER TABLE `case_option`
 -- AUTO_INCREMENT for table `complaint_table`
 --
 ALTER TABLE `complaint_table`
-  MODIFY `complaint_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `complaint_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `document_request`
@@ -587,6 +638,12 @@ ALTER TABLE `resident_table`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
+-- AUTO_INCREMENT for table `suggestion_table`
+--
+ALTER TABLE `suggestion_table`
+  MODIFY `suggestion_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `tblofficial`
 --
 ALTER TABLE `tblofficial`
@@ -601,6 +658,13 @@ ALTER TABLE `tbluser`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `complaint_table`
+--
+ALTER TABLE `complaint_table`
+  ADD CONSTRAINT `INCHARGE` FOREIGN KEY (`official_ID`) REFERENCES `tblofficial` (`official_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `SENDER` FOREIGN KEY (`sender_ID`) REFERENCES `resident_table` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `document_request`
@@ -618,6 +682,7 @@ ALTER TABLE `resident_table`
 -- Constraints for table `tblofficial`
 --
 ALTER TABLE `tblofficial`
+  ADD CONSTRAINT `ACCOUNT` FOREIGN KEY (`user_id`) REFERENCES `tbluser` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `residency` FOREIGN KEY (`resident_id`) REFERENCES `resident_table` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 

@@ -22,6 +22,9 @@ if($_SESSION['user_id'] == '') {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <?php $query1 = "SELECT COUNT(suggestion_ID) AS Total, suggestion_nature FROM suggestion_table GROUP BY suggestion_nature;";
+                    $result1 = $conn -> query($query1);?>
     <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
@@ -29,13 +32,12 @@ if($_SESSION['user_id'] == '') {
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
           <?php
-          include('../../../phpfiles/case_option.php');
-          while($row = $result -> fetch_array()){
-            if($row["suggestion_nature"] != ''){ ?>
-                ['<?php echo $row['suggestion_nature'];?>',     11],
-            <?php }
+          while($row1 = $result1 -> fetch_array()){
+            ?>
+            ['<?php echo $row1[1];?>',    <?php echo $row1[0];?>],
+            <?php 
             } ?>
-          ['Others',    7]
+          ['none',    0]
         ]);
 
         var options = {
@@ -156,21 +158,29 @@ if($_SESSION['user_id'] == '') {
                     </table>   
                 </div> 
                     
-                
+                <?php $comp_query1 = "SELECT COUNT(suggestion_ID) FROM suggestion_table;";
+                    $comp_result1 = $conn -> query($comp_query1);
+                    $comp_row1 = $comp_result1 -> fetch_array();
+                    $total = $comp_row1[0];
+                    
+                    $comp_query2 = "SELECT COUNT(suggestion_ID) FROM suggestion_table WHERE suggestion_status = 'pending';";
+                    $comp_result2 = $conn -> query($comp_query2);
+                    $comp_row2 = $comp_result2 -> fetch_array();
+                    $pending = $comp_row2[0];?>
                 
                 <div class="d-flex justify-content-center">
                     <div>
                         <div class="card mb-3 me-2 bg-primary" style="width: 18rem;display: inline-block;">
                             <div class="card-body">
                                 <div class="d-inline text-white">
-                                    <i class="fa-solid fa-lightbulb"></i>&nbsp;<h5 class="d-inline">Total: 21</h5>
+                                    <i class="fa-solid fa-lightbulb"></i>&nbsp;<h5 class="d-inline">Total: <?php echo $total;?></h5>
                                 </div>
                             </div>
                         </div>
                         <div class="card mb-3 me-2 bg-warning" style="width: 18rem;display: inline-block;">
                             <div class="card-body">
                                 <div class="d-inline text-white">
-                                    <i class="fa-sharp fa-solid fa-spinner"></i>&nbsp;<h5 class="d-inline">Pending: 21</h5>
+                                    <i class="fa-sharp fa-solid fa-spinner"></i>&nbsp;<h5 class="d-inline">Pending: <?php echo $pending;?></h5>
                                 </div>
                             </div>
                         </div>
@@ -187,7 +197,7 @@ if($_SESSION['user_id'] == '') {
                                         <tr class="align-top">
                                             <th>Suggestion ID</th>
                                             <th>Official in Charge</th>
-                                            <th>Resident ID</th>
+                                            <th>Sender ID</th>
                                             <th>Nature</th>
                                             <th>Description</th>
                                             <th>Date</th>
@@ -195,18 +205,21 @@ if($_SESSION['user_id'] == '') {
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <?php while($row = $result->fetch_assoc()){ ?>
+                                    <?php 
+                                    $query = "SELECT * FROM suggestion_table";
+                                    $result = $conn -> query($query);
+                                    while($row = $result->fetch_assoc()){ ?>
                                     <tr>
-                                        <td><?php echo $row["official_id"]; ?></td>
-                                        <td><?php echo $row["resident_id"]; ?></td>
-                                        <td><?php echo $row["user_id"]; ?></td>
-                                        <td><?php echo $row["name"]; ?></td>
-                                        <td><?php echo $row["position"]; ?></td>
-                                        <td><?php echo $row["term_start"]; ?></td>
-                                        <td><?php echo $row["term_end"]; ?></td>
-                                        <td><?php echo $row["status"]; ?></td>
+                                        <td><?php echo $row["suggestion_ID"]; ?></td>
+                                        <td><?php echo $row["official_ID"]; ?></td>
+                                        <td><?php echo $row["sender_ID"]; ?></td>
+                                        <td><?php echo $row["suggestion_nature"]; ?></td>
+                                        <td><?php echo $row["suggestion_desc"]; ?></td>
+                                        <td><?php echo $row["suggestion_date"]; ?></td>
+                                        <td><?php echo $row["suggestion_feedback"]; ?></td>
+                                        <td><?php echo $row["suggestion_status"]; ?></td>
                                         <td><div class="btn-group" role="group" aria-label="Basic example">
-                                            <button data-id="<?php echo $row['official_id']; ?>" class="editofficial btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button data-id="<?php echo $row['suggestion_ID']; ?>" class="sendfeedback btn btn-primary"><i class="fa-solid fa-reply"></i></button>
                                             </div>
                                         </td>
                                     </tr>
@@ -255,12 +268,12 @@ if($_SESSION['user_id'] == '') {
             });
         });
     </script>
-    <!-- Edit resident script-->
+    <!-- Edit suggestion script-->
     <script>
         $(document).ready(function(){
-            $('.editofficial').click(function(){
+            $('.sendfeedback').click(function(){
                 var userid = $(this).data('id');
-                $.ajax({url: "edit_form.php",
+                $.ajax({url: "reply_suggestion_form.php",
                 method:'post',
                 data: {userid:userid},
                     

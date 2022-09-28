@@ -22,30 +22,6 @@ if($_SESSION['user_id'] == '') {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          <?php
-          include('../../../phpfiles/case_option.php');
-          while($row = $result -> fetch_array()){
-            if($row["suggestion_nature"] != ''){ ?>
-                ['<?php echo $row['suggestion_nature'];?>',     11],
-            <?php }
-            } ?>
-          ['Others',    7]
-        ]);
-
-        var options = {
-          pieHole: 0.4
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-        chart.draw(data, options);
-      }
-    </script>
 </head>
 
 <body>
@@ -110,110 +86,52 @@ if($_SESSION['user_id'] == '') {
                     </div>
                 </div>
                 <br>
-                <h2 class="fs-5">Suggestion Management</h2>
-                <p>The Suggestion module compiles every suggestion submitted by barangay residents. It has a function that enables barangay officials to look at the overall number
-                    of suggestions that have been submitted to them, the number of pending ideas so they can understand which topics the barangay is most concerned about,
-                    and the number of issues that have been resolved.</p>
+                <h2 class="fs-5">Send Suggestion</h2>
+                <p>In this module, barangay residents can submit suggestions for enhancing their community. Public suggestions are easily accessible to the barangay.</p>
                 
-                <div id="donutchart" style="width: 500px; height: 300px;display: inline-block;  vertical-align:top;"></div>
-                <div style="display: inline-block; vertical-align:top;">
-                    <table class="table table-borderless">
-                        <tr>
-                            <td><h5>Most Suggested</h5></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: top;">
-                                <table>
-                                <?php
-                                    include('../../../phpfiles/case_option.php');
-                                    while($row = $result -> fetch_array()){
-
-                                    if($row["suggestion_nature"] != ''){ ?>
-
-                                    <form action="delete_option.php" method="post">
-                                        <tr>
-                                        <td><?php echo $row["suggestion_nature"]; ?></td>
-                                        <input type="hidden" name = "id" value = "<?php echo $row['id']?>">
-                                        <td><input class="btn btn-danger mx-3" type='submit' name='delete_option' value='Delete'></td>
-                                        </tr>
-                                    </form>
-                                    <?php
-                                        }
-                                    }
-                                    ?>
-                                </table>
-                            </td>
-                        </tr>
-                        <tr>
-                            <form action="../add_option.php" method="post">
-                                <td><input class="form-control" type="text" name= "suggestion" placeholder="enter nature...">
-                                <div class="d-flex flex-row-reverse">
-                                    <input class="mt-2 btn btn-success" type="submit" name="add_suggestion" value="Add">
-                                </div></td>
-                            </form>
-                        </tr>
-                    </table>   
-                </div> 
-                    
-                
-                
-                <div class="d-flex justify-content-center">
-                    <div>
-                        <div class="card mb-3 me-2 bg-primary" style="width: 18rem;display: inline-block;">
-                            <div class="card-body">
-                                <div class="d-inline text-white">
-                                    <i class="fa-solid fa-lightbulb"></i>&nbsp;<h5 class="d-inline">Total: 21</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-3 me-2 bg-warning" style="width: 18rem;display: inline-block;">
-                            <div class="card-body">
-                                <div class="d-inline text-white">
-                                    <i class="fa-sharp fa-solid fa-spinner"></i>&nbsp;<h5 class="d-inline">Pending: 21</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <h5 class="card-header">Suggestion Records</h5>
+                <div class="card mt-2">
+                    <h5 class="card-header">Suggestion Form</h5>
                     <div class="card-body">
-                        <div class="container-fluid">
-                            <div class="table-responsive" style="width: 100%;">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr class="align-top">
-                                            <th>Suggestion ID</th>
-                                            <th>Official in Charge</th>
-                                            <th>Resident ID</th>
-                                            <th>Nature</th>
-                                            <th>Description</th>
-                                            <th>Date</th>
-                                            <th>Feedback</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <?php while($row = $result->fetch_assoc()){ ?>
-                                    <tr>
-                                        <td><?php echo $row["official_id"]; ?></td>
-                                        <td><?php echo $row["resident_id"]; ?></td>
-                                        <td><?php echo $row["user_id"]; ?></td>
-                                        <td><?php echo $row["name"]; ?></td>
-                                        <td><?php echo $row["position"]; ?></td>
-                                        <td><?php echo $row["term_start"]; ?></td>
-                                        <td><?php echo $row["term_end"]; ?></td>
-                                        <td><?php echo $row["status"]; ?></td>
-                                        <td><div class="btn-group" role="group" aria-label="Basic example">
-                                            <button data-id="<?php echo $row['official_id']; ?>" class="editofficial btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <?php } ?>
-                                </table>
-                            </div>  
-                        </div>
+                        <?php 
+                        if(isset($_SESSION['suggestion_message']))
+                        {
+                            if($_SESSION['suggestion_message'] != ''){?>
+                            <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Thank you!</h4>
+                            <p><?php echo $_SESSION['suggestion_message'];?></p>
+                            </div> 
+                        <?php }
+                            $_SESSION['suggestion_message'] = '';
+                        } ?>
+                        <form class="g-3" action="../send_case.php" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md pt-2">
+                                    <label class="pb-2" for="nature">Nature of Suggestion</label>
+                                    <select class="form-control" id="nature" name="nature">
+                                        <?php include("../../../phpfiles/case_option.php"); 
+                                        while($row = $result->fetch_assoc()){?>
+                                        <option value="<?php echo $row['suggestion_nature']; ?>"><?php echo $row['suggestion_nature']; ?></option>
+                                        <?php } ?>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col pt-2">
+                                <label class="pb-2" for="comp_image">Description</label> 
+                                    <textarea class="form-control" id= "description" name= "description" rows="10" required></textarea>
+                                </div>  
+                            </div>
+                        
+                            <div class="row mt-4 d-flex flex-row-reverse">
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-primary mb-3" name="send_suggestion" value="Send">Send</button>
+                                </div>  
+                            </div>
+                        </form>
                     </div>
+                    
                 </div>
                 
             </div>

@@ -65,10 +65,10 @@ if($_SESSION['user_id'] != ""){
                     Please enter your password
                 </div>
             </div>
-            <div class="form-group form-check">
+            <!--<div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" id="check">
                 <label class="form-check-label" for="check">Remember me</label>
-            </div>
+            </div>-->
             
             <button type="button" class="btn btn-link p-0">Forgot Password?</button>
             <input class="btn btn-success w-100" type="submit" name ="login" value="LOG IN">

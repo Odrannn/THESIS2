@@ -22,6 +22,9 @@ if($_SESSION['user_id'] == '') {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <?php $query1 = "SELECT COUNT(complaint_ID) AS Total, complaint_nature FROM complaint_table GROUP BY complaint_nature;";
+                    $result1 = $conn -> query($query1);?>
     <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
@@ -29,13 +32,12 @@ if($_SESSION['user_id'] == '') {
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
           <?php
-          include('../../phpfiles/case_option.php');
-          while($row = $result -> fetch_array()){
-            if($row["complaint_nature"] != ''){ ?>
-                ['<?php echo $row['complaint_nature'];?>',     11],
-            <?php }
+          while($row1 = $result1 -> fetch_array()){
+            ?>
+            ['<?php echo $row1[1];?>',    <?php echo $row1[0];?>],
+            <?php 
             } ?>
-          ['Others',    7]
+          ['none',    0]
         ]);
 
         var options = {
@@ -158,6 +160,15 @@ if($_SESSION['user_id'] == '') {
                     </table>   
                 </div> 
                     
+                <?php $comp_query1 = "SELECT COUNT(complaint_ID) FROM complaint_table WHERE complaint_status = 'solved';";
+                    $comp_result1 = $conn -> query($comp_query1);
+                    $comp_row1 = $comp_result1 -> fetch_array();
+                    $solved = $comp_row1[0];
+                    
+                    $comp_query2 = "SELECT COUNT(complaint_ID) FROM complaint_table WHERE complaint_status = 'pending';";
+                    $comp_result2 = $conn -> query($comp_query2);
+                    $comp_row2 = $comp_result2 -> fetch_array();
+                    $pending = $comp_row2[0];?>
                 
                 
                 <div class="d-flex justify-content-center">
@@ -165,21 +176,21 @@ if($_SESSION['user_id'] == '') {
                         <div class="card mb-3 me-2 bg-primary" style="width: 18rem;display: inline-block;">
                             <div class="card-body">
                                 <div class="d-inline text-white">
-                                    <i class="fa-sharp fa-solid fa-face-angry"></i>&nbsp;<h5 class="d-inline">Total: 21</h5>
+                                    <i class="fa-sharp fa-solid fa-face-angry"></i>&nbsp;<h5 class="d-inline">Total: <?php echo $solved + $pending;?></h5>
                                 </div>
                             </div>
                         </div>
                         <div class="card mb-3 me-2 bg-warning" style="width: 18rem;display: inline-block;">
                             <div class="card-body">
                                 <div class="d-inline text-white">
-                                    <i class="fa-sharp fa-solid fa-spinner"></i>&nbsp;<h5 class="d-inline">Pending: 21</h5>
+                                    <i class="fa-sharp fa-solid fa-spinner"></i>&nbsp;<h5 class="d-inline">Pending: <?php echo $comp_row2[0];?></h5>
                                 </div>
                             </div>
                         </div>
                         <div class="card mb-3 me-2 bg-success" style="width: 18rem;display: inline-block;">
                             <div class="card-body">
                                 <div class="d-inline text-white">
-                                    <i class="fa-regular fa-circle-check"></i>&nbsp;<h5 class="d-inline">Solved: 21</h5>
+                                    <i class="fa-regular fa-circle-check"></i>&nbsp;<h5 class="d-inline">Solved: <?php echo $comp_row1[0];?> </h5>
                                 </div>
                             </div>
                         </div>
@@ -196,7 +207,7 @@ if($_SESSION['user_id'] == '') {
                                         <tr class="align-top">
                                             <th>Complaint ID</th>
                                             <th>Official in Charge</th>
-                                            <th>Resident ID</th>
+                                            <th>Sender ID</th>
                                             <th>Nature</th>
                                             <th>Description</th>
                                             <th>Date</th>
