@@ -91,6 +91,7 @@ if($_SESSION['user_id'] != ""){
     </div>
     
     <!-- register script-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(document).ready(function(){
             $('.register').click(function(){
@@ -103,6 +104,15 @@ if($_SESSION['user_id'] != ""){
             });
         });
     </script>
-</body>
+    
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $("#myForm").on('submit',function(e){
+            e.preventDefault();
+            alert("Clicked");
+        });
+    });
+    </script>
 
+</body>
 </html>
