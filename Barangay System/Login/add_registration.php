@@ -1,19 +1,15 @@
 <?php
+    include("../phpfiles/connection.php");
 
     $response = array(
         'status' => 0,
         'message' => 'Form submission Failed'
     );
-
-    include("../phpfiles/connection.php");
-    //getting existing number 
-    $exquery = "SELECT contactnumber FROM resident_table;";
-    $exresult = $conn -> query($exquery); 
-    $exrow = mysqli_fetch_array($exresult);
     
     $fname = $_POST['fname'];
     $mname = $_POST['mname'];
     $lname = $_POST['lname'];
+    $suffix = $_POST['suffix'];
     $gender = $_POST['gender'];
     $birthplace = $_POST['birthplace'];
     $civilstatus = $_POST['civilstatus'];
@@ -40,18 +36,27 @@
         $disability = $_POST['disability'];
     }
     
-    $num = array();
+    //validation if name already registered
+    $exquery3 = "SELECT * FROM resident_table WHERE (fname LIKE '$fname' AND mname LIKE '$mname' AND lname LIKE '$lname' AND suffix LIKE '$suffix');";
+    $exresult3 = $conn -> query($exquery3); 
 
-    while($exrow = mysqli_fetch_array($exresult)){
-        $num[] = $exrow[0];
-    }
+    //getting existing number 
+    $exquery = "SELECT * FROM resident_table WHERE contactnumber = '$contactnumber';";
+    $exresult = $conn -> query($exquery); 
 
-    if (in_array($contactnumber , $num)){
-        $response['message'] = "Contact number already";
+    //validation if email already existing
+    $exquery2 = "SELECT * FROM resident_table WHERE email = '$email';";
+    $exresult2 = $conn -> query($exquery2); 
+
+    if (mysqli_num_rows($exresult3)>0){
+        $response['message'] = "Name already registered.";
+
+    } else if (mysqli_num_rows($exresult)>0){
+        $response['message'] = "Contact number already exists.";
         
+    } else if (mysqli_num_rows($exresult2)>0){
+        $response['message'] = "Email already exists.";
     } else {
-        
-
         $img_name = $_FILES['validID']['name'];
         $img_size = $_FILES['validID']['size'];
         $tmp_name = $_FILES['validID']['tmp_name'];
@@ -68,8 +73,8 @@
             move_uploaded_file($tmp_name, $img_upload_path);
 
             //insert to db
-            $query = "INSERT INTO registration(fname,mname,lname,gender,birthplace,civilstatus,birthday,age,unitnumber,purok,sitio,street,subdivision,contactnumber,email,religion,occupation,educational,nationality,disability,status,img_path)
-            VALUES('$fname','$mname','$lname','$gender','$birthplace','$civilstatus','$birthday','$age','$unitnumber','$purok','$sitio','$street','$subdivision','$contactnumber','$email','$religion','$occupation','$education','$nationality','$disability','pending','$new_img_name')";
+            $query = "INSERT INTO registration(fname,mname,lname,suffix,gender,birthplace,civilstatus,birthday,age,unitnumber,purok,sitio,street,subdivision,contactnumber,email,religion,occupation,educational,nationality,disability,status,img_path)
+            VALUES('$fname','$mname','$lname','$suffix','$gender','$birthplace','$civilstatus','$birthday','$age','$unitnumber','$purok','$sitio','$street','$subdivision','$contactnumber','$email','$religion','$occupation','$education','$nationality','$disability','pending','$new_img_name')";
             $result = $conn -> query($query);
 
             $response['message'] = "Successfully registered";

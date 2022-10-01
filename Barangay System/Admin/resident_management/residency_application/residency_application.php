@@ -99,6 +99,7 @@ if($_SESSION['user_id'] == '') {
                                             <th>First Name</th>
                                             <th>Middle Name</th>
                                             <th>Last Name</th>
+                                            <th>Suffix</th>
                                             <th>Gender</th>
                                             <th>Birthplace</th>
                                             <th>Civil Status</th>
@@ -126,6 +127,7 @@ if($_SESSION['user_id'] == '') {
                                         <td><?php echo $row["fname"]; ?></td>
                                         <td><?php echo $row["mname"]; ?></td>
                                         <td><?php echo $row["lname"]; ?></td>
+                                        <td><?php echo $row["suffix"]; ?></td>
                                         <td><?php echo $row["gender"]; ?></td>
                                         <td><?php echo $row["birthplace"]; ?></td>
                                         <td><?php echo $row["civilstatus"]; ?></td>

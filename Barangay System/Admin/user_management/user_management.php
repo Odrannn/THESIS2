@@ -84,7 +84,7 @@ if($_SESSION['user_id'] == '') {
 
                 <?php
                     include("../../phpfiles/connection.php");
-                    $query = "SELECT U.id, U.username, U.password, S.fname, S.mname, S.lname, U.type FROM tbluser U INNER JOIN resident_table S ON U.id = S.user_id;";
+                    $query = "SELECT U.id, U.username, U.password, S.fname, S.mname, S.lname,  S.suffix, U.type FROM tbluser U INNER JOIN resident_table S ON U.id = S.user_id;";
                     $result = $conn -> query($query);
                 ?>
                 <div class="card">
@@ -106,7 +106,7 @@ if($_SESSION['user_id'] == '') {
                                     <?php while($row = $result->fetch_assoc()){ ?>
                                     <tr>
                                         <td><?php echo $row["id"]; ?></td>
-                                        <td><?php echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"]; ?></td>
+                                        <td><?php echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"] . ' ' . $row["suffix"]; ?></td>
                                         <td><?php echo $row["username"]; ?></td>
                                         <td><?php echo $row["password"]; ?></td>
                                         <td><?php echo $row["type"]; ?></td>

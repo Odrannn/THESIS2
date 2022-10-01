@@ -87,92 +87,75 @@ if($_SESSION['user_id'] == '') {
                     </div>
                 </div>
                 <br>
-                <h2 class="fs-5">Blotter Management</h2>
-                <p>Every blotter that is issued in the barangay is compiled by the blotter module, which also contains a function that allows barangay
-                    authorities to see how many blotters have been submitted in total, how many cases are still pending, and how many issues have been resolved.
-                    It's essential to have a copy of the closed blotter file so they may save it as documentation.</p>
+                <h2 class="fs-5">File Blotter</h2>
+                <p>In this module, Residents of the barangay may submit blotters or reports for specific events that occurred inside the boundaries of the barangay.</p>
                 
-                <div class="d-flex justify-content-center">
-                    <div>
-                        <div class="card mb-3 me-2 bg-success" style="width: 18rem;display: inline-block;">
-                            <div class="card-body">
-                                <div class="d-inline text-white">
-                                    <i class="fa-solid fa-hand-peace"></i>&nbsp;<h5 class="d-inline">Settled: 21</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-3 me-2 bg-danger" style="width: 18rem;display: inline-block;">
-                            <div class="card-body">
-                                <div class="d-inline text-white">
-                                    <i class="fa-solid fa-thumbs-down"></i>&nbsp;<h5 class="d-inline">Unsettled: 21</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-3 me-2 bg-primary" style="width: 18rem;display: inline-block;">
-                            <div class="card-body">
-                                <div class="d-inline text-white">
-                                    <i class="fa-solid fa-calendar-days"></i>&nbsp;<h5 class="d-inline">Scheduled: 21</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-3 me-2 bg-warning" style="width: 18rem;display: inline-block;">
-                            <div class="card-body">
-                                <div class="d-inline text-white">
-                                    <i class="fa-solid fa-calendar-circle-exclamation"></i>&nbsp;<h5 class="d-inline">Unscheduled: 21</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <h5 class="card-header">Suggestion Records</h5>
+                <div class="card mt-2">
+                    <h5 class="card-header">Blotter Form</h5>
                     <div class="card-body">
-                        <div class="container-fluid">
-                            <div class="table-responsive" style="width: 100%;">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr class="align-top">
-                                            <th>Blotter ID</th>
-                                            <th>Official in Charge</th>
-                                            <th>Complainant ID</th>
-                                            <th>Complainee ID</th>
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                            <th>Accusation</th>
-                                            <th>Details</th>
-                                            <th>Settlement Schedule</th>
-                                            <th>Result of Settlement</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <?php while($row = $result->fetch_assoc()){ ?>
-                                    <tr>
-                                        <td><?php echo $row["official_id"]; ?></td>
-                                        <td><?php echo $row["resident_id"]; ?></td>
-                                        <td><?php echo $row["user_id"]; ?></td>
-                                        <td><?php echo $row["name"]; ?></td>
-                                        <td><?php echo $row["position"]; ?></td>
-                                        <td><?php echo $row["term_start"]; ?></td>
-                                        <td><?php echo $row["term_end"]; ?></td>
-                                        <td><?php echo $row["status"]; ?></td>
-                                        <td><?php echo $row["status"]; ?></td>
-                                        <td><?php echo $row["status"]; ?></td>
-                                        <td><?php echo $row["status"]; ?></td>
-                                        <td><div class="btn-group" role="group" aria-label="Basic example">
-                                            <button data-id="<?php echo $row['official_id']; ?>" class="editofficial btn btn-primary"><i class="fa-solid fa-calendar-days"></i></button>
-                                            <button data-id="<?php echo $row['official_id']; ?>" class="editofficial btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <?php } ?>
-                                </table>
-                            </div>  
-                        </div>
+                        <?php 
+                        //alert message
+                        if(isset($_SESSION['blotter_message']))
+                        {
+                            if($_SESSION['blotter_message'] != ''){?>
+                            <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Blotter Sent Successfully!</h4>
+                            <p><?php echo $_SESSION['blotter_message'];?></p>
+                            </div> 
+                        <?php }
+                            $_SESSION['suggestion_message'] = '';
+                        } ?>
+                        <form class="g-3" action="../send_case.php" method="post" enctype="multipart/form-data">
+                            <?php
+                                $query = "SELECT id, concat_ws(' ',fname,mname,lname) as Fullname FROM resident_table
+                                            ORDER BY Fullname ASC;";
+                                $result = $conn -> query($query);
+                            ?>
+                            <div class="row">
+                                <div class="col-md pt-2">
+                                    <label class="pb-2" for="complaineeID">Complainee ID (Search the name of the resident.)</label>
+                                    <input class="form-control" type="text" id="complaineeID" name="complaineeID" list="reslist" required>
+                                    <datalist id="reslist">
+                                        <?php while($row = $result -> fetch_array()) { ?>
+                                            <option value="<?php echo $row['id']?>"><?php echo $row['Fullname']?></option>
+                                        <?php } ?>
+                                    </datalist>
+                                </div>
+                                <div class="col-md pt-2">
+                                    <label class="pb-2" for="accusation">Accusation</label> 
+                                    <input class="form-control" type="text" id= "accusation" name="accusation" rows="10" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md pt-2">
+                                    <div class="form-floating">
+                                        <input class="form-control" type="time" id="timeh" name="timeh">
+                                        <label for="start">Incident Time</label>
+                                    </div>
+                                </div>
+                                <div class="col-md pt-2">
+                                    <div class="form-floating">
+                                        <input class="form-control" type="date" id="dateh" name="dateh" required>
+                                        <label for="date">Incident Date</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md pt-2">
+                                    <label class="pb-2" for="details">Details</label>
+                                    <textarea class="form-control" id= "details" name= "details" rows="10" required></textarea>
+                                </div>
+                            </div>
+                            <br>
+                            <p class="d-inline">Note: If complainee ID is not found, type the full name of the complainee.</p>
+                            <div class="row mt-4 d-flex flex-row-reverse">
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-primary mb-3" name="send_blotter" value="Send">Send</button>
+                                </div>  
+                            </div>
+                        </form>
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>

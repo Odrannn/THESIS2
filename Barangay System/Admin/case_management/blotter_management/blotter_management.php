@@ -94,32 +94,53 @@ if($_SESSION['user_id'] == '') {
                     It's essential to have a copy of the closed blotter file so they may save it as documentation.</p>
                 
                 <div class="d-flex justify-content-center">
+                    <?php 
+                    $query1 = "SELECT COUNT(blotter_ID) AS Total, status FROM blotter_table  GROUP BY status;";
+                    $result1 = $conn -> query($query1);
+                    $sched = 0;
+                    $unsched = 0;
+                    $settled = 0;
+                    $unsettled = 0;
+
+                    while($row = $result1 -> fetch_array()){
+                        if($row['status'] == 'unscheduled'){
+                            $unsched = $row[0];
+                        } else if($row['status'] == 'scheduled'){
+                            $sched = $row[0];
+                        } else if($row['status'] == 'settled'){
+                            $settled = $row[0];
+                        } else if($row['status'] == 'unsettled'){
+                            $unsettled = $row[0];
+                        }
+                    }
+                    
+                    ?>
                     <div>
                         <div class="card mb-3 me-2 bg-success" style="width: 18rem;display: inline-block;">
                             <div class="card-body">
                                 <div class="d-inline text-white">
-                                    <i class="fa-solid fa-hand-peace"></i>&nbsp;<h5 class="d-inline">Settled: 21</h5>
+                                    <i class="fa-solid fa-hand-peace"></i>&nbsp;<h5 class="d-inline">Settled: <?php echo $settled;?></h5>
                                 </div>
                             </div>
                         </div>
                         <div class="card mb-3 me-2 bg-danger" style="width: 18rem;display: inline-block;">
                             <div class="card-body">
                                 <div class="d-inline text-white">
-                                    <i class="fa-solid fa-thumbs-down"></i>&nbsp;<h5 class="d-inline">Unsettled: 21</h5>
+                                    <i class="fa-solid fa-thumbs-down"></i>&nbsp;<h5 class="d-inline">Unsettled: <?php echo $unsettled;?></h5>
                                 </div>
                             </div>
                         </div>
                         <div class="card mb-3 me-2 bg-primary" style="width: 18rem;display: inline-block;">
                             <div class="card-body">
                                 <div class="d-inline text-white">
-                                    <i class="fa-solid fa-calendar-days"></i>&nbsp;<h5 class="d-inline">Scheduled: 21</h5>
+                                    <i class="fa-solid fa-calendar-days"></i>&nbsp;<h5 class="d-inline">Scheduled: <?php echo $sched;?></h5>
                                 </div>
                             </div>
                         </div>
                         <div class="card mb-3 me-2 bg-warning" style="width: 18rem;display: inline-block;">
                             <div class="card-body">
                                 <div class="d-inline text-white">
-                                    <i class="fa-solid fa-calendar-circle-exclamation"></i>&nbsp;<h5 class="d-inline">Unscheduled: 21</h5>
+                                    <i class="fa-solid fa-calendar-circle-exclamation"></i>&nbsp;<h5 class="d-inline">Unscheduled: <?php echo $unsched; ?></h5>
                                 </div>
                             </div>
                         </div>
@@ -138,6 +159,7 @@ if($_SESSION['user_id'] == '') {
                                             <th>Official in Charge</th>
                                             <th>Complainant ID</th>
                                             <th>Complainee ID</th>
+                                            <th>Complainee Name</th>
                                             <th>Date</th>
                                             <th>Time</th>
                                             <th>Accusation</th>
@@ -148,22 +170,26 @@ if($_SESSION['user_id'] == '') {
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <?php while($row = $result->fetch_assoc()){ ?>
+                                    <?php 
+                                    $query = "SELECT * FROM blotter_table";
+                                    $result = $conn -> query($query);
+                                    while($row = $result->fetch_assoc()){ ?>
                                     <tr>
-                                        <td><?php echo $row["official_id"]; ?></td>
-                                        <td><?php echo $row["resident_id"]; ?></td>
-                                        <td><?php echo $row["user_id"]; ?></td>
-                                        <td><?php echo $row["name"]; ?></td>
-                                        <td><?php echo $row["position"]; ?></td>
-                                        <td><?php echo $row["term_start"]; ?></td>
-                                        <td><?php echo $row["term_end"]; ?></td>
-                                        <td><?php echo $row["status"]; ?></td>
-                                        <td><?php echo $row["status"]; ?></td>
-                                        <td><?php echo $row["status"]; ?></td>
+                                        <td><?php echo $row["blotter_ID"]; ?></td>
+                                        <td><?php echo $row["official_ID"]; ?></td>
+                                        <td><?php echo $row["complainant_ID"]; ?></td>
+                                        <td><?php echo $row["complainee_ID"]; ?></td>
+                                        <td><?php echo $row["complainee_name"]; ?></td>
+                                        <td><?php echo $row["blotter_date"]; ?></td>
+                                        <td><?php echo $row["blotter_time"]; ?></td>
+                                        <td><?php echo $row["blotter_accusation"]; ?></td>
+                                        <td><?php echo $row["blotter_details"]; ?></td>
+                                        <td><?php echo $row["settlement_schedule"]; ?></td>
+                                        <td><?php echo $row["result_of_settlement"]; ?></td>
                                         <td><?php echo $row["status"]; ?></td>
                                         <td><div class="btn-group" role="group" aria-label="Basic example">
-                                            <button data-id="<?php echo $row['official_id']; ?>" class="editofficial btn btn-primary"><i class="fa-solid fa-calendar-days"></i></button>
-                                            <button data-id="<?php echo $row['official_id']; ?>" class="editofficial btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button data-id="<?php echo $row['blotter_ID']; ?>" class="editofficial btn btn-primary"><i class="fa-solid fa-calendar-days"></i></button>
+                                            <button data-id="<?php echo $row['blotter_ID']; ?>" class="editofficial btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
                                             </div>
                                         </td>
                                     </tr>

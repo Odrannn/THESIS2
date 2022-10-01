@@ -11,6 +11,7 @@
         $fname = $row["fname"];
         $mname = $row["mname"];
         $lname = $row["lname"];
+        $suffix = $row["suffix"];
         $gender = $row['gender'];
         $birthplace = $row['birthplace'];
         $civilstatus = $row['civilstatus'];
@@ -42,8 +43,8 @@
         $userid = $uinforow['id'];
 
         /* resident creation query */
-        $new_query = "INSERT INTO resident_table(user_id,fname,mname,lname,gender,birthplace,civilstatus,birthday,age,unitnumber,purok,sitio,street,subdivision,contactnumber,email,religion,occupation,education,nationality,disability,status)
-        VALUES('$userid','$fname','$mname','$lname','$gender','$birthplace','$civilstatus','$birthday','$age','$unitnumber','$purok','$sitio','$street','$subdivision','$contactnumber','$email','$religion','$occupation','$education','$nationality','$disability','active');
+        $new_query = "INSERT INTO resident_table(user_id,fname,mname,lname,suffix,gender,birthplace,civilstatus,birthday,age,unitnumber,purok,sitio,street,subdivision,contactnumber,email,religion,occupation,education,nationality,disability,status)
+        VALUES('$userid','$fname','$mname','$lname','$suffix','$gender','$birthplace','$civilstatus','$birthday','$age','$unitnumber','$purok','$sitio','$street','$subdivision','$contactnumber','$email','$religion','$occupation','$education','$nationality','$disability','active');
         
         UPDATE registration
         SET status = 'accepted'

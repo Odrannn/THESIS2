@@ -28,25 +28,29 @@
         <div class="modal-body" style = "height: 50%;overflow-y: auto;">
             <div class="container">
                 <div class="row">
-                    <div class="form-message">asdasd</div>
-                </div>
-                <div class="row">
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="fname" name="fname" placeholder="First Name">
+                            <input class="form-control" type="text" id="fname" name="fname" placeholder="First Name" required>
                             <label for="fname">First Name</label>
                         </div>
                     </div>
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="mname" name="mname" placeholder="Middle Name">
+                            <input class="form-control" type="text" id="mname" name="mname" placeholder="Middle Name" required>
                             <label for="mname">Middle Name</label>
                         </div>
                     </div>
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="lname" name="lname" placeholder="Last Name">
+                            <input class="form-control" type="text" id="lname" name="lname" placeholder="Last Name" required>
                             <label for="lname">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="col-md pt-2">
+                        <div class="form-floating">
+                            <input class="form-control" type="text" id="suffix" name="suffix" placeholder="Suffix">
+                            <label for="suffix">Suffix (Jr, Sr, I, II, etc.)</label>
+                            <p><small class="p-2">leave it blank if none.</small></p>
                         </div>
                     </div>
                     <div class="col-md">
@@ -74,25 +78,25 @@
                 <div class="row">
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="birthplace" name="birthplace" placeholder="Place of Birth">
+                            <input class="form-control" type="text" id="birthplace" name="birthplace" placeholder="Place of Birth" required>
                             <label for="birthplace">Place of Birth</label>
                         </div>
                     </div>
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="date" id="date" name="birthday">
+                            <input class="form-control" type="date" id="date" name="birthday" required>
                             <label for="date">Birthday</label>
                         </div>
                     </div>
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="number" id="age" name="age" placeholder="Age">
+                            <input class="form-control" type="number" id="age" name="age" placeholder="Age" required>
                             <label for="age">Age</label>
                         </div>
                     </div>
                     <div class="col-md pt-2">
                         <div class="form-floating"> 
-                            <select class="form-control" id="status" name="civilstatus">
+                            <select class="form-control" id="status" name="civilstatus" required>
                                 <option value="Single">Single</option>
                                 <option value="Married">Married</option>
                                 <option value="Widowed">Widowed</option>
@@ -105,7 +109,7 @@
                 <div class="row">
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="unitnumber" name="unitnumber" placeholder="Unit Number">
+                            <input class="form-control" type="text" id="unitnumber" name="unitnumber" placeholder="Unit Number" required>
                             <label for="unitnumber">Unit Number</label>
                         </div>
                     </div>
@@ -173,13 +177,13 @@
                     </div>
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="contactnumber" name="contactnumber" placeholder="09...">
+                            <input class="form-control" type="number" id="contactnumber" name="contactnumber" placeholder="09..." required>
                             <label for="contactnumber">Contact number(09...)</label>
                         </div>
                     </div>
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="email" name="email" placeholder="Email">
+                            <input class="form-control" type="text" id="email" name="email" placeholder="Email" required>
                             <label for="email">Email</label>
                         </div>
                     </div>
@@ -207,6 +211,7 @@
                         <div class="form-floating">
                             <input class="form-control" type="text" id="occupation" name="occupation" placeholder="Occupation">
                             <label for="occupation">Occupation</label>
+                            <p><small class="p-2">leave it blank if none.</small></p>
                         </div>
                     </div>
                     <div class="col-md pt-2">
@@ -222,7 +227,7 @@
                     </div>
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="nationality" name="nationality" placeholder="Nationality">
+                            <input class="form-control" type="text" id="nationality" name="nationality" placeholder="Nationality" required>
                             <label for="nationality">Nationality</label>
                         </div>
                     </div>
@@ -236,8 +241,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md pt-2">
-                        <label for="validID">Valid id(Drivers License, Passport, SSS ID, etc.)</label>
-                        <input class="form-control" type="file" id= "file" name="validID">
+                        <label for="validID">Valid ID (Drivers License, Passport, SSS ID, etc.)</label>
+                        <input class="form-control" type="file" id= "file" name="validID" required>
                     </div>
                     <div class="col pt-2">
                         
@@ -249,13 +254,15 @@
                     <h4>DATA PRIVACY CONSENT</h4>
                     <p>By completing this form, I give permission for my data to be held in the E-barangay system database and agree that the system may process personal data relating to me for personnel, administration and/or management purposes.</p>
                     <div class="form-check mx-3">
-                        <input class="form-check-input" type="checkbox" value="" id="agree">
+                        <input class="form-check-input" type="checkbox" value="" id="agree" required>
                         <label class="form-check-label" for="agree">
                             I agree with the statement above.
                     </label>
                     </div>
                 </div><br>
-                
+                <div class="row">
+                    <div class="form-message"></div>
+                </div>
             </div>
         </div>
         <div class="modal-footer">

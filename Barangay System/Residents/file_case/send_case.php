@@ -2,6 +2,7 @@
     session_start();
     $_SESSION['suggestion_message'] = '';
     $_SESSION['complaint_message'] = '';
+    $_SESSION['blotter_message'] = '';
 
     include("../../phpfiles/connection.php");
     $senderID = $_SESSION['user_id'];
@@ -69,4 +70,36 @@
         Please wait patiently, your case is in process. You can monitor its status in the tracking section or check your notification for updates.";
         header("location:send_suggestion/send_suggestion.php");
     } 
+
+    if (isset($_POST['send_blotter'])) {
+        $complaineeID = $_POST['complaineeID'];
+        $accusation = $_POST['accusation'];
+        $details = $_POST['details'];
+        $date = $_POST['dateh'];
+        $time = $_POST['timeh'];
+        
+        $exquery = "SELECT * FROM resident_table WHERE id='$complaineeID';";
+        $exresult = $conn -> query($exquery); 
+
+        if (mysqli_num_rows($exresult)>0){
+            $query1 = "SELECT concat_ws(' ',fname,mname,lname) as Fullname FROM resident_table WHERE id = '$complaineeID';";
+            $result1 = $conn -> query($query1);
+            $row = $result1 -> fetch_array();
+
+            $fullname = $row['Fullname'];
+
+            $query = "INSERT INTO blotter_table(complainant_ID, complainee_ID, complainee_name, blotter_accusation, blotter_details, blotter_date, blotter_time, status)
+            VALUES ('$resident_id','$complaineeID','$fullname', '$accusation', '$details', '$date', '$time', 'unscheduled');";
+            $result = $conn -> query($query);
+        } else {
+            $query = "INSERT INTO blotter_table(complainant_ID, complainee_ID, complainee_name, blotter_accusation, blotter_details, blotter_date, blotter_time, status)
+            VALUES ('$resident_id','0','$complaineeID', '$accusation', '$details', '$date', '$time', 'unscheduled');";
+            $result = $conn -> query($query);
+        }
+        
+        $_SESSION['blotter_message'] = "Your blotter has been successfully submitted.
+        Please wait patiently, your case is in process. You can monitor its status in the tracking section or check your notification for updates.";
+        header("location:file_blotter/file_blotter.php");
+    } 
 ?>
+
