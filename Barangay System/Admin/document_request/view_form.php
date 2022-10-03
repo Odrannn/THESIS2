@@ -47,7 +47,7 @@ $total = (float)($quantity * $price);
                         <td class="mx-0 px-0"><b>Payment:</b></td>
                     </tr>
                     <tr>
-                        <td class="m-0 p-0" colspan="2"><img src="receipt/sample.jpg" class="rounded" style='width: 100%;'></td>
+                        <td class="m-0 p-0" colspan="2"><img src="../../request_uploads/<?php echo $row['payment']?>" class="rounded" style='width: 100%;'></td>
                     </tr>
                 </tbody>
             </table>

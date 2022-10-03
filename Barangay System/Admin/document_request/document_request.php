@@ -78,9 +78,8 @@ if($_SESSION['user_id'] == '') {
                 <br>
                 <br>
                 <h2 class="fs-5">Request Managemet</h2>
-                <p>Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length:
-                    a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality,
-                    though, the unity and coherence of ideas among sentences is what constitutes a paragraph.</p>
+                <p>The barangay officials can quickly manage the requested documents in this module.
+                    They can check the feature to see how many requests are still pending and how many have already been granted to the residents. </p>
                 
                 <?php
                     include("../../phpfiles/connection.php");

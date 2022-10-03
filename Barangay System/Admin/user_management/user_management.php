@@ -78,9 +78,8 @@ if($_SESSION['user_id'] == '') {
                 <br>
                 <br>
                 <h2 class="fs-5">User Management</h2>
-                <p>Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length:
-                    a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality,
-                    though, the unity and coherence of ideas among sentences is what constitutes a paragraph.</p>
+                <p>The barangay administrator or the barangay captain can simply change the information for any user who has registered on the website,
+                    including accounts for residents or officials, in this module.</p>
 
                 <?php
                     include("../../phpfiles/connection.php");

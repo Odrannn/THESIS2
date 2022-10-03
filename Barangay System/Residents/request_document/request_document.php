@@ -1,9 +1,9 @@
 <?php 
 session_start();
-include('../../../phpfiles/connection.php');
+include('../../phpfiles/connection.php');
 
 if($_SESSION['user_id'] == '') {
-    header("location:../../../Login/login.php");
+    header("location:../../Login/login.php");
 }
 ?>
 <!DOCTYPE html>
@@ -22,28 +22,27 @@ if($_SESSION['user_id'] == '') {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    
 </head>
 
 <body>
     <div class="main_container d-flex">
-    <div class="sidebar" id="side_nav" style="background: <?php
-        include("../../../phpfiles/bgy_info.php");
+        <div class="sidebar" id="side_nav" style="background: <?php
+        include("../../phpfiles/bgy_info.php");
         echo $row[1];
         ?>">
             <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
                 <h1 class=fs-4><span class="bg-white text-dark rounded shadow px-2 me-2">BS</span><span class="text-white">Barangay <?php
-                                                                                                                            include("../../../phpfiles/bgy_info.php");
+                                                                                                                            include("../../phpfiles/bgy_info.php");
                                                                                                                             echo $row[3];
                                                                                                                             ?></span></h1>
                 <button class="btn d-md-none d-block close-btn px-1 py-0 text-white"><i class="fa-solid fa-bars-staggered"></i></button>
             </div>
             <ul class="list-unstyled px-2">
-                <li class=""><a href="../../dashboard/dashboard.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gauge"></i>&nbsp;Dashboard</a></li>
-                <li class=""><a href="../file_complaint.php" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between"><span><i class="fa-solid fa-headset"></i>&nbsp;Complain</span>
-                <li class=""><a href="../send_suggestion/send_suggestion.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Suggest</a></li>
-                <li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-stamp"></i>&nbsp;Blotter</a></li>
-                <li class=""><a href="../../request_document/request_document.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-file"></i>&nbsp;Request Document</a></li>
+            <li class=""><a href="../dashboard/dashboard.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gauge"></i>&nbsp;Dashboard</a></li>
+            <li class=""><a href="../file_case/file_complaint.php" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between"><span><i class="fa-solid fa-headset"></i>&nbsp;Complain</span>
+            <li class=""><a href="../file_case/send_suggestion/send_suggestion.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Suggest</a></li>
+            <li class=""><a href="../file_case/file_blotter/file_blotter.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-stamp"></i>&nbsp;Blotter</a></li>
+			<li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-file"></i>&nbsp;Request Document</a></li>
             </ul>
         </div>
 
@@ -68,7 +67,7 @@ if($_SESSION['user_id'] == '') {
                                 <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-user px-2"></i>Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../../../Login/logout.php" class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
+                                <a href="../../Login/logout.php" class="nav-link active" aria-current="page"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
                             </li>
                         </ul>
                     </div>
@@ -76,86 +75,93 @@ if($_SESSION['user_id'] == '') {
             </nav>
             
             <div class="dashboard-content px-3 py-4">
-                <a href="../../dashboard/dashboard.php"><button type="button" class="btn btn-dark">Back</button></a>
+                <a href="../dashboard/dashboard.php"><button type="button" class="btn btn-dark">Back</button></a>
                 <br>
                 <br>
-                <div class="d-flex justify-content-center">
-                    <div class="btn-group">
-                        <a href="../file_complaint.php"class="btn btn-outline-dark">Complaints</an>
-                        <a href="../send_suggestion/send_suggestion.php" class="btn btn-outline-dark">Suggestion</a>
-                        <a class="btn btn-outline-dark active">Blotter</a>
-                    </div>
-                </div>
-                <br>
-                <h2 class="fs-5">File Blotter</h2>
-                <p>In this module, Residents of the barangay may submit blotters or reports for specific events that occurred inside the boundaries of the barangay.</p>
                 
+                <h2 class="text fs-5">Request Document</h2>
+                <p>In this module, the residents of a barangay can easily request documents from the barangay.</p>
                 <div class="card mt-2">
-                    <h5 class="card-header">Blotter Form</h5>
+                    <h5 class="card-header">Request Form</h5>
                     <div class="card-body">
                         <?php 
-                        //alert message
-                        if(isset($_SESSION['blotter_message']))
+                        if(isset($_SESSION['request_message']))
                         {
-                            if($_SESSION['blotter_message'] != ''){?>
-                            <div class="alert alert-success" role="alert">
-                            <h4 class="alert-heading">Blotter Sent Successfully!</h4>
-                            <p><?php echo $_SESSION['blotter_message'];?></p>
-                            </div> 
-                        <?php }
-                            $_SESSION['suggestion_message'] = '';
+                            if($_SESSION['request_message'] != ''){
+                                if($_SESSION['error_type'] == 'success'){?>
+                                
+                                    <div class="alert alert-success" role="alert">
+                                        <h4 class="alert-heading">Thank you!</h4>
+                                        <p><?php echo $_SESSION['request_message'];?></p>
+                                    </div> 
+                                <?php } else {?>
+                                    <div class="alert alert-danger" role="alert">
+                                        <h4 class="alert-heading">Error!</h4>
+                                        <p><?php echo $_SESSION['request_message'];?></p>
+                                    </div> 
+                                <?php
+                                }
+                            }
+                            $_SESSION['request_message'] = '';
+                            $_SESSION['error_type'] = 'success';
                         } ?>
-                        <form class="g-3" action="../send_case.php" method="post" enctype="multipart/form-data">
-                            <?php
-                                $query = "SELECT id, concat_ws(' ',fname,mname,lname) as Fullname FROM resident_table
-                                            ORDER BY Fullname ASC;";
+                        <table class="table">
+                            <thead class="table-success">
+                                <tr>
+                                <th scope="col">Document Type</th>
+                                <th scope="col">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                $query = "SELECT * FROM document_type;";
                                 $result = $conn -> query($query);
-                            ?>
+                                while($row = $result->fetch_assoc()){?>
+                                <tr>
+                                <th scope="row"><?php echo $row['document_type']; ?></th>
+                                <td><?php echo $row['price']; ?></td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                        <form class="g-3" action="submit_request.php" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-md pt-2">
-                                    <label class="pb-2" for="complaineeID">Complainee ID (Search the name of the resident.)</label>
-                                    <input class="form-control" type="text" id="complaineeID" name="complaineeID" list="reslist" required>
-                                    <datalist id="reslist">
-                                        <?php while($row = $result -> fetch_array()) { ?>
-                                            <option value="<?php echo $row['id']?>"><?php echo $row['Fullname']?></option>
+                                    <label class="pb-2" for="doc_type">Type of Document</label>
+                                    <select class="form-control" id="doc_type" name="doc_type">
+                                        <?php 
+                                        $query = "SELECT * FROM document_type;";
+                                        $result = $conn -> query($query);
+                                        while($row = $result->fetch_assoc()){?>
+                                        <option value="<?php echo $row['id']; ?>"><?php echo $row['document_type']; ?></option>
                                         <?php } ?>
-                                    </datalist>
+                                    </select>
                                 </div>
                                 <div class="col-md pt-2">
-                                    <label class="pb-2" for="accusation">Accusation</label> 
-                                    <input class="form-control" type="text" id= "accusation" name="accusation" rows="10" required>
+                                    <label class="pb-2" for="quantity">Quantity</label> 
+                                    <input class="form-control" type="number" id="quantity" name="quantity" required></td>
+                                </div>
+                                <div class="col-md pt-2">
+                                    <label class="pb-2" for="proof">Proof of Payment</label> 
+                                    <input class="form-control" type="file" id="proof" name="proof" required></td>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md pt-2">
-                                    <div class="form-floating">
-                                        <input class="form-control" type="time" id="timeh" name="timeh" required>
-                                        <label for="start">Incident Time</label>
-                                    </div>
-                                </div>
-                                <div class="col-md pt-2">
-                                    <div class="form-floating">
-                                        <input class="form-control" type="date" id="dateh" name="dateh" required>
-                                        <label for="date">Incident Date</label>
-                                    </div>
-                                </div>
+                                <div class="col pt-2">
+                                <label class="pb-2" for="purpose">Purpose of Request</label> 
+                                    <textarea class="form-control" id= "purpose" name= "purpose" rows="10" required></textarea>
+                                </div>  
                             </div>
-                            <div class="row">
-                                <div class="col-md pt-2">
-                                    <label class="pb-2" for="details">Details</label>
-                                    <textarea class="form-control" id= "details" name= "details" rows="10" required></textarea>
-                                </div>
-                            </div>
-                            <br>
-                            <p class="d-inline">Note: If complainee ID is not found, type the full name of the complainee.</p>
+                        
                             <div class="row mt-4 d-flex flex-row-reverse">
                                 <div class="col-auto">
-                                    <button type="submit" class="btn btn-primary mb-3" name="send_blotter" value="Send">Send</button>
+                                    <button type="submit" class="btn btn-primary mb-3" name="submit_request" value="Submit">Submit</button>
                                 </div>  
                             </div>
                         </form>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>

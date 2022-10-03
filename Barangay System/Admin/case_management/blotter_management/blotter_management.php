@@ -165,6 +165,7 @@ if($_SESSION['user_id'] == '') {
                                             <th>Accusation</th>
                                             <th>Details</th>
                                             <th>Settlement Schedule</th>
+                                            <th>Settlement Time</th>
                                             <th>Result of Settlement</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -174,6 +175,8 @@ if($_SESSION['user_id'] == '') {
                                     $query = "SELECT * FROM blotter_table";
                                     $result = $conn -> query($query);
                                     while($row = $result->fetch_assoc()){ ?>
+
+                                    
                                     <tr>
                                         <td><?php echo $row["blotter_ID"]; ?></td>
                                         <td><?php echo $row["official_ID"]; ?></td>
@@ -185,11 +188,23 @@ if($_SESSION['user_id'] == '') {
                                         <td><?php echo $row["blotter_accusation"]; ?></td>
                                         <td><?php echo $row["blotter_details"]; ?></td>
                                         <td><?php echo $row["settlement_schedule"]; ?></td>
+                                        <td><?php echo $row["settlement_time"]; ?></td>
                                         <td><?php echo $row["result_of_settlement"]; ?></td>
                                         <td><?php echo $row["status"]; ?></td>
                                         <td><div class="btn-group" role="group" aria-label="Basic example">
-                                            <button data-id="<?php echo $row['blotter_ID']; ?>" class="editofficial btn btn-primary"><i class="fa-solid fa-calendar-days"></i></button>
-                                            <button data-id="<?php echo $row['blotter_ID']; ?>" class="editofficial btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <?php $off_id = $row['official_ID'];
+                                                $query2 = "SELECT * FROM tblofficial WHERE official_id = '$off_id'";
+                                                $result2 = $conn -> query($query2); 
+                                                $row2 = mysqli_fetch_array($result2)
+                                            ?>
+                                            <button data-id="<?php echo $row['blotter_ID']; ?>" class="setsched btn btn-primary"<?php 
+                                                if($off_id != ""){
+                                                    if($row['status'] == 'settled' || $row['status'] == 'unsettled' || $row2['user_id'] != $_SESSION['user_id'])
+                                                    {
+                                                        echo "disabled"; 
+                                                    }
+                                                } ?>><i class="fa-solid fa-calendar-days"></i></button>
+                                            <button data-id="<?php echo $row['blotter_ID']; ?>" class="editblotter btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
                                             </div>
                                         </td>
                                     </tr>
@@ -203,8 +218,8 @@ if($_SESSION['user_id'] == '') {
             </div>
         </div>
     </div>
-    <!--Add Modal-->
-    <div class="modal fade modal-lg" id="addModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!--set schedule modal-->
+    <div class="modal fade modal-md" id="setModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
             
         </div>
@@ -225,27 +240,30 @@ if($_SESSION['user_id'] == '') {
             $('.sidebar').removeClass('active');
         });
     </script>
-    <!-- Add resident script-->
+    <!-- set schedule script-->
     <script>
         $(document).ready(function(){
-            $('.addresident').click(function(){
-                $.ajax({url: "add_form.php",
+            $('.setsched').click(function(){
+                var blotterid = $(this).data('id');
+                $.ajax({url: "set_schedule_form.php",
+                method:'post',
+                data: {blotterid:blotterid},
                     
                 success: function(result){
                     $(".modal-dialog").html(result);
                 }});
-                $('#addModal').modal('show');
+                $('#setModal').modal('show');
             });
         });
     </script>
     <!-- Edit resident script-->
     <script>
         $(document).ready(function(){
-            $('.editofficial').click(function(){
-                var userid = $(this).data('id');
-                $.ajax({url: "edit_form.php",
+            $('.editblotter').click(function(){
+                var blotterid = $(this).data('id');
+                $.ajax({url: "edit_blotter_form.php",
                 method:'post',
-                data: {userid:userid},
+                data: {blotterid:blotterid},
                     
                 success: function(result){
                     $(".modal-dialog").html(result);
