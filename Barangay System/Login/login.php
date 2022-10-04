@@ -44,7 +44,7 @@ if($_SESSION['user_id'] != ""){
     
     <div class="login">
         <div style="text-align: center;">
-            <img src="../Admin/configuration/uploads/<?php echo $row[2]; ?>" width = "100" heigh ="100" class="mb-3 mt-2">
+            <img src="../generate_document/logo/<?php echo $row[2]; ?>" width = "100" heigh ="100" class="mb-3 mt-2">
             <h3 class="mb-3">Barangay <?php echo $row[3]; ?></h3>
             <h4>Login</h4>
         

@@ -75,7 +75,7 @@ if($_SESSION['user_id'] == '') {
             <div class="dashboard-content px-3 py-4">
                 <h2 class="fs-5">Configuration</h2>
             </div>
-            <img src="uploads/<?php
+            <img src="../../generate_document/logo/<?php
                 include("../../phpfiles/bgy_info.php");
                 echo $row[2];
             ?>" width = "100" heigh ="100" class="img-thumbnail mx-3">

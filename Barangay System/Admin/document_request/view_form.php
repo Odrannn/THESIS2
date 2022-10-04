@@ -10,7 +10,7 @@ $total = (float)($quantity * $price);
 ?>
 
 <div class="modal-content">
-    <form action="generate_file.php" method="post">
+    <form action="../../generate_document/generate_document.php" method="post">
     <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Request Information</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -56,6 +56,7 @@ $total = (float)($quantity * $price);
     <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
         <input type="hidden" name="id" value="<?php echo $row['request_ID'];?>">
+        <input type="hidden" name="senderid" value="<?php echo $row['resident_ID'];?>">
         <input type="submit" class="btn btn-success" name="generate" value="Generate Document">
     </div>
     </form>

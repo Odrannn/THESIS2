@@ -18,8 +18,9 @@
 
             if (in_array($img_ex_lc, $allowed_exs)) {
                 $new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
-                $img_upload_path = 'uploads/'.$new_img_name;
-                move_uploaded_file($tmp_name, $img_upload_path);
+
+                $img_upload_path2 = '../../generate_document/logo/'.$new_img_name;
+                move_uploaded_file($tmp_name, $img_upload_path2);
 
                 //insert to db
                 $query = "UPDATE bgy_info SET logo_url = '$new_img_name' WHERE id = 1";
