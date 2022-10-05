@@ -57,6 +57,7 @@ $total = (float)($quantity * $price);
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
         <input type="hidden" name="id" value="<?php echo $row['request_ID'];?>">
         <input type="hidden" name="senderid" value="<?php echo $row['resident_ID'];?>">
+        <input type="hidden" name="documentid" value="<?php echo $row['document_ID'];?>">
         <input type="submit" class="btn btn-success" name="generate" value="Generate Document">
     </div>
     </form>

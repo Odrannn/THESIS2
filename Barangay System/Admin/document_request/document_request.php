@@ -87,7 +87,7 @@ if($_SESSION['user_id'] == '') {
                     $result1 = $conn -> query($query1);
                 ?>
                 <div class="card">
-                    <h5 class="card-header">Document List <button class="adddocument btn btn-success" style="float: right">Add</button></h5>
+                    <h5 class="card-header">Document List <!--<button class="adddocument btn btn-success" style="float: right">Add</button>--></h5>
                     <div class="card-body">
                         <div class="container-fluid">
                             <div class="table-responsive" style="width: 100%;">
@@ -97,6 +97,7 @@ if($_SESSION['user_id'] == '') {
                                             <th>Document ID</th>
                                             <th>Document Type</th>
                                             <th>Price (PHP)</th>
+                                            <th>Availability</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -105,6 +106,7 @@ if($_SESSION['user_id'] == '') {
                                         <td><?php echo $row1["id"]; ?></td>
                                         <td><?php echo $row1["document_type"]; ?></td>
                                         <td><?php echo $row1["price"]; ?></td>
+                                        <td><?php echo $row1["availability"]; ?></td>
                                         <td><div class="btn-group" role="group" aria-label="Basic example">
                                             <button data-id="<?php echo $row1['id']; ?>" class="editdoc btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
                                             </div>

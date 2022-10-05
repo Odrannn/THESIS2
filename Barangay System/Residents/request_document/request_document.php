@@ -109,12 +109,12 @@ if($_SESSION['user_id'] == '') {
                             <thead class="table-success">
                                 <tr>
                                 <th scope="col">Document Type</th>
-                                <th scope="col">Price</th>
+                                <th scope="col">Price</th>  
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php 
-                                $query = "SELECT * FROM document_type;";
+                                $query = "SELECT * FROM document_type WHERE availability = 'yes';";
                                 $result = $conn -> query($query);
                                 while($row = $result->fetch_assoc()){?>
                                 <tr>
@@ -130,7 +130,7 @@ if($_SESSION['user_id'] == '') {
                                     <label class="pb-2" for="doc_type">Type of Document</label>
                                     <select class="form-control" id="doc_type" name="doc_type">
                                         <?php 
-                                        $query = "SELECT * FROM document_type;";
+                                        $query = "SELECT * FROM document_type WHERE availability = 'yes';";
                                         $result = $conn -> query($query);
                                         while($row = $result->fetch_assoc()){?>
                                         <option value="<?php echo $row['id']; ?>"><?php echo $row['document_type']; ?></option>
@@ -146,6 +146,7 @@ if($_SESSION['user_id'] == '') {
                                     <input class="form-control" type="file" id="proof" name="proof" required></td>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col pt-2">
                                 <label class="pb-2" for="purpose">Purpose of Request</label> 

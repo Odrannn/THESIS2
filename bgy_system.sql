@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2022 at 08:18 AM
+-- Generation Time: Oct 05, 2022 at 05:49 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -90,7 +90,7 @@ CREATE TABLE `bgy_info` (
 --
 
 INSERT INTO `bgy_info` (`id`, `color_theme`, `logo_url`, `bgy_name`, `vision`, `mission`, `city`, `background_url`) VALUES
-(1, '#177915', 'IMG-633c6b405416a0.52750966.jpg', '310', 'We envision the Barangay Pico to be more progressive, loving and peaceful place to live in where people and residents enjoy harmonious way of life, business, at work and at home, and most especially for a more directed and progressive Barangay Governance.', 'We commit to perform better duties and responsibilities to carry out the plans and objectives of the barangay thru voluntary and excellent performance, most especially in the delivery of the basic needs such as improved roads and environment, water system, health care, education, housing and agricultural farming needs of the farmers and residents of the barangay.', 'Manila ', 'IMG-6310b1e4de2736.84526520.png');
+(1, '#177915', 'IMG-633d8bdbebdac5.77070216.png', '310', 'We envision the Barangay Pico to be more progressive, loving and peaceful place to live in where people and residents enjoy harmonious way of life, business, at work and at home, and most especially for a more directed and progressive Barangay Governance.', 'We commit to perform better duties and responsibilities to carry out the plans and objectives of the barangay thru voluntary and excellent performance, most especially in the delivery of the basic needs such as improved roads and environment, water system, health care, education, housing and agricultural farming needs of the farmers and residents of the barangay.', 'Manila ', 'IMG-6310b1e4de2736.84526520.png');
 
 -- --------------------------------------------------------
 
@@ -188,7 +188,7 @@ INSERT INTO `complaint_table` (`complaint_ID`, `official_ID`, `sender_ID`, `comp
 
 CREATE TABLE `document_request` (
   `request_ID` int(11) NOT NULL,
-  `official_ID` int(11) NOT NULL,
+  `official_ID` int(11) DEFAULT NULL,
   `resident_ID` int(11) NOT NULL,
   `document_ID` int(11) DEFAULT NULL,
   `purpose` varchar(100) NOT NULL,
@@ -203,9 +203,11 @@ CREATE TABLE `document_request` (
 --
 
 INSERT INTO `document_request` (`request_ID`, `official_ID`, `resident_ID`, `document_ID`, `purpose`, `quantity`, `payment`, `request_date`, `status`) VALUES
-(1, 0, 7, 1, 'school requirement', 1, 'payment.jpg', '2022-09-22', 'pending'),
-(3, 0, 9, 1, 'adasd', 12, 'RCPT-633afecac5b085.95733661.jpg', '2022-10-03', 'pending'),
-(4, 0, 9, 2, 'asd', 1, 'RCPT-633afee90462b9.73775231.jpg', '2022-10-03', 'pending');
+(1, NULL, 7, 1, 'school requirement', 1, 'payment.jpg', '2022-09-22', 'pending'),
+(3, NULL, 9, 1, 'adasd', 12, 'RCPT-633afecac5b085.95733661.jpg', '2022-10-03', 'pending'),
+(4, NULL, 9, 2, 'asd', 1, 'RCPT-633afee90462b9.73775231.jpg', '2022-10-03', 'pending'),
+(5, NULL, 11, 2, 'business', 1, 'RCPT-633d9a114cf799.84391831.jpg', '2022-10-05', 'pending'),
+(6, NULL, 11, 3, 'school', 1, 'RCPT-633da47ab3f616.59006446.jpg', '2022-10-05', 'pending');
 
 -- --------------------------------------------------------
 
@@ -216,16 +218,18 @@ INSERT INTO `document_request` (`request_ID`, `official_ID`, `resident_ID`, `doc
 CREATE TABLE `document_type` (
   `id` int(11) NOT NULL,
   `document_type` varchar(50) NOT NULL,
-  `price` varchar(100) NOT NULL
+  `price` varchar(100) NOT NULL,
+  `availability` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `document_type`
 --
 
-INSERT INTO `document_type` (`id`, `document_type`, `price`) VALUES
-(1, 'Barangay Clearance', '100.00'),
-(2, 'Certificate of Indigency', '75.00');
+INSERT INTO `document_type` (`id`, `document_type`, `price`, `availability`) VALUES
+(1, 'Barangay Clearance', '100.00', 'yes'),
+(2, 'Certificate of Indigency', '75.00', 'yes'),
+(3, 'Certificate of Residency', '80.00', 'yes');
 
 -- --------------------------------------------------------
 
@@ -489,7 +493,7 @@ INSERT INTO `tbluser` (`id`, `username`, `password`, `type`) VALUES
 (8, 'Odrannn', '123', 'admin'),
 (9, '09283523142', '12345678', 'user'),
 (10, '09264561231', '12345678', 'user'),
-(11, '09108418705', '12345678', 'user'),
+(11, 'jehan', '456', 'user'),
 (13, '09781234567', '12345678', 'admin'),
 (14, '09244567897', '12345678', 'admin'),
 (15, '09623456781', '12345678', 'admin'),
@@ -649,13 +653,13 @@ ALTER TABLE `complaint_table`
 -- AUTO_INCREMENT for table `document_request`
 --
 ALTER TABLE `document_request`
-  MODIFY `request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `document_type`
 --
 ALTER TABLE `document_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `healthcare_availability`

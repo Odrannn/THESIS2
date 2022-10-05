@@ -16,14 +16,17 @@ $row = $result->fetch_assoc();
             <div class="row">
                 <div class="col-md pt-2">
                     <div class="form-floating">
-                        <input class="form-control" name="type" id="type" value="<?php echo $row['document_type']; ?>" required>
-                        <label for="type">Document Type</label>
+                        <input class="form-control" name="price" id="price" value="<?php echo $row['price']; ?>" required>
+                        <label for="type">Price (Php)</label>
                     </div>
                 </div>
                 <div class="col-md pt-2">
                     <div class="form-floating">
-                        <input class="form-control" name="price" id="price" value="<?php echo $row['price']; ?>" required>
-                        <label for="type">Price (Php)</label>
+                        <select class="form-control" name="av" id="av">
+                            <option value="yes" <?php if ($row['availability'] == 'yes'){ echo 'selected'; }?>>yes</option>
+                            <option value="no" <?php if ($row['availability'] == 'no'){ echo 'selected'; }?>>no</option>
+                        </select>
+                        <label for="av">Availability</label>
                     </div>
                 </div>
             </div>
