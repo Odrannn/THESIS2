@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2022 at 04:11 PM
+-- Generation Time: Oct 05, 2022 at 08:18 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -90,7 +90,39 @@ CREATE TABLE `bgy_info` (
 --
 
 INSERT INTO `bgy_info` (`id`, `color_theme`, `logo_url`, `bgy_name`, `vision`, `mission`, `city`, `background_url`) VALUES
-(1, '#177915', 'IMG-6321b8b45097c1.16490257.jpg', '310', 'We envision the Barangay Pico to be more progressive, loving and peaceful place to live in where people and residents enjoy harmonious way of life, business, at work and at home, and most especially for a more directed and progressive Barangay Governance.', 'We commit to perform better duties and responsibilities to carry out the plans and objectives of the barangay thru voluntary and excellent performance, most especially in the delivery of the basic needs such as improved roads and environment, water system, health care, education, housing and agricultural farming needs of the farmers and residents of the barangay.', 'Manila City', 'IMG-6310b1e4de2736.84526520.png');
+(1, '#177915', 'IMG-633c6b405416a0.52750966.jpg', '310', 'We envision the Barangay Pico to be more progressive, loving and peaceful place to live in where people and residents enjoy harmonious way of life, business, at work and at home, and most especially for a more directed and progressive Barangay Governance.', 'We commit to perform better duties and responsibilities to carry out the plans and objectives of the barangay thru voluntary and excellent performance, most especially in the delivery of the basic needs such as improved roads and environment, water system, health care, education, housing and agricultural farming needs of the farmers and residents of the barangay.', 'Manila ', 'IMG-6310b1e4de2736.84526520.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blotter_table`
+--
+
+CREATE TABLE `blotter_table` (
+  `blotter_ID` int(11) NOT NULL,
+  `official_ID` int(11) DEFAULT NULL,
+  `complainant_ID` int(11) NOT NULL,
+  `complainee_ID` int(11) NOT NULL,
+  `complainee_name` varchar(100) NOT NULL,
+  `blotter_date` date NOT NULL,
+  `blotter_time` time NOT NULL,
+  `blotter_accusation` varchar(50) NOT NULL,
+  `blotter_details` varchar(100) NOT NULL,
+  `settlement_schedule` date NOT NULL,
+  `settlement_time` time DEFAULT NULL,
+  `result_of_settlement` varchar(100) NOT NULL,
+  `status` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `blotter_table`
+--
+
+INSERT INTO `blotter_table` (`blotter_ID`, `official_ID`, `complainant_ID`, `complainee_ID`, `complainee_name`, `blotter_date`, `blotter_time`, `blotter_accusation`, `blotter_details`, `settlement_schedule`, `settlement_time`, `result_of_settlement`, `status`) VALUES
+(2, 5, 9, 8, 'Bernard Kabiling Mazo', '2022-10-01', '23:38:00', 'Handsome problem', 'Ampogi ni Bernard Mazo', '0000-00-00', '00:00:00', 'asd', 'unsettled'),
+(3, NULL, 9, 0, 'Kyrie Irving', '2022-10-13', '23:42:00', 'Stafa', 'Inistafa yung pusta namin sa basketball', '0000-00-00', '00:00:00', '', 'unscheduled'),
+(4, 5, 9, 0, 'Lebron James', '2022-09-28', '23:42:00', 'Play and Run', 'hindi nag bayad ng pang schedule', '2022-10-19', '12:52:00', 'asdas', 'settled'),
+(5, 5, 9, 10, 'Charles Wilcent Ilustre Urbano', '0000-00-00', '13:02:00', 'Nanuntok', 'nanuntok ng limang tao', '2022-10-12', '08:37:00', '', 'scheduled');
 
 -- --------------------------------------------------------
 
@@ -171,7 +203,9 @@ CREATE TABLE `document_request` (
 --
 
 INSERT INTO `document_request` (`request_ID`, `official_ID`, `resident_ID`, `document_ID`, `purpose`, `quantity`, `payment`, `request_date`, `status`) VALUES
-(1, 0, 7, 1, 'school requirement', 1, 'payment.jpg', '2022-09-22', 'pending');
+(1, 0, 7, 1, 'school requirement', 1, 'payment.jpg', '2022-09-22', 'pending'),
+(3, 0, 9, 1, 'adasd', 12, 'RCPT-633afecac5b085.95733661.jpg', '2022-10-03', 'pending'),
+(4, 0, 9, 2, 'asd', 1, 'RCPT-633afee90462b9.73775231.jpg', '2022-10-03', 'pending');
 
 -- --------------------------------------------------------
 
@@ -488,6 +522,12 @@ ALTER TABLE `bgy_info`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `blotter_table`
+--
+ALTER TABLE `blotter_table`
+  ADD PRIMARY KEY (`blotter_ID`);
+
+--
 -- Indexes for table `case_option`
 --
 ALTER TABLE `case_option`
@@ -588,6 +628,12 @@ ALTER TABLE `bgy_info`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `blotter_table`
+--
+ALTER TABLE `blotter_table`
+  MODIFY `blotter_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `case_option`
 --
 ALTER TABLE `case_option`
@@ -603,7 +649,7 @@ ALTER TABLE `complaint_table`
 -- AUTO_INCREMENT for table `document_request`
 --
 ALTER TABLE `document_request`
-  MODIFY `request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `document_type`
