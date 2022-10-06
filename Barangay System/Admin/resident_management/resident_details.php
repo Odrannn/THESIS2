@@ -18,7 +18,7 @@ if(isset($_POST['userid'])){
                         <img src="" alt="resident image.." class="img-fluid"    >
                     </div>
                     <div class="col pt-2">
-                        <p class="m-0"><b>Name: </b><?php echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"] ?></p>
+                        <p class="m-0"><b>Name: </b><?php echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"] . ' ' . $row["suffix"] ?></p>
                         <p class="m-0"><b>Gender: </b><?php echo $row["gender"] ?></p>
                         <p class="m-0"><b>Place Birth: </b><?php echo $row["birthplace"] ?></p>
                         <p class="m-0"><b>Age: </b><?php echo $row["age"] ?></p>

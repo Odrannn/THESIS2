@@ -1,9 +1,9 @@
 <?php 
 session_start();
-include('../../phpfiles/connection.php');
+include('../../../phpfiles/connection.php');
 
 if($_SESSION['user_id'] == '') {
-    header("location:../../Login/login.php");
+    header("location:../../../Login/login.php");
 }
 ?>
 <!DOCTYPE html>
@@ -11,7 +11,7 @@ if($_SESSION['user_id'] == '') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>User Management</title>
+    <title>Household Management</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -25,23 +25,23 @@ if($_SESSION['user_id'] == '') {
 <body>
     <div class="main_container d-flex">
         <div class="sidebar" id="side_nav" style="background: <?php
-        include("../../phpfiles/bgy_info.php");
+        include("../../../phpfiles/bgy_info.php");
         echo $row[1];
         ?>">
             <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
                 <h1 class=fs-4><span class="bg-white text-dark rounded shadow px-2 me-2">BS</span><span class="text-white">Barangay <?php
-                                                                                                                                    include("../../phpfiles/bgy_info.php");
+                                                                                                                                    include("../../../phpfiles/bgy_info.php");
                                                                                                                                     echo $row[3];
                                                                                                                                     ?></span></h1>
                 <button class="btn d-md-none d-block close-btn px-1 py-0 text-white"><i class="fa-solid fa-bars-staggered"></i></button>
             </div>
             <ul class="list-unstyled px-2">
-            <li class=""><a href="../dashboard/dashboard.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gauge"></i>&nbsp;Dashboard</a></li>
+            <li class=""><a href="../../dashboard/dashboard.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gauge"></i>&nbsp;Dashboard</a></li>
             <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between">
                 <span><i class="fa-solid fa-file-lines"></i>&nbsp;File Received</span>
                 <span class="bg-dark rounded-pill text-white py-0 px-2">02</span></a></li>
-            <li class=""><a href="../announcement/announcement.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Announcement</a></li>
-            <li class=""><a href="../configuration/configuration.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gear"></i>&nbsp;Configuration</a></li>
+            <li class=""><a href="../../announcement/announcement.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Announcement</a></li>
+            <li class=""><a href="../../configuration/configuration.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gear"></i>&nbsp;Configuration</a></li>
             </ul>
         </div>
 
@@ -66,7 +66,7 @@ if($_SESSION['user_id'] == '') {
                                 <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-user px-2"></i>Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../../Login/logout.php" class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
+                                <a href="../../../Login/logout.php" class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
                             </li>
                         </ul>
                     </div>
@@ -74,70 +74,83 @@ if($_SESSION['user_id'] == '') {
             </nav>
             
             <div class="dashboard-content px-3 py-4">
-                <a href="../dashboard/dashboard.php"><button type="button" class="btn btn-dark">Back</button></a>
+                <a href="../../dashboard/dashboard.php"><button type="button" class="btn btn-dark">Back</button></a>
                 <br>
                 <br>
-                <h2 class="fs-5">User Management</h2>
-                <p>The barangay administrator or the barangay captain can simply change the information for any user who has registered on the website,
-                    including accounts for residents or officials, in this module.</p>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="../resident_management.php">Resident</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../household_management/household_management.php">Household</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../residency_application/residency_application.php">Registration</a>
+                    </li>
+                </ul>
+                <br>
+                <h2 class="fs-5">Household Management</h2>
+                <p>Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length:
+                    a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality,
+                    though, the unity and coherence of ideas among sentences is what constitutes a paragraph.</p>
 
                 <?php
-                    include("../../phpfiles/connection.php");
-                    $query = "SELECT U.id, U.username, U.password, S.fname, S.mname, S.lname, S.suffix, U.type FROM tbluser U INNER JOIN resident_table S ON U.id = S.user_id;";
+                    include("../../../phpfiles/connection.php");
+                    $query = "SELECT H.*, R.fname, R.mname, R.lname, R.suffix FROM tblhousehold H INNER JOIN resident_table R ON H.household_head_ID = R.id;";
                     $result = $conn -> query($query);
                 ?>
                 <div class="card">
-                    <h5 class="card-header">User List<button class="adduser btn btn-success" style="float: right">Add</button></h5>
+                    <h5 class="card-header">Household List<button class="addhousehold btn btn-success" style="float: right"><i class="fa-solid fa-plus"></i></button></h5>
                     <div class="card-body">
                         <div class="container-fluid">
                             <div class="table-responsive" style="width: 100%;">
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr class="align-top">
-                                            <th>ID</th>
-                                            <th>Full name</th>
-                                            <th>Username</th>
-                                            <th>Password</th>
-                                            <th>Type</th>
+                                            <th>Household ID</th>
+                                            <th>Family Name</th>
+                                            <th>Family Head</th>
+                                            <th>Number of Members</th>
+                                            <th>Status</th> 
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <?php while($row = $result->fetch_assoc()){ ?>
                                     <tr>
-                                        <td><?php echo $row["id"]; ?></td>
+                                        <td><?php echo $row["household_id"]; ?></td>
+                                        <td><?php echo $row["household_name"]; ?></td>
                                         <td><?php echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"] . ' ' . $row["suffix"]; ?></td>
-                                        <td><?php echo $row["username"]; ?></td>
-                                        <td><?php echo $row["password"]; ?></td>
-                                        <td><?php echo $row["type"]; ?></td>
-                                        <td><div class="btn-group" role="group" aria-label="Basic example">
-                                            <button data-id="<?php echo $row['id']; ?>" class="edituser btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
-                                            </div>
-                                        </td>
+                                        <td><?php echo $row["household_member"]; ?></td>
+                                        <td><?php echo $row["status"]; ?></td>
+                                        <td><button data-id="<?php echo $row['household_id']; ?>" class="edithousehold btn btn-<?php
+                                            if($row["status"] == "active"){
+                                                echo "danger";
+                                            } else {
+                                                echo "warning";
+                                            }
+                                        ?>"><i class="fa-solid fa-box-archive"></i></button></td>
                                     </tr>
+                                    
                                     <?php } ?>
                                 </table>
                             </div>  
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>
-    <!--Add Modal-->
-    <div class="modal fade" id="addModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-md modal-dialog-centered">
-            
+    <!--Add Modal-->x
+    <div class="modal fade modal-md" id="addModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         </div>
     </div>
-
     <!--Edit Modal-->
     <div class="modal fade modal-md" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         </div>
     </div>
-
+    
     <script>
         $('.open-btn').on('click', function(){
             $('.sidebar').addClass('active');
@@ -146,12 +159,14 @@ if($_SESSION['user_id'] == '') {
             $('.sidebar').removeClass('active');
         });
     </script>
-
-    <!-- Add user script-->
+    
     <script>
         $(document).ready(function(){
-            $('.adduser').click(function(){
-                $.ajax({url: "add_form.php",
+            $('.addhousehold').click(function(){
+                var userid = $(this).data('id');
+                $.ajax({url: "add_household_form.php",
+                method:'post',
+                data: {userid:userid},
                     
                 success: function(result){
                     $(".modal-dialog").html(result);
@@ -160,12 +175,12 @@ if($_SESSION['user_id'] == '') {
             });
         });
     </script>
-    <!-- Edit user script-->
-    <script>
+
+<script>
         $(document).ready(function(){
-            $('.edituser').click(function(){
+            $('.edithousehold').click(function(){
                 var userid = $(this).data('id');
-                $.ajax({url: "edit_form.php",
+                $.ajax({url: "edit_household_form.php",
                 method:'post',
                 data: {userid:userid},
                     

@@ -97,7 +97,7 @@ if($_SESSION['user_id'] == '') {
                 ?>
                 <?php if($availability[3] == 'yes'){ ?>
                         <div class="card mb-3 me-2" style="width: 18rem;display: inline-block;">
-                            <a href="../document_request/document_request.php" class="text-decoration-none text-dark">
+                            <a href="../request_document/request_document.php" class="text-decoration-none text-dark">
                             <img src="img/request.jpg" class="card-img-top" style="filter: brightness(50%);">
                             <div class="card-body">
                                 <h5 class="card-title">Request Document</h5>
@@ -107,6 +107,15 @@ if($_SESSION['user_id'] == '') {
                         <?php
                     }
                 ?>
+
+                <div class="card mb-3 me-2 hover-shadow " style="width: 18rem;display: inline-block;">
+                    <a href="../file_case/file_complaint.php" class="text-decoration-none text-dark">
+                    <img src="img/complaint2.jpg" class="card-img-top" style="filter: brightness(50%);">
+                    <div class="card-body">
+                        <h5 class="card-title">Household Management</h5>
+                        <p class="card-text">Manage household information and members.</p>
+                    </div></a>
+                </div>
                 
                 <?php include('../../phpfiles/healthcare_time.php');?>
                 <div class="card mb-3 me-2" id="health">

@@ -3,20 +3,19 @@ session_start();
 include("../phpfiles/connection.php");
 if(isset($_SESSION['user_id']))
 { 
-$query = "select * from tbluser where id = '" . $_SESSION['user_id'] . "' limit 1";
-$result = mysqli_query($conn, $query);
-$user_data = mysqli_fetch_assoc($result);
+    $query = "select * from tbluser where id = '" . $_SESSION['user_id'] . "' limit 1";
+    $result = mysqli_query($conn, $query);
+    $user_data = mysqli_fetch_assoc($result);
 
-  
-if($_SESSION['user_id'] != ""){
-    if($user_data['type'] == 'user'){
-        header("location:../Residents/dashboard/dashboard.php");
-    }else if($user_data['type'] == 'admin'){
-        header("location:../Admin/dashboard/dashboard.php");
-    } 
+    
+    if($_SESSION['user_id'] != ""){
+        if($user_data['type'] == 'user'){
+            header("location:../Residents/dashboard/dashboard.php");
+        }else if($user_data['type'] == 'admin'){
+            header("location:../Admin/dashboard/dashboard.php");
+        } 
+    }
 }
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,9 +88,7 @@ if($_SESSION['user_id'] != ""){
             
         </div>
     </div>
-    
     <!-- register script-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(document).ready(function(){
             $('.register').click(function(){
