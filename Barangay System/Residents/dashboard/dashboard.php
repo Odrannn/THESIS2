@@ -97,7 +97,7 @@ if($_SESSION['user_id'] == '') {
                 ?>
                 <?php if($availability[3] == 'yes'){ ?>
                         <div class="card mb-3 me-2" style="width: 18rem;display: inline-block;">
-                            <a href="../document_request/document_request.php" class="text-decoration-none text-dark">
+                            <a href="../request_document/request_document.php" class="text-decoration-none text-dark">
                             <img src="img/request.jpg" class="card-img-top" style="filter: brightness(50%);">
                             <div class="card-body">
                                 <h5 class="card-title">Request Document</h5>
@@ -106,6 +106,21 @@ if($_SESSION['user_id'] == '') {
                         </div>
                         <?php
                     }
+                ?>
+                <?php
+                $query = "SELECT * FROM tblhousehold WHERE household_head_ID = '" . $_SESSION['user_id'] . "' AND status = 'active'";
+                $result = $conn -> query($query);
+                if (mysqli_num_rows($result)>0){?>
+                <div class="card mb-3 me-2 hover-shadow " style="width: 18rem;display: inline-block;">
+                    <a href="../manage_household/manage_household.php" class="text-decoration-none text-dark">
+                    <img src="img/complaint2.jpg" class="card-img-top" style="filter: brightness(50%);">
+                    <div class="card-body">
+                        <h5 class="card-title">Household Management</h5>
+                        <p class="card-text">Manage household information and members.</p>
+                    </div></a>
+                </div>
+                <?php
+                }
                 ?>
                 
                 <?php include('../../phpfiles/healthcare_time.php');?>
@@ -117,6 +132,7 @@ if($_SESSION['user_id'] == '') {
                         </div>
                     </div>
                 </div>
+                
                 <hr>
                 <div class="d-flex justify-content-center">
                     <h2 class="text fs-5" >Announcements</h2>

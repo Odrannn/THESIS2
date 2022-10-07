@@ -100,7 +100,7 @@ if($_SESSION['user_id'] == '') {
                             <a href="../resident_management/resident_management.php" class="text-decoration-none text-dark">
                             <img src="../icons/resident.jpg" class="card-img-top" style="filter: brightness(50%);">
                             <div class="card-body">
-                                <h5 class="card-title">Resident Management</h5>
+                                <h5 class="card-title">Resident and Household</h5>
                                 <p class="card-text">Manage resident's profile within the barangay.</p>
                             </div></a>
                         </div>

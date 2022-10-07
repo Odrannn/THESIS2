@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2022 at 05:49 PM
+-- Generation Time: Oct 07, 2022 at 04:29 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -352,8 +352,9 @@ INSERT INTO `registration` (`id`, `fname`, `mname`, `lname`, `suffix`, `gender`,
 (16, 'john daniel', 'san juan', 'policarpio', NULL, 'male', 'mindoro', 'Widowed', '2022-09-20', 123, 1004, '1', 'sitio 1', 'kalyepogi', 'tinagan', '09123123123', 'juan.delecaruz123', 'Jehovah\'\'s Witnesses', 'programmer', 'Bachelor\'\'s Degree', 'Filipino', 'pogi', 'accepted', 'IMG-6322a861ded505.42428598.jpg'),
 (19, 'Denver ', 'Kabiling', 'Mazo', NULL, 'male', 'Pampanga', 'Single', '1999-01-12', 23, 1759, 'purok 1', 'sitio 1', 'KalyePogi', 'Magnolia Estate', '09475044087', 'denver.mazo@gmail.com', 'Roman Catholic', 'Cook', 'College', 'Filipino', 'None', 'accepted', 'IMG-6336cfb21effb4.96116588.png'),
 (21, 'Bernard', 'Kabiling', 'Mazo', 'JR', 'male', 'Pampanga', 'Single', '2002-06-04', 20, 1759, '', '', '', '', '0929829390', 'nard.mazo@gmail.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'Filipino', 'none', 'accepted', 'IMG-6336ee77a48797.16008983.jpg'),
-(22, 'Bernard', 'Kabiling', 'Mazo', 'none', 'male', 'Mindoro', 'Married', '2022-09-21', 12, 1759, '', '', '', '', '09283523149', 'bernard.mazo04@gmail.com', 'Roman Catholic', 'Machine Operator', 'College', 'Filipino', 'none', 'pending', 'IMG-6336f40df0ce87.00659602.jpg'),
-(23, 'Bernandito', 'Malacas', 'Mazo', '', 'male', 'Mindoro', 'Married', '2022-09-07', 26, 1759, '', '', '', '', '09283523144', 'bernandito.mazo@gmail.com', 'Roman Catholic', 'Machine Operator', 'College', 'Filipino', 'none', 'accepted', 'IMG-6336f65190f495.32852079.jpg');
+(22, 'Bernard', 'Kabiling', 'Mazo', 'none', 'male', 'Mindoro', 'Married', '2022-09-21', 12, 1759, '', '', '', '', '09283523149', 'bernard.mazo04@gmail.com', 'Roman Catholic', 'Machine Operator', 'College', 'Filipino', 'none', 'accepted', 'IMG-6336f40df0ce87.00659602.jpg'),
+(23, 'Bernandito', 'Malacas', 'Mazo', '', 'male', 'Mindoro', 'Married', '2022-09-07', 26, 1759, '', '', '', '', '09283523144', 'bernandito.mazo@gmail.com', 'Roman Catholic', 'Machine Operator', 'College', 'Filipino', 'none', 'accepted', 'IMG-6336f65190f495.32852079.jpg'),
+(24, 'Bernardo', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2022-10-12', 21, 1759, 'purok 1', 'sitio 1', 'Grove', 'Magnolia Estate', '096160644831', 'nard_mazo@gmail.com1', 'Roman Catholic', 'none', 'Less Than Highschool', 'Filipino', 'none', 'pending', 'IMG-633ee85b00dd85.83556750.jpg');
 
 -- --------------------------------------------------------
 
@@ -373,6 +374,7 @@ CREATE TABLE `resident_table` (
   `civilstatus` varchar(50) NOT NULL,
   `birthday` date NOT NULL,
   `age` int(10) NOT NULL,
+  `household_ID` int(11) DEFAULT NULL,
   `unitnumber` int(50) NOT NULL,
   `purok` varchar(50) NOT NULL,
   `sitio` varchar(50) NOT NULL,
@@ -393,20 +395,20 @@ CREATE TABLE `resident_table` (
 -- Dumping data for table `resident_table`
 --
 
-INSERT INTO `resident_table` (`id`, `user_id`, `fname`, `mname`, `lname`, `suffix`, `gender`, `birthplace`, `civilstatus`, `birthday`, `age`, `unitnumber`, `purok`, `sitio`, `street`, `subdivision`, `contactnumber`, `email`, `religion`, `occupation`, `education`, `nationality`, `disability`, `imgid`, `status`) VALUES
-(7, 7, 'Lenz Janielle', 'Lim', 'Gerongco', '', 'female', 'Laguna', 'Single', '2022-09-15', 20, 1004, 'Purok 3', 'sitio 2', 'TELECOM', 'tinagan', '09123456789', 'lenzgerongco@yahoo.com', 'Roman Catholic', 'Flight attendant', 'College', 'Filipino', 'none', '', 'active'),
-(8, 8, 'Bernard', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2001-03-27', 21, 1759, 'purok 1', 'sitio 1', 'TELECOM', 'tinagan', '09616064483', 'nard_mazo@gmail.com', 'Roman Catholic', 'Programmer', 'College', 'Filipino', 'none', '', 'active'),
-(9, 9, 'Christian Philip', 'Diff', 'Orsolino', '', 'male', 'Manila', 'Single', '2000-12-11', 21, 1000, 'purok 1', 'sitio 2', 'TELECOM', 'tinagan', '09283523142', 'chris.orsolino@gmail.com', 'Roman Catholic', 'Dancer', 'College', 'Filipino', 'none', '', 'active'),
-(10, 10, 'Charles Wilcent', 'Ilustre', 'Urbano', '', 'male', 'Manila', 'Single', '2000-12-02', 22, 4598, 'purok 2', 'sitio 3', 'TELECOM', 'sevilla street', '09264561231', 'wilson.urbano@gmail.con', 'Roman Catholic', 'Axie player', 'College', 'Filipino', 'none', '', 'active'),
-(11, 11, 'Jehan', '', 'Hadji Said', '', 'male', 'Manila', 'Single', '2012-06-12', 10, 12312, 'purok 2', 'sitio 2', 'kalyepogi', 'parking', '09108418705', 'jehan.said@gmail.com', 'Islam', 'Web developer', 'College', 'Filipino', 'none', '', 'active'),
-(12, 13, 'Michael', '', 'Jordan', '', 'male', 'Manila', 'Married', '1963-02-17', 58, 2345, 'purok 2', 'sitio 1', 'LRC', 'parking', '09781234567', 'michaejordan@gmail.com', 'Roman Catholic', 'none', 'College', 'American', 'none', '', 'active'),
-(13, 14, 'Kobe', '', 'Bryant', '', 'male', 'Manila', 'Married', '1978-08-23', 44, 2408, 'Purok 3', 'sitio 3', 'grove', 'sevilla street', '09244567897', 'kobe.bryant@gmail.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'American', 'none', '', 'active'),
-(14, 15, 'Lebron', '', 'James', '', 'male', 'Manila', 'Single', '1984-12-30', 37, 2306, 'purok 2', 'sitio 2', 'TELECOM', 'parking', '09623456781', 'lebronjames@gmail.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'American', 'none', '', 'active'),
-(17, 18, 'John', '', 'Wall', '', 'male', 'Manila', 'Single', '1990-09-06', 0, 202, 'purok 1', 'sitio 1', 'Oroqueta', 'tinagan', '09020146545', 'john.wall@gmail.com', 'Roman Catholic', 'none', 'College', 'American', 'none', '', 'active'),
-(29, 30, 'john daniel', 'san juan', 'policarpio', '', 'male', 'mindoro', 'Widowed', '2022-09-20', 123, 1004, '1', 'sitio 1', 'kalyepogi', 'tinagan', '09123123123', 'juan.delecaruz123', 'Jehovah\'s Witnesses', 'programmer', 'Bachelor\'s Degree', 'Filipino', 'pogi', '', 'active'),
-(32, 33, 'Denver ', 'Kabiling', 'Mazo', '', 'male', 'Pampanga', 'Single', '1999-01-12', 23, 1759, 'purok 1', 'sitio 1', 'KalyePogi', 'Magnolia Estate', '09475044087', 'denver.mazo@gmail.com', 'Roman Catholic', 'Cook', 'College', 'Filipino', 'None', '', 'active'),
-(33, 34, 'Bernard', 'Kabiling', 'Mazo', 'JR', 'male', 'Pampanga', 'Single', '2002-06-04', 20, 1759, '', '', '', '', '0929829390', 'nard.mazo@gmail.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'Filipino', 'none', '', 'active'),
-(34, 35, 'Bernandito', 'Malacas', 'Mazo', '', 'male', 'Mindoro', 'Married', '2022-09-07', 26, 1759, '', '', '', '', '09283523144', 'bernandito.mazo@gmail.com', 'Roman Catholic', 'Machine Operator', 'College', 'Filipino', 'none', '', 'active');
+INSERT INTO `resident_table` (`id`, `user_id`, `fname`, `mname`, `lname`, `suffix`, `gender`, `birthplace`, `civilstatus`, `birthday`, `age`, `household_ID`, `unitnumber`, `purok`, `sitio`, `street`, `subdivision`, `contactnumber`, `email`, `religion`, `occupation`, `education`, `nationality`, `disability`, `imgid`, `status`) VALUES
+(7, 7, 'Lenz Janielle', 'Lim', 'Gerongco', '', 'female', 'Laguna', 'Single', '2022-09-15', 20, NULL, 1004, 'Purok 3', 'sitio 2', 'TELECOM', 'tinagan', '09123456789', 'lenzgerongco@yahoo.com', 'Roman Catholic', 'Flight attendant', 'College', 'Filipino', 'none', '', 'active'),
+(8, 8, 'Bernard', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2001-03-27', 21, NULL, 1759, 'purok 1', 'sitio 1', 'TELECOM', 'tinagan', '09616064483', 'nard_mazo@gmail.com', 'Roman Catholic', 'Programmer', 'College', 'Filipino', 'none', '', 'active'),
+(9, 9, 'Christian Philip', 'Diff', 'Orsolino', '', 'male', 'Manila', 'Single', '2000-12-11', 21, 3, 1000, 'purok 1', 'sitio 2', 'TELECOM', 'tinagan', '09283523142', 'chris.orsolino@gmail.com', 'Roman Catholic', 'Dancer', 'College', 'Filipino', 'none', '', 'active'),
+(10, 10, 'Charles Wilcent', 'Ilustre', 'Urbano', '', 'male', 'Manila', 'Single', '2000-12-02', 22, 3, 4598, 'purok 2', 'sitio 3', 'TELECOM', 'sevilla street', '09264561231', 'wilson.urbano@gmail.con', 'Roman Catholic', 'Axie player', 'College', 'Filipino', 'none', '', 'active'),
+(11, 11, 'Jehan', '', 'Hadji Said', '', 'male', 'Manila', 'Single', '2012-06-12', 10, 4, 12312, 'purok 2', 'sitio 2', 'kalyepogi', 'parking', '09108418705', 'jehan.said@gmail.com', 'Islam', 'Web developer', 'College', 'Filipino', 'none', '', 'active'),
+(12, 13, 'Michael', '', 'Jordan', '', 'male', 'Manila', 'Married', '1963-02-17', 58, NULL, 2345, 'purok 2', 'sitio 1', 'LRC', 'parking', '09781234567', 'michaejordan@gmail.com', 'Roman Catholic', 'none', 'College', 'American', 'none', '', 'active'),
+(13, 14, 'Kobe', '', 'Bryant', '', 'male', 'Manila', 'Married', '1978-08-23', 44, NULL, 2408, 'Purok 3', 'sitio 3', 'grove', 'sevilla street', '09244567897', 'kobe.bryant@gmail.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'American', 'none', '', 'active'),
+(14, 15, 'Lebron', '', 'James', '', 'male', 'Manila', 'Single', '1984-12-30', 37, NULL, 2306, 'purok 2', 'sitio 2', 'TELECOM', 'parking', '09623456781', 'lebronjames@gmail.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'American', 'none', '', 'active'),
+(17, 18, 'John', '', 'Wall', '', 'male', 'Manila', 'Single', '1990-09-06', 0, 3, 202, 'purok 1', 'sitio 1', 'Oroqueta', 'tinagan', '09020146545', 'john.wall@gmail.com', 'Roman Catholic', 'none', 'College', 'American', 'none', '', 'active'),
+(29, 30, 'john daniel', 'san juan', 'policarpio', '', 'male', 'mindoro', 'Widowed', '2022-09-20', 123, NULL, 1004, '1', 'sitio 1', 'kalyepogi', 'tinagan', '09123123123', 'juan.delecaruz123', 'Jehovah\'s Witnesses', 'programmer', 'Bachelor\'s Degree', 'Filipino', 'pogi', '', 'active'),
+(32, 33, 'Denver ', 'Kabiling', 'Mazo', '', 'male', 'Pampanga', 'Single', '1999-01-12', 23, NULL, 1759, 'purok 1', 'sitio 1', 'KalyePogi', 'Magnolia Estate', '09475044087', 'denver.mazo@gmail.com', 'Roman Catholic', 'Cook', 'College', 'Filipino', 'None', '', 'active'),
+(34, NULL, 'Bernandito', 'Malacas', 'Mazo', '', 'male', 'Mindoro', 'Married', '2022-09-07', 26, NULL, 1759, '', '', '', '', '09283523144', 'bernandito.mazo@gmail.com', 'Roman Catholic', 'Machine Operator', 'College', 'Filipino', 'none', '', 'active'),
+(38, 39, 'Bernard', 'Kabilin', 'Mazo', '', 'female', 'Manila', 'Married', '2022-10-13', 21, 3, 1759, '', '', '', '', '0961606448', 'nard_maz@gmail.com', 'Roman Catholic', 'none', 'Highschool', 'Filipino', 'none', '', 'active');
 
 -- --------------------------------------------------------
 
@@ -440,6 +442,30 @@ INSERT INTO `suggestion_table` (`suggestion_ID`, `official_ID`, `sender_ID`, `su
 (8, NULL, 9, 'Sports', 'please conduct a summer league', '2022-09-28', '', 'pending'),
 (9, NULL, 9, 'Barangay Improvement', 'clean the purok 1', '2022-09-28', '', 'pending'),
 (10, NULL, 9, 'Other', 'asndlnalsd', '2022-09-28', '', 'pending');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblhousehold`
+--
+
+CREATE TABLE `tblhousehold` (
+  `household_id` int(11) NOT NULL,
+  `household_member` int(10) DEFAULT NULL,
+  `household_head_ID` int(11) DEFAULT NULL,
+  `household_name` varchar(50) NOT NULL,
+  `status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tblhousehold`
+--
+
+INSERT INTO `tblhousehold` (`household_id`, `household_member`, `household_head_ID`, `household_name`, `status`) VALUES
+(1, NULL, 34, 'Mazo', 'inactive'),
+(2, NULL, 10, 'Urbano', 'inactive'),
+(3, 4, 9, 'Orsolino', 'active'),
+(4, NULL, 11, 'Hadji Said', 'active');
 
 -- --------------------------------------------------------
 
@@ -492,16 +518,15 @@ INSERT INTO `tbluser` (`id`, `username`, `password`, `type`) VALUES
 (7, 'lenzay', '456', 'admin'),
 (8, 'Odrannn', '123', 'admin'),
 (9, '09283523142', '12345678', 'user'),
-(10, '09264561231', '12345678', 'user'),
+(10, 'wil', 'wil', 'user'),
 (11, 'jehan', '456', 'user'),
 (13, '09781234567', '12345678', 'admin'),
 (14, '09244567897', '12345678', 'admin'),
 (15, '09623456781', '12345678', 'admin'),
 (18, '09020146545', '12345678', 'admin'),
-(30, '09123123123', '12345678', 'user'),
+(30, 'poli', 'pol', 'user'),
 (33, '09475044087', '12345678', 'user'),
-(34, '0929829390', '12345678', 'user'),
-(35, '09283523144', '12345678', 'user');
+(39, '0961606448', '12345678', 'user');
 
 --
 -- Indexes for dumped tables
@@ -587,13 +612,21 @@ ALTER TABLE `registration`
 --
 ALTER TABLE `resident_table`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `test` (`user_id`);
+  ADD KEY `test` (`user_id`),
+  ADD KEY `HOUSE` (`household_ID`);
 
 --
 -- Indexes for table `suggestion_table`
 --
 ALTER TABLE `suggestion_table`
   ADD PRIMARY KEY (`suggestion_ID`);
+
+--
+-- Indexes for table `tblhousehold`
+--
+ALTER TABLE `tblhousehold`
+  ADD PRIMARY KEY (`household_id`),
+  ADD KEY `HEAD` (`household_head_ID`);
 
 --
 -- Indexes for table `tblofficial`
@@ -683,19 +716,25 @@ ALTER TABLE `modules_available`
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `resident_table`
 --
 ALTER TABLE `resident_table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `suggestion_table`
 --
 ALTER TABLE `suggestion_table`
   MODIFY `suggestion_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `tblhousehold`
+--
+ALTER TABLE `tblhousehold`
+  MODIFY `household_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tblofficial`
@@ -707,7 +746,7 @@ ALTER TABLE `tblofficial`
 -- AUTO_INCREMENT for table `tbluser`
 --
 ALTER TABLE `tbluser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Constraints for dumped tables
@@ -730,7 +769,14 @@ ALTER TABLE `document_request`
 -- Constraints for table `resident_table`
 --
 ALTER TABLE `resident_table`
+  ADD CONSTRAINT `HOUSE` FOREIGN KEY (`household_ID`) REFERENCES `tblhousehold` (`household_id`) ON DELETE SET NULL ON UPDATE SET NULL,
   ADD CONSTRAINT `test` FOREIGN KEY (`user_id`) REFERENCES `tbluser` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
+
+--
+-- Constraints for table `tblhousehold`
+--
+ALTER TABLE `tblhousehold`
+  ADD CONSTRAINT `HEAD` FOREIGN KEY (`household_head_ID`) REFERENCES `resident_table` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
 -- Constraints for table `tblofficial`

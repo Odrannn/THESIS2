@@ -7,11 +7,11 @@ if($_SESSION['user_id'] == '') {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Resident Management</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -77,6 +77,18 @@ if($_SESSION['user_id'] == '') {
                 <a href="../dashboard/dashboard.php"><button type="button" class="btn btn-dark">Back</button></a>
                 <br>
                 <br>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Resident</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="household_management/household_management.php">Household</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="residency_application/residency_application.php">Registration</a>
+                    </li>
+                </ul>
+                <br>
                 <h2 class="fs-5">Resident Management</h2>
                 <p>Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length:
                     a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality,
@@ -92,16 +104,19 @@ if($_SESSION['user_id'] == '') {
                         <div class="card mb-3 me-2 bg-dark" style="width: 18rem;display: inline-block;">
                             <div class="card-body">
                                 <div class="d-inline text-white">
-                                <i class="fa-solid fa-people-group"></i>&nbsp;<h5 class="d-inline">Total: <?php
-                                echo $trow[0]?></h5>
+                                <i class="fa-solid fa-people-group"></i>&nbsp;<h5 class="d-inline">Total: <?php echo $trow[0]?></h5>
                                 </div>
                             </div>
                         </div>
-                        
+                        <?php
+                            $tquery = "SELECT count(household_id) FROM tblhousehold WHERE status ='active';";
+                            $tresult = $conn -> query($tquery);
+                            $trow = $tresult -> fetch_array();
+                        ?>
                         <div class="card mb-3 me-2 bg-dark" style="width: 18rem;display: inline-block;">
                             <div class="card-body">
                                 <div class="d-inline text-white">
-                                    <i class="fa-solid fa-house"></i>&nbsp;<h5 class="d-inline">Household: 21</h5>
+                                    <i class="fa-solid fa-house"></i>&nbsp;<h5 class="d-inline">Household: <?php echo $trow[0]?></h5>
                                 </div>
                             </div>
                         </div>
@@ -139,9 +154,9 @@ if($_SESSION['user_id'] == '') {
                 ?>
                 <div class="card">
                     <h5 class="card-header">Resident List<button class="addresident btn btn-success" style="float: right">Add</button></h5>
-                    <a class="text-decoration-none mx-4 pt-2" href="residency_application/residency_application.php">
+                    <!--<a class="text-decoration-none mx-4 pt-2" href="residency_application/residency_application.php">
                         <i class="fa-solid fa-user-plus"></i>&nbsp;<span>Residency Registration</span>
-                    </a>
+                    </a>-->
                     <div class="card-body">
                         <div class="container-fluid">
                             <div class="table-responsive" style="width: 100%;">
@@ -209,11 +224,16 @@ if($_SESSION['user_id'] == '') {
                                     </tr>
                                     <?php } ?>
                                 </table>
+                                <!--Add Modal-->
+                                <div class="modal fade modal-xl" id="addModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        
+                                    </div>
+                                </div>
                             </div>  
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>
@@ -225,12 +245,7 @@ if($_SESSION['user_id'] == '') {
                 
         </div>
     </div>
-    <!--Add Modal-->
-    <div class="modal fade modal-xl" id="addModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            
-        </div>
-    </div>
+    
 
     <!--Edit Modal-->
     <div class="modal fade modal-xl" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -238,6 +253,7 @@ if($_SESSION['user_id'] == '') {
             
         </div>
     </div>
+    
 
     <script>
         $('.open-btn').on('click', function(){
@@ -292,5 +308,6 @@ if($_SESSION['user_id'] == '') {
             });
         });
     </script>
+   
 </body>
 </html>

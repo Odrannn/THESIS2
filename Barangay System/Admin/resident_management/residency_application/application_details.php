@@ -1,6 +1,4 @@
 <?php 
-
-
 if(isset($_POST['userid'])){
     include("../../../phpfiles/connection.php");
     $query = "SELECT * FROM registration WHERE id = '".$_POST['userid']."'";

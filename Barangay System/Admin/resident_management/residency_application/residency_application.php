@@ -74,8 +74,20 @@ if($_SESSION['user_id'] == '') {
             </nav>
             
             <div class="dashboard-content px-3 py-4">
-                <a href="../resident_management.php"><button type="button" class="btn btn-dark">Back</button></a>
+                <a href="../../dashboard/dashboard.php"><button type="button" class="btn btn-dark">Back</button></a>
                 <br>
+                <br>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="../resident_management.php">Resident</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../household_management/household_management.php">Household</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Registration</a>
+                    </li>
+                </ul>
                 <br>
                 <h2 class="fs-5">Residency Application</h2>
                 <p>Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length:

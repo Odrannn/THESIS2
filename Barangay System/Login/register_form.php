@@ -1,6 +1,4 @@
-
 <style>
-
 .form-message{
     text-align: center;
     color: #162A83;
@@ -25,7 +23,7 @@
             <h5 class="modal-title" id="exampleModalLabel">Register Residency</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body" style = "height: 50%;overflow-y: auto;">
+        <div class="modal-body" style="height: 50%;overflow-y: auto;">
             <div class="container">
                 <div class="row">
                     <div class="col-md pt-2">
