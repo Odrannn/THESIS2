@@ -3,7 +3,6 @@
 
     if(isset($_POST['accept_application']))
     {
-        $conn = new mysqli("localhost", "root", "", "bgy_system");
         $query = "SELECT * FROM registration WHERE id = '".$_POST['app_id']."'";
         $result = $conn -> query($query); 
         $row = mysqli_fetch_array($result);
