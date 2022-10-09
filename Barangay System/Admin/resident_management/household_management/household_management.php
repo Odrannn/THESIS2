@@ -46,32 +46,7 @@ if($_SESSION['user_id'] == '') {
         </div>
 
         <div class="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <div class="d-flex justify-content-between d-md-none d-block">
-                        <button class="btn px-1 py-0 open-btn me-2"><i class="fa-solid fa-bars-staggered"></i></button>
-                        <a class="navbar-brand fs-4" href="#"><span class="bg-dark rounded px-2 py-0 text-white">BS</span></a>
-                    </div>
-                    <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="collapse" 
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                        <ul class="navbar-nav mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-bell px-2"></i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-user px-2"></i>Profile</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../../Login/logout.php" class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <?php include("../../../phpfiles/official_nav.php")?>
             
             <div class="dashboard-content px-3 py-4">
                 <a href="../../dashboard/dashboard.php"><button type="button" class="btn btn-dark">Back</button></a>
@@ -95,9 +70,33 @@ if($_SESSION['user_id'] == '') {
                     though, the unity and coherence of ideas among sentences is what constitutes a paragraph.</p>
 
                 <?php
-                    include("../../../phpfiles/connection.php");
-                    $query = "SELECT H.*, R.fname, R.mname, R.lname, R.suffix FROM tblhousehold H INNER JOIN resident_table R ON H.household_head_ID = R.id;";
+                    if(isset($_GET['page'])){
+                        $page = $_GET['page'];
+                    } else {
+                        $_GET['page'] = 1;
+                        $page = $_GET['page'];
+                    }
+
+                    $start = ($page-1) * 10;
+                    $query = "SELECT H.*, R.fname, R.mname, R.lname, R.suffix FROM tblhousehold H INNER JOIN resident_table R ON H.household_head_ID = R.id LIMIT $start, 10;";
                     $result = $conn -> query($query);
+
+                    $result1 = $conn -> query("SELECT count(household_id) as id FROM tblhousehold;");
+                    $hhCount = $result1->fetch_assoc();
+                    $total = $hhCount['id'];
+                    $pages = ceil($total / 10);
+                    
+                    if($page > 1){
+                        $previous = $page - 1;
+                    } else {
+                        $previous = $page;
+                    }
+
+                    if($page < $pages){
+                        $next = $page + 1;
+                    } else {
+                        $next = $page;
+                    }
                 ?>
                 <div class="card">
                     <h5 class="card-header">Household List<button class="addhousehold btn btn-success" style="float: right"><i class="fa-solid fa-plus"></i></button></h5>
@@ -122,13 +121,11 @@ if($_SESSION['user_id'] == '') {
                                         <td><?php echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"] . ' ' . $row["suffix"]; ?></td>
                                         <td><?php echo $row["household_member"]; ?></td>
                                         <td><?php echo $row["status"]; ?></td>
-                                        <td><button data-id="<?php echo $row['household_id']; ?>" class="edithousehold btn btn-<?php
-                                            if($row["status"] == "active"){
-                                                echo "danger";
-                                            } else {
-                                                echo "warning";
-                                            }
-                                        ?>"><i class="fa-solid fa-box-archive"></i></button></td>
+                                        <td><button data-id="<?php echo $row['household_id']; ?>" class="edithousehold btn btn-danger" <?php
+                                            if($row["status"] == "inactive"){
+                                                echo "disabled";
+                                            } 
+                                        ?>><i class="fa-solid fa-box-archive"></i></button></td>
                                     </tr>
                                     
                                     <?php } ?>
@@ -136,7 +133,18 @@ if($_SESSION['user_id'] == '') {
                             </div>  
                         </div>
                     </div>
-                </div>
+                </div><br>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link text-dark" href="household_management.php?page=<?php echo $previous;?>">Previous</a></li>
+                        <?php for($i=1; $i<=$pages;$i++)
+                        {?>
+                            <li class="page-item"><a class="page-link text-dark" href="household_management.php?page=<?php echo $i;?>"><?php echo $i;?></a></li>
+                        <?php 
+                        }?>
+                        <li class="page-item"><a class="page-link text-dark" href="household_management.php?page=<?php echo $next;?>">Next</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>

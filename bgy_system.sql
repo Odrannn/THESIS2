@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2022 at 04:29 PM
+-- Generation Time: Oct 09, 2022 at 06:21 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -49,6 +49,32 @@ INSERT INTO `address_fields` (`id`, `purok`, `sitio`, `street`, `subdivision`) V
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admin_notification`
+--
+
+CREATE TABLE `admin_notification` (
+  `notification_ID` int(11) NOT NULL,
+  `notification_type` varchar(50) NOT NULL,
+  `type_ID` int(11) DEFAULT NULL,
+  `message` varchar(50) NOT NULL,
+  `source_ID` int(11) DEFAULT NULL,
+  `date_time` varchar(20) NOT NULL,
+  `status` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin_notification`
+--
+
+INSERT INTO `admin_notification` (`notification_ID`, `notification_type`, `type_ID`, `message`, `source_ID`, `date_time`, `status`) VALUES
+(1, 'Request Document', 7, 'request a document.', 9, '22-10-09 02:31:04', 0),
+(2, 'Request Document', 8, 'request a document.', 9, '22-10-09 02:33:04', 1),
+(3, 'Request Document', 9, 'request a document.', 29, '22-10-09 05:04:39', 0),
+(4, 'Request Document', 10, 'request a document.', 29, '22-10-09 05:21:50', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `announcement`
 --
 
@@ -90,7 +116,7 @@ CREATE TABLE `bgy_info` (
 --
 
 INSERT INTO `bgy_info` (`id`, `color_theme`, `logo_url`, `bgy_name`, `vision`, `mission`, `city`, `background_url`) VALUES
-(1, '#177915', 'IMG-633d8bdbebdac5.77070216.png', '310', 'We envision the Barangay Pico to be more progressive, loving and peaceful place to live in where people and residents enjoy harmonious way of life, business, at work and at home, and most especially for a more directed and progressive Barangay Governance.', 'We commit to perform better duties and responsibilities to carry out the plans and objectives of the barangay thru voluntary and excellent performance, most especially in the delivery of the basic needs such as improved roads and environment, water system, health care, education, housing and agricultural farming needs of the farmers and residents of the barangay.', 'Manila ', 'IMG-6310b1e4de2736.84526520.png');
+(1, '#008a87', 'IMG-633d8bdbebdac5.77070216.png', '310', 'We envision the Barangay Pico to be more progressive, loving and peaceful place to live in where people and residents enjoy harmonious way of life, business, at work and at home, and most especially for a more directed and progressive Barangay Governance.', 'We commit to perform better duties and responsibilities to carry out the plans and objectives of the barangay thru voluntary and excellent performance, most especially in the delivery of the basic needs such as improved roads and environment, water system, health care, education, housing and agricultural farming needs of the farmers and residents of the barangay.', 'Manila ', 'IMG-6310b1e4de2736.84526520.png');
 
 -- --------------------------------------------------------
 
@@ -207,7 +233,11 @@ INSERT INTO `document_request` (`request_ID`, `official_ID`, `resident_ID`, `doc
 (3, NULL, 9, 1, 'adasd', 12, 'RCPT-633afecac5b085.95733661.jpg', '2022-10-03', 'pending'),
 (4, NULL, 9, 2, 'asd', 1, 'RCPT-633afee90462b9.73775231.jpg', '2022-10-03', 'pending'),
 (5, NULL, 11, 2, 'business', 1, 'RCPT-633d9a114cf799.84391831.jpg', '2022-10-05', 'pending'),
-(6, NULL, 11, 3, 'school', 1, 'RCPT-633da47ab3f616.59006446.jpg', '2022-10-05', 'pending');
+(6, NULL, 11, 3, 'school', 1, 'RCPT-633da47ab3f616.59006446.jpg', '2022-10-05', 'pending'),
+(7, NULL, 9, 2, 'Business', 1, 'RCPT-6342bf2cd197e4.93863445.jpg', '2022-10-09', 'pending'),
+(8, NULL, 9, 3, 'School Requirement', 1, 'RCPT-6342bf801995f8.50901645.jpg', '2022-10-09', 'pending'),
+(9, NULL, 29, 2, 'business', 1, 'RCPT-6342e30774d612.08680000.jpg', '2022-10-09', 'pending'),
+(10, NULL, 29, 1, 'School Purposes', 2, 'RCPT-6342e70e7d8920.44333261.jpg', '2022-10-09', 'pending');
 
 -- --------------------------------------------------------
 
@@ -400,12 +430,12 @@ INSERT INTO `resident_table` (`id`, `user_id`, `fname`, `mname`, `lname`, `suffi
 (8, 8, 'Bernard', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2001-03-27', 21, NULL, 1759, 'purok 1', 'sitio 1', 'TELECOM', 'tinagan', '09616064483', 'nard_mazo@gmail.com', 'Roman Catholic', 'Programmer', 'College', 'Filipino', 'none', '', 'active'),
 (9, 9, 'Christian Philip', 'Diff', 'Orsolino', '', 'male', 'Manila', 'Single', '2000-12-11', 21, 3, 1000, 'purok 1', 'sitio 2', 'TELECOM', 'tinagan', '09283523142', 'chris.orsolino@gmail.com', 'Roman Catholic', 'Dancer', 'College', 'Filipino', 'none', '', 'active'),
 (10, 10, 'Charles Wilcent', 'Ilustre', 'Urbano', '', 'male', 'Manila', 'Single', '2000-12-02', 22, 3, 4598, 'purok 2', 'sitio 3', 'TELECOM', 'sevilla street', '09264561231', 'wilson.urbano@gmail.con', 'Roman Catholic', 'Axie player', 'College', 'Filipino', 'none', '', 'active'),
-(11, 11, 'Jehan', '', 'Hadji Said', '', 'male', 'Manila', 'Single', '2012-06-12', 10, 4, 12312, 'purok 2', 'sitio 2', 'kalyepogi', 'parking', '09108418705', 'jehan.said@gmail.com', 'Islam', 'Web developer', 'College', 'Filipino', 'none', '', 'active'),
+(11, 11, 'Jehan', '', 'Hadji Said', '', 'male', 'Manila', 'Single', '2012-06-12', 10, NULL, 12312, 'purok 2', 'sitio 2', 'kalyepogi', 'parking', '09108418705', 'jehan.said@gmail.com', 'Islam', 'Web developer', 'College', 'Filipino', 'none', '', 'active'),
 (12, 13, 'Michael', '', 'Jordan', '', 'male', 'Manila', 'Married', '1963-02-17', 58, NULL, 2345, 'purok 2', 'sitio 1', 'LRC', 'parking', '09781234567', 'michaejordan@gmail.com', 'Roman Catholic', 'none', 'College', 'American', 'none', '', 'active'),
 (13, 14, 'Kobe', '', 'Bryant', '', 'male', 'Manila', 'Married', '1978-08-23', 44, NULL, 2408, 'Purok 3', 'sitio 3', 'grove', 'sevilla street', '09244567897', 'kobe.bryant@gmail.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'American', 'none', '', 'active'),
 (14, 15, 'Lebron', '', 'James', '', 'male', 'Manila', 'Single', '1984-12-30', 37, NULL, 2306, 'purok 2', 'sitio 2', 'TELECOM', 'parking', '09623456781', 'lebronjames@gmail.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'American', 'none', '', 'active'),
 (17, 18, 'John', '', 'Wall', '', 'male', 'Manila', 'Single', '1990-09-06', 0, 3, 202, 'purok 1', 'sitio 1', 'Oroqueta', 'tinagan', '09020146545', 'john.wall@gmail.com', 'Roman Catholic', 'none', 'College', 'American', 'none', '', 'active'),
-(29, 30, 'john daniel', 'san juan', 'policarpio', '', 'male', 'mindoro', 'Widowed', '2022-09-20', 123, NULL, 1004, '1', 'sitio 1', 'kalyepogi', 'tinagan', '09123123123', 'juan.delecaruz123', 'Jehovah\'s Witnesses', 'programmer', 'Bachelor\'s Degree', 'Filipino', 'pogi', '', 'active'),
+(29, 30, 'john daniel', 'san juan', 'policarpio', '', 'male', 'mindoro', 'Widowed', '2022-09-20', 123, 3, 1004, '1', 'sitio 1', 'kalyepogi', 'tinagan', '09123123123', 'juan.delecaruz123', 'Jehovah\'s Witnesses', 'programmer', 'Bachelor\'s Degree', 'Filipino', 'pogi', '', 'active'),
 (32, 33, 'Denver ', 'Kabiling', 'Mazo', '', 'male', 'Pampanga', 'Single', '1999-01-12', 23, NULL, 1759, 'purok 1', 'sitio 1', 'KalyePogi', 'Magnolia Estate', '09475044087', 'denver.mazo@gmail.com', 'Roman Catholic', 'Cook', 'College', 'Filipino', 'None', '', 'active'),
 (34, NULL, 'Bernandito', 'Malacas', 'Mazo', '', 'male', 'Mindoro', 'Married', '2022-09-07', 26, NULL, 1759, '', '', '', '', '09283523144', 'bernandito.mazo@gmail.com', 'Roman Catholic', 'Machine Operator', 'College', 'Filipino', 'none', '', 'active'),
 (38, 39, 'Bernard', 'Kabilin', 'Mazo', '', 'female', 'Manila', 'Married', '2022-10-13', 21, 3, 1759, '', '', '', '', '0961606448', 'nard_maz@gmail.com', 'Roman Catholic', 'none', 'Highschool', 'Filipino', 'none', '', 'active');
@@ -464,8 +494,8 @@ CREATE TABLE `tblhousehold` (
 INSERT INTO `tblhousehold` (`household_id`, `household_member`, `household_head_ID`, `household_name`, `status`) VALUES
 (1, NULL, 34, 'Mazo', 'inactive'),
 (2, NULL, 10, 'Urbano', 'inactive'),
-(3, 4, 9, 'Orsolino', 'active'),
-(4, NULL, 11, 'Hadji Said', 'active');
+(3, 5, 9, 'Orsolino', 'active'),
+(4, 2, 11, 'Hadji Said', 'inactive');
 
 -- --------------------------------------------------------
 
@@ -537,6 +567,12 @@ INSERT INTO `tbluser` (`id`, `username`, `password`, `type`) VALUES
 --
 ALTER TABLE `address_fields`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `admin_notification`
+--
+ALTER TABLE `admin_notification`
+  ADD PRIMARY KEY (`notification_ID`);
 
 --
 -- Indexes for table `announcement`
@@ -653,6 +689,12 @@ ALTER TABLE `address_fields`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
+-- AUTO_INCREMENT for table `admin_notification`
+--
+ALTER TABLE `admin_notification`
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `announcement`
 --
 ALTER TABLE `announcement`
@@ -686,7 +728,7 @@ ALTER TABLE `complaint_table`
 -- AUTO_INCREMENT for table `document_request`
 --
 ALTER TABLE `document_request`
-  MODIFY `request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `document_type`

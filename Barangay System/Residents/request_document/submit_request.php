@@ -44,7 +44,18 @@
 
                 $_SESSION['request_message'] = "Your request has been successfully submitted.
                     Please wait patiently, your request is in process. You can monitor its status in the tracking section or check your notification for updates.";
-                   
+                
+                //get the recent request ID
+                $query = "SELECT request_ID FROM document_request
+                WHERE request_ID = (SELECT MAX(request_ID) FROM document_request);";
+                $result = $conn -> query($query);
+                $row = $result -> fetch_array();
+                $reqID = $row[0];
+
+                $date1 = date('y-m-d h:i:s');
+                $query = "INSERT INTO admin_notification(notification_type, type_ID, message, source_ID, date_time, status)
+                VALUES ('Request Document',$reqID,'request a document.','$resident_id','$date1','0');";
+                $result = $conn -> query($query);
             } else {
                 $_SESSION['request_message'] = "You can't upload files of this type.";
                 $_SESSION['error_type'] = 'error';

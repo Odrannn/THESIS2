@@ -57,16 +57,43 @@ if($_SESSION['user_id'] == '') {
                         aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fa-solid fa-bars"></i>
                     </button>
+                    <?php
+                    $query = "SELECT * FROM admin_notification";
+                    $result = $conn -> query($query);
+                    $count = mysqli_num_rows($result);
+                    ?>
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul class="navbar-nav mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-bell px-2"></i></a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" aria-current="page" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-bell px-2"></i>
+                                    <span class="bg-danger rounded-pill text-white badge" style = "position:relative;top:-10px;left:-20px;"><?php echo $count?></span>
+                                </a>
+                                <!--Notification-->
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <?php while($rownot = $result->fetch_assoc()){
+                                        $timestamp = $rownot['date_time'];
+                                        $dateTime = date("M d, Y, g:i a",strtotime($timestamp));
+
+                                        $query1 = "SELECT * FROM resident_table WHERE id = '". $rownot['source_ID']."'";
+                                        $result1 = $conn -> query($query1);
+                                        $row1 = $result1->fetch_assoc();
+                                        $name = $row1['fname'] . " " . $row1['lname']?>
+                                        <li><a class="dropdown-item" href="#">
+                                        <b><?php echo $rownot['notification_type']?></b><br>
+                                        <?php echo $name . " " . $rownot['message'] ?><br>
+                                        <b class="text-primary"><?php echo $dateTime?></b>
+
+                                        </a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                    <?php } ?>
+                                </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-user px-2"></i>Profile</a>
+                                <a class="nav-link" aria-current="page" href="#"><i class="fa-solid fa-user px-2"></i>Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../../Login/logout.php" class="nav-link active" aria-current="page"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
+                                <a href="../../Login/logout.php" class="nav-link" aria-current="page"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
                             </li>
                         </ul>
                     </div>

@@ -46,33 +46,7 @@ if($_SESSION['user_id'] == '') {
         </div>
 
         <div class="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <div class="d-flex justify-content-between d-md-none d-block">
-                        <button class="btn px-1 py-0 open-btn me-2"><i class="fa-solid fa-bars-staggered"></i></button>
-                        <a class="navbar-brand fs-4" href="#"><span class="bg-dark rounded px-2 py-0 text-white">BS</span></a>
-                    </div>
-                    <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="collapse" 
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                        <ul class="navbar-nav mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-bell px-2"></i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-user px-2"></i>Profile</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../Login/logout.php" class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            
+            <?php include("../../phpfiles/official_nav.php")?>
             <div class="dashboard-content px-3 py-4">
                 <a href="../dashboard/dashboard.php"><button type="button" class="btn btn-dark">Back</button></a>
                 <br>
@@ -149,9 +123,35 @@ if($_SESSION['user_id'] == '') {
                     </div>
                 </div>
                 <?php
-                    $query = "SELECT * FROM resident_table";
+                    if(isset($_GET['page'])){
+                        $page = $_GET['page'];
+                    } else {
+                        $_GET['page'] = 1;
+                        $page = $_GET['page'];
+                    }
+                    
+                    $start = ($page-1) * 10;
+                    $query = "SELECT * FROM resident_table LIMIT $start, 10;";
                     $result = $conn -> query($query);
+
+                    $result1 = $conn -> query("SELECT count(id) as id FROM resident_table;");
+                    $resCount = $result1->fetch_assoc();
+                    $total = $resCount['id'];
+                    $pages = ceil($total / 10);
+                    
+                    if($page > 1){
+                        $previous = $page - 1;
+                    } else {
+                        $previous = $page;
+                    }
+
+                    if($page < $pages){
+                        $next = $page + 1;
+                    } else {
+                        $next = $page;
+                    }
                 ?>
+                
                 <div class="card">
                     <h5 class="card-header">Resident List<button class="addresident btn btn-success" style="float: right">Add</button></h5>
                     <!--<a class="text-decoration-none mx-4 pt-2" href="residency_application/residency_application.php">
@@ -233,7 +233,18 @@ if($_SESSION['user_id'] == '') {
                             </div>  
                         </div>
                     </div>
-                </div>
+                </div><br>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link text-dark" href="resident_management.php?page=<?php echo $previous;?>">Previous</a></li>
+                        <?php for($i=1; $i<=$pages;$i++)
+                        {?>
+                            <li class="page-item"><a class="page-link text-dark" href="resident_management.php?page=<?php echo $i;?>"><?php echo $i;?></a></li>
+                        <?php 
+                        }?>
+                        <li class="page-item"><a class="page-link text-dark" href="resident_management.php?page=<?php echo $next;?>">Next</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>

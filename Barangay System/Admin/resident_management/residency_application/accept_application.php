@@ -49,7 +49,6 @@
         SET status = 'accepted'
         WHERE id = '".$_POST['app_id']."'";
         $new_result = $conn -> multi_query($new_query); 
-        
         header("location:residency_application.php");
     }
 ?>

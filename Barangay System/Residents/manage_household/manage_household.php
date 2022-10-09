@@ -105,11 +105,35 @@ if($_SESSION['user_id'] == '') {
                                     $row = $result->fetch_array();
                                     $householdID = $row['household_ID'];
 
+                                    if(isset($_GET['page'])){
+                                        $page = $_GET['page'];
+                                    } else {
+                                        $_GET['page'] = 1;
+                                        $page = $_GET['page'];
+                                    }
+                                    
+                                    $start = ($page-1) * 10;
                                     //select all members
-                                    $query = "SELECT * FROM resident_table WHERE household_ID = '$householdID'";
+                                    $query = "SELECT * FROM resident_table WHERE household_ID = '$householdID' LIMIT $start, 10;";
                                     $result = $conn -> query($query);
                                     $row1 = $result->fetch_array();
-                                    //
+                
+                                    $result1 = $conn -> query("SELECT count(id) as id FROM resident_table WHERE household_ID = '$householdID';");
+                                    $resCount = $result1->fetch_assoc();
+                                    $total = $resCount['id'];
+                                    $pages = ceil($total / 10);
+                                    
+                                    if($page > 1){
+                                        $previous = $page - 1;
+                                    } else {
+                                        $previous = $page;
+                                    }
+                
+                                    if($page < $pages){
+                                        $next = $page + 1;
+                                    } else {
+                                        $next = $page;
+                                    }
                                     while($row1 = $result->fetch_assoc()){ ?>
                                     <tr>
                                         <td><?php echo $row1["id"]; ?></td>
@@ -124,7 +148,18 @@ if($_SESSION['user_id'] == '') {
                             </div>  
                         </div>
                     </div>
-                </div>
+                </div><br>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link text-dark" href="manage_household.php?page=<?php echo $previous;?>">Previous</a></li>
+                        <?php for($i=1; $i<=$pages;$i++)
+                        {?>
+                            <li class="page-item"><a class="page-link text-dark" href="manage_household.php?page=<?php echo $i;?>"><?php echo $i;?></a></li>
+                        <?php 
+                        }?>
+                        <li class="page-item"><a class="page-link text-dark" href="manage_household.php?page=<?php echo $next;?>">Next</a></li>
+                    </ul>
+                </nav>
                 
             </div>
         </div>
