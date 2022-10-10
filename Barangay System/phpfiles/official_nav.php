@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <div class="d-flex justify-content-between d-md-none d-block">
@@ -10,19 +11,23 @@
             <i class="fa-solid fa-bars"></i>
         </button>
         <?php
-        $query2 = "SELECT * FROM admin_notification";
-        $result2 = $conn -> query($query2);
-        $count = mysqli_num_rows($result2);
+            $query2 = "SELECT * FROM admin_notification ORDER BY notification_ID DESC;";
+            $result2 = $conn -> query($query2);
+
+            $queryc = "SELECT * FROM admin_notification WHERE status = '0'";
+            $resultc = $conn -> query($queryc);
+            $count = mysqli_num_rows($resultc);
         ?>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link" aria-current="page" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-bell px-2"></i>
+                        <i class="fa-solid fa-bell px-2"></i><?php if($count != 0){?>
                         <span class="bg-danger rounded-pill text-white badge" style = "position:relative;top:-10px;left:-20px;"><?php echo $count?></span>
+                        <?php }?>
                     </a>
-                    <!--Notification-->
-                    <ul class="dropdown-menu dropdown-menu-end">
+                    <!--Notification List-->
+                    <ul class="dropdown-menu dropdown-menu-end" style="height: auto; max-height: 600px; overflow-x: hidden;">
                         <?php while($rownot = $result2->fetch_assoc()){
                             $timestamp = $rownot['date_time'];
                             $dateTime = date("M d, Y, g:i a",strtotime($timestamp));
@@ -32,21 +37,18 @@
                             $row1 = $result1->fetch_assoc();
                             $name = $row1['fname'] . " " . $row1['lname'];
                             if($rownot['status'] == '0'){ 
-                                $_SESSION['typeID'] = $rownot['type_ID'];?>
+                                $notifID = $rownot['notification_ID'];?>
 
-                                <li><a class="dropdown-item " href="../../phpfiles/readnotif.php">
-                                <b><?php echo $rownot['notification_type'];?></b><i class="fa-solid fa-circle" style="float:right; font-size:12px; color:<?php
-                                                                                                                                                        include("../../phpfiles/bgy_info.php");
-                                                                                                                                                        echo $row[1];
-                                                                                                                                                        ?>;"></i><br>
+                                <li><a class="dropdown-item " href="../../phpfiles/readnotif.php?notifid=<?php echo $notifID?>">
+                                <b><?php echo $rownot['notification_type'];?></b><i class="fa-solid fa-circle text-danger" style="float:right; font-size:12px;"></i><br>
                                 <?php echo $name . " " . $rownot['message']; ?><br>
                                 <b class="text-primary"><?php echo $dateTime;?></b>
                                 </a></li>
                                 <li><hr class="dropdown-divider"></li>
                         <?php 
                             } else {
-                                $_SESSION['typeID'] = $rownot['type_ID'];?>
-                                <li><a class="dropdown-item" href="../../phpfiles/readnotif.php">
+                                $notifID = $rownot['notification_ID'];?>
+                                <li><a class="dropdown-item" href="../../phpfiles/readnotif.php?notifid=<?php echo $notifID?>">
                                 <?php echo $rownot['notification_type'];?><br>
                                 <?php echo $name . " " . $rownot['message']; ?><br>
                                 <?php echo $dateTime;?>

@@ -54,7 +54,7 @@
 
                 $date1 = date('y-m-d h:i:s');
                 $query = "INSERT INTO admin_notification(notification_type, type_ID, message, source_ID, date_time, status)
-                VALUES ('Request Document',$reqID,'request a document.','$resident_id','$date1','0');";
+                VALUES ('Request Document',$reqID,'requested a document.','$resident_id','$date1','0');";
                 $result = $conn -> query($query);
             } else {
                 $_SESSION['request_message'] = "You can't upload files of this type.";

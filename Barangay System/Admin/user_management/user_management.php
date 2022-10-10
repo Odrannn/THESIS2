@@ -37,9 +37,6 @@ if($_SESSION['user_id'] == '') {
             </div>
             <ul class="list-unstyled px-2">
             <li class=""><a href="../dashboard/dashboard.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gauge"></i>&nbsp;Dashboard</a></li>
-            <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between">
-                <span><i class="fa-solid fa-file-lines"></i>&nbsp;File Received</span>
-                <span class="bg-dark rounded-pill text-white py-0 px-2">02</span></a></li>
             <li class=""><a href="../announcement/announcement.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Announcement</a></li>
             <li class=""><a href="../configuration/configuration.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gear"></i>&nbsp;Configuration</a></li>
             </ul>
@@ -47,7 +44,6 @@ if($_SESSION['user_id'] == '') {
 
         <div class="content">
             <?php include("../../phpfiles/official_nav.php")?>
-            
             <div class="dashboard-content px-3 py-4">
                 <a href="../dashboard/dashboard.php"><button type="button" class="btn btn-dark">Back</button></a>
                 <br>
@@ -65,7 +61,7 @@ if($_SESSION['user_id'] == '') {
                     }
                     
                     $start = ($page-1) * 10;
-                    $query = "SELECT U.id, U.username, U.password, S.fname, S.mname, S.lname, S.suffix, U.type FROM tbluser U INNER JOIN resident_table S ON U.id = S.user_id LIMIT $start, 10;";
+                    $query = "SELECT U.id, U.username, U.password, S.fname, S.mname, S.lname, S.suffix, U.type FROM tbluser U INNER JOIN resident_table S ON U.id = S.user_id ORDER BY U.id DESC LIMIT $start, 10;";
                     $result = $conn -> query($query);
 
                     $result1 = $conn -> query("SELECT count(id) as id FROM tbluser;");
@@ -84,7 +80,13 @@ if($_SESSION['user_id'] == '') {
                     } else {
                         $next = $page;
                     }
+
+                    $query1 = "SELECT * FROM tbluser WHERE id='".$_SESSION['user_id']."';";
+                    $result1 = $conn -> query($query1);
+                    $row1 = $result1 -> fetch_array();
+                    $typeOfUser = $row1['type'];
                 ?>
+                <h5><?php echo $_SESSION['user_id'] . $row1['id']?></h5>
                 <div class="card">
                     <h5 class="card-header">User List<button class="adduser btn btn-success" style="float: right">Add</button></h5>
                     <div class="card-body">
@@ -104,12 +106,17 @@ if($_SESSION['user_id'] == '') {
                                     <?php while($row = $result->fetch_assoc()){ ?>
                                     <tr>
                                         <td><?php echo $row["id"]; ?></td>
-                                        <td><?php echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"] . ' ' . $row["suffix"]; ?></td>
+                                        <td><?php if($row['type'] != 'hadmin'){ echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"] . ' ' . $row["suffix"]; }
+                                            else {
+                                                echo 'Healthcare Administrator';
+                                            }
+                                        ?></td>
                                         <td><?php echo $row["username"]; ?></td>
                                         <td><?php echo $row["password"]; ?></td>
                                         <td><?php echo $row["type"]; ?></td>
                                         <td><div class="btn-group" role="group" aria-label="Basic example">
-                                            <button data-id="<?php echo $row['id']; ?>" class="edituser btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button data-id="<?php echo $row['id']; ?>" class="edituser btn btn-warning" 
+                                            <?php if($typeOfUser != 'admin0'){ echo 'disabled';}?>><i class="fa-solid fa-pen-to-square"></i></button>
                                             </div>
                                         </td>
                                     </tr>

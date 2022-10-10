@@ -31,6 +31,8 @@ if(isset($_POST['userid'])){
                         <div class="form-floating">
                             <select class="form-control" name="type" id="type">
                                 <option value="admin" <?php if($row1["type"] == "admin"){ echo "selected"; }?>>Admin</option>
+                                <option value="admin0" <?php if($row1["type"] == "admin0"){ echo "selected"; }?>>Highest Admin</option>
+                                <option value="hadmin" <?php if($row1["type"] == "hadmin"){ echo "selected"; }?>>Healthcare Admin</option>
                                 <option value="user" <?php if($row1["type"] == "user"){ echo "selected"; }?>>User</option>
                             </select>
                             <label for="type">User type</label>

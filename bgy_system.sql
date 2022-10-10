@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2022 at 06:21 PM
+-- Generation Time: Oct 10, 2022 at 07:12 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -67,10 +67,18 @@ CREATE TABLE `admin_notification` (
 --
 
 INSERT INTO `admin_notification` (`notification_ID`, `notification_type`, `type_ID`, `message`, `source_ID`, `date_time`, `status`) VALUES
-(1, 'Request Document', 7, 'request a document.', 9, '22-10-09 02:31:04', 0),
-(2, 'Request Document', 8, 'request a document.', 9, '22-10-09 02:33:04', 1),
-(3, 'Request Document', 9, 'request a document.', 29, '22-10-09 05:04:39', 0),
-(4, 'Request Document', 10, 'request a document.', 29, '22-10-09 05:21:50', 0);
+(1, 'Request Document', 7, 'requested a document.', 9, '22-10-09 02:31:04', 1),
+(2, 'Request Document', 8, 'requested a document.', 9, '22-10-09 02:33:04', 1),
+(3, 'Request Document', 9, 'requested a document.', 29, '22-10-09 05:04:39', 1),
+(4, 'Request Document', 10, 'requested a document.', 29, '22-10-09 05:21:50', 1),
+(5, 'Request Document', 14, 'requested a document.', 9, '22-10-10 04:01:19', 1),
+(6, 'File Complaint', 14, 'filed a complaint.', 9, '22-10-10 04:02:19', 1),
+(7, 'Send Suggestion', 13, 'sent a suggestion.', 9, '22-10-10 04:10:47', 1),
+(8, 'File Complaint', 14, 'filed a complaint.', 9, '22-10-10 04:11:04', 1),
+(9, 'File Blotter', 6, 'filed a blotter.', 11, '22-10-10 04:16:13', 1),
+(10, 'File Blotter', 7, 'filed a blotter.', 11, '22-10-10 04:17:57', 1),
+(11, 'Request Document', 11, 'requested a document.', 11, '22-10-10 04:24:15', 1),
+(12, 'Request Document', 12, 'requested a document.', 11, '22-10-10 05:27:56', 1);
 
 -- --------------------------------------------------------
 
@@ -148,7 +156,9 @@ INSERT INTO `blotter_table` (`blotter_ID`, `official_ID`, `complainant_ID`, `com
 (2, 5, 9, 8, 'Bernard Kabiling Mazo', '2022-10-01', '23:38:00', 'Handsome problem', 'Ampogi ni Bernard Mazo', '0000-00-00', '00:00:00', 'asd', 'unsettled'),
 (3, NULL, 9, 0, 'Kyrie Irving', '2022-10-13', '23:42:00', 'Stafa', 'Inistafa yung pusta namin sa basketball', '0000-00-00', '00:00:00', '', 'unscheduled'),
 (4, 5, 9, 0, 'Lebron James', '2022-09-28', '23:42:00', 'Play and Run', 'hindi nag bayad ng pang schedule', '2022-10-19', '12:52:00', 'asdas', 'settled'),
-(5, 5, 9, 10, 'Charles Wilcent Ilustre Urbano', '0000-00-00', '13:02:00', 'Nanuntok', 'nanuntok ng limang tao', '2022-10-12', '08:37:00', '', 'scheduled');
+(5, 5, 9, 10, 'Charles Wilcent Ilustre Urbano', '0000-00-00', '13:02:00', 'Nanuntok', 'nanuntok ng limang tao', '2022-10-12', '08:37:00', '', 'scheduled'),
+(6, NULL, 11, 38, 'Bernard Kabilin Mazo', '2022-10-05', '22:17:00', 'igop', 'asdasdasdas', '0000-00-00', NULL, '', 'unscheduled'),
+(7, NULL, 11, 10, 'Charles Wilcent Ilustre Urbano', '2022-09-29', '22:19:00', 'sobrang pogi', 'asdsadasd', '0000-00-00', NULL, '', 'unscheduled');
 
 -- --------------------------------------------------------
 
@@ -237,7 +247,9 @@ INSERT INTO `document_request` (`request_ID`, `official_ID`, `resident_ID`, `doc
 (7, NULL, 9, 2, 'Business', 1, 'RCPT-6342bf2cd197e4.93863445.jpg', '2022-10-09', 'pending'),
 (8, NULL, 9, 3, 'School Requirement', 1, 'RCPT-6342bf801995f8.50901645.jpg', '2022-10-09', 'pending'),
 (9, NULL, 29, 2, 'business', 1, 'RCPT-6342e30774d612.08680000.jpg', '2022-10-09', 'pending'),
-(10, NULL, 29, 1, 'School Purposes', 2, 'RCPT-6342e70e7d8920.44333261.jpg', '2022-10-09', 'pending');
+(10, NULL, 29, 1, 'School Purposes', 2, 'RCPT-6342e70e7d8920.44333261.jpg', '2022-10-09', 'pending'),
+(11, NULL, 11, 1, 'asdasdas', 1, 'RCPT-63442b0f908dc0.42865164.jpg', '2022-10-10', 'pending'),
+(12, NULL, 11, 1, 'sadasd', 1, 'RCPT-634439fca71343.47009202.jpg', '2022-10-10', 'pending');
 
 -- --------------------------------------------------------
 
@@ -278,7 +290,7 @@ CREATE TABLE `healthcare_availability` (
 --
 
 INSERT INTO `healthcare_availability` (`id`, `time_start`, `time_end`) VALUES
-(1, '07:00:00', '19:00:00');
+(1, '10:00:00', '19:00:00');
 
 -- --------------------------------------------------------
 
@@ -309,7 +321,8 @@ INSERT INTO `healthcare_logs` (`id`, `patient_id`, `fullname`, `date`, `time`, `
 (8, 0, '10', '2022-09-19', '16:29:17', 'Varsity'),
 (9, 0, '10', '2022-09-19', '16:29:55', 'varsity'),
 (10, 10, 'Charles Wilcent Ilustre Urbano', '2022-09-19', '16:40:47', 'Varsity'),
-(11, 0, 'Charles', '2022-09-19', '16:41:23', '12121');
+(11, 0, 'Charles', '2022-09-19', '16:41:23', '12121'),
+(12, 38, 'Bernard Kabilin Mazo', '2022-10-10', '18:38:40', 'stomach ache 1');
 
 -- --------------------------------------------------------
 
@@ -437,7 +450,7 @@ INSERT INTO `resident_table` (`id`, `user_id`, `fname`, `mname`, `lname`, `suffi
 (17, 18, 'John', '', 'Wall', '', 'male', 'Manila', 'Single', '1990-09-06', 0, 3, 202, 'purok 1', 'sitio 1', 'Oroqueta', 'tinagan', '09020146545', 'john.wall@gmail.com', 'Roman Catholic', 'none', 'College', 'American', 'none', '', 'active'),
 (29, 30, 'john daniel', 'san juan', 'policarpio', '', 'male', 'mindoro', 'Widowed', '2022-09-20', 123, 3, 1004, '1', 'sitio 1', 'kalyepogi', 'tinagan', '09123123123', 'juan.delecaruz123', 'Jehovah\'s Witnesses', 'programmer', 'Bachelor\'s Degree', 'Filipino', 'pogi', '', 'active'),
 (32, 33, 'Denver ', 'Kabiling', 'Mazo', '', 'male', 'Pampanga', 'Single', '1999-01-12', 23, NULL, 1759, 'purok 1', 'sitio 1', 'KalyePogi', 'Magnolia Estate', '09475044087', 'denver.mazo@gmail.com', 'Roman Catholic', 'Cook', 'College', 'Filipino', 'None', '', 'active'),
-(34, NULL, 'Bernandito', 'Malacas', 'Mazo', '', 'male', 'Mindoro', 'Married', '2022-09-07', 26, NULL, 1759, '', '', '', '', '09283523144', 'bernandito.mazo@gmail.com', 'Roman Catholic', 'Machine Operator', 'College', 'Filipino', 'none', '', 'active'),
+(34, 42, 'Bernandito', 'Malacas', 'Mazo', '', 'male', 'Mindoro', 'Married', '2022-09-07', 26, 7, 1759, '', '', '', '', '09283523144', 'bernandito.mazo@gmail.com', 'Roman Catholic', 'Machine Operator', 'College', 'Filipino', 'none', '', 'active'),
 (38, 39, 'Bernard', 'Kabilin', 'Mazo', '', 'female', 'Manila', 'Married', '2022-10-13', 21, 3, 1759, '', '', '', '', '0961606448', 'nard_maz@gmail.com', 'Roman Catholic', 'none', 'Highschool', 'Filipino', 'none', '', 'active');
 
 -- --------------------------------------------------------
@@ -471,7 +484,10 @@ INSERT INTO `suggestion_table` (`suggestion_ID`, `official_ID`, `sender_ID`, `su
 (7, NULL, 9, 'Barangay Improvement', 'your hall looks dirty, do some operation cleaning!!', '2022-09-28', '', 'pending'),
 (8, NULL, 9, 'Sports', 'please conduct a summer league', '2022-09-28', '', 'pending'),
 (9, NULL, 9, 'Barangay Improvement', 'clean the purok 1', '2022-09-28', '', 'pending'),
-(10, NULL, 9, 'Other', 'asndlnalsd', '2022-09-28', '', 'pending');
+(10, NULL, 9, 'Other', 'asndlnalsd', '2022-09-28', '', 'pending'),
+(11, NULL, 9, 'Education', 'aasdasdsad', '2022-10-10', '', 'pending'),
+(12, NULL, 9, 'Other', 'sadasd', '2022-10-10', '', 'pending'),
+(13, NULL, 9, 'Other', 'sadasd', '2022-10-10', '', 'pending');
 
 -- --------------------------------------------------------
 
@@ -495,7 +511,8 @@ INSERT INTO `tblhousehold` (`household_id`, `household_member`, `household_head_
 (1, NULL, 34, 'Mazo', 'inactive'),
 (2, NULL, 10, 'Urbano', 'inactive'),
 (3, 5, 9, 'Orsolino', 'active'),
-(4, 2, 11, 'Hadji Said', 'inactive');
+(4, 2, 11, 'Hadji Said', 'inactive'),
+(7, NULL, 34, 'Mazo', 'active');
 
 -- --------------------------------------------------------
 
@@ -546,17 +563,19 @@ CREATE TABLE `tbluser` (
 
 INSERT INTO `tbluser` (`id`, `username`, `password`, `type`) VALUES
 (7, 'lenzay', '456', 'admin'),
-(8, 'Odrannn', '123', 'admin'),
+(8, 'Odrannn', '123', 'admin0'),
 (9, '09283523142', '12345678', 'user'),
 (10, 'wil', 'wil', 'user'),
 (11, 'jehan', '456', 'user'),
-(13, '09781234567', '12345678', 'admin'),
+(13, '09781234567', '12345678', 'admin0'),
 (14, '09244567897', '12345678', 'admin'),
 (15, '09623456781', '12345678', 'admin'),
 (18, '09020146545', '12345678', 'admin'),
 (30, 'poli', 'pol', 'user'),
 (33, '09475044087', '12345678', 'user'),
-(39, '0961606448', '12345678', 'user');
+(39, '0961606448', '12345678', 'user'),
+(41, 'HCAdmin', 'hcadmin', 'hadmin'),
+(42, '09283523144', '12345678', 'user');
 
 --
 -- Indexes for dumped tables
@@ -692,7 +711,7 @@ ALTER TABLE `address_fields`
 -- AUTO_INCREMENT for table `admin_notification`
 --
 ALTER TABLE `admin_notification`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `announcement`
@@ -710,7 +729,7 @@ ALTER TABLE `bgy_info`
 -- AUTO_INCREMENT for table `blotter_table`
 --
 ALTER TABLE `blotter_table`
-  MODIFY `blotter_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `blotter_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `case_option`
@@ -728,7 +747,7 @@ ALTER TABLE `complaint_table`
 -- AUTO_INCREMENT for table `document_request`
 --
 ALTER TABLE `document_request`
-  MODIFY `request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `document_type`
@@ -746,7 +765,7 @@ ALTER TABLE `healthcare_availability`
 -- AUTO_INCREMENT for table `healthcare_logs`
 --
 ALTER TABLE `healthcare_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `modules_available`
@@ -770,13 +789,13 @@ ALTER TABLE `resident_table`
 -- AUTO_INCREMENT for table `suggestion_table`
 --
 ALTER TABLE `suggestion_table`
-  MODIFY `suggestion_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `suggestion_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tblhousehold`
 --
 ALTER TABLE `tblhousehold`
-  MODIFY `household_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `household_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tblofficial`
@@ -788,7 +807,7 @@ ALTER TABLE `tblofficial`
 -- AUTO_INCREMENT for table `tbluser`
 --
 ALTER TABLE `tbluser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- Constraints for dumped tables

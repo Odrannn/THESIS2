@@ -27,7 +27,9 @@ if(isset($_POST['login']))
 					$_SESSION['user_id'] = $user_data['id'];
 					if($user_data['type'] == 'user'){
 						header("location:../Residents/dashboard/dashboard.php");
-					}else if($user_data['type'] == 'admin'){
+					}else if($user_data['type'] == 'hadmin'){
+						header("location:../Healthcare_Admin/healthcare_center/healthcare_center.php");
+					}else{
 						header("location:../Admin/dashboard/dashboard.php");
 					} 
 					die;

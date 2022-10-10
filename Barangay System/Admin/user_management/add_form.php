@@ -1,6 +1,6 @@
 <?php 
 include("../../phpfiles/connection.php"); 
-$query = "SELECT id, concat_ws(' ',fname,mname,lname) as Fullname FROM resident_table WHERE user_id = ''
+$query = "SELECT id, contactnumber, concat_ws(' ',fname,mname,lname) as Fullname FROM resident_table WHERE user_id is NULL
             ORDER BY Fullname ASC;";
 $result = $conn -> query($query);
 ?>
@@ -32,6 +32,7 @@ $result = $conn -> query($query);
                             <select class="form-control" name="type" id="type">
                                 <option value="user">User</option>
                                 <option value="admin">Admin</option>
+                                <option value="hadmin">Healthcare Admin</option>
                             </select>
                             <label for="type">User type</label>
                         </div>
@@ -41,7 +42,7 @@ $result = $conn -> query($query);
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-            <input type="submit" class="btn btn-success" name="edit_user" value="Add">
+            <input type="submit" class="btn btn-success" name="add_user" value="Add">
         </div>
     </form>
 </div>

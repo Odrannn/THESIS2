@@ -103,7 +103,7 @@ if($_SESSION['user_id'] == '') {
                             <p><?php echo $_SESSION['blotter_message'];?></p>
                             </div> 
                         <?php }
-                            $_SESSION['suggestion_message'] = '';
+                            $_SESSION['blotter_message'] = '';
                         } ?>
                         <form class="g-3" action="../send_case.php" method="post" enctype="multipart/form-data">
                             <?php

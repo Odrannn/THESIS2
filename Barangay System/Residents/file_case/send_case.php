@@ -54,6 +54,18 @@
         }
         $_SESSION['complaint_message'] = "Your complaint has been successfully submitted.
         Please wait patiently, your case is in process. You can monitor its status in the tracking menu or check your notification for updates.";
+        
+        //get the recent complaint ID
+        $query = "SELECT complaint_ID FROM complaint_table
+        WHERE complaint_ID = (SELECT MAX(complaint_ID) FROM complaint_table);";
+        $result = $conn -> query($query);
+        $row = $result -> fetch_array();
+        $compID = $row[0];
+
+        $date1 = date('y-m-d h:i:s');
+        $query = "INSERT INTO admin_notification(notification_type, type_ID, message, source_ID, date_time, status)
+        VALUES ('File Complaint',$compID,'filed a complaint.','$resident_id','$date1','0');";
+        $result = $conn -> query($query);
         header("location:file_complaint.php");
     } 
 
@@ -68,6 +80,18 @@
         
         $_SESSION['suggestion_message'] = "Your suggestion has been successfully submitted.
         Please wait patiently, your case is in process. You can monitor its status in the tracking section or check your notification for updates.";
+        
+        //get the recent suggestion ID
+        $query = "SELECT suggestion_ID FROM suggestion_table
+        WHERE suggestion_ID = (SELECT MAX(suggestion_ID) FROM suggestion_table);";
+        $result = $conn -> query($query);
+        $row = $result -> fetch_array();
+        $compID = $row[0];
+
+        $date1 = date('y-m-d h:i:s');
+        $query = "INSERT INTO admin_notification(notification_type, type_ID, message, source_ID, date_time, status)
+        VALUES ('Send Suggestion',$compID,'sent a suggestion.','$resident_id','$date1','0');";
+        $result = $conn -> query($query);
         header("location:send_suggestion/send_suggestion.php");
     } 
 
@@ -99,6 +123,19 @@
         
         $_SESSION['blotter_message'] = "Your blotter has been successfully submitted.
         Please wait patiently, your case is in process. You can monitor its status in the tracking section or check your notification for updates.";
+        header("location:file_blotter/file_blotter.php");
+
+        //get the recent blotter ID
+        $query = "SELECT blotter_ID FROM blotter_table
+        WHERE blotter_ID = (SELECT MAX(blotter_ID) FROM blotter_table);";
+        $result = $conn -> query($query);
+        $row = $result -> fetch_array();
+        $compID = $row[0];
+
+        $date1 = date('y-m-d h:i:s');
+        $query = "INSERT INTO admin_notification(notification_type, type_ID, message, source_ID, date_time, status)
+        VALUES ('File Blotter',$compID,'filed a blotter.','$resident_id','$date1','0');";
+        $result = $conn -> query($query);
         header("location:file_blotter/file_blotter.php");
     } 
 ?>

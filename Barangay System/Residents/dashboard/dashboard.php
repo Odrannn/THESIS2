@@ -79,7 +79,7 @@ if($_SESSION['user_id'] == '') {
                 $row = $result -> fetch_array();
                 ?>
 
-                <h2 class="text fs-5">Dashboard</h2>
+                <h2 class="text fs-5">Dashboard <?php echo $_SESSION['user_id']?></h2>
                 <h2 class="text fs-5">Welcome <?php echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname']?></h2>
                 <br>
                 <?php include('../../phpfiles/modules_available.php');
@@ -108,12 +108,17 @@ if($_SESSION['user_id'] == '') {
                     }
                 ?>
                 <?php
-                $query = "SELECT * FROM tblhousehold WHERE household_head_ID = '" . $_SESSION['user_id'] . "' AND status = 'active'";
+                //get resident id
+                $rquery = "SELECT * FROM resident_table WHERE user_id = '". $_SESSION['user_id'] ."'";
+                $rresult = $conn -> query($rquery);
+                $rrow = $rresult -> fetch_assoc();
+
+                $query = "SELECT * FROM tblhousehold WHERE household_head_ID = '" . $rrow['id'] . "' AND status = 'active'";
                 $result = $conn -> query($query);
                 if (mysqli_num_rows($result)>0){?>
                 <div class="card mb-3 me-2 hover-shadow " style="width: 18rem;display: inline-block;">
                     <a href="../manage_household/manage_household.php" class="text-decoration-none text-dark">
-                    <img src="img/complaint2.jpg" class="card-img-top" style="filter: brightness(50%);">
+                    <img src="img/house1.jpg" class="card-img-top" style="filter: brightness(50%);">
                     <div class="card-body">
                         <h5 class="card-title">Household Management</h5>
                         <p class="card-text">Manage household information and members.</p>

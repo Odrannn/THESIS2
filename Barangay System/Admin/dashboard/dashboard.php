@@ -37,68 +37,19 @@ if($_SESSION['user_id'] == '') {
             </div>
             <ul class="list-unstyled px-2">
             <li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gauge"></i>&nbsp;Dashboard</a></li>
-            <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between">
-                <span><i class="fa-solid fa-file-lines"></i>&nbsp;File Received</span>
-                <span class="bg-dark rounded-pill text-white py-0 px-2">02</span></a></li>
             <li class=""><a href="../announcement/announcement.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Announcement</a></li>
             <li class=""><a href="../configuration/configuration.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gear"></i>&nbsp;Configuration</a></li>
             </ul>
         </div>
 
         <div class="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <div class="d-flex justify-content-between d-md-none d-block">
-                        <button class="btn px-1 py-0 open-btn me-2"><i class="fa-solid fa-bars-staggered"></i></button>
-                        <a class="navbar-brand fs-4" href="#"><span class="bg-dark rounded px-2 py-0 text-white">BS</span></a>
-                    </div>
-                    <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="collapse" 
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                    <?php
-                    $query = "SELECT * FROM admin_notification";
-                    $result = $conn -> query($query);
-                    $count = mysqli_num_rows($result);
-                    ?>
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                        <ul class="navbar-nav mb-2 mb-lg-0">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link" aria-current="page" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-bell px-2"></i>
-                                    <span class="bg-danger rounded-pill text-white badge" style = "position:relative;top:-10px;left:-20px;"><?php echo $count?></span>
-                                </a>
-                                <!--Notification-->
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <?php while($rownot = $result->fetch_assoc()){
-                                        $timestamp = $rownot['date_time'];
-                                        $dateTime = date("M d, Y, g:i a",strtotime($timestamp));
-
-                                        $query1 = "SELECT * FROM resident_table WHERE id = '". $rownot['source_ID']."'";
-                                        $result1 = $conn -> query($query1);
-                                        $row1 = $result1->fetch_assoc();
-                                        $name = $row1['fname'] . " " . $row1['lname']?>
-                                        <li><a class="dropdown-item" href="#">
-                                        <b><?php echo $rownot['notification_type']?></b><br>
-                                        <?php echo $name . " " . $rownot['message'] ?><br>
-                                        <b class="text-primary"><?php echo $dateTime?></b>
-
-                                        </a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                    <?php } ?>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="#"><i class="fa-solid fa-user px-2"></i>Profile</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../Login/logout.php" class="nav-link" aria-current="page"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <?php
+            $query1 = "SELECT * FROM tbluser WHERE id='".$_SESSION['user_id']."';";
+            $result1 = $conn -> query($query1);
+            $row1 = $result1 -> fetch_array();
+            $typeOfUser = $row1['type'];
+            ?>
+            <?php include("../../phpfiles/official_nav.php")?>
             <div class="dashboard-content px-3 py-4">
                 <?php
                 $query = "SELECT * FROM resident_table WHERE user_id = '" . $_SESSION['user_id'] . "'";
@@ -134,7 +85,7 @@ if($_SESSION['user_id'] == '') {
                     <?php
                     }
                 ?>
-                <?php if($availability[2] == 'yes'){ ?>
+                <!--<?php if($availability[2] == 'yes'){ ?>
                         <div class="card mb-3 me-2" style="width: 18rem;display: inline-block;">
                             <a href="../healthcare_center/healthcare_center.php" class="text-decoration-none text-dark">
                             <img src="../icons/health.jpg" class="card-img-top" style="filter: brightness(50%);">
@@ -145,7 +96,7 @@ if($_SESSION['user_id'] == '') {
                         </div>
                     <?php
                     }
-                ?>
+                ?>-->
                 <?php if($availability[3] == 'yes'){ ?>
                         <div class="card mb-3 me-2" style="width: 18rem;display: inline-block;">
                             <a href="../document_request/document_request.php" class="text-decoration-none text-dark">
