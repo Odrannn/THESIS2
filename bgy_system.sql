@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2022 at 07:12 PM
+-- Generation Time: Oct 11, 2022 at 07:37 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -78,7 +78,10 @@ INSERT INTO `admin_notification` (`notification_ID`, `notification_type`, `type_
 (9, 'File Blotter', 6, 'filed a blotter.', 11, '22-10-10 04:16:13', 1),
 (10, 'File Blotter', 7, 'filed a blotter.', 11, '22-10-10 04:17:57', 1),
 (11, 'Request Document', 11, 'requested a document.', 11, '22-10-10 04:24:15', 1),
-(12, 'Request Document', 12, 'requested a document.', 11, '22-10-10 05:27:56', 1);
+(12, 'Request Document', 12, 'requested a document.', 11, '22-10-10 05:27:56', 1),
+(13, 'File Complaint', 15, 'filed a complaint.', 9, '22-10-11 02:38:02', 1),
+(14, 'File Blotter', 8, 'filed a blotter.', 10, '22-10-11 06:53:35', 1),
+(15, 'Request Document', 13, 'requested a document.', 10, '22-10-11 07:21:12', 0);
 
 -- --------------------------------------------------------
 
@@ -158,7 +161,8 @@ INSERT INTO `blotter_table` (`blotter_ID`, `official_ID`, `complainant_ID`, `com
 (4, 5, 9, 0, 'Lebron James', '2022-09-28', '23:42:00', 'Play and Run', 'hindi nag bayad ng pang schedule', '2022-10-19', '12:52:00', 'asdas', 'settled'),
 (5, 5, 9, 10, 'Charles Wilcent Ilustre Urbano', '0000-00-00', '13:02:00', 'Nanuntok', 'nanuntok ng limang tao', '2022-10-12', '08:37:00', '', 'scheduled'),
 (6, NULL, 11, 38, 'Bernard Kabilin Mazo', '2022-10-05', '22:17:00', 'igop', 'asdasdasdas', '0000-00-00', NULL, '', 'unscheduled'),
-(7, NULL, 11, 10, 'Charles Wilcent Ilustre Urbano', '2022-09-29', '22:19:00', 'sobrang pogi', 'asdsadasd', '0000-00-00', NULL, '', 'unscheduled');
+(7, 5, 11, 10, 'Charles Wilcent Ilustre Urbano', '2022-09-29', '22:19:00', 'sobrang pogi', 'asdsadasd', '2022-10-15', '10:00:00', '', 'scheduled'),
+(8, NULL, 10, 29, 'john daniel san juan policarpio', '2022-10-06', '00:54:00', 'nanapak', 'sinapak ako sa kanto', '0000-00-00', NULL, '', 'unscheduled');
 
 -- --------------------------------------------------------
 
@@ -213,8 +217,9 @@ INSERT INTO `complaint_table` (`complaint_ID`, `official_ID`, `sender_ID`, `comp
 (10, 6, 9, 'Other', 'SUGALAN SA KANTO', '2022-09-28', '', 'solved'),
 (11, NULL, 9, 'Other', 'illegal parking', '2022-09-28', '', 'pending'),
 (12, NULL, 9, 'Other', 'sugalan', '2022-09-28', 'IMG-633453d006e131.68377680.jpg', 'pending'),
-(13, NULL, 9, 'Other', 'illegal parking', '2022-09-28', 'IMG-633453de511e23.56622787.jpg', 'pending'),
-(14, NULL, 9, 'Dirty Barangay', 'street 1 is very dirty', '2022-09-28', 'IMG-63346d10292875.87716455.jpg', 'pending');
+(13, 5, 9, 'Other', 'illegal parking', '2022-09-28', 'IMG-633453de511e23.56622787.jpg', 'solved'),
+(14, 5, 9, 'Dirty Barangay', 'street 1 is very dirty', '2022-09-28', 'IMG-63346d10292875.87716455.jpg', 'solved'),
+(15, 5, 9, 'Dirty Barangay', 'asdasdas', '2022-10-11', 'IMG-634563a9e852f8.39870037.jpg', 'solved');
 
 -- --------------------------------------------------------
 
@@ -242,14 +247,15 @@ INSERT INTO `document_request` (`request_ID`, `official_ID`, `resident_ID`, `doc
 (1, NULL, 7, 1, 'school requirement', 1, 'payment.jpg', '2022-09-22', 'pending'),
 (3, NULL, 9, 1, 'adasd', 12, 'RCPT-633afecac5b085.95733661.jpg', '2022-10-03', 'pending'),
 (4, NULL, 9, 2, 'asd', 1, 'RCPT-633afee90462b9.73775231.jpg', '2022-10-03', 'pending'),
-(5, NULL, 11, 2, 'business', 1, 'RCPT-633d9a114cf799.84391831.jpg', '2022-10-05', 'pending'),
-(6, NULL, 11, 3, 'school', 1, 'RCPT-633da47ab3f616.59006446.jpg', '2022-10-05', 'pending'),
+(5, 5, 11, 2, 'business', 1, 'RCPT-633d9a114cf799.84391831.jpg', '2022-10-05', 'on process'),
+(6, 5, 11, 3, 'school', 1, 'RCPT-633da47ab3f616.59006446.jpg', '2022-10-05', 'on process'),
 (7, NULL, 9, 2, 'Business', 1, 'RCPT-6342bf2cd197e4.93863445.jpg', '2022-10-09', 'pending'),
 (8, NULL, 9, 3, 'School Requirement', 1, 'RCPT-6342bf801995f8.50901645.jpg', '2022-10-09', 'pending'),
 (9, NULL, 29, 2, 'business', 1, 'RCPT-6342e30774d612.08680000.jpg', '2022-10-09', 'pending'),
 (10, NULL, 29, 1, 'School Purposes', 2, 'RCPT-6342e70e7d8920.44333261.jpg', '2022-10-09', 'pending'),
-(11, NULL, 11, 1, 'asdasdas', 1, 'RCPT-63442b0f908dc0.42865164.jpg', '2022-10-10', 'pending'),
-(12, NULL, 11, 1, 'sadasd', 1, 'RCPT-634439fca71343.47009202.jpg', '2022-10-10', 'pending');
+(11, 5, 11, 1, 'asdasdas', 1, 'RCPT-63442b0f908dc0.42865164.jpg', '2022-10-10', 'on process'),
+(12, 5, 11, 1, 'sadasd', 1, 'RCPT-634439fca71343.47009202.jpg', '2022-10-10', 'on process'),
+(13, NULL, 10, 1, 'sadasd', 1, 'RCPT-6345a60822dfe1.60325593.jpg', '2022-10-11', 'pending');
 
 -- --------------------------------------------------------
 
@@ -483,11 +489,11 @@ INSERT INTO `suggestion_table` (`suggestion_ID`, `official_ID`, `sender_ID`, `su
 (6, NULL, 9, 'Health', 'Conduct operation tuli', '2022-09-28', '', 'pending'),
 (7, NULL, 9, 'Barangay Improvement', 'your hall looks dirty, do some operation cleaning!!', '2022-09-28', '', 'pending'),
 (8, NULL, 9, 'Sports', 'please conduct a summer league', '2022-09-28', '', 'pending'),
-(9, NULL, 9, 'Barangay Improvement', 'clean the purok 1', '2022-09-28', '', 'pending'),
-(10, NULL, 9, 'Other', 'asndlnalsd', '2022-09-28', '', 'pending'),
-(11, NULL, 9, 'Education', 'aasdasdsad', '2022-10-10', '', 'pending'),
-(12, NULL, 9, 'Other', 'sadasd', '2022-10-10', '', 'pending'),
-(13, NULL, 9, 'Other', 'sadasd', '2022-10-10', '', 'pending');
+(9, 5, 9, 'Barangay Improvement', 'clean the purok 1', '2022-09-28', 'salamat thanks', 'noticed'),
+(10, 5, 9, 'Other', 'asndlnalsd', '2022-09-28', 'ah gegege', 'noticed'),
+(11, 5, 9, 'Education', 'aasdasdsad', '2022-10-10', 'noted', 'noticed'),
+(12, 5, 9, 'Other', 'sadasd', '2022-10-10', 'opo', 'noticed'),
+(13, 5, 9, 'Other', 'sadasd', '2022-10-10', 'sge po', 'noticed');
 
 -- --------------------------------------------------------
 
@@ -576,6 +582,41 @@ INSERT INTO `tbluser` (`id`, `username`, `password`, `type`) VALUES
 (39, '0961606448', '12345678', 'user'),
 (41, 'HCAdmin', 'hcadmin', 'hadmin'),
 (42, '09283523144', '12345678', 'user');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_notification`
+--
+
+CREATE TABLE `user_notification` (
+  `notification_ID` int(11) NOT NULL,
+  `notification_type` varchar(50) NOT NULL,
+  `message` varchar(100) NOT NULL,
+  `source_ID` int(11) NOT NULL,
+  `resident_ID` int(11) DEFAULT NULL,
+  `date_time` datetime NOT NULL,
+  `status` smallint(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_notification`
+--
+
+INSERT INTO `user_notification` (`notification_ID`, `notification_type`, `message`, `source_ID`, `resident_ID`, `date_time`, `status`) VALUES
+(7, 'Requested Document on process', 'Your document request is on process.', 5, 11, '2022-10-11 00:00:00', 1),
+(8, 'Requested Document on process', 'Your document request is on process.', 5, 11, '2022-10-11 00:00:00', 1),
+(9, 'Requested Document on process', 'Your document request is on process.', 5, 11, '2022-10-11 00:00:00', 1),
+(10, 'Requested Document on process', 'Your Certificate of Indigency request is on proces', 5, 11, '2022-10-11 00:00:00', 1),
+(11, 'Requested Document on process', 'Your Barangay Clearance request is on process.', 5, 11, '2022-10-11 00:00:00', 1),
+(12, 'Filed Complaint', 'Your complain has been marked solved.', 0, 0, '2022-10-11 00:00:00', 0),
+(13, 'Filed Complaint', 'Your complain has been marked solved.', 5, 0, '2022-10-11 00:00:00', 0),
+(14, 'Filed Complaint', 'Your complain has been marked solved.', 5, 9, '2022-10-11 00:00:00', 1),
+(15, 'Filed Complaint', 'Your complain has been marked solved.', 5, 9, '2022-10-11 06:13:37', 1),
+(20, 'Sent Suggestion', 'Exo. Bernard Kabiling Mazo <br>sent a feedback to ', 5, 9, '2022-10-11 06:30:14', 1),
+(21, 'Sent Suggestion', 'Exo. Bernard Kabiling Mazo <br>sent a feedback to your suggestion.', 5, 9, '2022-10-11 06:32:01', 1),
+(22, 'Filed Blotter', 'You are invited to the barangay hall <br> to settle the blotter that you are involved.', 5, 11, '2022-10-11 06:48:48', 1),
+(23, 'Filed Blotter', 'You are invited to the barangay hall <br> to settle the blotter that you are involved.', 5, 10, '2022-10-11 06:48:48', 1);
 
 --
 -- Indexes for dumped tables
@@ -698,6 +739,12 @@ ALTER TABLE `tbluser`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `user_notification`
+--
+ALTER TABLE `user_notification`
+  ADD PRIMARY KEY (`notification_ID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -711,7 +758,7 @@ ALTER TABLE `address_fields`
 -- AUTO_INCREMENT for table `admin_notification`
 --
 ALTER TABLE `admin_notification`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `announcement`
@@ -729,7 +776,7 @@ ALTER TABLE `bgy_info`
 -- AUTO_INCREMENT for table `blotter_table`
 --
 ALTER TABLE `blotter_table`
-  MODIFY `blotter_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `blotter_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `case_option`
@@ -741,13 +788,13 @@ ALTER TABLE `case_option`
 -- AUTO_INCREMENT for table `complaint_table`
 --
 ALTER TABLE `complaint_table`
-  MODIFY `complaint_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `complaint_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `document_request`
 --
 ALTER TABLE `document_request`
-  MODIFY `request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `document_type`
@@ -808,6 +855,12 @@ ALTER TABLE `tblofficial`
 --
 ALTER TABLE `tbluser`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+
+--
+-- AUTO_INCREMENT for table `user_notification`
+--
+ALTER TABLE `user_notification`
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Constraints for dumped tables

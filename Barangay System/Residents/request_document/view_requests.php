@@ -11,7 +11,7 @@ if($_SESSION['user_id'] == '') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Manage Household</title>
+    <title></title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -42,7 +42,7 @@ if($_SESSION['user_id'] == '') {
             <li class=""><a href="../file_case/file_complaint.php" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between"><span><i class="fa-solid fa-headset"></i>&nbsp;Complain</span>
             <li class=""><a href="../file_case/send_suggestion/send_suggestion.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Suggest</a></li>
             <li class=""><a href="../file_case/file_blotter/file_blotter.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-stamp"></i>&nbsp;Blotter</a></li>
-			<li class=""><a href="../request_document/request_document.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-file"></i>&nbsp;Request Document</a></li>
+			<li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-file"></i>&nbsp;Request Document</a></li>
             </ul>
         </div>
 
@@ -53,32 +53,42 @@ if($_SESSION['user_id'] == '') {
                 <a href="../dashboard/dashboard.php"><button type="button" class="btn btn-dark">Back</button></a>
                 <br>
                 <br>
-                
-                <h2 class="text fs-5">Manage Household</h2>
-                <p>In this module, you can manage your household information.</p>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="request_document.php">Create Request</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">View Requests</a>
+                    </li>
+                </ul>
+                <br>
+                <h2 class="text fs-5">Request Tracker</h2>
+                <p>This modules shows your request history and its status.</p>
 
                 <div class="card">
-                    <h5 class="card-header">Household Member List<button class="addmember btn btn-success" style="float: right"><i class="fa-solid fa-plus"></i></button></h5>
+                    <h5 class="card-header">Request List</h5>
                     <div class="card-body">
                         <div class="container-fluid">
                             <div class="table-responsive" style="width: 100%;">
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr class="align-top">
-                                            <th>Resident ID</th>
-                                            <th>Fullname</th>
-                                            <th>Gender</th>
-                                            <th>Age</th>
+                                            <th>Request ID</th>
+                                            <th>Document Type</th>
+                                            <th>Purpose</th>
+                                            <th>Quantity</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <?php 
                                     $userid = $_SESSION['user_id'];
                                     //get resident id
-                                    $query = "SELECT household_ID FROM resident_table WHERE user_id = '$userid'";
+                                    $query = "SELECT id FROM resident_table WHERE user_id = '$userid'";
                                     $result = $conn -> query($query);
                                     $row = $result->fetch_array();
-                                    $householdID = $row['household_ID'];
+                                    $residentID = $row['id'];
 
                                     if(isset($_GET['page'])){
                                         $page = $_GET['page'];
@@ -88,14 +98,13 @@ if($_SESSION['user_id'] == '') {
                                     }
                                     
                                     $start = ($page-1) * 10;
-                                    //select all members
-                                    $query = "SELECT * FROM resident_table WHERE household_ID = '$householdID' LIMIT $start, 10;";
+                                    //select all request
+                                    $query = "SELECT * FROM document_request WHERE resident_ID = '$residentID' LIMIT $start, 10;";
                                     $result = $conn -> query($query);
-                                    $row1 = $result->fetch_array();
                 
-                                    $result1 = $conn -> query("SELECT count(id) as id FROM resident_table WHERE household_ID = '$householdID';");
-                                    $resCount = $result1->fetch_assoc();
-                                    $total = $resCount['id'];
+                                    $result1 = $conn -> query("SELECT count(request_ID) as id FROM document_request WHERE resident_ID = '$residentID'");
+                                    $reqCount = $result1->fetch_assoc();
+                                    $total = $reqCount['id'];
                                     $pages = ceil($total / 10);
                                     
                                     if($page > 1){
@@ -111,11 +120,13 @@ if($_SESSION['user_id'] == '') {
                                     }
                                     while($row1 = $result->fetch_assoc()){ ?>
                                     <tr>
-                                        <td><?php echo $row1["id"]; ?></td>
-                                        <td><?php echo $row1["fname"] . ' ' . $row1["mname"] . ' ' . $row1["lname"] . ' ' . $row1["suffix"]; ?></td>
-                                        <td><?php echo $row1["gender"]; ?></td>
-                                        <td><?php echo $row1["age"]; ?></td>
-                                        <td><button data-id="<?php echo $row1['id']; ?>" class="edithousehold btn btn-danger"><i class="fa-solid fa-box-archive"></i></button></td>
+                                        <td><?php echo $row1["request_ID"]; ?></td>
+                                        <td><?php echo $row1["request_ID"]; ?></td>
+                                        <td><?php echo $row1["purpose"]; ?></td>
+                                        <td><?php echo $row1["quantity"]; ?></td>
+                                        <td><?php echo $row1["request_date"]; ?></td>
+                                        <td><?php echo $row1["status"]; ?></td>
+                                        <td><button class="btn btn-success" <?php if($row1["status"]!='ready'){ echo 'disabled';}?>>Download soft copy</button></td>
                                     </tr>
                                     
                                     <?php } ?>
@@ -126,30 +137,16 @@ if($_SESSION['user_id'] == '') {
                 </div><br>
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                        <li class="page-item"><a class="page-link text-dark" href="manage_household.php?page=<?php echo $previous;?>">Previous</a></li>
+                        <li class="page-item"><a class="page-link text-dark" href="view_requests.php?page=<?php echo $previous;?>">Previous</a></li>
                         <?php for($i=1; $i<=$pages;$i++)
                         {?>
-                            <li class="page-item"><a class="page-link text-dark" href="manage_household.php?page=<?php echo $i;?>"><?php echo $i;?></a></li>
+                            <li class="page-item"><a class="page-link text-dark" href="view_requests.php?page=<?php echo $i;?>"><?php echo $i;?></a></li>
                         <?php 
                         }?>
-                        <li class="page-item"><a class="page-link text-dark" href="manage_household.php?page=<?php echo $next;?>">Next</a></li>
+                        <li class="page-item"><a class="page-link text-dark" href="view_requests.php?page=<?php echo $next;?>">Next</a></li>
                     </ul>
                 </nav>
-                
             </div>
-        </div>
-    </div>
-    <!--Add Modal-->
-    <div class="modal fade modal-md" id="addModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-            
-        </div>
-    </div>
-
-    <!--Edit Modal-->
-    <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            
         </div>
     </div>
 
@@ -159,35 +156,6 @@ if($_SESSION['user_id'] == '') {
         });
         $('.close-btn').on('click', function(){
             $('.sidebar').removeClass('active');
-        });
-    </script>
-    <!-- Add member script-->
-    <script>
-        $(document).ready(function(){
-            $('.addmember').click(function(){
-                $.ajax({url: "add_member_form.php",
-                    
-                success: function(result){
-                    $(".modal-dialog").html(result);
-                }});
-                $('#addModal').modal('show');
-            });
-        });
-    </script>
-    <!-- Edit resident script-->
-    <script>
-        $(document).ready(function(){
-            $('.editofficial').click(function(){
-                var userid = $(this).data('id');
-                $.ajax({url: "edit_form.php",
-                method:'post',
-                data: {userid:userid},
-                    
-                success: function(result){
-                    $(".modal-dialog").html(result);
-                }});
-                $('#editModal').modal('show');
-            });
         });
     </script>
 </body>

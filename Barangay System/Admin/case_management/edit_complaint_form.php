@@ -46,6 +46,7 @@ if(isset($_POST['userid'])){
         <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
             <input type="hidden" name="user_id" value="<?php echo $row1['complaint_ID']; ?>">
+            <input type="hidden" name="sender_id" value="<?php echo $row1['sender_ID']; ?>">
             <?php
                 if($row1['complaint_status'] == 'solved'){?>
                     <input type="submit" class="btn btn-success" name="pending" value="Mark as Pending" <?php if($row2['user_id'] != $_SESSION['user_id'])

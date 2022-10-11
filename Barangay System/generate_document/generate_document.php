@@ -7,6 +7,7 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 
 $requestID = $_POST["id"];
+$officialID = $_POST["officialid"];
 $senderID = $_POST["senderid"];
 $documentID = $_POST["documentid"];
 
@@ -29,7 +30,7 @@ $logo = $row['logo_url'];
 //get chairman 
 $query2 = "SELECT name FROM tblofficial WHERE position = 'Chairman';";
 $result2 = $conn -> query($query2);
-$row2 = $result2->fetch_assoc();
+$row2 = $result2 -> fetch_assoc();
 $chname = strtoupper($row2['name']);
 
 //get document info
@@ -107,6 +108,16 @@ if($document_Type == 'Barangay Clearance')
     $dompdf->addInfo("Title", "Barangay Clearance");
 
     $dompdf->stream("$surname-BarangayClearance.pdf", ["Attachment" => 0]);
+
+    //create notif
+    $notifdate = date('y-m-d h:i:s');
+    $notifquery = "INSERT INTO user_notification(notification_type, message, source_ID, resident_ID, date_time, status)
+    VALUES ('Requested Document on process','Your Barangay Clearance request is on process.', '$officialID', '$senderID','$notifdate','0');";
+    $notifresult = $conn -> query($notifquery);
+
+    //update request status
+    $upquery = "UPDATE document_request SET status = 'on process', official_ID = '$officialID' WHERE request_ID = '$requestID';";
+    $upresult = $conn -> query($upquery);
 }
 if($document_Type == 'Certificate of Indigency')
 {
@@ -170,6 +181,16 @@ if($document_Type == 'Certificate of Indigency')
     $dompdf->addInfo("Title", "Barangay Clearance");
     
     $dompdf->stream("$surname-BarangayClearance.pdf", ["Attachment" => 0]);
+
+    //create notif
+    $notifdate = date('y-m-d h:i:s');
+    $notifquery = "INSERT INTO user_notification(notification_type, message, source_ID, resident_ID, date_time, status)
+    VALUES ('Requested Document on process','Your Certificate of Indigency request is on process.', '$officialID', '$senderID','$notifdate','0');";
+    $notifresult = $conn -> query($notifquery);
+
+    //update request status
+    $upquery = "UPDATE document_request SET status = 'on process', official_ID = '$officialID' WHERE request_ID = '$requestID';";
+    $upresult = $conn -> query($upquery);
 }
 
 if($document_Type == 'Certificate of Residency')
@@ -236,6 +257,16 @@ if($document_Type == 'Certificate of Residency')
     $dompdf->addInfo("Title", "Barangay Clearance");
     
     $dompdf->stream("$surname-BarangayClearance.pdf", ["Attachment" => 0]);
+
+    //create notif
+    $notifdate = date('y-m-d h:i:s');
+    $notifquery = "INSERT INTO user_notification(notification_type, message, source_ID, resident_ID, date_time, status)
+    VALUES ('Requested Document on process','Your Certificate of Residency request is on process.', '$officialID', '$senderID','$notifdate','0');";
+    $notifresult = $conn -> query($notifquery);
+
+    //update request status
+    $upquery = "UPDATE document_request SET status = 'on process', official_ID = '$officialID' WHERE request_ID = '$requestID';";
+    $upresult = $conn -> query($upquery);
 
 }
 ?>

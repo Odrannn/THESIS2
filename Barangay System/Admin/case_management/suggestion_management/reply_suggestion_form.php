@@ -54,7 +54,8 @@ if(isset($_POST['userid'])){
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-            <input type="hidden" name="user_id" value="<?php echo $row1['suggestion_ID']; ?>">
+            <input type="hidden" name="suggestion_id" value="<?php echo $row1['suggestion_ID']; ?>">
+            <input type="hidden" name="sender_id" value="<?php echo $row1['sender_ID']; ?>">
             <input type="submit" class="btn btn-success" name="update" value="Update" <?php if($row1['suggestion_status'] == 'noticed'){
                                                                                                 if($row2['user_id'] != $_SESSION['user_id'])
                                                                                                     {

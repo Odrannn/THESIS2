@@ -28,9 +28,16 @@ include("../../../phpfiles/connection.php");
                 </div>
             </div>
         </div>
+        <?php
+            $query = "SELECT * FROM blotter_table WHERE blotter_ID='" . $_POST['blotterid'] . "'";
+            $result = $conn -> query($query);
+            $row = mysqli_fetch_array($result);
+        ?>
         <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
             <input type="hidden" name="blotter_id" value="<?php echo $_POST['blotterid']; ?>">
+            <input type="hidden" name="complainant_id" value="<?php echo $row['complainant_ID'] ?>">
+            <input type="hidden" name="complainee_id" value="<?php echo $row['complainee_ID'] ?>">
             <input type="submit" class="btn btn-success" name="set" value="Set">
         </div>
     </form>

@@ -48,7 +48,7 @@
                         <?php 
                             } else {
                                 $notifID = $rownot['notification_ID'];?>
-                                <li><a class="dropdown-item" href="../../phpfiles/readnotif.php?notifid=<?php echo $notifID?>">
+                                <li ><a class="dropdown-item" href="../../phpfiles/readnotif.php?notifid=<?php echo $notifID?>">
                                 <?php echo $rownot['notification_type'];?><br>
                                 <?php echo $name . " " . $rownot['message']; ?><br>
                                 <?php echo $dateTime;?>

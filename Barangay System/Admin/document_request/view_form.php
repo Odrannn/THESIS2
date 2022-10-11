@@ -1,8 +1,15 @@
 <?php 
+session_start();
 include("../../phpfiles/connection.php");
 $query = "SELECT R.*, T.document_type, T.price FROM document_request R INNER JOIN document_type T ON R.document_ID = T.id WHERE request_ID = '".$_POST['userid']."';";
 $result = $conn -> query($query);
 $row = $result->fetch_assoc();
+
+//get official id
+$query1 = "SELECT * FROM tblofficial WHERE user_id = '". $_SESSION['user_id'] ."'";
+$result1 = $conn -> query($query1);
+$row1 = $result1->fetch_assoc();
+$officialID = $row1['official_id'];
 
 $quantity = (int)$row['quantity'];
 $price = (float)$row['price'];
@@ -58,6 +65,7 @@ $total = (float)($quantity * $price);
         <input type="hidden" name="id" value="<?php echo $row['request_ID'];?>">
         <input type="hidden" name="senderid" value="<?php echo $row['resident_ID'];?>">
         <input type="hidden" name="documentid" value="<?php echo $row['document_ID'];?>">
+        <input type="hidden" name="officialid" value="<?php echo $row1['official_id'];?>">
         <input type="submit" class="btn btn-success" name="generate" value="Generate Document">
     </div>
     </form>
