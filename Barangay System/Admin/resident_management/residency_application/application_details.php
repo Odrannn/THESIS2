@@ -10,51 +10,30 @@ if(isset($_POST['userid'])){
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <div class='table-responsive'>
-                <table class='table table-bordered'>
-                    <tr>
-                        <td><b>First Name: </b><?php echo $row["fname"] ?></td>
-                        <td><b>Middle Name: </b><?php echo $row["mname"] ?></td>
-                        <td><b>Last Name: </b><?php echo $row["lname"] ?></td>
-                        <td><b>Gender: </b><?php echo $row["gender"] ?></td>
-                    </tr>
-                    <tr>
-                        <td><b>Place Birth: </b><?php echo $row["birthplace"] ?></td>
-                        <td><b>Household ID: </b><?php echo $row["unitnumber"] ?></td>
-                        <td><b>Birthday: </b><?php echo $row["birthday"] ?></td>
-                        <td><b>Age: </b><?php echo $row["age"] ?></td>
-                    </tr>
-                    <tr>
-                        <td colspan='2'><b>Address: </b></td>
-                        <td><b>Purok: </b><?php echo $row["purok"] ?></td>
-                        <td><b>Civil Status: </b><?php echo $row["civilstatus"] ?></td>
-                    <tr>
-                        <th>Contact Number</th>
-                        <th>Email</th>
-                        <th>Religion</th>
-                        <th>Occupation</th>
-                    </tr>
-                    <tr>
-                        <td><?php echo $row["contactnumber"] ?></td>
-                        <td><?php echo $row["email"] ?></td>
-                        <td><?php echo $row["religion"] ?></td>
-                        <td><?php echo $row["occupation"] ?></td>
-                    </tr>
-                    <tr>
-                        <td><b>Highest Educational Attainment: </b><?php echo $row["educational"] ?></td>
-                        <td><b>Nationality: </b><?php echo $row["nationality"] ?></td>
-                        <td><b>Disability: </b><?php echo $row["disability"] ?></td>
-                        <td><b>Status: </b><?php echo $row["status"] ?></td>
-                    </tr>
-                    <tr>
-                        <th colspan='4'>Valid ID</th>
-                    </tr>
-                    <tr>
-                        <td colspan='4'>
-                            <img src='../../../Login/validID/<?php echo $row["img_path"] ?>' style='width: 100%;'>
-                        </td>
-                    </tr>
-                </table>
+            <div class="container">
+                <div class="row">
+                    <div class="col pt-2">
+                        <p class="m-0"><b>Name: </b><?php echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"] . ' ' . $row["suffix"] ?></p>
+                        <p class="m-0"><b>Gender: </b><?php echo $row["gender"] ?></p>
+                        <p class="m-0"><b>Place Birth: </b><?php echo $row["birthplace"] ?></p>
+                        <p class="m-0"><b>Age: </b><?php echo $row["age"] ?></p>
+                        <p class="m-0"><b>Birthday: </b><?php echo $row["birthday"] ?></p>
+                        <p class="m-0"><b>Civil Status: </b><?php echo $row["civilstatus"] ?></p>
+                        <p class="m-0"><b>Address: </b><?php echo $row["unitnumber"] . " " . $row["sitio"] . " " . $row["purok"] . " " . $row["subdivision"] . " " . $row["street"] . ", Manila City"?></p>
+                        <p class="m-0"><b>Contact Number: </b><?php echo $row["contactnumber"] ?></p>
+                        <p class="m-0"><b>Religion: </b><?php echo $row["religion"] ?></p>
+                        <p class="m-0"><b>Occupation: </b><?php echo $row["occupation"] ?></p>
+                        <p class="m-0"><b>Email: </b><?php echo $row["email"] ?></p>
+                        <p class="m-0"><b>Highest Educational Attainment: </b><?php echo $row["educational"] ?></p>
+                        <p class="m-0"><b>Nationality: </b><?php echo $row["nationality"] ?></p>
+                        <p class="m-0"><b>Disability: </b><?php echo $row["disability"] ?></p>
+                        <p class="m-0"><b>Status: </b><?php echo $row["status"] ?></p>
+                        <p class="m-0"><b>Valid ID:</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <img src='../../../Login/validID/<?php echo $row["img_path"] ?>' style='width: 100%;'>
+                </div>
             </div>
         </div>
             <div class="modal-footer">

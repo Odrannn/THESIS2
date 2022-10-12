@@ -11,7 +11,7 @@ if($_SESSION['user_id'] == '') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Send Suggestion</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -145,7 +145,15 @@ if($_SESSION['user_id'] == '') {
                 <br>
                 <h2 class="fs-5">Send Suggestion</h2>
                 <p>In this module, barangay residents can submit suggestions for enhancing their community. Public suggestions are easily accessible to the barangay.</p>
-                
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Create Suggestion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="view_suggestions.php">View Suggestions</a>
+                    </li>
+                </ul>
+                <br>
                 <div class="card mt-2">
                     <h5 class="card-header">Suggestion Form</h5>
                     <div class="card-body">

@@ -66,7 +66,7 @@ $total = (float)($quantity * $price);
         <input type="hidden" name="senderid" value="<?php echo $row['resident_ID'];?>">
         <input type="hidden" name="documentid" value="<?php echo $row['document_ID'];?>">
         <input type="hidden" name="officialid" value="<?php echo $row1['official_id'];?>">
-        <input type="submit" class="btn btn-success" name="generate" value="Generate Document">
+        <input type="submit" class="btn btn-success" name="generate" value="Generate Document"<?php //if ($row['status'] == "ready"){ echo 'disabled';}?>>
     </div>
     </form>
 </div>

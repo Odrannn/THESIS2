@@ -11,7 +11,7 @@ if($_SESSION['user_id'] == '') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Send Suggestion</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -22,7 +22,6 @@ if($_SESSION['user_id'] == '') {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    
 </head>
 
 <body>
@@ -41,13 +40,14 @@ if($_SESSION['user_id'] == '') {
             <ul class="list-unstyled px-2">
                 <li class=""><a href="../../dashboard/dashboard.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gauge"></i>&nbsp;Dashboard</a></li>
                 <li class=""><a href="../file_complaint.php" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between"><span><i class="fa-solid fa-headset"></i>&nbsp;Complain</span>
-                <li class=""><a href="../send_suggestion/send_suggestion.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Suggest</a></li>
-                <li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-stamp"></i>&nbsp;Blotter</a></li>
+                <li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Suggest</a></li>
+                <li class=""><a href="../file_blotter/file_blotter.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-stamp"></i>&nbsp;Blotter</a></li>
                 <li class=""><a href="../../request_document/request_document.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-file"></i>&nbsp;Request Document</a></li>
             </ul>
         </div>
 
         <div class="content">
+            
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                     <div class="d-flex justify-content-between d-md-none d-block">
@@ -138,100 +138,99 @@ if($_SESSION['user_id'] == '') {
                 <div class="d-flex justify-content-center">
                     <div class="btn-group">
                         <a href="../file_complaint.php"class="btn btn-outline-dark">Complaints</an>
-                        <a href="../send_suggestion/send_suggestion.php" class="btn btn-outline-dark">Suggestion</a>
-                        <a class="btn btn-outline-dark active">Blotter</a>
+                        <a href="#" class="btn btn-outline-dark active">Suggestion</a>
+                        <a href="../file_blotter/file_blotter.php" class="btn btn-outline-dark">Blotter</a>
                     </div>
                 </div>
                 <br>
-                <h2 class="fs-5">File Blotter</h2>
-                <p>In this module, Residents of the barangay may submit blotters or reports for specific events that occurred inside the boundaries of the barangay.</p>
+                <h2 class="fs-5">Send Suggestion</h2>
+                <p>In this module, barangay residents can submit suggestions for enhancing their community. Public suggestions are easily accessible to the barangay.</p>
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Create Blotter</a>
+                        <a class="nav-link" aria-current="page" href="send_suggestion.php">Create Suggestion</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="view_blotters.php">View Blotter</a>
+                        <a class="nav-link active" href="#">View Suggestions</a>
                     </li>
                 </ul>
                 <br>
-                <div class="card mt-2">
-                    <h5 class="card-header">Blotter Form</h5>
+                <div class="card">
+                    <h5 class="card-header">Suggestion List</h5>
                     <div class="card-body">
-                        <?php 
-                        //alert message
-                        if(isset($_SESSION['blotter_message']))
-                        {
-                            if($_SESSION['blotter_message'] != ''){?>
-                            <div class="alert alert-success" role="alert">
-                            <h4 class="alert-heading">Blotter Sent Successfully!</h4>
-                            <p><?php echo $_SESSION['blotter_message'];?></p>
-                            </div> 
-                        <?php }
-                            $_SESSION['blotter_message'] = '';
-                        } ?>
-                        <form class="g-3" action="../send_case.php" method="post" enctype="multipart/form-data">
-                            <?php
-                                $query = "SELECT id, concat_ws(' ',fname,mname,lname) as Fullname FROM resident_table
-                                            ORDER BY Fullname ASC;";
-                                $result = $conn -> query($query);
-                            ?>
-                            <div class="row">
-                                <div class="col-md pt-2">
-                                    <label class="pb-2" for="complaineeID">Complainee ID (Search the name of the resident.)</label>
-                                    <input class="form-control" type="text" id="complaineeID" name="complaineeID" list="reslist" required>
-                                    <datalist id="reslist">
-                                        <?php while($row = $result -> fetch_array()) { ?>
-                                            <option value="<?php echo $row['id']?>"><?php echo $row['Fullname']?></option>
-                                        <?php } ?>
-                                    </datalist>
-                                </div>
-                                <div class="col-md pt-2">
-                                    <label class="pb-2" for="accusation">Accusation</label> 
-                                    <input class="form-control" type="text" id= "accusation" name="accusation" rows="10" required>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md pt-2">
-                                    <div class="form-floating">
-                                        <input class="form-control" type="time" id="timeh" name="timeh" required>
-                                        <label for="start">Incident Time</label>
-                                    </div>
-                                </div>
-                                <div class="col-md pt-2">
-                                    <div class="form-floating">
-                                        <input class="form-control" type="date" id="dateh" name="dateh" required>
-                                        <label for="date">Incident Date</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md pt-2">
-                                    <label class="pb-2" for="details">Details</label>
-                                    <textarea class="form-control" id= "details" name= "details" rows="10" required></textarea>
-                                </div>
-                            </div>
-                            <br>
-                            <p class="d-inline">Note: If complainee ID is not found, type the full name of the complainee.</p>
-                            <div class="row mt-4 d-flex flex-row-reverse">
-                                <div class="col-auto">
-                                    <button type="submit" class="btn btn-primary mb-3" name="send_blotter" value="Send">Send</button>
-                                </div>  
-                            </div>
-                        </form>
+                        <div class="container-fluid">
+                            <div class="table-responsive" style="width: 100%;">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr class="align-top">
+                                            <th>Suggestion ID</th>
+                                            <th>Suggestion Nature</th>
+                                            <th>Description</th>
+                                            <th>Date</th>
+                                            <th>Feedback</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <?php 
+                                    $userid = $_SESSION['user_id'];
+                                    //get resident id
+                                    $query = "SELECT id FROM resident_table WHERE user_id = '$userid'";
+                                    $result = $conn -> query($query);
+                                    $row = $result->fetch_array();
+                                    $residentID = $row['id'];
+
+                                    if(isset($_GET['page'])){
+                                        $page = $_GET['page'];
+                                    } else {
+                                        $_GET['page'] = 1;
+                                        $page = $_GET['page'];
+                                    }
+                                    
+                                    $start = ($page-1) * 10;
+                                    //select allcomplaints
+                                    $query = "SELECT * FROM suggestion_table WHERE sender_ID = '$residentID' LIMIT $start, 10;";
+                                    $result = $conn -> query($query);
+                
+                                    $result1 = $conn -> query("SELECT count(suggestion_ID) as id FROM suggestion_table WHERE sender_ID = '$residentID'");
+                                    $sugCount = $result1->fetch_assoc();
+                                    $total = $sugCount['id'];
+                                    $pages = ceil($total / 10);
+                                    
+                                    if($page > 1){
+                                        $previous = $page - 1;
+                                    } else {
+                                        $previous = $page;
+                                    }
+                
+                                    if($page < $pages){
+                                        $next = $page + 1;
+                                    } else {
+                                        $next = $page;
+                                    }
+                                    while($row1 = $result->fetch_assoc()){ ?>
+                                    <tr>
+                                        <td><?php echo $row1["suggestion_ID"]; ?></td>
+                                        <td><?php echo $row1["suggestion_nature"]; ?></td>
+                                        <td><?php echo $row1["suggestion_desc"]; ?></td>
+                                        <td><?php echo $row1["suggestion_date"]; ?></td>
+                                        <td><?php echo $row1["suggestion_feedback"]; ?></td>
+                                        <td><?php echo $row1["suggestion_status"]; ?></td>
+                                        <td><button data-id="<?php echo $row1["suggestion_ID"]?>" class="viewsugg btn btn-primary"><i class="fa-solid fa-eye"></i></button>   
+                                        </td>
+                                    </tr>
+                                    
+                                    <?php } ?>
+                                </table>
+                            </div>  
+                        </div>
                     </div>
-                </div>
+                </div><br>
             </div>
         </div>
     </div>
-    <!--Add Modal-->
-    <div class="modal fade modal-lg" id="addModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-            
-        </div>
-    </div>
 
-    <!--Edit Modal-->
-    <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!--view Modal-->
+    <div class="modal fade" id="viewModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             
         </div>
@@ -245,32 +244,19 @@ if($_SESSION['user_id'] == '') {
             $('.sidebar').removeClass('active');
         });
     </script>
-    <!-- Add resident script-->
+    <!-- view script-->
     <script>
         $(document).ready(function(){
-            $('.addresident').click(function(){
-                $.ajax({url: "add_form.php",
-                    
-                success: function(result){
-                    $(".modal-dialog").html(result);
-                }});
-                $('#addModal').modal('show');
-            });
-        });
-    </script>
-    <!-- Edit resident script-->
-    <script>
-        $(document).ready(function(){
-            $('.editofficial').click(function(){
+            $('.viewsugg').click(function(){
                 var userid = $(this).data('id');
-                $.ajax({url: "edit_form.php",
+                $.ajax({url: "view_suggestions_form.php",
                 method:'post',
                 data: {userid:userid},
                     
                 success: function(result){
                     $(".modal-dialog").html(result);
                 }});
-                $('#editModal').modal('show');
+                $('#viewModal').modal('show');
             });
         });
     </script>

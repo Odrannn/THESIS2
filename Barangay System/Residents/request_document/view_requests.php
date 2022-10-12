@@ -99,7 +99,8 @@ if($_SESSION['user_id'] == '') {
                                     
                                     $start = ($page-1) * 10;
                                     //select all request
-                                    $query = "SELECT * FROM document_request WHERE resident_ID = '$residentID' LIMIT $start, 10;";
+                                    $query = "SELECT R.*, D.document_type FROM document_request R INNER JOIN document_type D ON R.document_ID = D.id
+                                    WHERE resident_ID = '$residentID'  LIMIT $start, 10;";
                                     $result = $conn -> query($query);
                 
                                     $result1 = $conn -> query("SELECT count(request_ID) as id FROM document_request WHERE resident_ID = '$residentID'");
@@ -121,12 +122,21 @@ if($_SESSION['user_id'] == '') {
                                     while($row1 = $result->fetch_assoc()){ ?>
                                     <tr>
                                         <td><?php echo $row1["request_ID"]; ?></td>
-                                        <td><?php echo $row1["request_ID"]; ?></td>
+                                        <td><?php echo $row1["document_type"]; ?></td>
                                         <td><?php echo $row1["purpose"]; ?></td>
                                         <td><?php echo $row1["quantity"]; ?></td>
                                         <td><?php echo $row1["request_date"]; ?></td>
                                         <td><?php echo $row1["status"]; ?></td>
-                                        <td><button class="btn btn-success" <?php if($row1["status"]!='ready'){ echo 'disabled';}?>>Download soft copy</button></td>
+                                        <td>
+                                        <form action="../../generate_document/generate_document.php" method="post">
+                                            <input type="hidden" name="id" value="<?php echo $row1['request_ID'];?>">
+                                            <input type="hidden" name="senderid" value="<?php echo $row1['resident_ID'];?>">
+                                            <input type="hidden" name="documentid" value="<?php echo $row1['document_ID'];?>">
+                                            <input type="hidden" name="officialid" value="<?php echo $row1['official_ID'];?>">
+                                            <input type="submit" class="btn btn-success" 
+                                            <?php if($row1["status"]!='ready'){ echo 'disabled';}?> name="download" value="Download soft copy">
+                                        </form>    
+                                        </td>
                                     </tr>
                                     
                                     <?php } ?>

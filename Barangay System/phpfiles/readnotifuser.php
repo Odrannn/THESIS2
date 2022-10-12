@@ -11,12 +11,12 @@ $query = "UPDATE user_notification SET status ='1' WHERE notification_ID = '$not
 $result = $conn -> query($query);
 
 if($row['notification_type']=="Requested Document on process"){
-    header("location:../Residents/request_document/request_document.php");
+    header("location:../Residents/request_document/view_requests.php");
 } else if ($row['notification_type']=="Filed Complaint"){
-    header("location:../Residents/file_case/file_complaint.php");
+    header("location:../Residents/file_case/view_complaints.php");
 } else if ($row['notification_type']=="Sent Suggestion"){
-    header("location:../Residents/file_case/send_suggestion/send_suggestion.php");
+    header("location:../Residents/file_case/send_suggestion/view_suggestions.php");
 } else if ($row['notification_type']=="Filed Blotter"){
-    header("location:../Residents/file_case/file_blotter/file_blotter.php");
+    header("location:../Residents/file_case/file_blotter/view_blotters.php");
 }
 ?>

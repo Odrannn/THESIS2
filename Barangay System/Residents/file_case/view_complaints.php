@@ -45,6 +45,7 @@ if($_SESSION['user_id'] == '') {
 			<li class=""><a href="../request_document/request_document.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-file"></i>&nbsp;Request Document</a></li>
             </ul>
         </div>
+
         <div class="content">
             <?php include("../../phpfiles/user_nav.php")?>
             
@@ -66,73 +67,87 @@ if($_SESSION['user_id'] == '') {
                 <p>In this module, locals can complain to the barangay and voice their concerns. Users might also choose to submit a specific issue under the jurisdiction of their barangay.</p>
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="file_complaint.php">Create Complaint</a>
+                        <a class="nav-link" aria-current="page" href="file_complaint.php">Create Complaint</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="view_complaints.php">View Complaints</a>
+                        <a class="nav-link active" href="#">View Complaints</a>
                     </li>
                 </ul>
                 <br>
-                <div class="card mt-2">
-                    <h5 class="card-header">Complaint Form</h5>
+                <div class="card">
+                    <h5 class="card-header">Complaint List</h5>
                     <div class="card-body">
-                        <?php 
-                        if(isset($_SESSION['complaint_message']))
-                        {
-                            if($_SESSION['complaint_message'] != ''){?>
-                            <div class="alert alert-success" role="alert">
-                            <h4 class="alert-heading">Thank you!</h4>
-                            <p><?php echo $_SESSION['complaint_message'];?></p>
-                            </div> 
-                        <?php }
-                            $_SESSION['complaint_message'] = '';
-                        } ?>
-                        <form class="g-3" action="send_case.php" method="post" enctype="multipart/form-data">
-                            <div class="row">
-                                <div class="col-md pt-2">
-                                    <label class="pb-2" for="nature">Nature of Complaint</label>
-                                    <select class="form-control" id="nature" name="nature">
-                                        <?php include("../../phpfiles/case_option.php"); 
-                                        while($row = $result->fetch_assoc()){?>
-                                        <option value="<?php echo $row['complaint_nature']; ?>"><?php echo $row['complaint_nature']; ?></option>
-                                        <?php } ?>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                </div>
-                                <div class="col-md pt-2">
-                                    <label class="pb-2" for="comp_image">Proof of Complaint</label> 
-                                    <input class="form-control" type="file" id="comp_image" name="comp_image"></td>
-                                </div>
-                            </div>
+                        <div class="container-fluid">
+                            <div class="table-responsive" style="width: 100%;">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr class="align-top">
+                                            <th>Complaint ID</th>
+                                            <th>Complaint Nature</th>
+                                            <th>Description</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <?php 
+                                    $userid = $_SESSION['user_id'];
+                                    //get resident id
+                                    $query = "SELECT id FROM resident_table WHERE user_id = '$userid'";
+                                    $result = $conn -> query($query);
+                                    $row = $result->fetch_array();
+                                    $residentID = $row['id'];
 
-                            <div class="row">
-                                <div class="col pt-2">
-                                <label class="pb-2" for="comp_image">Description</label> 
-                                    <textarea class="form-control" id= "description" name= "description" rows="10"></textarea>
-                                </div>  
-                            </div>
-                        
-                            <div class="row mt-4 d-flex flex-row-reverse">
-                                <div class="col-auto">
-                                    <button type="submit" class="btn btn-primary mb-3" name="send_complaint" value="Send">Send</button>
-                                </div>  
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                                    if(isset($_GET['page'])){
+                                        $page = $_GET['page'];
+                                    } else {
+                                        $_GET['page'] = 1;
+                                        $page = $_GET['page'];
+                                    }
+                                    
+                                    $start = ($page-1) * 10;
+                                    //select allcomplaints
+                                    $query = "SELECT * FROM complaint_table WHERE sender_ID = '$residentID'  LIMIT $start, 10;";
+                                    $result = $conn -> query($query);
                 
+                                    $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table WHERE sender_ID = '$residentID'");
+                                    $reqCount = $result1->fetch_assoc();
+                                    $total = $reqCount['id'];
+                                    $pages = ceil($total / 10);
+                                    
+                                    if($page > 1){
+                                        $previous = $page - 1;
+                                    } else {
+                                        $previous = $page;
+                                    }
+                
+                                    if($page < $pages){
+                                        $next = $page + 1;
+                                    } else {
+                                        $next = $page;
+                                    }
+                                    while($row1 = $result->fetch_assoc()){ ?>
+                                    <tr>
+                                        <td><?php echo $row1["complaint_ID"]; ?></td>
+                                        <td><?php echo $row1["complaint_nature"]; ?></td>
+                                        <td><?php echo $row1["comp_desc"]; ?></td>
+                                        <td><?php echo $row1["complaint_date"]; ?></td>
+                                        <td><?php echo $row1["complaint_status"]; ?></td>
+                                        <td><button data-id="<?php echo $row1["complaint_ID"]?>" class="viewcomp btn btn-primary"><i class="fa-solid fa-eye"></i></button>   
+                                        </td>
+                                    </tr>
+                                    
+                                    <?php } ?>
+                                </table>
+                            </div>  
+                        </div>
+                    </div>
+                </div><br>
             </div>
         </div>
     </div>
-    <!--Add Modal-->
-    <div class="modal fade modal-lg" id="addModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-            
-        </div>
-    </div>
-
-    <!--Edit Modal-->
-    <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- View Modal-->
+    <div class="modal fade" id="viewModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             
         </div>
@@ -146,32 +161,19 @@ if($_SESSION['user_id'] == '') {
             $('.sidebar').removeClass('active');
         });
     </script>
-    <!-- Add resident script-->
+    <!-- View resident script-->
     <script>
         $(document).ready(function(){
-            $('.addresident').click(function(){
-                $.ajax({url: "add_form.php",
-                    
-                success: function(result){
-                    $(".modal-dialog").html(result);
-                }});
-                $('#addModal').modal('show');
-            });
-        });
-    </script>
-    <!-- Edit resident script-->
-    <script>
-        $(document).ready(function(){
-            $('.editofficial').click(function(){
+            $('.viewcomp').click(function(){
                 var userid = $(this).data('id');
-                $.ajax({url: "edit_form.php",
+                $.ajax({url: "view_complaint_form.php",
                 method:'post',
                 data: {userid:userid},
                     
                 success: function(result){
                     $(".modal-dialog").html(result);
                 }});
-                $('#editModal').modal('show');
+                $('#viewModal').modal('show');
             });
         });
     </script>

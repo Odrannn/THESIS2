@@ -1,11 +1,9 @@
 <?php
 include("../phpfiles/connection.php");
-
-require __DIR__ . "/vendor/autoload.php";
-
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
+require __DIR__ . "/vendor/autoload.php";
 $requestID = $_POST["id"];
 $officialID = $_POST["officialid"];
 $senderID = $_POST["senderid"];
@@ -109,15 +107,19 @@ if($document_Type == 'Barangay Clearance')
 
     $dompdf->stream("$surname-BarangayClearance.pdf", ["Attachment" => 0]);
 
-    //create notif
-    $notifdate = date('y-m-d h:i:s');
-    $notifquery = "INSERT INTO user_notification(notification_type, message, source_ID, resident_ID, date_time, status)
-    VALUES ('Requested Document on process','Your Barangay Clearance request is on process.', '$officialID', '$senderID','$notifdate','0');";
-    $notifresult = $conn -> query($notifquery);
+    if(isset($_POST['generate'])){
+        //create notif
+        $notifdate = date('y-m-d h:i:s');
+        $notifquery = "INSERT INTO user_notification(notification_type, message, source_ID, resident_ID, date_time, status)
+        VALUES ('Requested Document on process','Your Barangay Clearance request is ready.<br>
+        You can now download the soft copy from view<br>
+        requests tab or claim it in the Barangay Hall.', '$officialID', '$senderID','$notifdate','0');";
+        $notifresult = $conn -> query($notifquery);
 
-    //update request status
-    $upquery = "UPDATE document_request SET status = 'on process', official_ID = '$officialID' WHERE request_ID = '$requestID';";
-    $upresult = $conn -> query($upquery);
+        //update request status
+        $upquery = "UPDATE document_request SET status = 'ready', official_ID = '$officialID' WHERE request_ID = '$requestID';";
+        $upresult = $conn -> query($upquery);
+    }
 }
 if($document_Type == 'Certificate of Indigency')
 {
@@ -182,15 +184,20 @@ if($document_Type == 'Certificate of Indigency')
     
     $dompdf->stream("$surname-BarangayClearance.pdf", ["Attachment" => 0]);
 
-    //create notif
-    $notifdate = date('y-m-d h:i:s');
-    $notifquery = "INSERT INTO user_notification(notification_type, message, source_ID, resident_ID, date_time, status)
-    VALUES ('Requested Document on process','Your Certificate of Indigency request is on process.', '$officialID', '$senderID','$notifdate','0');";
-    $notifresult = $conn -> query($notifquery);
 
-    //update request status
-    $upquery = "UPDATE document_request SET status = 'on process', official_ID = '$officialID' WHERE request_ID = '$requestID';";
-    $upresult = $conn -> query($upquery);
+    if(isset($_POST['generate'])){
+        //create notif
+        $notifdate = date('y-m-d h:i:s');
+        $notifquery = "INSERT INTO user_notification(notification_type, message, source_ID, resident_ID, date_time, status)
+        VALUES ('Requested Document on process','Your Certificate of Indigency request is on process.<br>
+        You can now download the soft copy from view<br>
+        requests tab or claim it in the Barangay Hall.', '$officialID', '$senderID','$notifdate','0');";
+        $notifresult = $conn -> query($notifquery);
+
+        //update request status
+        $upquery = "UPDATE document_request SET status = 'ready', official_ID = '$officialID' WHERE request_ID = '$requestID';";
+        $upresult = $conn -> query($upquery);
+    }
 }
 
 if($document_Type == 'Certificate of Residency')
@@ -258,15 +265,18 @@ if($document_Type == 'Certificate of Residency')
     
     $dompdf->stream("$surname-BarangayClearance.pdf", ["Attachment" => 0]);
 
-    //create notif
-    $notifdate = date('y-m-d h:i:s');
-    $notifquery = "INSERT INTO user_notification(notification_type, message, source_ID, resident_ID, date_time, status)
-    VALUES ('Requested Document on process','Your Certificate of Residency request is on process.', '$officialID', '$senderID','$notifdate','0');";
-    $notifresult = $conn -> query($notifquery);
+    if(isset($_POST['generate'])){
+        //create notif
+        $notifdate = date('y-m-d h:i:s');
+        $notifquery = "INSERT INTO user_notification(notification_type, message, source_ID, resident_ID, date_time, status)
+        VALUES ('Requested Document on process','Your Certificate of Residency request is on process.<br>
+        You can now download the soft copy from view<br>
+        requests tab or claim it in the Barangay Hall.', '$officialID', '$senderID','$notifdate','0');";
+        $notifresult = $conn -> query($notifquery);
 
-    //update request status
-    $upquery = "UPDATE document_request SET status = 'on process', official_ID = '$officialID' WHERE request_ID = '$requestID';";
-    $upresult = $conn -> query($upquery);
-
+        //update request status
+        $upquery = "UPDATE document_request SET status = 'ready', official_ID = '$officialID' WHERE request_ID = '$requestID';";
+        $upresult = $conn -> query($upquery);
+    }
 }
 ?>
