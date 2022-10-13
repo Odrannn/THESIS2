@@ -94,8 +94,9 @@ if($_SESSION['user_id'] == '') {
                         <ul class="navbar-nav mb-2 mb-lg-0">
                             <li class="nav-item dropdown">
                                 <a class="nav-link" aria-current="page" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-bell px-2"></i>
+                                    <i class="fa-solid fa-bell px-2"></i><?php if($count != 0){?>
                                     <span class="bg-danger rounded-pill text-white badge" style = "position:relative;top:-10px;left:-20px;"><?php echo $count?></span>
+                                    <?php }?>
                                 </a>
                                 <!--Notification List-->
                                 <ul class="dropdown-menu dropdown-menu-end" style="height: auto; max-height: 600px; overflow-x: hidden;">
@@ -110,7 +111,7 @@ if($_SESSION['user_id'] == '') {
                                         if($rownot['status'] == '0'){ 
                                             $notifID = $rownot['notification_ID'];?>
 
-                                            <li><a class="dropdown-item " href="../../../phpfiles/readnotif.php?notifid=<?php echo $notifID?>">
+                                            <li><a class="dropdown-item " href="../../phpfiles/readnotif.php?notifid=<?php echo $notifID?>">
                                             <b><?php echo $rownot['notification_type'];?></b><i class="fa-solid fa-circle text-danger" style="float:right; font-size:12px;"></i><br>
                                             <?php echo $name . " " . $rownot['message']; ?><br>
                                             <b class="text-primary"><?php echo $dateTime;?></b>
@@ -119,7 +120,7 @@ if($_SESSION['user_id'] == '') {
                                     <?php 
                                         } else {
                                             $notifID = $rownot['notification_ID'];?>
-                                            <li><a class="dropdown-item" href="../../../phpfiles/readnotif.php?notifid=<?php echo $notifID?>">
+                                            <li ><a class="dropdown-item" href="../../phpfiles/readnotif.php?notifid=<?php echo $notifID?>">
                                             <?php echo $rownot['notification_type'];?><br>
                                             <?php echo $name . " " . $rownot['message']; ?><br>
                                             <?php echo $dateTime;?>
@@ -132,10 +133,10 @@ if($_SESSION['user_id'] == '') {
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="#"><i class="fa-solid fa-user px-2"></i>Profile</a>
+                                <a class="nav-link" aria-current="page" href="../../../admin_profile_management/profile.php"><i class="fa-solid fa-user px-2"></i>Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../../../Login/logout.php" class="nav-link" aria-current="page"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
+                                <a href="../../Login/logout.php" class="nav-link" aria-current="page"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>
                             </li>
                         </ul>
                     </div>

@@ -2,7 +2,7 @@
 	session_start();
 	$userID = $_SESSION['user_id'];
     if (isset($_POST['submit']) && isset($_FILES['ann_image'])) {
-        include("../../phpfiles/connection.php");
+        include("../phpfiles/connection.php");
 
         $img_name = $_FILES['ann_image']['name'];
         $img_size = $_FILES['ann_image']['size'];
@@ -21,7 +21,7 @@
 
             if (in_array($img_ex_lc, $allowed_exs)) {
                 $new_img_name = uniqid("USER$userID-", true).'.'.$img_ex_lc;
-                $img_upload_path = '../../Admin/resident_management/residentimages/'.$new_img_name;
+                $img_upload_path = '../Admin/resident_management/residentimages/'.$new_img_name;
                 move_uploaded_file($tmp_name, $img_upload_path);
 
                 //insert to db

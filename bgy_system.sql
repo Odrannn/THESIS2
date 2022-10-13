@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2022 at 08:35 PM
+-- Generation Time: Oct 13, 2022 at 06:36 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -81,8 +81,8 @@ INSERT INTO `admin_notification` (`notification_ID`, `notification_type`, `type_
 (12, 'Request Document', 12, 'requested a document.', 11, '22-10-10 05:27:56', 1),
 (13, 'File Complaint', 15, 'filed a complaint.', 9, '22-10-11 02:38:02', 1),
 (14, 'File Blotter', 8, 'filed a blotter.', 10, '22-10-11 06:53:35', 1),
-(15, 'Request Document', 13, 'requested a document.', 10, '22-10-11 07:21:12', 0),
-(16, 'Request Document', 14, 'requested a document.', 11, '22-10-12 04:28:04', 0);
+(15, 'Request Document', 13, 'requested a document.', 10, '22-10-11 07:21:12', 1),
+(16, 'Request Document', 14, 'requested a document.', 11, '22-10-12 04:28:04', 1);
 
 -- --------------------------------------------------------
 
@@ -562,28 +562,29 @@ CREATE TABLE `tbluser` (
   `id` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `type` varchar(10) NOT NULL
+  `type` varchar(10) NOT NULL,
+  `profile` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbluser`
 --
 
-INSERT INTO `tbluser` (`id`, `username`, `password`, `type`) VALUES
-(7, 'lenzay', '456', 'admin'),
-(8, 'Odrannn', '123', 'admin0'),
-(9, '09283523142', '12345678', 'user'),
-(10, 'wil', 'wil', 'user'),
-(11, 'jehan', '456', 'user'),
-(13, '09781234567', '12345678', 'admin0'),
-(14, '09244567897', '12345678', 'admin'),
-(15, '09623456781', '12345678', 'admin'),
-(18, '09020146545', '12345678', 'admin'),
-(30, 'poli', 'pol', 'user'),
-(33, '09475044087', '12345678', 'user'),
-(39, '0961606448', '12345678', 'user'),
-(41, 'HCAdmin', 'hcadmin', 'hadmin'),
-(42, '09283523144', '12345678', 'user');
+INSERT INTO `tbluser` (`id`, `username`, `password`, `type`, `profile`) VALUES
+(7, 'lenzay', '456', 'admin', 'default.jpg'),
+(8, 'Odrannn', '123', 'admin0', 'USER8-634839116729b9.72061641.jpg'),
+(9, '09283523142', '12345678', 'user', 'USER9-63483de9ae6059.84184043.jpg'),
+(10, 'wil', 'wil', 'user', 'default.jpg'),
+(11, 'jehan', '456', 'user', 'default.jpg'),
+(13, '09781234567', '12345678', 'admin0', 'default.jpg'),
+(14, '09244567897', '12345678', 'admin', 'default.jpg'),
+(15, '09623456781', '12345678', 'admin', 'default.jpg'),
+(18, '09020146545', '12345678', 'admin', 'default.jpg'),
+(30, 'poli', 'pol', 'user', 'default.jpg'),
+(33, '09475044087', '12345678', 'user', 'default.jpg'),
+(39, '0961606448', '12345678', 'user', 'default.jpg'),
+(41, 'HCAdmin', 'hcadmin', 'hadmin', 'default.jpg'),
+(42, '09283523144', '12345678', 'user', 'default.jpg');
 
 -- --------------------------------------------------------
 

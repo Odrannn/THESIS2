@@ -30,8 +30,8 @@
         $disability = $row['disability'];
 
         /* User creation query */
-        $new_query = "INSERT INTO tbluser(username, password, type)
-        VALUES('$contactnumber', '12345678', 'user');";
+        $new_query = "INSERT INTO tbluser(username, password, type, profile)
+        VALUES('$contactnumber', '12345678', 'user', 'default.jpg')";
         $new_result = $conn -> query($new_query); 
 
         /* getting the user id for resident foreignkey */
@@ -49,6 +49,7 @@
         SET status = 'accepted'
         WHERE id = '".$_POST['app_id']."'";
         $new_result = $conn -> multi_query($new_query); 
+        
         header("location:residency_application.php");
     }
 ?>

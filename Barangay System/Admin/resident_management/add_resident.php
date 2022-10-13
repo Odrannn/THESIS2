@@ -57,8 +57,8 @@
     } else if (mysqli_num_rows($exresult2)>0){
         $response['message'] = "Email already exists.";
     } else {
-        $query = "INSERT INTO tbluser(username, password, type)
-        VALUES('$contactnumber', '12345678', 'user')";
+        $query = "INSERT INTO tbluser(username, password, type, profile)
+        VALUES('$contactnumber', '12345678', 'user', 'default.jpg')";
         $result = $conn -> query($query); 
 
         /* getting the user id for resident foreignkey */
