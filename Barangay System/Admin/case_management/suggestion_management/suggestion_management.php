@@ -175,11 +175,11 @@ if($_SESSION['user_id'] == '') {
 
                                     if($row["suggestion_nature"] != ''){ ?>
 
-                                    <form action="delete_option.php" method="post">
+                                    <form action="../delete_option.php" method="post">
                                         <tr>
                                         <td><?php echo $row["suggestion_nature"]; ?></td>
                                         <input type="hidden" name = "id" value = "<?php echo $row['id']?>">
-                                        <td><input class="btn btn-danger mx-3" type='submit' name='delete_option' value='Delete'></td>
+                                        <td><input class="btn btn-danger mx-3" type='submit' name='delete_nature' value='Delete'></td>
                                         </tr>
                                     </form>
                                     <?php
@@ -233,8 +233,26 @@ if($_SESSION['user_id'] == '') {
                     <h5 class="card-header">Suggestion Records</h5>
                     <div class="card-body">
                         <div class="container-fluid">
+                            <div>
+                                <div class="row">
+                                    <div class="col-md pt-2">
+                                        <select class="form-control w-50" name="filter" id="filter">
+                                            <option value="" disabled selected>Select Filter</option>
+                                            <option value="day">This Day</option>
+                                            <option value="week">This Week</option>
+                                            <option value="year">This Year</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md pt-2">
+                                    </div>
+                                    <div class="col-md pt-2">
+                                    </div>
+                                    <div class="col-md pt-2">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="table-responsive" style="width: 100%;">
-                                <table class="table table-bordered">
+                                <table class="table table-striped">
                                     <thead>
                                         <tr class="align-top">
                                             <th>Suggestion ID</th>
