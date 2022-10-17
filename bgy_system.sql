@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2022 at 06:36 PM
+-- Generation Time: Oct 17, 2022 at 08:11 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -185,7 +185,8 @@ INSERT INTO `case_option` (`id`, `complaint_nature`, `suggestion_nature`) VALUES
 (1, 'Dirty Barangay', 'Barangay Improvement'),
 (2, 'Gossip Mongers', 'Education'),
 (3, 'Drugs', 'Sports'),
-(4, 'Noise', 'Health');
+(4, 'Noise', 'Health'),
+(5, '', '');
 
 -- --------------------------------------------------------
 
@@ -217,10 +218,10 @@ INSERT INTO `complaint_table` (`complaint_ID`, `official_ID`, `sender_ID`, `comp
 (9, 6, 9, 'Gossip Mongers', 'tsismosa', '2022-09-28', '', 'solved'),
 (10, 6, 9, 'Other', 'SUGALAN SA KANTO', '2022-09-28', '', 'solved'),
 (11, NULL, 9, 'Other', 'illegal parking', '2022-09-28', '', 'pending'),
-(12, NULL, 9, 'Other', 'sugalan', '2022-09-28', 'IMG-633453d006e131.68377680.jpg', 'pending'),
-(13, 5, 9, 'Other', 'illegal parking', '2022-09-28', 'IMG-633453de511e23.56622787.jpg', 'solved'),
-(14, 5, 9, 'Dirty Barangay', 'street 1 is very dirty', '2022-09-28', 'IMG-63346d10292875.87716455.jpg', 'solved'),
-(15, 5, 9, 'Dirty Barangay', 'asdasdas', '2022-10-11', 'IMG-634563a9e852f8.39870037.jpg', 'solved');
+(12, NULL, 9, 'Other', 'sugalan', '2022-10-17', 'IMG-633453d006e131.68377680.jpg', 'pending'),
+(13, 5, 9, 'Other', 'illegal parking', '2022-10-17', 'IMG-633453de511e23.56622787.jpg', 'solved'),
+(14, 5, 9, 'Dirty Barangay', 'street 1 is very dirty', '2022-10-17', 'IMG-63346d10292875.87716455.jpg', 'solved'),
+(15, 5, 9, 'Dirty Barangay', 'asdasdas', '2022-10-18', 'IMG-634563a9e852f8.39870037.jpg', 'solved');
 
 -- --------------------------------------------------------
 
@@ -792,7 +793,7 @@ ALTER TABLE `blotter_table`
 -- AUTO_INCREMENT for table `case_option`
 --
 ALTER TABLE `case_option`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `complaint_table`

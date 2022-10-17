@@ -5,6 +5,8 @@ include('../../phpfiles/connection.php');
 if($_SESSION['user_id'] == '') {
     header("location:../../Login/login.php");
 }
+
+$_SESSION['filter'];
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -22,32 +24,6 @@ if($_SESSION['user_id'] == '') {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-    <?php $query1 = "SELECT COUNT(complaint_ID) AS Total, complaint_nature FROM complaint_table GROUP BY complaint_nature;";
-                    $result1 = $conn -> query($query1);?>
-    <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          <?php
-          while($row1 = $result1 -> fetch_array()){
-            ?>
-            ['<?php echo $row1[1];?>',    <?php echo $row1[0];?>],
-            <?php 
-            } ?>
-          ['none',    0]
-        ]);
-
-        var options = {
-          pieHole: 0.4
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-        chart.draw(data, options);
-      }
-    </script>
 </head>
 
 <body>
@@ -177,10 +153,39 @@ if($_SESSION['user_id'] == '') {
                                 <div class="row">
                                     <div class="col-md pt-2">
                                         <select class="form-control w-50" name="filter" id="filter">
-                                            <option value="" disabled selected>Select Filter</option>
-                                            <option value="day">This Day</option>
-                                            <option value="week">This Week</option>
-                                            <option value="year">This Year</option>
+                                            <option value="all"<?php
+                                            if(isset($_SESSION['filter'])){
+                                                if($_SESSION['filter'] == 'all'){
+                                                    echo 'selected';
+                                                }
+                                            } else {
+                                                echo 'selected';
+                                            }
+                                            ?>>All</option>
+                                            <option value="day"<?php
+                                            if(isset($_SESSION['filter'])){
+                                                if($_SESSION['filter'] == 'day'){
+                                                    echo 'selected';
+                                                }
+                                            }?>>This Day</option>
+                                            <option value="week" <?php
+                                            if(isset($_SESSION['filter'])){
+                                                if($_SESSION['filter'] == 'week'){
+                                                    echo 'selected';
+                                                }
+                                            }?>>This Week</option>
+                                            <option value="month" <?php
+                                            if(isset($_SESSION['filter'])){
+                                                if($_SESSION['filter'] == 'month'){
+                                                    echo 'selected';
+                                                }
+                                            }?>>This Month</option>
+                                            <option value="year" <?php
+                                            if(isset($_SESSION['filter'])){
+                                                if($_SESSION['filter'] == 'year'){
+                                                    echo 'selected';
+                                                }
+                                            }?>>This Year</option>
                                         </select>
                                     </div>
                                     <div class="col-md pt-2">
@@ -191,7 +196,48 @@ if($_SESSION['user_id'] == '') {
                                     </div>
                                 </div>
                             </div>
-                            <div class="table-responsive" style="width: 100%;">
+                            <div class="tableContainer table-responsive" style="width: 100%;">
+                            <?php 
+                            if(isset($_SESSION['filter'])){
+                                if($_SESSION['filter']=='day'){
+                                    $currentDate = date("Y-m-d");
+                                    $query1 = "SELECT COUNT(complaint_ID) AS Total, complaint_nature FROM complaint_table WHERE complaint_date = '$currentDate' GROUP BY complaint_nature;";
+                                } else if($_SESSION['filter']=='week'){
+                                    $query1 = "SELECT COUNT(complaint_ID) AS Total, complaint_nature FROM complaint_table WHERE WEEK(complaint_date) = WEEK(now()) GROUP BY complaint_nature;";
+                                } else if($_SESSION['filter']=='month'){
+                                    $query1 = "SELECT COUNT(complaint_ID) AS Total, complaint_nature FROM complaint_table WHERE MONTH(complaint_date) = MONTH(now()) GROUP BY complaint_nature;";
+                                } else if($_SESSION['filter']=='year'){
+                                    $query1 = "SELECT COUNT(complaint_ID) AS Total, complaint_nature FROM complaint_table WHERE YEAR(complaint_date) = YEAR(now()) GROUP BY complaint_nature;";
+                                } else {
+                                    $query1 = "SELECT COUNT(complaint_ID) AS Total, complaint_nature FROM complaint_table GROUP BY complaint_nature;";
+                                }
+                            } else {
+                                $query1 = "SELECT COUNT(complaint_ID) AS Total, complaint_nature FROM complaint_table GROUP BY complaint_nature;";
+                            }
+                            $result1 = $conn -> query($query1);?>
+                            <script type="text/javascript">
+                            google.charts.load("current", {packages:["corechart"]});
+                            google.charts.setOnLoadCallback(drawChart);
+                            function drawChart() {
+                                var data = google.visualization.arrayToDataTable([
+                                ['Task', 'Hours per Day'],
+                                <?php
+                                while($row1 = $result1 -> fetch_array()){
+                                    ?>
+                                    ['<?php echo $row1[1];?>',    <?php echo $row1[0];?>],
+                                    <?php 
+                                    } ?>
+                                ['none',    0]
+                                ]);
+
+                                var options = {
+                                pieHole: 0.4
+                                };
+
+                                var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+                                chart.draw(data, options);
+                            }
+                            </script>
                                 <table class="table table-striped">
                                     <thead>
                                         <tr class="align-top">
@@ -217,8 +263,34 @@ if($_SESSION['user_id'] == '') {
                                     $start = ($page-1) * 10;
                                     $query = "SELECT * FROM complaint_table ORDER BY complaint_ID DESC LIMIT $start, 10;";
                                     $result = $conn -> query($query);
-                
-                                    $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table;");
+
+                                    if(isset($_SESSION['filter'])){
+                                        if($_SESSION['filter']=='day'){
+                                            $currentDate = date("Y-m-d");
+                                            $query = "SELECT * FROM complaint_table WHERE complaint_date = '$currentDate' LIMIT $start, 10;";
+                                            $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table WHERE complaint_date = '$currentDate';");
+                                            
+                                        } else if($_SESSION['filter']=='week'){
+                                            $query = "SELECT * FROM complaint_table WHERE WEEK(complaint_date) = WEEK(now()) LIMIT $start, 10;";
+                                            $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table WHERE WEEK(complaint_date) = WEEK(now()) LIMIT $start, 10;");
+                                        } else if($_SESSION['filter']=='month'){
+                                            $query = "SELECT * FROM complaint_table WHERE MONTH(complaint_date) = MONTH(now()) LIMIT $start, 10;";
+                                            $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table WHERE MONTH(complaint_date) = MONTH(now()) LIMIT $start, 10;");
+                                        } else if($_SESSION['filter']=='year'){
+                                            $query = "SELECT * FROM complaint_table WHERE YEAR(complaint_date) = YEAR(now()) LIMIT $start, 10;";
+                                            $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table WHERE YEAR(complaint_date) = YEAR(now()) LIMIT $start, 10;");
+                                        } else if($_SESSION['filter']=='all'){
+                                            $query = "SELECT * FROM complaint_table LIMIT $start, 10;";
+                                            $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table;");
+                                        }
+                                    } else {
+                                        $query = "SELECT * FROM complaint_table LIMIT $start, 10;";
+                                        $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table;");
+                                    }
+                                    
+                                    $result = $conn -> query($query);
+                                    $count = mysqli_num_rows($result);
+
                                     $resCount = $result1->fetch_assoc();
                                     $total = $resCount['id'];
                                     $pages = ceil($total / 10);
@@ -251,22 +323,21 @@ if($_SESSION['user_id'] == '') {
                                     </tr>
                                     <?php } ?>
                                 </table>
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                        <li class="page-item"><a class="page-link text-dark" href="case_management.php?page=<?php echo $previous;?>">Previous</a></li>
+                                        <?php for($i=1; $i<=$pages;$i++)
+                                        {?>
+                                            <li class="page-item"><a class="page-link text-dark" href="case_management.php?page=<?php echo $i;?>"><?php echo $i;?></a></li>
+                                        <?php 
+                                        }?>
+                                        <li class="page-item"><a class="page-link text-dark" href="case_management.php?page=<?php echo $next;?>">Next</a></li>
+                                    </ul>
+                                </nav>
                             </div>  
                         </div>
                     </div>
                 </div><br>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link text-dark" href="case_management.php?page=<?php echo $previous;?>">Previous</a></li>
-                        <?php for($i=1; $i<=$pages;$i++)
-                        {?>
-                            <li class="page-item"><a class="page-link text-dark" href="case_management.php?page=<?php echo $i;?>"><?php echo $i;?></a></li>
-                        <?php 
-                        }?>
-                        <li class="page-item"><a class="page-link text-dark" href="case_management.php?page=<?php echo $next;?>">Next</a></li>
-                    </ul>
-                </nav>
-                
             </div>
         </div>
     </div>
@@ -310,7 +381,8 @@ if($_SESSION['user_id'] == '') {
         $(document).ready(function(){
             $('.editcomplaint').click(function(){
                 var userid = $(this).data('id');
-                $.ajax({url: "edit_complaint_form.php",
+                $.ajax({
+                url: "edit_complaint_form.php",
                 method:'post',
                 data: {userid:userid},
                     
@@ -325,9 +397,21 @@ if($_SESSION['user_id'] == '') {
         $(document).ready(function(){
             $("#filter").on('change',function(){
                 var value = $(this).val();
-                alert(value);
-            })
-        })
+
+                $.ajax({
+                    url: "filter.php",
+                    method: "POST",
+                    data: {request:value},
+
+                    beforeSend:function(){
+                        $(".tableContainer").html("<span>Working...</span>");
+                    },
+                    success:function(data){
+                        $(".tableContainer").html(data);
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
