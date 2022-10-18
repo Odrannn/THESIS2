@@ -6,7 +6,6 @@ if($_SESSION['user_id'] == '') {
     header("location:../../Login/login.php");
 }
 
-$_SESSION['filter'];
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
