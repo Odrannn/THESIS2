@@ -271,13 +271,13 @@ if($_SESSION['user_id'] == '') {
                                             
                                         } else if($_SESSION['filter']=='week'){
                                             $query = "SELECT * FROM complaint_table WHERE WEEK(complaint_date) = WEEK(now()) LIMIT $start, 10;";
-                                            $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table WHERE WEEK(complaint_date) = WEEK(now()) LIMIT $start, 10;");
+                                            $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table WHERE WEEK(complaint_date) = WEEK(now());");
                                         } else if($_SESSION['filter']=='month'){
                                             $query = "SELECT * FROM complaint_table WHERE MONTH(complaint_date) = MONTH(now()) LIMIT $start, 10;";
-                                            $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table WHERE MONTH(complaint_date) = MONTH(now()) LIMIT $start, 10;");
+                                            $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table WHERE MONTH(complaint_date) = MONTH(now());");
                                         } else if($_SESSION['filter']=='year'){
                                             $query = "SELECT * FROM complaint_table WHERE YEAR(complaint_date) = YEAR(now()) LIMIT $start, 10;";
-                                            $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table WHERE YEAR(complaint_date) = YEAR(now()) LIMIT $start, 10;");
+                                            $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table WHERE YEAR(complaint_date) = YEAR(now());");
                                         } else if($_SESSION['filter']=='all'){
                                             $query = "SELECT * FROM complaint_table LIMIT $start, 10;";
                                             $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table;");

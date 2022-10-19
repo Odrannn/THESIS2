@@ -6,6 +6,23 @@ if($_SESSION['user_id'] == '') {
     header("location:../../Login/login.php");
 }
 ?>
+<?php
+    if (isset($_POST['start'])){
+        $start = $conn -> real_escape_string($_POST['start']);
+
+        $allData = '';
+        $resultm = $conn -> query("SELECT * FROM resident_table LIMIT $start, 50;");
+        while($row = $resultm->fetch_assoc()){ 
+            $allData .= $row["id"] . ',' . $row["user_id"] . ',' . $row["fname"] . ',' . $row["mname"] . ',' . $row["lname"] . ',' . $row["suffix"] . ',' . $row["gender"] . ',' . $row["birthplace"] . ',' . 
+            $row["civilstatus"] . ',' . $row["birthday"] . ',' . $row["age"] . ',' . $row["unitnumber"] . ',' . $row["purok"] . ',' . $row["sitio"] . ',' . $row["street"] . ',' . $row["subdivision"] . ',' . 
+            $row["contactnumber"] . ',' . $row["email"] . ',' . $row["religion"] . ',' . $row["occupation"] . ',' . $row["education"] . ',' . $row["nationality"] . ',' . $row["disability"] . ',' . $row["status"]
+            . ',' . "\n";
+        }
+        exit(json_encode(array("data" => $allData)));
+    }
+    $sql = $conn -> query("SELECT id FROM resident_table;");
+    $numRows = mysqli_num_rows($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +37,8 @@ if($_SESSION['user_id'] == '') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -232,6 +251,11 @@ if($_SESSION['user_id'] == '') {
                     </div>
                 </div><br>
                 <nav aria-label="Page navigation example">
+                    <div class="btn-group" role="group" aria-label="Basic example" style="float: right;">
+                        <p><a class="btn btn-outline-success">Import</a></p>
+                        <p id="response">Please wait..</p>
+                        
+                    </div>
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link text-dark" href="resident_management.php?page=<?php echo $previous;?>">Previous</a></li>
                         <?php for($i=1; $i<=$pages;$i++)
@@ -316,6 +340,30 @@ if($_SESSION['user_id'] == '') {
             });
         });
     </script>
-   
+    <!-- Export CSV-->
+    
+    <script>
+        var data = "data:text/csv;charset=utf-8,ID,User ID,First Name,Middle Name,Last Name,Suffix,Gender,Birthplace,Civil Status,Birthday,Age,Unit Number,Purok,Sitio,Street,Subdivision,Contact No.,E-mail,Religion,Occupation,Educational Attainment,Nationality,Disability,Status\n";
+
+        $(document).ready(function(){
+            exportToCSV(0,<?php echo $numRows ?>);
+        });
+
+        function exportToCSV(start, max){
+            if (start > max){
+                $("#response").html('<a href="'+data+'" download = "Resident Table" class="btn btn-outline-primary">Export</a>');
+                return;
+            }
+            $.ajax({ url: "resident_management.php",
+            method: 'POST',
+            dataType: 'json',
+            data: {start: start}, 
+            
+            success: function (response) {
+                data += response.data;
+                exportToCSV((start + 50), max);
+            }});
+        }
+    </script>
 </body>
 </html>

@@ -20,20 +20,12 @@ $password = $uinforow['password'];*/
     );
     $context  = stream_context_create($param);
     return file_get_contents($url, false, $context);
-}*/
-//echo $number;
-//echo $message;
-//echo $apicode;
+}
 
-function itexmo()
+function itexmo($email, $number, $message, $apicode, $passwd)
 {
-    $number = '09616064483';
-    $apicode = 'PR-BERNA461967_SZ8D9';
-    $message = 'Hello';
-    $passwd = 'Mazo20181132826';
-
-    $url = 'https://www.itexmo.com/php_api/api.php';
-    $itexmo = array('1' => $number, '2' => $message, '3' => $apicode, 'passwd' => $passwd);
+    $url = 'https://api.itexmo.com/api/broadcast';
+    $itexmo = array('Email' =>$email, 'ApiCode' => $apicode, 'Password' => "Mazo20181132826", 'Numbers' => $number, 'Message' => $message);
     $param = array(
         'http' => array(
             'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
@@ -46,18 +38,30 @@ function itexmo()
 }
 
 
-$result = itexmo();
+*/
+//echo $number;
+//echo $message;
+//echo $apicode;
 
-if($result == "")
+function itexmo($email, $password, $apicode, $number,$message)
 {
-    echo "no response";
+    $ch = curl_init();
+    $itexmo = array('Email' => $email, 'Password' => $password, 'ApiCode' => $apicode, 'SenderId' => "ITEXMO SMS", 'Recipients' => $number, 'Message' => $message);
+    curl_setopt($ch, CURLOPT_URL,"https://api.itexmo.com/api/broadcast");
+    curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_POSTFIELDS,http_build_query($itexmo));
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	return curl_exec ($ch);
+	curl_close ($ch);
 }
-else if($result == 0)
-{
-    echo "Message Sent!";
-}
-else 
-{
-    echo "Error " . $result . " Encountered!";
-}
+
+
+$email = "bernard.mazo04@gmail.com";
+$passwd = "Mazo20181132826";
+$apicode = "PR-BERNA461967_SZ8D9";
+$number = array("09616064483", "09925119326");
+$message = "Hello bernard";
+
+$result = itexmo("bernard.mazo04@gmail.com","Mazo20181132826","PR-BERNA461967_SZ8D9", $number, "Bernard Kabiling Mazo");
+echo $result;
 ?>
