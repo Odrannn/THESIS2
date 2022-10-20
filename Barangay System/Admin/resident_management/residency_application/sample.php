@@ -46,7 +46,7 @@ function itexmo($email, $number, $message, $apicode, $passwd)
 function itexmo($email, $password, $apicode, $number,$message)
 {
     $ch = curl_init();
-    $itexmo = array('Email' => $email, 'Password' => $password, 'ApiCode' => $apicode, 'SenderId' => "ITEXMO SMS", 'Recipients' => $number, 'Message' => $message);
+    $itexmo = array('Email' => $email, 'Password' => $password, 'ApiCode' => $apicode, 'Recipients' => $number, 'Message' => $message);
     curl_setopt($ch, CURLOPT_URL,"https://api.itexmo.com/api/broadcast");
     curl_setopt($ch, CURLOPT_POST, 1);
 	curl_setopt($ch, CURLOPT_POSTFIELDS,http_build_query($itexmo));
@@ -61,7 +61,6 @@ $passwd = "Mazo20181132826";
 $apicode = "PR-BERNA461967_SZ8D9";
 $number = array("09616064483", "09925119326");
 $message = "Hello bernard";
-
-$result = itexmo("bernard.mazo04@gmail.com","Mazo20181132826","PR-BERNA461967_SZ8D9", $number, "Bernard Kabiling Mazo");
+$result = itexmo($email, $passwd, $apicode, $number, $message);
 echo $result;
 ?>

@@ -236,6 +236,10 @@ if($_SESSION['user_id'] == '') {
                 </div><br>
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
+                        <div class="btn-group" role="group" aria-label="Basic example" style="float: right;">
+                            <div><a class="import btn btn-outline-success">Import</a></div>
+                            <div id="response">Please wait..</div>
+                        </div>
                         <li class="page-item"><a class="page-link text-dark" href="residency_application.php?page=<?php echo $previous;?>">Previous</a></li>
                         <?php for($i=1; $i<=$pages;$i++)
                         {?>
