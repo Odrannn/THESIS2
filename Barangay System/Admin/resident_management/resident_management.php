@@ -298,7 +298,7 @@ if($_SESSION['user_id'] == '') {
                 </div><br>
                 <nav aria-label="Page navigation example">
                     <div class="btn-group" role="group" aria-label="Basic example" style="float: right;">
-                        <!--<div><a class="import btn btn-outline-success">Import</a></div>-->
+                        <div><a class="import btn btn-outline-success">Import</a></div>
                         <div id="response">Please wait..</div>
                     </div>
                     <ul class="pagination">

@@ -2,8 +2,14 @@
 session_start();
 $_SESSION["importHousehold"] = "";
 include('../../../phpfiles/connection.php');
+
+$sql = "ALTER TABLE resident_table
+DROP CONSTRAINT HOUSE;";
+$result = $conn -> query($sql);
+
 $sql = "DROP TABLE tblhousehold;";
 $result = $conn -> query($sql);
+
 $sql = "CREATE TABLE `tblhousehold` (
             `household_id` int(11) NOT NULL,
             `household_member` int(10) DEFAULT NULL,
@@ -31,17 +37,21 @@ if(isset($_POST["import"])){
                 $_SESSION["importHousehold"] = "fail";
             }
         }
+        
         $sql = "ALTER TABLE tblhousehold
         ADD CONSTRAINT HEAD
         FOREIGN KEY (household_head_ID) REFERENCES resident_table(id);
 
         ALTER TABLE `tblhousehold`
-        ADD PRIMARY KEY (`household_id`),
-        ADD KEY `HEAD` (`household_head_ID`);
+        ADD PRIMARY KEY (`household_id`);
 
         ALTER TABLE `tblhousehold`
         MODIFY `household_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-        COMMIT;";
+        COMMIT;
+        
+        ALTER TABLE resident_table
+        ADD CONSTRAINT HOUSE
+        FOREIGN KEY (household_ID) REFERENCES tblhousehold(household_id);";
         $result = $conn -> multi_query($sql);
     }
 }
