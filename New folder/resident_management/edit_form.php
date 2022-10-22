@@ -157,7 +157,7 @@ if(isset($_POST['userid'])){
                         </div>
                         <div class="col-md pt-2">
 							<label for="exampleInputEmail1" class="form-label">Contact Number: </label>
-                            <input class="form-control" type="text" name="contactnumber" placeholder="+63" value="<?php echo $row1["contactnumber"];?>">
+                            <input class="form-control" type="text" name="contactnumber" placeholder="09.." maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  value="<?php echo $row1["contactnumber"];?>">
                         </div>
                         <div class="col-md pt-2">
 							<label for="exampleInputEmail1" class="form-label">Email: </label>

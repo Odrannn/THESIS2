@@ -87,12 +87,6 @@
                         </div>
                     </div>
                     <div class="col-md pt-2">
-                        <div class="form-floating">
-                            <input class="form-control" type="number" id="age" name="age" placeholder="Age" >
-                            <label for="age">Age</label>
-                        </div>
-                    </div>
-                    <div class="col-md pt-2">
                         <div class="form-floating"> 
                             <select class="form-control" id="status" name="civilstatus" >
                                 <option value="Single">Single</option>
@@ -175,7 +169,7 @@
                     </div>
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="number" id="contactnumber" name="contactnumber" placeholder="09...">
+                            <input class="form-control" type="text" id="contactnumber" name="contactnumber" placeholder="09..." maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                             <label for="contactnumber">Contact number(09...)</label>
                         </div>
                     </div>

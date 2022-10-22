@@ -14,7 +14,6 @@
     $birthplace = $_POST['birthplace'];
     $civilstatus = $_POST['civilstatus'];
     $birthday = $_POST['birthday'];
-    $age = $_POST['age'];
     $unitnumber = $_POST['unitnumber'];
     $purok = $_POST['purok'];
     $sitio = $_POST['sitio'];
@@ -73,8 +72,8 @@
             move_uploaded_file($tmp_name, $img_upload_path);
 
             //insert to db
-            $query = "INSERT INTO registration(fname,mname,lname,suffix,gender,birthplace,civilstatus,birthday,age,unitnumber,purok,sitio,street,subdivision,contactnumber,email,religion,occupation,educational,nationality,disability,status,img_path)
-            VALUES('$fname','$mname','$lname','$suffix','$gender','$birthplace','$civilstatus','$birthday','$age','$unitnumber','$purok','$sitio','$street','$subdivision','$contactnumber','$email','$religion','$occupation','$education','$nationality','$disability','pending','$new_img_name')";
+            $query = "INSERT INTO registration(fname,mname,lname,suffix,gender,birthplace,civilstatus,birthday,unitnumber,purok,sitio,street,subdivision,contactnumber,email,religion,occupation,educational,nationality,disability,status,img_path)
+            VALUES('$fname','$mname','$lname','$suffix','$gender','$birthplace','$civilstatus','$birthday','$unitnumber','$purok','$sitio','$street','$subdivision','$contactnumber','$email','$religion','$occupation','$education','$nationality','$disability','pending','$new_img_name')";
             $result = $conn -> query($query);
 
             $response['message'] = "Successfully registered";

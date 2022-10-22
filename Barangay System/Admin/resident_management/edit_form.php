@@ -16,12 +16,15 @@ if(isset($_POST['userid'])){
                 <div class="container">
                     <div class="row">
                         <div class="col-md pt-2">
+							<label for="exampleInputEmail1" class="form-label">First Name: </label>
                             <input class="form-control" type="text" id="fname" name="fname" placeholder="First Name.." value="<?php echo $row1["fname"];?>">
                         </div>
                         <div class="col-md pt-2">
+							<label for="exampleInputEmail1" class="form-label">Middle Name: </label>
                             <input class="form-control" type="text" id="mname" name="mname" placeholder="Middle Name" value="<?php echo $row1["mname"];?>">
                         </div>
                         <div class="col-md pt-2">
+							<label for="exampleInputEmail1" class="form-label">Last Name: </label>
                             <input class="form-control" type="text" id="lname" name="lname" placeholder="Last Name" value="<?php echo $row1["lname"];?>">
                         </div>
                         <div class="col-md">
@@ -48,15 +51,15 @@ if(isset($_POST['userid'])){
                     </div>
                     <div class="row">
                         <div class="col-md pt-2">
+							<label for="exampleInputEmail1" class="form-label">Birth Place: </label>
                             <input class="form-control" type="text" id="birthplace" name="birthplace" placeholder="Place of Birth" value="<?php echo $row1["birthplace"];?>">
                         </div>
                         <div class="col-md pt-2">
+							<label for="exampleInputEmail1" class="form-label">Birthday: </label>
                             <input class="form-control" type="date" id="date" name="birthday" value="<?php echo $row1["birthday"];?>">
                         </div>
                         <div class="col-md pt-2">
-                            <input class="form-control" type="number" id="lname" name="age" placeholder="Age" value="<?php echo $row1["age"];?>">
-                        </div>
-                        <div class="col-md pt-2">
+							<label for="exampleInputEmail1" class="form-label">Civil Status: </label>
                             <select class="form-control" id="status" name="civilstatus" value="<?php echo $row1["civilstatus"];?>">
                                 <option value="Single">Single</option>
                                 <option value="Married">Married</option>
@@ -67,9 +70,11 @@ if(isset($_POST['userid'])){
                     </div>
                     <div class="row">
                         <div class="col-md pt-2">
+							<label for="exampleInputEmail1" class="form-label">Unit Number: </label>
                             <input class="form-control" type="text" id="address" name="unitnumber" placeholder="Unit Number" value="<?php echo $row1["unitnumber"];?>">
                         </div>
                         <div class="col-md pt-2">
+							<label for="exampleInputEmail1" class="form-label">Purok: </label>
                             <select class="form-control" name="purok">
                                 <option value="1">--Select Purok--</option>
                                 <?php 
@@ -88,6 +93,7 @@ if(isset($_POST['userid'])){
                             </select>
                         </div>
                         <div class="col-md pt-2">
+							<label for="exampleInputEmail1" class="form-label">Sitio: </label>
                             <select class="form-control" name="sitio">
                                 <option value="1">--Select Sitio--</option>
                                 <?php 
@@ -106,6 +112,7 @@ if(isset($_POST['userid'])){
                             </select>
                         </div>
                         <div class="col-md pt-2">
+							<label for="exampleInputEmail1" class="form-label">Street: </label>
                             <select class="form-control" name="street">
                                 <option value="1">--Select Street--</option>
                                 <?php 
@@ -126,6 +133,7 @@ if(isset($_POST['userid'])){
                     </div>
                     <div class="row">
                         <div class="col-md pt-2">
+							<label for="exampleInputEmail1" class="form-label">Subdivision: </label>
                             <select class="form-control" name="subdivision">
                                 <option value="1">--Select Subdivision--</option>
                                 <?php 
@@ -144,12 +152,15 @@ if(isset($_POST['userid'])){
                             </select>
                         </div>
                         <div class="col-md pt-2">
-                            <input class="form-control" type="text" name="contactnumber" placeholder="+63" value="<?php echo $row1["contactnumber"];?>">
+							<label for="exampleInputEmail1" class="form-label">Contact Number: </label>
+                            <input class="form-control" type="text" name="contactnumber" placeholder="09.." maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  value="<?php echo $row1["contactnumber"];?>">
                         </div>
                         <div class="col-md pt-2">
+							<label for="exampleInputEmail1" class="form-label">Email: </label>
                             <input class="form-control" type="text" name="email" placeholder="Email" value="<?php echo $row1["email"];?>">
                         </div>
                         <div class="col-md pt-2">
+							<label for="exampleInputEmail1" class="form-label">Religion: </label>
                             <select class="form-control" id="status" name="religion">
                                 <option value="Roman Catholic" <?php if($row1["religion"] == "Roman Catholic"){ echo "selected"; }?>>Roman Catholic</option>
                                 <option value="Islam" <?php if($row1["religion"] == "Islam"){ echo "selected"; }?>>Islam</option>
@@ -167,9 +178,11 @@ if(isset($_POST['userid'])){
                     </div>
                     <div class="row">
                         <div class="col-md pt-2">
+							<label for="exampleInputEmail1" class="form-label">Occupation: </label>
                             <input class="form-control" type="text" id="occupation" name="occupation" placeholder="Occupation" value="<?php echo $row1['occupation'];?>">
                         </div>
                         <div class="col-md pt-2">
+							<label for="exampleInputEmail1" class="form-label">Education: </label>
                             <select class="form-control" id="status" name="education">
                                 <option value="Less Than Highschool" <?php if($row1["education"] == "Less Than Highschool"){ echo "selected"; }?>>Less Than Highschool</option>
                                 <option value="Highschool" <?php if($row1["education"] == "Highschool"){ echo "selected"; }?>>Highschool</option>
@@ -178,15 +191,18 @@ if(isset($_POST['userid'])){
                             </select>
                         </div>
                         <div class="col-md pt-2">
+							<label for="exampleInputEmail1" class="form-label">Nationality: </label>
                             <input class="form-control" type="text" id="mname" name="nationality" placeholder="Nationality" value="<?php echo $row1['nationality'];?>">
                         </div>
                         <div class="col-md pt-2">
+							<label for="exampleInputEmail1" class="form-label">Disability: </label>
                             <input class="form-control" type="text" id="lname" name="disability" placeholder="Disability" value="<?php echo $row1['disability'];?>">
                             <p><small class="p-2">leave it blank if none.</small></p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md pt-2">
+                        <div class="col-md pt-1">
+							<label for="exampleInputEmail1" class="form-label">Status: </label>
                             <select class="form-control" id="status" name="status">
                                 <option value="active" <?php if($row1["status"] == "active"){ echo "selected"; }?>>Active</option>
                                 <option value="inactive" <?php if($row1["status"] == "inactive"){ echo "selected"; }?>>Inactive</option>

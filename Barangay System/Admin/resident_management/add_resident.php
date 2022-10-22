@@ -14,7 +14,6 @@
     $birthplace = $_POST['birthplace'];
     $civilstatus = $_POST['civilstatus'];
     $birthday = $_POST['birthday'];
-    $age = $_POST['age'];
     $unitnumber = $_POST['unitnumber'];
     $purok = $_POST['purok'];
     $sitio = $_POST['sitio'];
@@ -69,8 +68,8 @@
         $userid = $uinforow['id'];
 
         /* resident creation query */
-        $query = "INSERT INTO resident_table(user_id,fname,mname,lname,suffix,gender,birthplace,civilstatus,birthday,age,unitnumber,purok,sitio,street,subdivision,contactnumber,email,religion,occupation,education,nationality,disability,status)
-        VALUES('$userid','$fname','$mname','$lname','$suffix','$gender','$birthplace','$civilstatus','$birthday','$age','$unitnumber','$purok','$sitio','$street','$subdivision','$contactnumber','$email','$religion','$occupation','$education','$nationality','$disability','active')";
+        $query = "INSERT INTO resident_table(user_id,fname,mname,lname,suffix,gender,birthplace,civilstatus,birthday,unitnumber,purok,sitio,street,subdivision,contactnumber,email,religion,occupation,education,nationality,disability,status)
+        VALUES('$userid','$fname','$mname','$lname','$suffix','$gender','$birthplace','$civilstatus','$birthday','$unitnumber','$purok','$sitio','$street','$subdivision','$contactnumber','$email','$religion','$occupation','$education','$nationality','$disability','active')";
         $result = $conn -> query($query);
 
         $response['message'] = "Successfully registered";

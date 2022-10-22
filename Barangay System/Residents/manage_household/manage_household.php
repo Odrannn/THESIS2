@@ -114,7 +114,12 @@ if($_SESSION['user_id'] == '') {
                                         <td><?php echo $row1["id"]; ?></td>
                                         <td><?php echo $row1["fname"] . ' ' . $row1["mname"] . ' ' . $row1["lname"] . ' ' . $row1["suffix"]; ?></td>
                                         <td><?php echo $row1["gender"]; ?></td>
-                                        <td><?php echo $row1["age"]; ?></td>
+                                        <td><?php 
+                                            $dateOfBirth = $row1["birthday"];
+                                            $today = date("Y-m-d");
+                                            $diff = date_diff(date_create($dateOfBirth), date_create($today));
+                                            echo $diff->format('%y');
+                                        ?></td>
                                         <td><button data-id="<?php echo $row1['id']; ?>" class="edithousehold btn btn-danger"><i class="fa-solid fa-box-archive"></i></button></td>
                                     </tr>
                                     

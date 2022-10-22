@@ -51,6 +51,17 @@ if($_SESSION['user_id'] == '') {
                 include("../../phpfiles/bgy_info.php");
                 echo $row[2];
             ?>" width = "100" heigh ="100" class="img-thumbnail mx-3">
+            <!--<div class="card mt-2 mx-3">
+                <h5 class="card-header">Website Database</h5>
+                <div class="card-body">
+                    <form class="row g-3" action="color_change.php" method="post">
+                        <div class="col-auto">
+                            <a class="import btn btn-success">Import</a>
+                            <a href="export_database.php" class="import btn btn-primary">Export</a>
+                        </div>
+                    </form>
+                </div>
+            </div>-->
             <div class="card mt-2 mx-3">
                 <h5 class="card-header">Theme Color</h5>
                 <div class="card-body">

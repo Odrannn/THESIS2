@@ -20,7 +20,7 @@ if($_SESSION['user_id'] == '') {
                 $row["education"]="Bachelor''s Degree";
             }
             $allData .= $row["id"] . ',' . $row["user_id"] . ',' . $row["fname"] . ',' . $row["mname"] . ',' . $row["lname"] . ',' . $row["suffix"] . ',' . $row["gender"] . ',' . $row["birthplace"] . ',' . 
-            $row["civilstatus"] . ',' . $row["birthday"] . ',' . $row["age"] . ',' . $row["household_ID"] . ',' . $row["unitnumber"] . ',' . $row["purok"] . ',' . $row["sitio"] . ',' . $row["street"] . ',' . $row["subdivision"] . ',' . 
+            $row["civilstatus"] . ',' . $row["birthday"] . ',' . $row["household_ID"] . ',' . $row["unitnumber"] . ',' . $row["purok"] . ',' . $row["sitio"] . ',' . $row["street"] . ',' . $row["subdivision"] . ',' . 
             $row["contactnumber"] . ',' . $row["email"] . ',' . $row["religion"] . ',' . $row["occupation"] . ',' . $row["education"] . ',' . $row["nationality"] . ',' . $row["disability"] . ',' . $row["status"]
             . ',' . "\n";
         }
@@ -229,6 +229,7 @@ if($_SESSION['user_id'] == '') {
                                             <th>Civil Status</th>
                                             <th>Birthday</th>
                                             <th>Age</th>
+                                            <th>Household ID</th>
                                             <th>Unit Number</th>
                                             <th>Purok</th>
                                             <th>Sitio</th>
@@ -257,7 +258,13 @@ if($_SESSION['user_id'] == '') {
                                         <td><?php echo $row["birthplace"]; ?></td>
                                         <td><?php echo $row["civilstatus"]; ?></td>
                                         <td><?php echo $row["birthday"]; ?></td>
-                                        <td><?php echo $row["age"]; ?></td>
+                                        <td><?php 
+                                            $dateOfBirth = $row["birthday"];
+                                            $today = date("Y-m-d");
+                                            $diff = date_diff(date_create($dateOfBirth), date_create($today));
+                                            echo $diff->format('%y');
+                                        ?></td>
+                                        <td><?php echo $row["household_ID"]; ?></td>
                                         <td><?php echo $row["unitnumber"]; ?></td>
                                         <td><?php echo $row["purok"]; ?></td>
                                         <td><?php echo $row["sitio"]; ?></td>
@@ -291,7 +298,7 @@ if($_SESSION['user_id'] == '') {
                 </div><br>
                 <nav aria-label="Page navigation example">
                     <div class="btn-group" role="group" aria-label="Basic example" style="float: right;">
-                        <div><a class="import btn btn-outline-success">Import</a></div>
+                        <!--<div><a class="import btn btn-outline-success">Import</a></div>-->
                         <div id="response">Please wait..</div>
                     </div>
                     <ul class="pagination">
@@ -374,7 +381,7 @@ if($_SESSION['user_id'] == '') {
         $(document).ready(function(){
             $('.editresident').click(function(){
                 var userid = $(this).data('id');
-                $.ajax({url: "import.php",
+                $.ajax({url: "edit_form.php",
                 method:'post',
                 data: {userid:userid},
                     
@@ -402,7 +409,7 @@ if($_SESSION['user_id'] == '') {
     </script>
     <!-- Export CSV-->
     <script>
-        var data = "data:text/csv;charset=utf-8,ID,User ID,First Name,Middle Name,Last Name,Suffix,Gender,Birthplace,Civil Status,Birthday,Age, Household ID, Unit Number,Purok,Sitio,Street,Subdivision,Contact No.,E-mail,Religion,Occupation,Educational Attainment,Nationality,Disability,Status\n";
+        var data = "data:text/csv;charset=utf-8,ID,User ID,First Name,Middle Name,Last Name,Suffix,Gender,Birthplace,Civil Status,Birthday,Household ID,Unit Number,Purok,Sitio,Street,Subdivision,Contact No.,E-mail,Religion,Occupation,Educational Attainment,Nationality,Disability,Status\n";
 
         $(document).ready(function(){
             exportToCSV(0,<?php echo $numRows ?>);

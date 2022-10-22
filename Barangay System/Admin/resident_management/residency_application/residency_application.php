@@ -212,7 +212,12 @@ if($_SESSION['user_id'] == '') {
                                         <td><?php echo $row["birthplace"]; ?></td>
                                         <td><?php echo $row["civilstatus"]; ?></td>
                                         <td><?php echo $row["birthday"]; ?></td>
-                                        <td><?php echo $row["age"]; ?></td>
+                                        <td><?php 
+                                            $dateOfBirth = $row["birthday"];
+                                            $today = date("Y-m-d");
+                                            $diff = date_diff(date_create($dateOfBirth), date_create($today));
+                                            echo $diff->format('%y');
+                                        ?></td>
                                         <td><?php echo $row["unitnumber"]; ?></td>
                                         <td><?php echo $row["purok"]; ?></td>
                                         <td><?php echo $row["sitio"]; ?></td>
@@ -235,11 +240,11 @@ if($_SESSION['user_id'] == '') {
                     </div>
                 </div><br>
                 <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <div class="btn-group" role="group" aria-label="Basic example" style="float: right;">
+                    <div class="btn-group" role="group" aria-label="Basic example" style="float: right;">
                             <div><a class="import btn btn-outline-success">Import</a></div>
                             <div id="response">Please wait..</div>
-                        </div>
+                    </div>
+                    <ul class="pagination">
                         <li class="page-item"><a class="page-link text-dark" href="residency_application.php?page=<?php echo $previous;?>">Previous</a></li>
                         <?php for($i=1; $i<=$pages;$i++)
                         {?>
@@ -281,6 +286,31 @@ if($_SESSION['user_id'] == '') {
                 $('#appModal').modal('show');
             });
         });
+    </script>
+
+    <!-- Export CSV-->
+    <script>
+        var data = "data:text/csv;charset=utf-8,ID,User ID,First Name,Middle Name,Last Name,Suffix,Gender,Birthplace,Civil Status,Birthday,Household ID,Unit Number,Purok,Sitio,Street,Subdivision,Contact No.,E-mail,Religion,Occupation,Educational Attainment,Nationality,Disability,Status\n";
+
+        $(document).ready(function(){
+            exportToCSV(0,<?php echo $numRows ?>);
+        });
+
+        function exportToCSV(start, max){
+            if (start > max){
+                $("#response").html('<a href="'+data+'" download = "Resident Table" class="btn btn-outline-primary">Export</a>');
+                return;
+            }
+            $.ajax({ url: "resident_management.php",
+            method: 'POST',
+            dataType: 'json',
+            data: {start: start}, 
+            
+            success: function (response) {
+                data += response.data;
+                exportToCSV((start + 50), max);
+            }});
+        }
     </script>
 </body>
 </html>

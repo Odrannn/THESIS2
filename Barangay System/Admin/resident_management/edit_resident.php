@@ -9,7 +9,6 @@
     $birthplace = $_POST['birthplace'];
     $civilstatus = $_POST['civilstatus'];
     $birthday = $_POST['birthday'];
-    $age = $_POST['age'];
     $unitnumber = $_POST['unitnumber'];
     $purok = $_POST['purok'];
     $sitio = $_POST['sitio'];
@@ -40,7 +39,6 @@
         birthplace = '$birthplace',
         civilstatus = '$civilstatus',
         birthday = '$birthday',
-        age = '$age',
         unitnumber = '$unitnumber',
         purok = '$purok',
         sitio = '$sitio',

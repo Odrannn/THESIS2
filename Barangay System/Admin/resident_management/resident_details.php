@@ -21,9 +21,15 @@ if(isset($_POST['userid'])){
                         <p class="m-0"><b>Name: </b><?php echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"] . ' ' . $row["suffix"] ?></p>
                         <p class="m-0"><b>Gender: </b><?php echo $row["gender"] ?></p>
                         <p class="m-0"><b>Place Birth: </b><?php echo $row["birthplace"] ?></p>
-                        <p class="m-0"><b>Age: </b><?php echo $row["age"] ?></p>
                         <p class="m-0"><b>Birthday: </b><?php echo $row["birthday"] ?></p>
+                        <p class="m-0"><b>Age: </b><?php 
+                                            $dateOfBirth = $row["birthday"];
+                                            $today = date("Y-m-d");
+                                            $diff = date_diff(date_create($dateOfBirth), date_create($today));
+                                            echo $diff->format('%y');
+                                        ?></p>
                         <p class="m-0"><b>Civil Status: </b><?php echo $row["civilstatus"] ?></p>
+                        <p class="m-0"><b>Household ID: </b><?php echo $row["household_ID"] ?></p>
                         <p class="m-0"><b>Address: </b><?php echo $row["unitnumber"] . " " . $row["sitio"] . " " . $row["purok"] . " " . $row["subdivision"] . " " . $row["street"] . ", Manila City"?></p>
                         <p class="m-0"><b>Contact Number: </b><?php echo $row["contactnumber"] ?></p>
                         <p class="m-0"><b>Religion: </b><?php echo $row["religion"] ?></p>
