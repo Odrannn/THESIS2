@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2022 at 02:18 PM
+-- Generation Time: Oct 24, 2022 at 05:12 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -83,7 +83,7 @@ INSERT INTO `admin_notification` (`notification_ID`, `notification_type`, `type_
 (14, 'File Blotter', 8, 'filed a blotter.', 10, '22-10-11 06:53:35', 1),
 (15, 'Request Document', 13, 'requested a document.', 10, '22-10-11 07:21:12', 1),
 (16, 'Request Document', 14, 'requested a document.', 11, '22-10-12 04:28:04', 1),
-(17, 'File Blotter', 9, 'filed a blotter.', 11, '22-10-24 12:17:19', 0),
+(17, 'File Blotter', 9, 'filed a blotter.', 11, '22-10-24 12:17:19', 1),
 (18, 'File Blotter', 10, 'filed a blotter.', 11, '22-10-24 12:21:06', 1);
 
 -- --------------------------------------------------------
@@ -409,19 +409,7 @@ INSERT INTO `registration` (`id`, `fname`, `mname`, `lname`, `suffix`, `gender`,
 (21, 'Bernard', 'Kabiling', 'Mazo', 'JR', 'male', 'Pampanga', 'Single', '2022-10-20', 1759, '', '', '', '', '929829390', 'nard.mazo@gmail.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'Filipino', 'none', 'accepted', 'IMG-6336ee77a48797.16008983.jpg'),
 (22, 'Bernard', 'Kabiling', 'Mazo', 'none', 'male', 'Mindoro', 'Married', '2022-10-21', 1759, '', '', '', '', '9283523149', 'bernard.mazo04@gmail.com', 'Roman Catholic', 'Machine Operator', 'College', 'Filipino', 'none', 'accepted', 'IMG-6336f40df0ce87.00659602.jpg'),
 (23, 'Bernandito', 'Malacas', 'Mazo', '', 'male', 'Mindoro', 'Married', '2022-10-22', 1759, '', '', '', '', '9283523144', 'bernandito.mazo@gmail.com', 'Roman Catholic', 'Machine Operator', 'College', 'Filipino', 'none', 'accepted', 'IMG-6336f65190f495.32852079.jpg'),
-(24, 'Bernardo', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2022-10-22', 1759, 'purok 1', 'sitio 1', 'Grove', 'Magnolia Estate', '96160644831', 'nard_mazo@gmail.com1', 'Roman Catholic', 'none', 'Less Than Highschool', 'Filipino', 'none', 'accepted', 'IMG-633ee85b00dd85.83556750.jpg'),
-(7, 'Lenz Janielle', 'Lim', 'Gerongco', NULL, 'female', 'Laguna', 'Single', '2002-09-15', 1004, 'Purok 3', 'sitio 2', 'TELECOM', 'tinagan', '09123456789', 'lenzgerongco@yahoo.com', 'Roman Catholic', 'Flight attendant', 'College', 'Filipino', 'none', 'accepted', 'IMG-631219de1abde9.41773945.jpg'),
-(8, 'Bernard', 'Kabiling', 'Mazo', NULL, 'male', 'Manila', 'Single', '2001-03-27', 1759, 'purok 1', 'sitio 1', 'TELECOM', 'tinagan', '09616064483', 'nard_mazo@gmail.com', 'Roman Catholic', 'Programmer', 'College', 'Filipino', 'none', 'accepted', 'IMG-63121afc4c1067.08242643.jpg'),
-(9, 'Christian Philip', 'Diff', 'Orsolino', NULL, 'male', 'Manila', 'Single', '2000-12-11', 1000, 'purok 1', 'sitio 2', 'TELECOM', 'tinagan', '09283523142', 'chris.orsolino@gmail.com', 'Roman Catholic', 'Dancer', 'College', 'Filipino', 'none', 'accepted', 'IMG-6315e248db3a50.51752994.jpg'),
-(10, 'Charles Wilcent', 'Ilustre', 'Urbano', NULL, 'male', 'Manila', 'Single', '2000-12-02', 4598, 'purok 2', 'sitio 3', 'TELECOM', 'sevilla street', '09264561231', 'wilson.urbano@gmail.con', 'Roman Catholic', 'Axie player', 'College', 'Filipino', 'none', 'accepted', 'IMG-6315e7787044d0.53015656.jpg'),
-(11, 'Jehan', '', 'Hadji Said', NULL, 'male', 'Manila', 'Single', '2000-06-12', 12312, 'purok 2', 'sitio 2', 'kalyepogi', 'parking', '09108418705', 'jehan.said@gmail.com', 'Islam', 'Web developer', 'College', 'Filipino', 'none', 'accepted', 'IMG-6316093cd6aa57.65981626.jpg'),
-(15, 'john daniel', 'san juan', 'policarpio', NULL, 'male', 'mindoro', 'Married', '2002-09-28', 1004, 'purok 2', 'sitio 3', 'LRC', 'sevilla street', '09789789788', 'juan.delecaruz123', 'Roman Catholic', 'Web developer', 'Less Than Highschool', 'russian', 'pogi', 'accepted', 'IMG-6322a81c7d8017.79649686.jpg'),
-(16, 'john daniel', 'san juan', 'policarpio', NULL, 'male', 'mindoro', 'Widowed', '2022-09-20', 1004, '1', 'sitio 1', 'kalyepogi', 'tinagan', '09123123123', 'juan.delecaruz123', 'Jehovah\'\'s Witnesses', 'programmer', 'Bachelor\'\'s Degree', 'Filipino', 'pogi', 'accepted', 'IMG-6322a861ded505.42428598.jpg'),
-(19, 'Denver ', 'Kabiling', 'Mazo', NULL, 'male', 'Pampanga', 'Single', '1999-01-12', 1759, 'purok 1', 'sitio 1', 'KalyePogi', 'Magnolia Estate', '09475044087', 'denver.mazo@gmail.com', 'Roman Catholic', 'Cook', 'College', 'Filipino', 'None', 'accepted', 'IMG-6336cfb21effb4.96116588.png'),
-(21, 'Bernard', 'Kabiling', 'Mazo', 'JR', 'male', 'Pampanga', 'Single', '2002-06-04', 1759, '', '', '', '', '0929829390', 'nard.mazo@gmail.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'Filipino', 'none', 'accepted', 'IMG-6336ee77a48797.16008983.jpg'),
-(22, 'Bernard', 'Kabiling', 'Mazo', 'none', 'male', 'Mindoro', 'Married', '1997-09-21', 1759, '', '', '', '', '09283523149', 'bernard.mazo04@gmail.com', 'Roman Catholic', 'Machine Operator', 'College', 'Filipino', 'none', 'accepted', 'IMG-6336f40df0ce87.00659602.jpg'),
-(23, 'Bernandito', 'Malacas', 'Mazo', '', 'male', 'Mindoro', 'Married', '1999-09-07', 1759, '', '', '', '', '09283523144', 'bernandito.mazo@gmail.com', 'Roman Catholic', 'Machine Operator', 'College', 'Filipino', 'none', 'accepted', 'IMG-6336f65190f495.32852079.jpg'),
-(24, 'Bernardo', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2001-10-12', 1759, 'purok 1', 'sitio 1', 'Grove', 'Magnolia Estate', '096160644831', 'nard_mazo@gmail.com1', 'Roman Catholic', 'none', 'Less Than Highschool', 'Filipino', 'none', 'accepted', 'IMG-633ee85b00dd85.83556750.jpg');
+(24, 'Bernardo', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2022-10-22', 1759, 'purok 1', 'sitio 1', 'Grove', 'Magnolia Estate', '96160644831', 'nard_mazo@gmail.com1', 'Roman Catholic', 'none', 'Less Than Highschool', 'Filipino', 'none', 'accepted', 'IMG-633ee85b00dd85.83556750.jpg');
 
 -- --------------------------------------------------------
 
@@ -666,7 +654,7 @@ CREATE TABLE `user_notification` (
   `notification_ID` int(11) NOT NULL,
   `notification_type` varchar(50) NOT NULL,
   `message` varchar(300) NOT NULL,
-  `source_ID` int(11) NOT NULL,
+  `source_ID` int(11) DEFAULT NULL,
   `resident_ID` int(11) DEFAULT NULL,
   `date_time` datetime NOT NULL,
   `status` smallint(2) NOT NULL
@@ -682,7 +670,7 @@ INSERT INTO `user_notification` (`notification_ID`, `notification_type`, `messag
 (9, 'Requested Document on process', 'Your document request is on process.', 5, 11, '2022-10-11 00:00:00', 1),
 (10, 'Requested Document on process', 'Your Certificate of Indigency request is on proces', 5, 11, '2022-10-11 00:00:00', 1),
 (11, 'Requested Document on process', 'Your Barangay Clearance request is on process.', 5, 11, '2022-10-11 00:00:00', 1),
-(12, 'Filed Complaint', 'Your complain has been marked solved.', 0, 0, '2022-10-11 00:00:00', 0),
+(12, 'Filed Complaint', 'Your complain has been marked solved.', NULL, 0, '2022-10-11 00:00:00', 0),
 (13, 'Filed Complaint', 'Your complain has been marked solved.', 5, 0, '2022-10-11 00:00:00', 0),
 (14, 'Filed Complaint', 'Your complain has been marked solved.', 5, 9, '2022-10-11 00:00:00', 1),
 (15, 'Filed Complaint', 'Your complain has been marked solved.', 5, 9, '2022-10-11 06:13:37', 1),
@@ -753,8 +741,8 @@ ALTER TABLE `complaint_table`
 ALTER TABLE `document_request`
   ADD PRIMARY KEY (`request_ID`),
   ADD KEY `OFFICIAL_2` (`official_ID`),
-  ADD KEY `RESIDENT_2` (`resident_ID`),
-  ADD KEY `NAME` (`document_ID`);
+  ADD KEY `NAME` (`document_ID`),
+  ADD KEY `RESIDENT_2` (`resident_ID`);
 
 --
 -- Indexes for table `document_type`
@@ -781,12 +769,18 @@ ALTER TABLE `modules_available`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `registration`
+--
+ALTER TABLE `registration`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `resident_table`
 --
 ALTER TABLE `resident_table`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `HOUSE` (`household_ID`),
-  ADD KEY `test` (`user_id`);
+  ADD KEY `test` (`user_id`),
+  ADD KEY `HOUSE` (`household_ID`);
 
 --
 -- Indexes for table `suggestion_table`
@@ -808,8 +802,8 @@ ALTER TABLE `tblhousehold`
 --
 ALTER TABLE `tblofficial`
   ADD PRIMARY KEY (`official_id`),
-  ADD KEY `residency` (`resident_id`),
-  ADD KEY `ACCOUNT` (`user_id`);
+  ADD KEY `ACCOUNT` (`user_id`),
+  ADD KEY `residency` (`resident_id`);
 
 --
 -- Indexes for table `tbluser`
@@ -821,7 +815,8 @@ ALTER TABLE `tbluser`
 -- Indexes for table `user_notification`
 --
 ALTER TABLE `user_notification`
-  ADD PRIMARY KEY (`notification_ID`);
+  ADD PRIMARY KEY (`notification_ID`),
+  ADD KEY `OFFICIAL_3` (`source_ID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -900,6 +895,12 @@ ALTER TABLE `modules_available`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `registration`
+--
+ALTER TABLE `registration`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
 -- AUTO_INCREMENT for table `resident_table`
 --
 ALTER TABLE `resident_table`
@@ -921,7 +922,7 @@ ALTER TABLE `tblhousehold`
 -- AUTO_INCREMENT for table `tblofficial`
 --
 ALTER TABLE `tblofficial`
-  MODIFY `official_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `official_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `tbluser`
@@ -986,8 +987,14 @@ ALTER TABLE `tblhousehold`
 -- Constraints for table `tblofficial`
 --
 ALTER TABLE `tblofficial`
-  ADD CONSTRAINT `ACCOUNT` FOREIGN KEY (`user_id`) REFERENCES `tbluser` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `ACCOUNT` FOREIGN KEY (`user_id`) REFERENCES `tbluser` (`id`),
   ADD CONSTRAINT `residency` FOREIGN KEY (`resident_id`) REFERENCES `resident_table` (`id`);
+
+--
+-- Constraints for table `user_notification`
+--
+ALTER TABLE `user_notification`
+  ADD CONSTRAINT `OFFICIAL_3` FOREIGN KEY (`source_ID`) REFERENCES `tblofficial` (`official_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

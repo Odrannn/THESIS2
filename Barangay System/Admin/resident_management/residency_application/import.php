@@ -59,6 +59,13 @@ if(isset($_POST["import"])){
                 $_SESSION["importRegistration"] = "fail";
             }
         }
+
+        $sql = "ALTER TABLE `registration`
+        ADD PRIMARY KEY (`id`);
+
+        ALTER TABLE `registration`
+        MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;";
+        $result = $conn -> multi_query($sql);
     }
 }
 header("location:residency_application.php");

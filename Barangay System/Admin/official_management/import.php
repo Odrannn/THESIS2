@@ -1,68 +1,57 @@
 <?php
 session_start();
-$_SESSION["importMessage"] = "";
+$_SESSION["importOfficial"] = "";
 include('../../phpfiles/connection.php');
 
 if(isset($_POST["import"])){
-    //household end fk
-    $sql = "ALTER TABLE tblhousehold
-    DROP CONSTRAINT HEAD;";
-    $result = $conn -> query($sql);
-
-    //household fk
-    $sql = "ALTER TABLE resident_table
-    DROP CONSTRAINT HOUSE;";
-    $result = $conn -> query($sql);
-
     //user id fk
-    $sql = "ALTER TABLE resident_table
-    DROP CONSTRAINT test;";
+    $sql = "ALTER TABLE tblofficial
+    DROP CONSTRAINT ACCOUNT;";
     $result = $conn -> query($sql);
 
-    //officials fk
+    //RESIDENT fk
     $sql = "ALTER TABLE tblofficial
     DROP CONSTRAINT residency;";
     $result = $conn -> query($sql);
 
     //complaint fk
     $sql = "ALTER TABLE complaint_table
-    DROP CONSTRAINT SENDER;";
+    DROP CONSTRAINT INCHARGE;";
     $result = $conn -> query($sql);
 
     //suggestion fk
     $sql = "ALTER TABLE suggestion_table
-    DROP CONSTRAINT RESIDENT;";
+    DROP CONSTRAINT OFFICIAL;";
     $result = $conn -> query($sql);
 
-    //drop resident table
-    $sql = "DROP TABLE resident_table;";
+    //blotter fk
+    $sql = "ALTER TABLE blotter_table
+    DROP CONSTRAINT OFFICIAL_IG;";
     $result = $conn -> query($sql);
 
-    $sql = "CREATE TABLE `resident_table` (
-        `id` int(11) NOT NULL,
-        `user_id` int(11) DEFAULT NULL,
-        `fname` varchar(100) NOT NULL,
-        `mname` varchar(100) NOT NULL,
-        `lname` varchar(100) NOT NULL,
-        `suffix` varchar(10) NOT NULL,
-        `gender` varchar(10) NOT NULL,
-        `birthplace` varchar(100) NOT NULL,
-        `civilstatus` varchar(50) NOT NULL,
-        `birthday` date NOT NULL,
-        `household_ID` int(11) DEFAULT NULL,
-        `unitnumber` int(50) NOT NULL,
-        `purok` varchar(50) NOT NULL,
-        `sitio` varchar(50) NOT NULL,
-        `street` varchar(50) NOT NULL,
-        `subdivision` varchar(50) NOT NULL,
-        `contactnumber` varchar(50) DEFAULT NULL,
-        `email` varchar(100) NOT NULL,
-        `religion` varchar(100) NOT NULL,
-        `occupation` varchar(100) NOT NULL,
-        `education` varchar(100) NOT NULL,
-        `nationality` varchar(100) NOT NULL,
-        `disability` varchar(100) NOT NULL,
-        `status` varchar(20) NOT NULL
+    //request fk
+    $sql = "ALTER TABLE document_request
+    DROP CONSTRAINT OFFICIAL_2;";
+    $result = $conn -> query($sql);
+
+    //notif fk
+    $sql = "ALTER TABLE user_notification
+    DROP CONSTRAINT OFFICIAL_3;";
+    $result = $conn -> query($sql);
+
+    //drop officials table
+    $sql = "DROP TABLE tblofficial;";
+    $result = $conn -> query($sql);
+
+    $sql = "CREATE TABLE `tblofficial` (
+        `official_id` int(11) NOT NULL,
+        `resident_id` int(11) NOT NULL,
+        `user_id` int(11) NOT NULL,
+        `name` varchar(50) NOT NULL,
+        `position` varchar(30) NOT NULL,
+        `term_start` date NOT NULL,
+        `term_end` date NOT NULL,
+        `status` text NOT NULL
       )";
     $result = $conn -> query($sql);
 
@@ -74,56 +63,53 @@ if(isset($_POST["import"])){
 
         while(($column = fgetcsv($file, 10000, ",")) !== FALSE){
 
-            $orgDate = $column[9];  
-            $newDate = date("Y-m-d", strtotime($orgDate));  
-
-            $sqlInsert = "INSERT INTO resident_table(id,user_id,fname,mname,lname,suffix,gender,birthplace,civilstatus,birthday,household_ID,unitnumber,purok,sitio,street,subdivision,contactnumber,email,religion,occupation,education,nationality,disability,status)
-            VALUES ('" . $column[0] . "', '" . $column[1] . "', '" . $column[2] . "', '" . $column[3] . "', '". $column[4] . "', '" . $column[5] . "', '" . $column[6] . "', '" . $column[7] . "', '" . $column[8] . "', '" . $newDate . "', '" . $column[10] . "', '" 
-             . $column[11] . "', '" . $column[12] . "', '" . $column[13] . "', '" . $column[14] . "', '". $column[15] . "', '" . $column[16] . "', '" . $column[17] . "', '" . $column[18] . "', '" . $column[19] . "', '" . $column[20] . "', '" . $column[21] . "', '"
-             . $column[22] . "', '" . $column[23] . "')";
+            $sqlInsert = "INSERT INTO `tblofficial` (`official_id`, `resident_id`, `user_id`, `name`, `position`, `term_start`, `term_end`, `status`)
+            VALUES ('" . $column[0] . "', '" . $column[1] . "', '" . $column[2] . "', '" . $column[3] . "', '". $column[4] . "', '" . $column[5] . "', '" . $column[6] . "', '" . $column[7] . "')";
 
             $result = mysqli_query($conn, $sqlInsert);
 
             if(!empty($result)){
-                $_SESSION["importMessage"] = "success";
+                $_SESSION["importOfficial"] = "success";
             } else {
-                $_SESSION["importMessage"] = "fail";
+                $_SESSION["importOfficial"] = "fail";
             }
         }
-        $sql = "ALTER TABLE `resident_table`
-        ADD PRIMARY KEY (`id`);
+        $sql = "ALTER TABLE `tblofficial`
+        ADD PRIMARY KEY (`official_id`);
 
-        ALTER TABLE `resident_table`
-        MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
-
-        ALTER TABLE tblhousehold
-        ADD CONSTRAINT HEAD
-        FOREIGN KEY (household_head_ID) REFERENCES resident_table(id);
-        
-        UPDATE resident_table SET household_ID = NULL where household_ID = '0';
-        
-        ALTER TABLE resident_table
-        ADD CONSTRAINT HOUSE
-        FOREIGN KEY (household_ID) REFERENCES tblhousehold(household_id);
-        
-        ALTER TABLE resident_table
-        ADD CONSTRAINT test
-        FOREIGN KEY (user_id) REFERENCES tbluser(id);
+        ALTER TABLE `tblofficial`
+        MODIFY `official_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
         ALTER TABLE tblofficial
         ADD CONSTRAINT residency
         FOREIGN KEY (resident_id) REFERENCES resident_table(id);
         
+        ALTER TABLE tblofficial
+        ADD CONSTRAINT ACCOUNT
+        FOREIGN KEY (user_id) REFERENCES tbluser(id);
+        
         ALTER TABLE complaint_table
-        ADD CONSTRAINT SENDER
-        FOREIGN KEY (sender_ID) REFERENCES resident_table(id);
+        ADD CONSTRAINT INCHARGE
+        FOREIGN KEY (official_ID) REFERENCES tblofficial(official_id);
         
         ALTER TABLE suggestion_table
-        ADD CONSTRAINT RESIDENT
-        FOREIGN KEY (sender_ID) REFERENCES resident_table(id);";
+        ADD CONSTRAINT OFFICIAL
+        FOREIGN KEY (official_ID) REFERENCES tblofficial(official_id);
+
+        ALTER TABLE blotter_table
+        ADD CONSTRAINT OFFICIAL_IG
+        FOREIGN KEY (official_ID) REFERENCES tblofficial(official_id);
+
+        ALTER TABLE document_request
+        ADD CONSTRAINT OFFICIAL_2
+        FOREIGN KEY (official_ID) REFERENCES tblofficial(official_id);
+
+        ALTER TABLE user_notification
+        ADD CONSTRAINT OFFICIAL_3
+        FOREIGN KEY (source_ID) REFERENCES tblofficial(official_id);";
 
         $result = $conn -> multi_query($sql);
     }
 }
-header("location:resident_management.php");
+header("location:official_management.php");
 ?>

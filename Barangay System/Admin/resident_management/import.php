@@ -34,6 +34,20 @@ if(isset($_POST["import"])){
     DROP CONSTRAINT RESIDENT;";
     $result = $conn -> query($sql);
 
+    //blotter fk
+    $sql = "ALTER TABLE blotter_table
+    DROP CONSTRAINT COMPLAINEE;";
+    $result = $conn -> query($sql);
+
+    $sql = "ALTER TABLE blotter_table
+    DROP CONSTRAINT COMPLAINANT;";
+    $result = $conn -> query($sql);
+
+    //request fk
+    $sql = "ALTER TABLE document_request
+    DROP CONSTRAINT RESIDENT_2;";
+    $result = $conn -> query($sql);
+
     //drop resident table
     $sql = "DROP TABLE resident_table;";
     $result = $conn -> query($sql);
@@ -120,7 +134,19 @@ if(isset($_POST["import"])){
         
         ALTER TABLE suggestion_table
         ADD CONSTRAINT RESIDENT
-        FOREIGN KEY (sender_ID) REFERENCES resident_table(id);";
+        FOREIGN KEY (sender_ID) REFERENCES resident_table(id);
+        
+        ALTER TABLE blotter_table
+        ADD CONSTRAINT COMPLAINANT
+        FOREIGN KEY (complainant_ID) REFERENCES resident_table(id);
+
+        ALTER TABLE blotter_table
+        ADD CONSTRAINT COMPLAINEE
+        FOREIGN KEY (complainee_ID) REFERENCES resident_table(id);
+        
+        ALTER TABLE document_request
+        ADD CONSTRAINT RESIDENT_2
+        FOREIGN KEY (resident_ID) REFERENCES resident_table(id);";
 
         $result = $conn -> multi_query($sql);
     }

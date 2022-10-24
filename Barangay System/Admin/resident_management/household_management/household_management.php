@@ -326,7 +326,7 @@ if($_SESSION['user_id'] == '') {
     </script>
     <!-- Export CSV-->
     <script>
-        var data = "data:text/csv;charset=utf-8,Household ID,Household Member,Head ID,Family Name, Status\n";
+        var data = "data:text/csv;charset=utf-8,";
 
         $(document).ready(function(){
             exportToCSV(0,<?php echo $numRows ?>);
