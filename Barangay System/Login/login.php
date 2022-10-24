@@ -69,7 +69,7 @@ if(isset($_SESSION['user_id']))
                 <label class="form-check-label" for="check">Remember me</label>
             </div>-->
             
-            <button type="button" class="btn btn-link p-0">Forgot Password?</button>
+            <!--<button type="button" class="btn btn-link p-0">Forgot Password?</button>-->
             <input class="btn btn-success w-100" type="submit" name ="login" value="LOG IN">
         </form>
         

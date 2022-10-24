@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2022 at 07:20 PM
+-- Generation Time: Oct 24, 2022 at 02:18 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -82,7 +82,9 @@ INSERT INTO `admin_notification` (`notification_ID`, `notification_type`, `type_
 (13, 'File Complaint', 15, 'filed a complaint.', 9, '22-10-11 02:38:02', 1),
 (14, 'File Blotter', 8, 'filed a blotter.', 10, '22-10-11 06:53:35', 1),
 (15, 'Request Document', 13, 'requested a document.', 10, '22-10-11 07:21:12', 1),
-(16, 'Request Document', 14, 'requested a document.', 11, '22-10-12 04:28:04', 1);
+(16, 'Request Document', 14, 'requested a document.', 11, '22-10-12 04:28:04', 1),
+(17, 'File Blotter', 9, 'filed a blotter.', 11, '22-10-24 12:17:19', 0),
+(18, 'File Blotter', 10, 'filed a blotter.', 11, '22-10-24 12:21:06', 1);
 
 -- --------------------------------------------------------
 
@@ -140,7 +142,7 @@ CREATE TABLE `blotter_table` (
   `blotter_ID` int(11) NOT NULL,
   `official_ID` int(11) DEFAULT NULL,
   `complainant_ID` int(11) NOT NULL,
-  `complainee_ID` int(11) NOT NULL,
+  `complainee_ID` int(11) DEFAULT NULL,
   `complainee_name` varchar(100) NOT NULL,
   `blotter_date` date NOT NULL,
   `blotter_time` time NOT NULL,
@@ -158,12 +160,14 @@ CREATE TABLE `blotter_table` (
 
 INSERT INTO `blotter_table` (`blotter_ID`, `official_ID`, `complainant_ID`, `complainee_ID`, `complainee_name`, `blotter_date`, `blotter_time`, `blotter_accusation`, `blotter_details`, `settlement_schedule`, `settlement_time`, `result_of_settlement`, `status`) VALUES
 (2, 5, 9, 8, 'Bernard Kabiling Mazo', '2022-10-01', '23:38:00', 'Handsome problem', 'Ampogi ni Bernard Mazo', '0000-00-00', '00:00:00', 'asd', 'unsettled'),
-(3, NULL, 9, 0, 'Kyrie Irving', '2022-10-13', '23:42:00', 'Stafa', 'Inistafa yung pusta namin sa basketball', '0000-00-00', '00:00:00', '', 'unscheduled'),
-(4, 5, 9, 0, 'Lebron James', '2022-09-28', '23:42:00', 'Play and Run', 'hindi nag bayad ng pang schedule', '2022-10-19', '12:52:00', 'asdas', 'settled'),
+(3, NULL, 9, NULL, 'Kyrie Irving', '2022-10-13', '23:42:00', 'Stafa', 'Inistafa yung pusta namin sa basketball', '0000-00-00', '00:00:00', '', 'unscheduled'),
+(4, 5, 9, NULL, 'Lebron James', '2022-09-28', '23:42:00', 'Play and Run', 'hindi nag bayad ng pang schedule', '2022-10-19', '12:52:00', 'asdas', 'settled'),
 (5, 5, 9, 10, 'Charles Wilcent Ilustre Urbano', '0000-00-00', '13:02:00', 'Nanuntok', 'nanuntok ng limang tao', '2022-10-12', '08:37:00', '', 'scheduled'),
-(6, NULL, 11, 38, 'Bernard Kabilin Mazo', '2022-10-05', '22:17:00', 'igop', 'asdasdasdas', '0000-00-00', NULL, '', 'unscheduled'),
+(6, NULL, 11, 38, 'Bernard Kabilin Mazo', '2022-10-05', '22:17:00', 'igop', 'asdasdasdas', '0000-00-00', '00:00:00', '', 'unscheduled'),
 (7, 5, 11, 10, 'Charles Wilcent Ilustre Urbano', '2022-09-29', '22:19:00', 'sobrang pogi', 'asdsadasd', '2022-10-15', '10:00:00', '', 'scheduled'),
-(8, NULL, 10, 29, 'john daniel san juan policarpio', '2022-10-06', '00:54:00', 'nanapak', 'sinapak ako sa kanto', '0000-00-00', NULL, '', 'unscheduled');
+(8, NULL, 10, 29, 'john daniel san juan policarpio', '2022-10-06', '00:54:00', 'nanapak', 'sinapak ako sa kanto', '0000-00-00', '00:00:00', '', 'unscheduled'),
+(9, NULL, 11, NULL, 'Jhepoy Dizon', '2022-10-11', '18:20:00', 'Bully', 'bullying', '0000-00-00', '00:00:00', '', 'unscheduled'),
+(10, NULL, 11, NULL, 'Wilson The Goat', '2022-10-11', '18:23:00', 'Maingay', 'asdawdwadawd', '0000-00-00', '00:00:00', '', 'unscheduled');
 
 -- --------------------------------------------------------
 
@@ -210,18 +214,18 @@ CREATE TABLE `complaint_table` (
 --
 
 INSERT INTO `complaint_table` (`complaint_ID`, `official_ID`, `sender_ID`, `complaint_nature`, `comp_desc`, `complaint_date`, `img_proof`, `complaint_status`) VALUES
-(1, 5, 9, 'Dirty Barangay', 'sad', '2022-09-26', 'IMG-6331aa2bdf2245.84869776.png', 'solved'),
-(2, 5, 9, 'Drugs', 'drugs drugs drugs drugs drugs', '2022-09-26', 'IMG-6331aa8ac786d0.08725937.png', 'solved'),
-(3, 5, 9, 'Gossip Mongers', 'Wilcent urbano ang ngalan', '2022-09-27', 'IMG-6332ec0067dd74.43852234.png', 'solved'),
-(4, 5, 9, 'Noise', 'Noisy Karaoke', '2022-09-27', 'IMG-6332ece1b2b828.26135177.png', 'solved'),
-(7, 5, 9, 'Drugs', 'sdfdsf', '2022-09-27', 'IMG-6333053e5fcb96.27694649.png', 'solved'),
-(9, 6, 9, 'Gossip Mongers', 'tsismosa', '2022-09-28', '', 'solved'),
-(10, 6, 9, 'Other', 'SUGALAN SA KANTO', '2022-09-28', '', 'solved'),
-(11, NULL, 9, 'Other', 'illegal parking', '2022-09-28', '', 'pending'),
-(12, NULL, 9, 'Other', 'sugalan', '2022-10-17', 'IMG-633453d006e131.68377680.jpg', 'pending'),
-(13, 5, 9, 'Other', 'illegal parking', '2022-10-17', 'IMG-633453de511e23.56622787.jpg', 'solved'),
-(14, 5, 9, 'Dirty Barangay', 'street 1 is very dirty', '2022-10-17', 'IMG-63346d10292875.87716455.jpg', 'solved'),
-(15, 5, 9, 'Dirty Barangay', 'asdasdas', '2022-10-18', 'IMG-634563a9e852f8.39870037.jpg', 'solved');
+(1, 5, 9, 'Dirty Barangay', 'sad', '0000-00-00', 'IMG-6331aa2bdf2245.84869776.png', 'solved'),
+(2, 5, 9, 'Drugs', 'drugs drugs drugs drugs drugs', '0000-00-00', 'IMG-6331aa8ac786d0.08725937.png', 'solved'),
+(3, 5, 9, 'Gossip Mongers', 'Wilcent urbano ang ngalan', '0000-00-00', 'IMG-6332ec0067dd74.43852234.png', 'solved'),
+(4, 5, 9, 'Noise', 'Noisy Karaoke', '0000-00-00', 'IMG-6332ece1b2b828.26135177.png', 'solved'),
+(7, 5, 9, 'Drugs', 'sdfdsf', '0000-00-00', 'IMG-6333053e5fcb96.27694649.png', 'solved'),
+(9, 6, 9, 'Gossip Mongers', 'tsismosa', '0000-00-00', '', 'solved'),
+(10, 6, 9, 'Other', 'SUGALAN SA KANTO', '0000-00-00', '', 'solved'),
+(11, NULL, 9, 'Other', 'illegal parking', '0000-00-00', '', 'pending'),
+(12, NULL, 9, 'Other', 'sugalan', '0000-00-00', 'IMG-633453d006e131.68377680.jpg', 'pending'),
+(13, 5, 9, 'Other', 'illegal parking', '0000-00-00', 'IMG-633453de511e23.56622787.jpg', 'solved'),
+(14, 5, 9, 'Dirty Barangay', 'street 1 is very dirty', '0000-00-00', 'IMG-63346d10292875.87716455.jpg', 'solved'),
+(15, 5, 9, 'Dirty Barangay', 'asdasdas', '0000-00-00', 'IMG-634563a9e852f8.39870037.jpg', 'solved');
 
 -- --------------------------------------------------------
 
@@ -500,7 +504,7 @@ INSERT INTO `suggestion_table` (`suggestion_ID`, `official_ID`, `sender_ID`, `su
 (4, NULL, 9, 'Sports', 'please organize a basketball league', '2022-09-28', '', 'pending'),
 (5, 6, 9, 'Sports', 'please organize a basketball league', '2022-09-28', 'Sige sabi mo eh', 'noticed'),
 (6, NULL, 9, 'Health', 'Conduct operation tuli', '2022-09-28', '', 'pending'),
-(7, NULL, 9, 'Barangay Improvement', 'your hall looks dirty, do some operation cleaning!!', '2022-09-28', '', 'pending'),
+(7, NULL, 9, 'Barangay Improvement', 'your hall looks dirty do some operation cleaning!!', '2022-09-28', '', 'pending'),
 (8, NULL, 9, 'Sports', 'please conduct a summer league', '2022-09-28', '', 'pending'),
 (9, 6, 9, 'Barangay Improvement', 'clean the purok 1', '2022-09-28', 'salamat thanks', 'noticed'),
 (10, 4, 9, 'Other', 'asndlnalsd', '2022-09-28', 'ah gegege', 'noticed'),
@@ -638,7 +642,7 @@ CREATE TABLE `tbluser` (
 INSERT INTO `tbluser` (`id`, `username`, `password`, `type`, `profile`) VALUES
 (7, 'lenzay', '456', 'admin', 'default.jpg'),
 (8, 'Odrannn', '123', 'admin0', 'USER8-634839116729b9.72061641.jpg'),
-(9, '09283523142', '12345678', 'user', 'USER9-63483de9ae6059.84184043.jpg'),
+(9, '09095307513', '12345678', 'user', 'USER9-63483de9ae6059.84184043.jpg'),
 (10, 'wil', 'wil', 'user', 'default.jpg'),
 (11, 'jehan', '456', 'user', 'default.jpg'),
 (13, '09781234567', '12345678', 'admin0', 'default.jpg'),
@@ -690,7 +694,7 @@ INSERT INTO `user_notification` (`notification_ID`, `notification_type`, `messag
 (34, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\n    You can now download the soft copy from view<br>\n    requests tab or claim it in the Barangay Hall.', 5, 11, '2022-10-12 04:11:29', 1),
 (35, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\n    You can now download the soft copy from view<br>\n    requests tab or claim it in the Barangay Hall.', 5, 11, '2022-10-12 04:12:04', 1),
 (36, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\n    You can now download the soft copy from view<br>\n    requests tab or claim it in the Barangay Hall.', 5, 11, '2022-10-12 04:12:09', 1),
-(37, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-10-12 04:35:18', 0);
+(37, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-10-12 04:35:18', 1);
 
 --
 -- Indexes for dumped tables
@@ -724,7 +728,10 @@ ALTER TABLE `bgy_info`
 -- Indexes for table `blotter_table`
 --
 ALTER TABLE `blotter_table`
-  ADD PRIMARY KEY (`blotter_ID`);
+  ADD PRIMARY KEY (`blotter_ID`),
+  ADD KEY `OFFICIAL_IG` (`official_ID`),
+  ADD KEY `COMPLAINANT` (`complainant_ID`),
+  ADD KEY `COMPLAINEE` (`complainee_ID`);
 
 --
 -- Indexes for table `case_option`
@@ -745,6 +752,8 @@ ALTER TABLE `complaint_table`
 --
 ALTER TABLE `document_request`
   ADD PRIMARY KEY (`request_ID`),
+  ADD KEY `OFFICIAL_2` (`official_ID`),
+  ADD KEY `RESIDENT_2` (`resident_ID`),
   ADD KEY `NAME` (`document_ID`);
 
 --
@@ -828,7 +837,7 @@ ALTER TABLE `address_fields`
 -- AUTO_INCREMENT for table `admin_notification`
 --
 ALTER TABLE `admin_notification`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `announcement`
@@ -846,7 +855,7 @@ ALTER TABLE `bgy_info`
 -- AUTO_INCREMENT for table `blotter_table`
 --
 ALTER TABLE `blotter_table`
-  MODIFY `blotter_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `blotter_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `case_option`
@@ -931,17 +940,27 @@ ALTER TABLE `user_notification`
 --
 
 --
+-- Constraints for table `blotter_table`
+--
+ALTER TABLE `blotter_table`
+  ADD CONSTRAINT `COMPLAINANT` FOREIGN KEY (`complainant_ID`) REFERENCES `resident_table` (`id`),
+  ADD CONSTRAINT `COMPLAINEE` FOREIGN KEY (`complainee_ID`) REFERENCES `resident_table` (`id`),
+  ADD CONSTRAINT `OFFICIAL_IG` FOREIGN KEY (`official_ID`) REFERENCES `tblofficial` (`official_id`);
+
+--
 -- Constraints for table `complaint_table`
 --
 ALTER TABLE `complaint_table`
-  ADD CONSTRAINT `INCHARGE` FOREIGN KEY (`official_ID`) REFERENCES `tblofficial` (`official_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `INCHARGE` FOREIGN KEY (`official_ID`) REFERENCES `tblofficial` (`official_id`),
   ADD CONSTRAINT `SENDER` FOREIGN KEY (`sender_ID`) REFERENCES `resident_table` (`id`);
 
 --
 -- Constraints for table `document_request`
 --
 ALTER TABLE `document_request`
-  ADD CONSTRAINT `NAME` FOREIGN KEY (`document_ID`) REFERENCES `document_type` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
+  ADD CONSTRAINT `NAME` FOREIGN KEY (`document_ID`) REFERENCES `document_type` (`id`),
+  ADD CONSTRAINT `OFFICIAL_2` FOREIGN KEY (`official_ID`) REFERENCES `tblofficial` (`official_id`),
+  ADD CONSTRAINT `RESIDENT_2` FOREIGN KEY (`resident_ID`) REFERENCES `resident_table` (`id`);
 
 --
 -- Constraints for table `resident_table`
@@ -954,7 +973,7 @@ ALTER TABLE `resident_table`
 -- Constraints for table `suggestion_table`
 --
 ALTER TABLE `suggestion_table`
-  ADD CONSTRAINT `OFFICIAL` FOREIGN KEY (`official_ID`) REFERENCES `tblofficial` (`official_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `OFFICIAL` FOREIGN KEY (`official_ID`) REFERENCES `tblofficial` (`official_id`),
   ADD CONSTRAINT `RESIDENT` FOREIGN KEY (`sender_ID`) REFERENCES `resident_table` (`id`);
 
 --

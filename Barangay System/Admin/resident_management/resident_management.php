@@ -409,7 +409,7 @@ if($_SESSION['user_id'] == '') {
     </script>
     <!-- Export CSV-->
     <script>
-        var data = "data:text/csv;charset=utf-8,ID,User ID,First Name,Middle Name,Last Name,Suffix,Gender,Birthplace,Civil Status,Birthday,Household ID,Unit Number,Purok,Sitio,Street,Subdivision,Contact No.,E-mail,Religion,Occupation,Educational Attainment,Nationality,Disability,Status\n";
+        var data = "data:text/csv;charset=utf-8,";
 
         $(document).ready(function(){
             exportToCSV(0,<?php echo $numRows ?>);

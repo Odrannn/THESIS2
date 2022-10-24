@@ -123,7 +123,6 @@
         
         $_SESSION['blotter_message'] = "Your blotter has been successfully submitted.
         Please wait patiently, your case is in process. You can monitor its status in the tracking section or check your notification for updates.";
-        header("location:file_blotter/file_blotter.php");
 
         //get the recent blotter ID
         $query = "SELECT blotter_ID FROM blotter_table
@@ -135,6 +134,9 @@
         $date1 = date('y-m-d h:i:s');
         $query = "INSERT INTO admin_notification(notification_type, type_ID, message, source_ID, date_time, status)
         VALUES ('File Blotter',$compID,'filed a blotter.','$resident_id','$date1','0');";
+        $result = $conn -> query($query);
+
+        $query = "UPDATE blotter_table SET complainee_ID = NULL where complainee_ID = '0';";
         $result = $conn -> query($query);
         header("location:file_blotter/file_blotter.php");
     } 
