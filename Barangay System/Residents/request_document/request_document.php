@@ -107,6 +107,18 @@ if($_SESSION['user_id'] == '') {
                                 <?php } ?>
                             </tbody>
                         </table>
+                        <?php
+                            $query1 = "SELECT * FROM payment_info;";
+                            $result1 = $conn -> query($query1);
+                            $row1 = $result1->fetch_assoc();
+                        ?>
+                        <h5>Payment Information</h5>
+                        <b>Method:</b> Gcash <br>
+                        <b>Gcash Number:</b> <?php echo $row1['cp_number'];?> <br>
+                        <b>Gcash Name:</b> <?php echo $row1['g_name'];?> <br>
+
+                        <b>Note:</b> Take a screenshot of your payment and attach the image to the 'Proof of Payment' input field below.
+                        <hr>
                         <form class="g-3" action="submit_request.php" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-md pt-2">

@@ -242,7 +242,7 @@ if($_SESSION['user_id'] == '') {
                     <div class="card-body">
                         <div class="container-fluid">
                             <div class="table-responsive" style="width: 100%;">
-                                <table class="table table-bordered">
+                                <table class="table table-striped">
                                     <thead>
                                         <tr class="align-top">
                                             <th>ID</th>

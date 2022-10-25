@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2022 at 05:12 PM
+-- Generation Time: Oct 25, 2022 at 10:00 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -84,7 +84,8 @@ INSERT INTO `admin_notification` (`notification_ID`, `notification_type`, `type_
 (15, 'Request Document', 13, 'requested a document.', 10, '22-10-11 07:21:12', 1),
 (16, 'Request Document', 14, 'requested a document.', 11, '22-10-12 04:28:04', 1),
 (17, 'File Blotter', 9, 'filed a blotter.', 11, '22-10-24 12:17:19', 1),
-(18, 'File Blotter', 10, 'filed a blotter.', 11, '22-10-24 12:21:06', 1);
+(18, 'File Blotter', 10, 'filed a blotter.', 11, '22-10-24 12:21:06', 1),
+(19, 'Request Document', 15, 'requested a document.', 11, '22-10-25 09:32:06', 0);
 
 -- --------------------------------------------------------
 
@@ -261,8 +262,9 @@ INSERT INTO `document_request` (`request_ID`, `official_ID`, `resident_ID`, `doc
 (10, NULL, 29, 1, 'School Purposes', 2, 'RCPT-6342e70e7d8920.44333261.jpg', '2022-10-09', 'pending'),
 (11, 5, 11, 1, 'asdasdas', 1, 'RCPT-63442b0f908dc0.42865164.jpg', '2022-10-10', 'ready'),
 (12, 5, 11, 1, 'sadasd', 1, 'RCPT-634439fca71343.47009202.jpg', '2022-10-10', 'ready'),
-(13, NULL, 10, 1, 'sadasd', 1, 'RCPT-6345a60822dfe1.60325593.jpg', '2022-10-11', 'pending'),
-(14, 5, 11, 1, '21312312', 1, 'RCPT-6346cef3ee8d77.36395853.jpg', '2022-10-12', 'ready');
+(13, 5, 10, 1, 'sadasd', 1, 'RCPT-6345a60822dfe1.60325593.jpg', '2022-10-11', 'ready'),
+(14, 5, 11, 1, '21312312', 1, 'RCPT-6346cef3ee8d77.36395853.jpg', '2022-10-12', 'ready'),
+(15, 5, 11, 1, '21321', 1, 'RCPT-635790f68f7ce2.49300989.jpg', '2022-10-25', 'ready');
 
 -- --------------------------------------------------------
 
@@ -364,6 +366,24 @@ INSERT INTO `modules_available` (`id`, `modules`, `availability`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `payment_info`
+--
+
+CREATE TABLE `payment_info` (
+  `g_name` text NOT NULL,
+  `cp_number` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payment_info`
+--
+
+INSERT INTO `payment_info` (`g_name`, `cp_number`) VALUES
+('BERNARD MAZO', '09616064483');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `registration`
 --
 
@@ -409,7 +429,10 @@ INSERT INTO `registration` (`id`, `fname`, `mname`, `lname`, `suffix`, `gender`,
 (21, 'Bernard', 'Kabiling', 'Mazo', 'JR', 'male', 'Pampanga', 'Single', '2022-10-20', 1759, '', '', '', '', '929829390', 'nard.mazo@gmail.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'Filipino', 'none', 'accepted', 'IMG-6336ee77a48797.16008983.jpg'),
 (22, 'Bernard', 'Kabiling', 'Mazo', 'none', 'male', 'Mindoro', 'Married', '2022-10-21', 1759, '', '', '', '', '9283523149', 'bernard.mazo04@gmail.com', 'Roman Catholic', 'Machine Operator', 'College', 'Filipino', 'none', 'accepted', 'IMG-6336f40df0ce87.00659602.jpg'),
 (23, 'Bernandito', 'Malacas', 'Mazo', '', 'male', 'Mindoro', 'Married', '2022-10-22', 1759, '', '', '', '', '9283523144', 'bernandito.mazo@gmail.com', 'Roman Catholic', 'Machine Operator', 'College', 'Filipino', 'none', 'accepted', 'IMG-6336f65190f495.32852079.jpg'),
-(24, 'Bernardo', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2022-10-22', 1759, 'purok 1', 'sitio 1', 'Grove', 'Magnolia Estate', '96160644831', 'nard_mazo@gmail.com1', 'Roman Catholic', 'none', 'Less Than Highschool', 'Filipino', 'none', 'accepted', 'IMG-633ee85b00dd85.83556750.jpg');
+(24, 'Bernardo', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2022-10-22', 1759, 'purok 1', 'sitio 1', 'Grove', 'Magnolia Estate', '96160644831', 'nard_mazo@gmail.com1', 'Roman Catholic', 'none', 'Less Than Highschool', 'Filipino', 'none', 'accepted', 'IMG-633ee85b00dd85.83556750.jpg'),
+(25, 'Nard', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2010-03-27', 1759, '', '', '', '', '09616064483', 'nard_maz@gmail.com', 'Roman Catholic', 'Programmer', 'College', 'Filipino', 'none', 'accepted', 'IMG-635732a9db8c34.29051974.jpg'),
+(26, 'Nardo', 'Kabiling', 'Mazo', 'II', 'male', 'Pampanga', 'Single', '2011-03-29', 1234, 'purok 1', 'sitio 1', 'Grove', 'Magnolia Estate', '09616064483', 'bernard.mazo04@gmail.com', 'Roman Catholic', 'none', 'College', 'Filipino', 'none', 'accepted', 'IMG-635733e3dcbdf6.13061455.jpg'),
+(27, 'Denver', 'Kabiling', 'Mazo', '', 'male', 'Pampanga', 'Single', '1999-01-12', 7894, 'purok 2', 'sitio 2', 'KalyePogi', 'Beverly Woods', '09475044087', 'denver.mazo66@gmail.com', 'Roman Catholic', 'Cook', 'Bachelor\'\'s Degree', 'Filipino', 'none', 'accepted', 'IMG-6357345b7e1345.88315838.jpg');
 
 -- --------------------------------------------------------
 
@@ -462,7 +485,10 @@ INSERT INTO `resident_table` (`id`, `user_id`, `fname`, `mname`, `lname`, `suffi
 (32, 33, 'Denver ', 'Kabiling', 'Mazo', '', 'male', 'Pampanga', 'Single', '1999-01-12', NULL, 1759, 'purok 1', 'sitio 1', 'KalyePogi', 'Magnolia Estate', '9475044087', 'denver.mazo@gmail.com', 'Roman Catholic', 'Cook', 'College', 'Filipino', 'None', 'active'),
 (34, 42, 'Bernandito', 'Malacas', 'Mazo', '', 'male', 'Mindoro', 'Married', '2003-09-07', 7, 1759, '', '', '', '', '9283523144', 'bernandito.mazo@gmail.com', 'Roman Catholic', 'Machine Operator', 'College', 'Filipino', 'none', 'active'),
 (38, 39, 'Bernard', 'Kabilin', 'Mazo', '', 'female', 'Manila', 'Married', '2002-10-13', 3, 1759, '', '', '', '', '961606448', 'nard_maz@gmail.com', 'Roman Catholic', 'none', 'Highschool', 'Filipino', 'none', 'active'),
-(39, 43, 'Bernardo', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2002-10-12', NULL, 1759, 'purok 1', 'sitio 1', 'Grove', 'Magnolia Estate', '96160644831', 'chrensan@gmail.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'Filipino', 'none', 'active');
+(39, 43, 'Bernardo', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2002-10-12', NULL, 1759, 'purok 1', 'sitio 1', 'Grove', 'Magnolia Estate', '96160644831', 'chrensan@gmail.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'Filipino', 'none', 'active'),
+(40, NULL, 'Nardo', 'Kabiling', 'Mazo', 'II', 'male', 'Pampanga', 'Single', '2011-03-29', NULL, 1234, 'purok 1', 'sitio 1', 'Grove', 'Magnolia Estate', '09616064483', 'bernard.mazo04@gmail.com', 'Roman Catholic', 'none', 'College', 'Filipino', 'none', 'active'),
+(41, 33, 'Denver', 'Kabiling', 'Mazo', '', 'male', 'Pampanga', 'Single', '1999-01-12', NULL, 7894, 'purok 2', 'sitio 2', 'KalyePogi', 'Beverly Woods', '09475044087', 'orsolino.christianphilip@ue.edu.ph', 'Roman Catholic', 'Cook', 'Bachelor\'s Degree', 'Filipino', 'none', 'active'),
+(42, 45, 'Nard', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2010-03-27', NULL, 1759, '', '', '', '', '09616064483', 'nard_maz@gmail.com', 'Roman Catholic', 'Programmer', 'College', 'Filipino', 'none', 'active');
 
 -- --------------------------------------------------------
 
@@ -639,10 +665,12 @@ INSERT INTO `tbluser` (`id`, `username`, `password`, `type`, `profile`) VALUES
 (18, '09020146545', '12345678', 'admin', 'default.jpg'),
 (30, 'poli', 'pol', 'user', 'default.jpg'),
 (33, '09475044087', '12345678', 'user', 'default.jpg'),
-(39, '0961606448', '12345678', 'user', 'default.jpg'),
+(39, '09616064483', '12345678', 'user', 'default.jpg'),
 (41, 'HCAdmin', 'hcadmin', 'hadmin', 'default.jpg'),
 (42, '09283523144', '12345678', 'user', 'default.jpg'),
-(43, '096160644831', '12345678', 'user', 'default.jpg');
+(43, '096160644831', '12345678', 'user', 'default.jpg'),
+(44, '09475044087', '12345678', 'user', 'default.jpg'),
+(45, 'nardo', '12345678', 'user', '');
 
 -- --------------------------------------------------------
 
@@ -682,7 +710,11 @@ INSERT INTO `user_notification` (`notification_ID`, `notification_type`, `messag
 (34, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\n    You can now download the soft copy from view<br>\n    requests tab or claim it in the Barangay Hall.', 5, 11, '2022-10-12 04:11:29', 1),
 (35, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\n    You can now download the soft copy from view<br>\n    requests tab or claim it in the Barangay Hall.', 5, 11, '2022-10-12 04:12:04', 1),
 (36, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\n    You can now download the soft copy from view<br>\n    requests tab or claim it in the Barangay Hall.', 5, 11, '2022-10-12 04:12:09', 1),
-(37, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-10-12 04:35:18', 1);
+(37, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-10-12 04:35:18', 1),
+(38, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-10-25 09:42:39', 0),
+(39, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 10, '2022-10-25 09:42:49', 0),
+(40, 'Requested Document on process', 'Your Certificate of Residency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-10-25 09:42:54', 0),
+(41, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-10-25 09:57:37', 0);
 
 --
 -- Indexes for dumped tables
@@ -832,7 +864,7 @@ ALTER TABLE `address_fields`
 -- AUTO_INCREMENT for table `admin_notification`
 --
 ALTER TABLE `admin_notification`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `announcement`
@@ -868,7 +900,7 @@ ALTER TABLE `complaint_table`
 -- AUTO_INCREMENT for table `document_request`
 --
 ALTER TABLE `document_request`
-  MODIFY `request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `document_type`
@@ -898,13 +930,13 @@ ALTER TABLE `modules_available`
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `resident_table`
 --
 ALTER TABLE `resident_table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `suggestion_table`
@@ -928,13 +960,13 @@ ALTER TABLE `tblofficial`
 -- AUTO_INCREMENT for table `tbluser`
 --
 ALTER TABLE `tbluser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `user_notification`
 --
 ALTER TABLE `user_notification`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Constraints for dumped tables

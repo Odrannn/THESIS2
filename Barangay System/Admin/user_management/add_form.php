@@ -4,9 +4,27 @@ $query = "SELECT id, contactnumber, concat_ws(' ',fname,mname,lname) as Fullname
             ORDER BY Fullname ASC;";
 $result = $conn -> query($query);
 ?>
+<style>
+.form-message{
+    text-align: center;
+    color: #162A83;
+    padding: 10px 0;
+    text-transform: capitalize;
+    background: rgba(231, 235, 249, 1);
+    font-size: 12px;
+    display: none;
+}
 
-<div class="modal-content">
-    <form action="add_user.php" autocomplete="off" method="post">
+.form-message p {
+    margin: 0;
+}
+
+.form-message p span{
+    color: #980e
+}
+</style>
+<form autocomplete="off" id="myForm">
+    <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -29,13 +47,25 @@ $result = $conn -> query($query);
                 <div class="row">
                     <div class="col-md pt-2">
                         <div class="form-floating">
+                            <input class="form-control" type="text" id="uname" name="uname" placeholder="Enter username..." required>
+                            <label for="id">Username</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md pt-2">
+                        <div class="form-floating">
                             <select class="form-control" name="type" id="type">
                                 <option value="user">User</option>
                                 <option value="admin">Admin</option>
-                                <option value="hadmin">Healthcare Admin</option>
                             </select>
                             <label for="type">User type</label>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md pt-2">
+                        <div class="form-message"></div>
                     </div>
                 </div>
             </div>
@@ -44,5 +74,32 @@ $result = $conn -> query($query);
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
             <input type="submit" class="btn btn-success" name="add_user" value="Add">
         </div>
-    </form>
-</div>
+    </div>
+</form>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#myForm").on('submit',function(e){
+            e.preventDefault();
+            
+            $.ajax({
+                type: "POST",
+                url: "add_user.php",
+                data: new FormData(this),
+                dataType: "json",
+                contentType: false,
+                cache: false,
+                processData: false,
+                success:function(response){
+                    $(".form-message").css("display", "block");
+
+                    if(response.status == 1){
+                        $("#myForm")[0].reset();
+                        $(".form-message").html('<p>' + response.message + '</p>')
+                    } else {
+                        $(".form-message").html('<p>' + response.message + '</p>')
+                    }
+                }
+            });
+        });
+    });
+</script>
