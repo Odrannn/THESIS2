@@ -1,6 +1,5 @@
 <?php
     include("../phpfiles/connection.php");
-
     $response = array(
         'status' => 0,
         'message' => 'Form submission Failed'
@@ -14,6 +13,12 @@
     $birthplace = $_POST['birthplace'];
     $civilstatus = $_POST['civilstatus'];
     $birthday = $_POST['birthday'];
+
+    //get age
+    $today = date("Y-m-d");
+    $diff = date_diff(date_create($birthday), date_create($today));
+    $age = $diff->format('%y');
+
     $unitnumber = $_POST['unitnumber'];
     $purok = $_POST['purok'];
     $sitio = $_POST['sitio'];
@@ -50,10 +55,10 @@
     if (mysqli_num_rows($exresult3)>0){
         $response['message'] = "Name already registered.";
 
-    } else if (mysqli_num_rows($exresult)>0){
+    } else if ((mysqli_num_rows($exresult)>0) && ($age >= 18)){
         $response['message'] = "Contact number already exists.";
         
-    } else if (mysqli_num_rows($exresult2)>0){
+    } else if ((mysqli_num_rows($exresult2)>0) && ($age >= 18)){
         $response['message'] = "Email already exists.";
     } else {
         $img_name = $_FILES['validID']['name'];
@@ -72,9 +77,17 @@
             move_uploaded_file($tmp_name, $img_upload_path);
 
             //insert to db
-            $query = "INSERT INTO registration(fname,mname,lname,suffix,gender,birthplace,civilstatus,birthday,unitnumber,purok,sitio,street,subdivision,contactnumber,email,religion,occupation,educational,nationality,disability,status,img_path)
-            VALUES('$fname','$mname','$lname','$suffix','$gender','$birthplace','$civilstatus','$birthday','$unitnumber','$purok','$sitio','$street','$subdivision','$contactnumber','$email','$religion','$occupation','$education','$nationality','$disability','pending','$new_img_name')";
-            $result = $conn -> query($query);
+            if($age < 18){
+                $query = "INSERT INTO registration(fname,mname,lname,suffix,gender,birthplace,civilstatus,birthday,unitnumber,purok,sitio,street,subdivision,contactnumber,email,religion,occupation,educational,nationality,disability,status,img_path)
+                VALUES('$fname','$mname','$lname','$suffix','$gender','$birthplace','$civilstatus','$birthday','$unitnumber','$purok','$sitio','$street','$subdivision','$contactnumber','$email','$religion','$occupation','$education','$nationality','$disability','pendingforresidency','$new_img_name')";
+                $result = $conn -> query($query);
+            }
+            else{
+                $query = "INSERT INTO registration(fname,mname,lname,suffix,gender,birthplace,civilstatus,birthday,unitnumber,purok,sitio,street,subdivision,contactnumber,email,religion,occupation,educational,nationality,disability,status,img_path)
+                VALUES('$fname','$mname','$lname','$suffix','$gender','$birthplace','$civilstatus','$birthday','$unitnumber','$purok','$sitio','$street','$subdivision','$contactnumber','$email','$religion','$occupation','$education','$nationality','$disability','pendingforaccountandresidency','$new_img_name')";
+                $result = $conn -> query($query);
+            }
+            
 
             $response['message'] = "Successfully registered";
             $response['status'] = 1;
@@ -84,4 +97,6 @@
     
 
     echo json_encode($response);
+
+    
 ?>

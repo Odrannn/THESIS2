@@ -223,6 +223,20 @@ if($_SESSION['user_id'] == '') {
                     $_SESSION["importRegistration"] = "";
                 }
                 ?>
+                <?php 
+                if (isset($_SESSION["residencyMessage"])){
+                    if($_SESSION["residencyMessage"] == 1){?>
+                        <div class="alert alert-success d-flex align-items-center" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                            <div>
+                                Registration Accepted.
+                            </div>
+                        </div>
+                <?php
+                    }
+                    $_SESSION["residencyMessage"] = 0;
+                }
+                ?>
                 <div class="card">
                     <h5 class="card-header">Application List</h5>
                     <div class="card-body">

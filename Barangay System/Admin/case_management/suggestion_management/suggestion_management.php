@@ -99,7 +99,7 @@ if($_SESSION['user_id'] == '') {
                                         if($rownot['status'] == '0'){ 
                                             $notifID = $rownot['notification_ID'];?>
 
-                                            <li><a class="dropdown-item " href="../../phpfiles/readnotif.php?notifid=<?php echo $notifID?>">
+                                            <li><a class="dropdown-item " href="../../../phpfiles/readnotif.php?notifid=<?php echo $notifID?>">
                                             <b><?php echo $rownot['notification_type'];?></b><i class="fa-solid fa-circle text-danger" style="float:right; font-size:12px;"></i><br>
                                             <?php echo $name . " " . $rownot['message']; ?><br>
                                             <b class="text-primary"><?php echo $dateTime;?></b>
@@ -108,7 +108,7 @@ if($_SESSION['user_id'] == '') {
                                     <?php 
                                         } else {
                                             $notifID = $rownot['notification_ID'];?>
-                                            <li ><a class="dropdown-item" href="../../phpfiles/readnotif.php?notifid=<?php echo $notifID?>">
+                                            <li ><a class="dropdown-item" href="../../../phpfiles/readnotif.php?notifid=<?php echo $notifID?>">
                                             <?php echo $rownot['notification_type'];?><br>
                                             <?php echo $name . " " . $rownot['message']; ?><br>
                                             <?php echo $dateTime;?>
