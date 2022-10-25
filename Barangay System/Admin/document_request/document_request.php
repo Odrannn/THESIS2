@@ -244,8 +244,7 @@ if($_SESSION['user_id'] == '') {
                                             <th>Quantity</th>
                                             <th>Payment</th>
                                             <th>Date</th>
-                                            <th>Status</th>
-                                            <th></th>
+                                            <th style ="text-align:center;" colspan='2'>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -259,7 +258,7 @@ if($_SESSION['user_id'] == '') {
                                         <td><?php echo $row["quantity"]; ?></td>
                                         <td><?php echo $row["payment"]; ?></td>
                                         <td><?php echo $row["request_date"]; ?></td>
-                                        <td colspan='2'><div class="btn btn-outline-<?php if($row["status"]=='completed'){echo 'success';}
+                                        <td style ="text-align:center;" colspan='2'><div style ="width: 200px;" class="btn btn-outline-<?php if($row["status"]=='completed'){echo 'success';}
                                         else if($row["status"]=='pending for verification' || $row["status"]=='pending for payment'){
                                             echo 'primary';
                                         } else {

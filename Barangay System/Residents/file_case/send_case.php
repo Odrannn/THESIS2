@@ -12,8 +12,11 @@
     $resident_id = $row['id'];
 
     if (isset($_POST['send_complaint'])) {
-
-        $nature = $_POST['nature'];
+        if(isset($_POST['other'])){
+            $nature = $_POST['other'];
+        } else {
+            $nature = $_POST['nature'];
+        }
         $description = $_POST['description'];
         $date = date("Y-m-d");
 
@@ -70,7 +73,11 @@
     } 
 
     if (isset($_POST['send_suggestion'])) {
-        $nature = $_POST['nature'];
+        if(isset($_POST['other'])){
+            $nature = $_POST['other'];
+        } else {
+            $nature = $_POST['nature'];
+        }
         $description = $_POST['description'];
         $date = date("Y-m-d");
         

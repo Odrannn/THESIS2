@@ -34,8 +34,11 @@ if(isset($_POST["import"])){
         $file = fopen($filename, "r");
 
         while(($column = fgetcsv($file, 10000, ",")) !== FALSE){
+            $orgDate = $column[5];  
+            $newDate = date("Y-m-d", strtotime($orgDate));  
+
             $sqlInsert = "INSERT INTO `complaint_table` (`complaint_ID`, `official_ID`, `sender_ID`, `complaint_nature`, `comp_desc`, `complaint_date`, `img_proof`, `complaint_status`)
-            VALUES ('" . $column[0] . "', '" . $column[1] . "', '" . $column[2] . "', '" . $column[3] . "', '". $column[4] . "', '" . $column[5] . "', '". $column[6] . "', '" . $column[7] ."')";
+            VALUES ('" . $column[0] . "', '" . $column[1] . "', '" . $column[2] . "', '" . $column[3] . "', '". $column[4] . "', '" . $newDate . "', '". $column[6] . "', '" . $column[7] ."')";
 
             $result = $conn -> query($sqlInsert);
 

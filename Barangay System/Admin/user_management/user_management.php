@@ -163,7 +163,7 @@ if($_SESSION['user_id'] == '') {
                                         <td><?php echo $row["type"]; ?></td>
                                         <td><div class="btn-group" role="group" aria-label="Basic example">
                                             <button data-id="<?php echo $row['id']; ?>" class="edituser btn btn-warning" 
-                                            <?php if($typeOfUser != 'admin0'){ echo 'disabled';}?>><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <?php if($row["type"] == 'admin' && $typeOfUser != 'admin0'){ echo 'disabled';}?>><i class="fa-solid fa-pen-to-square"></i></button>
                                             </div>
                                         </td>
                                     </tr>

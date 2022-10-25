@@ -257,7 +257,7 @@ if($_SESSION['user_id'] == '') {
                                             <th>Settlement Schedule</th>
                                             <th>Settlement Time</th>
                                             <th>Result of Settlement</th>
-                                            <th>Status</th>
+                                            <th style ="text-align:center;">Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -305,7 +305,15 @@ if($_SESSION['user_id'] == '') {
                                         <td><?php echo $row["settlement_schedule"]; ?></td>
                                         <td><?php echo $row["settlement_time"]; ?></td>
                                         <td><?php echo $row["result_of_settlement"]; ?></td>
-                                        <td><?php echo $row["status"]; ?></td>
+                                        <td style ="text-align:center;"><div style ="width: 150px;" class="btn btn-outline-<?php if($row["status"]=='settled'){echo 'success';}
+                                        else if($row["status"]=='unscheduled'){
+                                            echo 'warning';
+                                        } else if($row["status"]=='scheduled'){
+                                            echo 'primary';
+                                        } else {
+                                            echo 'danger';
+                                        }
+                                        ?>"><?php echo $row["status"]; ?></div></td>
                                         <td><div class="btn-group" role="group" aria-label="Basic example">
                                             <?php $off_id = $row['official_ID'];
                                                 $query2 = "SELECT * FROM tblofficial WHERE official_id = '$off_id'";

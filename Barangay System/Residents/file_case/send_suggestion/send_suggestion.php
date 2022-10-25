@@ -180,6 +180,8 @@ if($_SESSION['user_id'] == '') {
                                         <option value="Other">Other</option>
                                     </select>
                                 </div>
+                                <div class="otherInput">
+                                </div>
                             </div>
 
                             <div class="row">
@@ -250,6 +252,25 @@ if($_SESSION['user_id'] == '') {
                     $(".modal-dialog").html(result);
                 }});
                 $('#editModal').modal('show');
+            });
+        });
+    </script>
+
+    <!--Filter-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#nature").on('change',function(){
+                var value = $(this).val();
+
+                $.ajax({
+                    url: "nature.php",
+                    method: "POST",
+                    data: {nature:value},
+
+                    success:function(data){
+                        $(".otherInput").html(data);
+                    }
+                });
             });
         });
     </script>

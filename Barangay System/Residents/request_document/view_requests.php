@@ -98,10 +98,9 @@ if($_SESSION['user_id'] == '') {
                                             <th>Request ID</th>
                                             <th>Document Type</th>
                                             <th>Purpose</th>
-                                            <th>Quantity</th>
+                                            <th style ="text-align:center;">Quantity</th>
                                             <th>Date</th>
-                                            <th>Status</th>
-                                            <th></th>
+                                            <th style ="text-align:center;" colspan='2'>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -147,9 +146,9 @@ if($_SESSION['user_id'] == '') {
                                         <td><?php echo $row1["request_ID"]; ?></td>
                                         <td><?php echo $row1["document_type"]; ?></td>
                                         <td><?php echo $row1["purpose"]; ?></td>
-                                        <td><?php echo $row1["quantity"]; ?></td>
+                                        <td style ="text-align:center;"><?php echo $row1["quantity"]; ?></td>
                                         <td><?php echo $row1["request_date"]; ?></td>
-                                        <td colspan="2"><div class="btn btn-outline-<?php if($row1["status"]=='completed'){echo 'success';}
+                                        <td style ="text-align:center;" colspan='2'><div style ="width: 200px;" class="btn btn-outline-<?php if($row1["status"]=='completed'){echo 'success';}
                                         else if($row1["status"]=='pending for verification' || $row1["status"]=='pending for payment'){
                                             echo 'primary';
                                         } else {
@@ -163,13 +162,13 @@ if($_SESSION['user_id'] == '') {
                                                 <input type="hidden" name="senderid" value="<?php echo $row1['resident_ID'];?>">
                                                 <input type="hidden" name="documentid" value="<?php echo $row1['document_ID'];?>">
                                                 <input type="hidden" name="officialid" value="<?php echo $row1['official_ID'];?>">
-                                                <input type="submit" class="btn btn-success" name="download" value="Download soft copy">
+                                                <input type="submit" style ="width: 185px;" class="btn btn-success" name="download" value="Download soft copy">
                                             </form>   
                                         <?php } else if($row1["status"]=='pending for payment') {?> 
                                             <button data-id="<?php echo $row1['request_ID']; ?>" class="pay btn btn-primary">Pay</button>
                                             <button data-id="<?php echo $row1['request_ID']; ?>" class="cancelreq btn btn-danger">Cancel request</button>
                                         <?php } else if($row1["status"]=='pending for verification') {?>  
-                                            <button data-id="<?php echo $row1['request_ID']; ?>" class="viewpay btn btn-primary">View payment</button>
+                                            <button data-id="<?php echo $row1['request_ID']; ?>" style ="width: 185px;" class="viewpay btn btn-primary">View payment</button>
                                         <?php }?>  
                                         </td>
                                     </tr>

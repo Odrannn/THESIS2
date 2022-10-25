@@ -330,12 +330,24 @@ if($_SESSION['user_id'] == '') {
                                 var data = google.visualization.arrayToDataTable([
                                 ['Task', 'Hours per Day'],
                                 <?php
+                                $otherTotal = 0;
+
                                 while($row1 = $result1 -> fetch_array()){
-                                    ?>
+                                    $exist = 0;
+                                    include('../../../phpfiles/case_option.php');
+                                    while($row = $result -> fetch_array()){
+                                    if($row1[1] == $row['suggestion_nature']){
+                                        $exist = 1;?>
+                                    
                                     ['<?php echo $row1[1];?>',    <?php echo $row1[0];?>],
                                     <?php 
-                                    } ?>
-                                ['none',    0]
+                                        } 
+                                    }
+                                    if($exist == 0){
+                                        $otherTotal += $row1[0];
+                                    }
+                                }?>
+                                ['Other',    <?php echo $otherTotal;?>]
                                 ]);
 
                                 var options = {
@@ -356,6 +368,7 @@ if($_SESSION['user_id'] == '') {
                                             <th>Description</th>
                                             <th>Date</th>
                                             <th>Feedback</th>
+                                            <th style ="text-align:center;">Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -422,7 +435,11 @@ if($_SESSION['user_id'] == '') {
                                         <td><?php echo $row["suggestion_desc"]; ?></td>
                                         <td><?php echo $row["suggestion_date"]; ?></td>
                                         <td><?php echo $row["suggestion_feedback"]; ?></td>
-                                        <td><?php echo $row["suggestion_status"]; ?></td>
+                                        <td style ="text-align:center;"><div style ="width: 150px;" class="btn btn-outline-<?php if($row["suggestion_status"]=='noticed'){echo 'success';}
+                                        else if($row["suggestion_status"]=='pending'){
+                                            echo 'primary';
+                                        }
+                                        ?>"><?php echo $row["suggestion_status"]; ?></div></td>
                                         <td><div class="btn-group" role="group" aria-label="Basic example">
                                             <button data-id="<?php echo $row['suggestion_ID']; ?>" class="sendfeedback btn btn-primary"><i class="fa-solid fa-reply"></i></button>
                                             </div>

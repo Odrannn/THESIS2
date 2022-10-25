@@ -1,6 +1,9 @@
 <?php
 include('../../phpfiles/connection.php');
-if(isset($_POST['reqid'])){?>
+if(isset($_POST['reqid'])){
+    $reqID = $_POST['reqid'];
+    ?>
+    
     <form action="submit_payment.php" method="post" enctype="multipart/form-data">
     <div class="modal-content">
         <div class="modal-header">
@@ -8,14 +11,25 @@ if(isset($_POST['reqid'])){?>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        
+            <?php
+            $query = "SELECT R.*, T.document_type, T.price FROM document_request R INNER JOIN document_type T ON R.document_ID = T.id WHERE request_ID = '$reqID';";
+            $result = $conn -> query($query);
+            $row = $result -> fetch_assoc();
+
+            $quantity = (int)$row['quantity'];
+            $price = (float)$row['price'];
+            $total = (float)($quantity * $price);
+            ?>
             <div class="container">
                 <?php
                     $query1 = "SELECT * FROM payment_info;";
                     $result1 = $conn -> query($query1);
                     $row1 = $result1->fetch_assoc();
+
+                    
                 ?>
                 <h5>Payment Information</h5>
+                <b>Amount to pay:</b> PHP <?php echo $total; ?><br>
                 <b>Method:</b> Gcash <br>
                 <b>Gcash Number:</b> <?php echo $row1['cp_number'];?> <br>
                 <b>Gcash Name:</b> <?php echo $row1['g_name'];?> <br>

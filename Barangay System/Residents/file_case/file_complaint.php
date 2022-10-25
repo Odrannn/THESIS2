@@ -75,7 +75,7 @@ if($_SESSION['user_id'] == '') {
                 <br>
                 <div class="card mt-2">
                     <h5 class="card-header">Complaint Form</h5>
-                    <div class="card-body">
+                    <div class="cardContainer card-body">
                         <?php 
                         if(isset($_SESSION['complaint_message']))
                         {
@@ -98,6 +98,8 @@ if($_SESSION['user_id'] == '') {
                                         <?php } ?>
                                         <option value="Other">Other</option>
                                     </select>
+                                </div>
+                                <div class="otherInput">
                                 </div>
                                 <div class="col-md pt-2">
                                     <label class="pb-2" for="comp_image">Proof of Complaint</label> 
@@ -172,6 +174,25 @@ if($_SESSION['user_id'] == '') {
                     $(".modal-dialog").html(result);
                 }});
                 $('#editModal').modal('show');
+            });
+        });
+    </script>
+
+    <!--Filter-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#nature").on('change',function(){
+                var value = $(this).val();
+
+                $.ajax({
+                    url: "nature.php",
+                    method: "POST",
+                    data: {nature:value},
+
+                    success:function(data){
+                        $(".otherInput").html(data);
+                    }
+                });
             });
         });
     </script>

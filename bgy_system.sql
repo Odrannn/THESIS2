@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2022 at 12:15 PM
+-- Generation Time: Oct 25, 2022 at 05:23 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -93,7 +93,11 @@ INSERT INTO `admin_notification` (`notification_ID`, `notification_type`, `type_
 (24, 'Request Document', 19, 'sent a payment.', 11, '22-10-25 11:57:13', 0),
 (25, 'Request Document', 20, 'requested a document.', 11, '22-10-25 12:03:10', 0),
 (26, 'Request Document', 20, 'sent a payment.', 11, '22-10-25 12:10:29', 1),
-(27, 'Request Document', 21, 'requested a document.', 10, '22-10-25 12:13:09', 1);
+(27, 'Request Document', 21, 'requested a document.', 10, '22-10-25 12:13:09', 1),
+(28, 'Request Document', 22, 'requested a document.', 10, '22-10-25 12:28:16', 0),
+(29, 'File Complaint', 16, 'filed a complaint.', 11, '22-10-25 04:39:53', 0),
+(30, 'Send Suggestion', 14, 'sent a suggestion.', 11, '22-10-25 04:55:55', 0),
+(31, 'Request Document', 23, 'requested a document.', 11, '22-10-25 05:18:25', 0);
 
 -- --------------------------------------------------------
 
@@ -198,8 +202,7 @@ INSERT INTO `case_option` (`id`, `complaint_nature`, `suggestion_nature`) VALUES
 (1, 'Dirty Barangay', 'Barangay Improvement'),
 (2, 'Gossip Mongers', 'Education'),
 (3, 'Drugs', 'Sports'),
-(4, 'Noise', 'Health'),
-(5, '', '');
+(4, 'Noise', 'Health');
 
 -- --------------------------------------------------------
 
@@ -223,18 +226,19 @@ CREATE TABLE `complaint_table` (
 --
 
 INSERT INTO `complaint_table` (`complaint_ID`, `official_ID`, `sender_ID`, `complaint_nature`, `comp_desc`, `complaint_date`, `img_proof`, `complaint_status`) VALUES
-(1, 5, 9, 'Dirty Barangay', 'sad', '0000-00-00', 'IMG-6331aa2bdf2245.84869776.png', 'solved'),
-(2, 5, 9, 'Drugs', 'drugs drugs drugs drugs drugs', '0000-00-00', 'IMG-6331aa8ac786d0.08725937.png', 'solved'),
-(3, 5, 9, 'Gossip Mongers', 'Wilcent urbano ang ngalan', '0000-00-00', 'IMG-6332ec0067dd74.43852234.png', 'solved'),
-(4, 5, 9, 'Noise', 'Noisy Karaoke', '0000-00-00', 'IMG-6332ece1b2b828.26135177.png', 'solved'),
-(7, 5, 9, 'Drugs', 'sdfdsf', '0000-00-00', 'IMG-6333053e5fcb96.27694649.png', 'solved'),
-(9, 6, 9, 'Gossip Mongers', 'tsismosa', '0000-00-00', '', 'solved'),
-(10, 6, 9, 'Other', 'SUGALAN SA KANTO', '0000-00-00', '', 'solved'),
-(11, NULL, 9, 'Other', 'illegal parking', '0000-00-00', '', 'pending'),
-(12, NULL, 9, 'Other', 'sugalan', '0000-00-00', 'IMG-633453d006e131.68377680.jpg', 'pending'),
-(13, 5, 9, 'Other', 'illegal parking', '0000-00-00', 'IMG-633453de511e23.56622787.jpg', 'solved'),
-(14, 5, 9, 'Dirty Barangay', 'street 1 is very dirty', '0000-00-00', 'IMG-63346d10292875.87716455.jpg', 'solved'),
-(15, 5, 9, 'Dirty Barangay', 'asdasdas', '0000-00-00', 'IMG-634563a9e852f8.39870037.jpg', 'solved');
+(1, 5, 9, 'Dirty Barangay', 'sad', '2022-09-26', 'IMG-6331aa2bdf2245.84869776.png', 'solved'),
+(2, 5, 9, 'Drugs', 'drugs drugs drugs drugs drugs', '2022-09-26', 'IMG-6331aa8ac786d0.08725937.png', 'solved'),
+(3, 5, 9, 'Gossip Mongers', 'Wilcent urbano ang ngalan', '2022-09-27', 'IMG-6332ec0067dd74.43852234.png', 'solved'),
+(4, 5, 9, 'Noise', 'Noisy Karaoke', '2022-09-27', 'IMG-6332ece1b2b828.26135177.png', 'solved'),
+(7, 5, 9, 'Drugs', 'sdfdsf', '2022-09-27', 'IMG-6333053e5fcb96.27694649.png', 'solved'),
+(9, 6, 9, 'Gossip Mongers', 'tsismosa', '2022-09-28', '', 'solved'),
+(10, 6, 9, 'Other', 'SUGALAN SA KANTO', '2022-09-28', '', 'solved'),
+(11, NULL, 9, 'Other', 'illegal parking', '2022-09-28', '', 'pending'),
+(12, NULL, 9, 'Other', 'sugalan', '2022-10-17', 'IMG-633453d006e131.68377680.jpg', 'pending'),
+(13, 5, 9, 'Other', 'illegal parking', '2022-10-17', 'IMG-633453de511e23.56622787.jpg', 'solved'),
+(14, 5, 9, 'Dirty Barangay', 'street 1 is very dirty', '2022-10-17', 'IMG-63346d10292875.87716455.jpg', 'solved'),
+(15, 5, 9, 'Dirty Barangay', 'asdasdas', '2022-10-18', 'IMG-634563a9e852f8.39870037.jpg', 'solved'),
+(16, NULL, 11, 'Sugalan', 'Sugalan sa kanto', '2022-10-25', 'IMG-6357f538e709c0.67166961.jpg', 'pending');
 
 -- --------------------------------------------------------
 
@@ -278,7 +282,9 @@ INSERT INTO `document_request` (`request_ID`, `official_ID`, `resident_ID`, `doc
 (18, NULL, 11, 3, 'business', 1, '', '2022-10-25', 'cancelled'),
 (19, NULL, 11, 1, 'nothin', 1, 'RCPT-6357b2f949f6e7.82317662.jpg', '2022-10-25', 'pending for verification'),
 (20, 5, 11, 2, 'adasd', 2, 'RCPT-6357b615683a93.45292356.jpg', '2022-10-25', 'completed'),
-(21, NULL, 10, 2, 'school', 1, '', '2022-10-25', 'pending for payment');
+(21, NULL, 10, 2, 'school', 1, '', '2022-10-25', 'pending for payment'),
+(22, NULL, 10, 3, 'none', 3, '', '2022-10-25', 'pending for payment'),
+(23, NULL, 11, 1, 'ad', 3, '', '2022-10-25', 'pending for payment');
 
 -- --------------------------------------------------------
 
@@ -538,7 +544,8 @@ INSERT INTO `suggestion_table` (`suggestion_ID`, `official_ID`, `sender_ID`, `su
 (10, 4, 9, 'Other', 'asndlnalsd', '2022-09-28', 'ah gegege', 'noticed'),
 (11, 3, 9, 'Education', 'aasdasdsad', '2022-10-10', 'noted', 'noticed'),
 (12, 5, 9, 'Other', 'sadasd', '2022-10-10', 'opo', 'noticed'),
-(13, 5, 9, 'Other', 'sadasd', '2022-10-10', 'sge po', 'noticed');
+(13, 5, 9, 'Other', 'sadasd', '2022-10-10', 'sge po', 'noticed'),
+(14, NULL, 11, 'libreng tuli', 'asdasdas', '2022-10-25', '', 'pending');
 
 -- --------------------------------------------------------
 
@@ -677,7 +684,7 @@ INSERT INTO `tbluser` (`id`, `username`, `password`, `type`, `profile`) VALUES
 (14, '09244567897', '12345678', 'admin', 'default.jpg'),
 (15, '09623456781', '12345678', 'admin', 'default.jpg'),
 (18, '09020146545', '12345678', 'admin', 'default.jpg'),
-(30, 'poli', 'pol', 'user', 'default.jpg'),
+(30, 'poli', 'pol', 'admin', 'default.jpg'),
 (33, '09475044087', '12345678', 'user', 'default.jpg'),
 (39, '09616064483', '12345678', 'user', 'default.jpg'),
 (41, 'HCAdmin', 'hcadmin', 'hadmin', 'default.jpg'),
@@ -879,7 +886,7 @@ ALTER TABLE `address_fields`
 -- AUTO_INCREMENT for table `admin_notification`
 --
 ALTER TABLE `admin_notification`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `announcement`
@@ -909,13 +916,13 @@ ALTER TABLE `case_option`
 -- AUTO_INCREMENT for table `complaint_table`
 --
 ALTER TABLE `complaint_table`
-  MODIFY `complaint_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `complaint_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `document_request`
 --
 ALTER TABLE `document_request`
-  MODIFY `request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `document_type`
@@ -957,7 +964,7 @@ ALTER TABLE `resident_table`
 -- AUTO_INCREMENT for table `suggestion_table`
 --
 ALTER TABLE `suggestion_table`
-  MODIFY `suggestion_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `suggestion_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tblhousehold`
