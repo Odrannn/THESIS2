@@ -117,7 +117,7 @@ if($document_Type == 'Barangay Clearance')
         $notifresult = $conn -> query($notifquery);
 
         //update request status
-        $upquery = "UPDATE document_request SET status = 'ready', official_ID = '$officialID' WHERE request_ID = '$requestID';";
+        $upquery = "UPDATE document_request SET status = 'completed', official_ID = '$officialID' WHERE request_ID = '$requestID';";
         $upresult = $conn -> query($upquery);
     }
 }
@@ -195,7 +195,7 @@ if($document_Type == 'Certificate of Indigency')
         $notifresult = $conn -> query($notifquery);
 
         //update request status
-        $upquery = "UPDATE document_request SET status = 'ready', official_ID = '$officialID' WHERE request_ID = '$requestID';";
+        $upquery = "UPDATE document_request SET status = 'completed', official_ID = '$officialID' WHERE request_ID = '$requestID';";
         $upresult = $conn -> query($upquery);
     }
 }
@@ -275,7 +275,7 @@ if($document_Type == 'Certificate of Residency')
         $notifresult = $conn -> query($notifquery);
 
         //update request status
-        $upquery = "UPDATE document_request SET status = 'ready', official_ID = '$officialID' WHERE request_ID = '$requestID';";
+        $upquery = "UPDATE document_request SET status = 'completed', official_ID = '$officialID' WHERE request_ID = '$requestID';";
         $upresult = $conn -> query($upquery);
     }
 }

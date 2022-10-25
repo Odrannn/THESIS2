@@ -16,7 +16,27 @@
         $purpose = $_POST['purpose'];
         $date = date("Y-m-d");
 
-        $img_name = $_FILES['proof']['name'];
+        //insert to db
+        $query = "INSERT INTO document_request(resident_ID, document_ID, purpose, quantity, request_date, status)
+        VALUES ('$resident_id','$type', '$purpose', '$quantity', '$date', 'pending for payment');";
+        $result = $conn -> query($query);
+
+        $_SESSION['request_message'] = "Your request has been successfully submitted.
+            Please wait patiently, your request is in process. You can monitor its status in the tracking section or check your notification for updates.";
+        
+        //get the recent request ID
+        $query = "SELECT request_ID FROM document_request
+        WHERE request_ID = (SELECT MAX(request_ID) FROM document_request);";
+        $result = $conn -> query($query);
+        $row = $result -> fetch_array();
+        $reqID = $row[0];
+
+        $date1 = date('y-m-d h:i:s');
+        $query = "INSERT INTO admin_notification(notification_type, type_ID, message, source_ID, date_time, status)
+        VALUES ('Request Document',$reqID,'requested a document.','$resident_id','$date1','0');";
+        $result = $conn -> query($query);
+
+        /*$img_name = $_FILES['proof']['name'];
         $img_size = $_FILES['proof']['size'];
         $tmp_name = $_FILES['proof']['tmp_name'];
         $error = $_FILES['proof']['error'];
@@ -26,7 +46,7 @@
             /*if ($img_size > 125000) {
                 echo "Sorry, your file is too large.";
             }
-            else {*/
+            else {
             $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
             $img_ex_lc = strtolower($img_ex);
 
@@ -63,7 +83,7 @@
         } else {
             $_SESSION['request_message'] = "You can't upload files of this type.";
             $_SESSION['error_type'] = 'error';
-        }
+        }*/
         header("location:request_document.php");
     } 
 ?>

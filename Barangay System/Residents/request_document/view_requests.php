@@ -68,9 +68,31 @@ if($_SESSION['user_id'] == '') {
                 <div class="card">
                     <h5 class="card-header">Request List</h5>
                     <div class="card-body">
+                        <?php 
+                        if(isset($_SESSION['cancelReq']))
+                        {
+                            if($_SESSION['cancelReq'] != ''){?>
+                                <div class="alert alert-success" role="alert">
+                                    <h4 class="alert-heading">Request Cancelled!</h4>
+                                    <p><?php echo $_SESSION['cancelReq'];?></p>
+                                </div> 
+                                <?php } 
+                            $_SESSION['cancelReq'] = '';
+                        } ?>
+                        <?php 
+                        if(isset($_SESSION['paymentMessage']))
+                        {
+                            if($_SESSION['paymentMessage'] != ''){?>
+                                <div class="alert alert-success" role="alert">
+                                    <h4 class="alert-heading">Payment Sent!</h4>
+                                    <p><?php echo $_SESSION['paymentMessage'];?></p>
+                                </div> 
+                                <?php } 
+                            $_SESSION['paymentMessage'] = '';
+                        } ?>
                         <div class="container-fluid">
                             <div class="table-responsive" style="width: 100%;">
-                                <table class="table table-bordered">
+                                <table class="table table-striped">
                                     <thead>
                                         <tr class="align-top">
                                             <th>Request ID</th>
@@ -79,6 +101,7 @@ if($_SESSION['user_id'] == '') {
                                             <th>Quantity</th>
                                             <th>Date</th>
                                             <th>Status</th>
+                                            <th></th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -100,7 +123,7 @@ if($_SESSION['user_id'] == '') {
                                     $start = ($page-1) * 10;
                                     //select all request
                                     $query = "SELECT R.*, D.document_type FROM document_request R INNER JOIN document_type D ON R.document_ID = D.id
-                                    WHERE resident_ID = '$residentID'  LIMIT $start, 10;";
+                                    WHERE resident_ID = '$residentID'  ORDER BY request_ID DESC LIMIT $start, 10;";
                                     $result = $conn -> query($query);
                 
                                     $result1 = $conn -> query("SELECT count(request_ID) as id FROM document_request WHERE resident_ID = '$residentID'");
@@ -126,16 +149,28 @@ if($_SESSION['user_id'] == '') {
                                         <td><?php echo $row1["purpose"]; ?></td>
                                         <td><?php echo $row1["quantity"]; ?></td>
                                         <td><?php echo $row1["request_date"]; ?></td>
-                                        <td><?php echo $row1["status"]; ?></td>
+                                        <td colspan="2"><div class="btn btn-outline-<?php if($row1["status"]=='completed'){echo 'success';}
+                                        else if($row1["status"]=='pending for verification' || $row1["status"]=='pending for payment'){
+                                            echo 'primary';
+                                        } else {
+                                            echo 'danger';
+                                        }
+                                        ?>"><?php echo $row1["status"]; ?></div></td>
                                         <td>
-                                        <form action="../../generate_document/generate_document.php" method="post">
-                                            <input type="hidden" name="id" value="<?php echo $row1['request_ID'];?>">
-                                            <input type="hidden" name="senderid" value="<?php echo $row1['resident_ID'];?>">
-                                            <input type="hidden" name="documentid" value="<?php echo $row1['document_ID'];?>">
-                                            <input type="hidden" name="officialid" value="<?php echo $row1['official_ID'];?>">
-                                            <input type="submit" class="btn btn-success" 
-                                            <?php if($row1["status"]!='ready'){ echo 'disabled';}?> name="download" value="Download soft copy">
-                                        </form>    
+                                        <?php if($row1["status"]=='completed'){?>
+                                            <form action="../../generate_document/generate_document.php" method="post">
+                                                <input type="hidden" name="id" value="<?php echo $row1['request_ID'];?>">
+                                                <input type="hidden" name="senderid" value="<?php echo $row1['resident_ID'];?>">
+                                                <input type="hidden" name="documentid" value="<?php echo $row1['document_ID'];?>">
+                                                <input type="hidden" name="officialid" value="<?php echo $row1['official_ID'];?>">
+                                                <input type="submit" class="btn btn-success" name="download" value="Download soft copy">
+                                            </form>   
+                                        <?php } else if($row1["status"]=='pending for payment') {?> 
+                                            <button data-id="<?php echo $row1['request_ID']; ?>" class="pay btn btn-primary">Pay</button>
+                                            <button data-id="<?php echo $row1['request_ID']; ?>" class="cancelreq btn btn-danger">Cancel request</button>
+                                        <?php } else if($row1["status"]=='pending for verification') {?>  
+                                            <button data-id="<?php echo $row1['request_ID']; ?>" class="viewpay btn btn-primary">View payment</button>
+                                        <?php }?>  
                                         </td>
                                     </tr>
                                     
@@ -166,6 +201,78 @@ if($_SESSION['user_id'] == '') {
         });
         $('.close-btn').on('click', function(){
             $('.sidebar').removeClass('active');
+        });
+    </script>
+
+    <!--cancel Modal-->
+    <div class="modal fade" id="cancelModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            
+        </div>
+    </div>
+
+    <!--pay Modal-->
+    <div class="modal fade" id="payModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            
+        </div>
+    </div>
+
+     <!--view pay Modal-->
+     <div class="modal fade" id="viewpayModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            
+        </div>
+    </div>
+
+    <!-- cancel script-->
+    <script>
+        $(document).ready(function(){
+            $('.cancelreq').click(function(){
+                var reqid = $(this).data('id');
+                $.ajax({url: "cancel_request_form.php",
+                method:'post',
+                data: {reqid:reqid},
+                    
+                success: function(result){
+                    $(".modal-dialog").html(result);
+                }});
+                $('#cancelModal').modal('show');
+            });
+        });
+    </script>
+
+    <!-- payscript-->
+    <script>
+        $(document).ready(function(){
+            $('.pay').click(function(){
+                var reqid = $(this).data('id');
+                $.ajax({url: "payment_form.php",
+                method:'post',
+                data: {reqid:reqid},
+                    
+                success: function(result){
+                    $(".modal-dialog").html(result);
+                }});
+                $('#payModal').modal('show');
+            });
+        });
+    </script>
+
+     <!-- payscript-->
+     <script>
+        $(document).ready(function(){
+            $('.viewpay').click(function(){
+                var reqid = $(this).data('id');
+                $.ajax({url: "view_payment.php",
+                method:'post',
+                data: {reqid:reqid},
+                    
+                success: function(result){
+                    $(".modal-dialog").html(result);
+                }});
+                $('#viewpayModal').modal('show');
+            });
         });
     </script>
 </body>

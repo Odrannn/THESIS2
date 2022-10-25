@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2022 at 10:00 AM
+-- Generation Time: Oct 25, 2022 at 12:15 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -85,7 +85,15 @@ INSERT INTO `admin_notification` (`notification_ID`, `notification_type`, `type_
 (16, 'Request Document', 14, 'requested a document.', 11, '22-10-12 04:28:04', 1),
 (17, 'File Blotter', 9, 'filed a blotter.', 11, '22-10-24 12:17:19', 1),
 (18, 'File Blotter', 10, 'filed a blotter.', 11, '22-10-24 12:21:06', 1),
-(19, 'Request Document', 15, 'requested a document.', 11, '22-10-25 09:32:06', 0);
+(19, 'Request Document', 15, 'requested a document.', 11, '22-10-25 09:32:06', 0),
+(20, 'Request Document', 16, 'requested a document.', 11, '22-10-25 10:09:59', 0),
+(21, 'Request Document', 17, 'requested a document.', 11, '22-10-25 10:17:11', 0),
+(22, 'Request Document', 18, 'requested a document.', 11, '22-10-25 11:18:46', 0),
+(23, 'Request Document', 19, 'requested a document.', 11, '22-10-25 11:31:33', 0),
+(24, 'Request Document', 19, 'sent a payment.', 11, '22-10-25 11:57:13', 0),
+(25, 'Request Document', 20, 'requested a document.', 11, '22-10-25 12:03:10', 0),
+(26, 'Request Document', 20, 'sent a payment.', 11, '22-10-25 12:10:29', 1),
+(27, 'Request Document', 21, 'requested a document.', 10, '22-10-25 12:13:09', 1);
 
 -- --------------------------------------------------------
 
@@ -243,7 +251,7 @@ CREATE TABLE `document_request` (
   `quantity` int(10) NOT NULL,
   `payment` varchar(50) NOT NULL,
   `request_date` date NOT NULL,
-  `status` varchar(10) NOT NULL
+  `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -251,20 +259,26 @@ CREATE TABLE `document_request` (
 --
 
 INSERT INTO `document_request` (`request_ID`, `official_ID`, `resident_ID`, `document_ID`, `purpose`, `quantity`, `payment`, `request_date`, `status`) VALUES
-(1, NULL, 7, 1, 'school requirement', 1, 'payment.jpg', '2022-09-22', 'pending'),
-(3, NULL, 9, 1, 'adasd', 12, 'RCPT-633afecac5b085.95733661.jpg', '2022-10-03', 'pending'),
-(4, NULL, 9, 2, 'asd', 1, 'RCPT-633afee90462b9.73775231.jpg', '2022-10-03', 'pending'),
-(5, 5, 11, 2, 'business', 1, 'RCPT-633d9a114cf799.84391831.jpg', '2022-10-05', 'ready'),
-(6, 5, 11, 3, 'school', 1, 'RCPT-633da47ab3f616.59006446.jpg', '2022-10-05', 'ready'),
-(7, NULL, 9, 2, 'Business', 1, 'RCPT-6342bf2cd197e4.93863445.jpg', '2022-10-09', 'pending'),
-(8, NULL, 9, 3, 'School Requirement', 1, 'RCPT-6342bf801995f8.50901645.jpg', '2022-10-09', 'pending'),
-(9, NULL, 29, 2, 'business', 1, 'RCPT-6342e30774d612.08680000.jpg', '2022-10-09', 'pending'),
-(10, NULL, 29, 1, 'School Purposes', 2, 'RCPT-6342e70e7d8920.44333261.jpg', '2022-10-09', 'pending'),
-(11, 5, 11, 1, 'asdasdas', 1, 'RCPT-63442b0f908dc0.42865164.jpg', '2022-10-10', 'ready'),
-(12, 5, 11, 1, 'sadasd', 1, 'RCPT-634439fca71343.47009202.jpg', '2022-10-10', 'ready'),
-(13, 5, 10, 1, 'sadasd', 1, 'RCPT-6345a60822dfe1.60325593.jpg', '2022-10-11', 'ready'),
-(14, 5, 11, 1, '21312312', 1, 'RCPT-6346cef3ee8d77.36395853.jpg', '2022-10-12', 'ready'),
-(15, 5, 11, 1, '21321', 1, 'RCPT-635790f68f7ce2.49300989.jpg', '2022-10-25', 'ready');
+(1, NULL, 7, 1, 'school requirement', 1, 'payment.jpg', '2022-09-22', 'pending for verification'),
+(3, NULL, 9, 1, 'adasd', 12, 'RCPT-633afecac5b085.95733661.jpg', '2022-10-03', 'pending for verification'),
+(4, NULL, 9, 2, 'asd', 1, 'RCPT-633afee90462b9.73775231.jpg', '2022-10-03', 'pending for verification'),
+(5, 5, 11, 2, 'business', 1, 'RCPT-633d9a114cf799.84391831.jpg', '2022-10-05', 'completed'),
+(6, 5, 11, 3, 'school', 1, 'RCPT-633da47ab3f616.59006446.jpg', '2022-10-05', 'completed'),
+(7, NULL, 9, 2, 'Business', 1, 'RCPT-6342bf2cd197e4.93863445.jpg', '2022-10-09', 'pending for verification'),
+(8, NULL, 9, 3, 'School Requirement', 1, 'RCPT-6342bf801995f8.50901645.jpg', '2022-10-09', 'pending for verification'),
+(9, NULL, 29, 2, 'business', 1, 'RCPT-6342e30774d612.08680000.jpg', '2022-10-09', 'pending for verification'),
+(10, NULL, 29, 1, 'School Purposes', 2, 'RCPT-6342e70e7d8920.44333261.jpg', '2022-10-09', 'pending for verification'),
+(11, 5, 11, 1, 'asdasdas', 1, 'RCPT-63442b0f908dc0.42865164.jpg', '2022-10-10', 'completed'),
+(12, 5, 11, 1, 'sadasd', 1, 'RCPT-634439fca71343.47009202.jpg', '2022-10-10', 'completed'),
+(13, 5, 10, 1, 'sadasd', 1, 'RCPT-6345a60822dfe1.60325593.jpg', '2022-10-11', 'completed'),
+(14, 5, 11, 1, '21312312', 1, 'RCPT-6346cef3ee8d77.36395853.jpg', '2022-10-12', 'completed'),
+(15, 5, 11, 1, '21321', 1, 'RCPT-635790f68f7ce2.49300989.jpg', '2022-10-25', 'completed'),
+(16, NULL, 11, 2, 'asdasd', 1, 'RCPT-635799d78d2dd6.73321742.jpg', '2022-10-25', 'pending for verification'),
+(17, NULL, 11, 1, 'asdasd', 1, 'RCPT-63579b87877ce0.79188127.jpg', '2022-10-25', 'cancelled'),
+(18, NULL, 11, 3, 'business', 1, '', '2022-10-25', 'cancelled'),
+(19, NULL, 11, 1, 'nothin', 1, 'RCPT-6357b2f949f6e7.82317662.jpg', '2022-10-25', 'pending for verification'),
+(20, 5, 11, 2, 'adasd', 2, 'RCPT-6357b615683a93.45292356.jpg', '2022-10-25', 'completed'),
+(21, NULL, 10, 2, 'school', 1, '', '2022-10-25', 'pending for payment');
 
 -- --------------------------------------------------------
 
@@ -714,7 +728,8 @@ INSERT INTO `user_notification` (`notification_ID`, `notification_type`, `messag
 (38, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-10-25 09:42:39', 0),
 (39, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 10, '2022-10-25 09:42:49', 0),
 (40, 'Requested Document on process', 'Your Certificate of Residency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-10-25 09:42:54', 0),
-(41, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-10-25 09:57:37', 0);
+(41, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-10-25 09:57:37', 0),
+(42, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-10-25 12:14:27', 0);
 
 --
 -- Indexes for dumped tables
@@ -864,7 +879,7 @@ ALTER TABLE `address_fields`
 -- AUTO_INCREMENT for table `admin_notification`
 --
 ALTER TABLE `admin_notification`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `announcement`
@@ -900,7 +915,7 @@ ALTER TABLE `complaint_table`
 -- AUTO_INCREMENT for table `document_request`
 --
 ALTER TABLE `document_request`
-  MODIFY `request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `document_type`
@@ -966,7 +981,7 @@ ALTER TABLE `tbluser`
 -- AUTO_INCREMENT for table `user_notification`
 --
 ALTER TABLE `user_notification`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- Constraints for dumped tables

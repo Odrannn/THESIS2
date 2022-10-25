@@ -245,6 +245,7 @@ if($_SESSION['user_id'] == '') {
                                             <th>Payment</th>
                                             <th>Date</th>
                                             <th>Status</th>
+                                            <th></th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -258,11 +259,18 @@ if($_SESSION['user_id'] == '') {
                                         <td><?php echo $row["quantity"]; ?></td>
                                         <td><?php echo $row["payment"]; ?></td>
                                         <td><?php echo $row["request_date"]; ?></td>
-                                        <td><?php echo $row["status"]; ?></td>
-                                        <td><div class="btn-group" role="group" aria-label="Basic example">
-                                            <button data-id="<?php echo $row['request_ID']; ?>" class="viewreq btn btn-primary"><i class="fa-solid fa-eye"></i></button>
-                                            </div>
-                                        </td>
+                                        <td colspan='2'><div class="btn btn-outline-<?php if($row["status"]=='completed'){echo 'success';}
+                                        else if($row["status"]=='pending for verification' || $row["status"]=='pending for payment'){
+                                            echo 'primary';
+                                        } else {
+                                            echo 'danger';
+                                        }
+                                        ?>"><?php echo $row["status"]; ?></div></td>
+                                        <td><?php
+                                        if($row["status"]!='cancelled' && $row["status"]!='pending for payment'){
+                                        ?>
+                                            <button data-id="<?php echo $row['request_ID']; ?>" class="viewreq btn btn-primary"><i class="fa-solid fa-eye"></i></button></td>
+                                        <?php }?>
                                     </tr>
                                     <?php } ?>
                                 </table>
@@ -297,6 +305,13 @@ if($_SESSION['user_id'] == '') {
 
     <!--View Modal-->
     <div class="modal fade modal-md" id="viewModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            
+        </div>
+    </div>
+    
+    <!--Refund Modal-->
+    <div class="modal fade modal-md" id="refModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             
         </div>
@@ -347,6 +362,24 @@ if($_SESSION['user_id'] == '') {
             });
         });
     </script>
+
+    <!-- View request script-->
+    <script>
+        $(document).ready(function(){
+            $('.refund').click(function(){
+                var reqid = $(this).data('id');
+                $.ajax({url: "refund_form.php",
+                method:'post',
+                data: {reqid:reqid},
+                    
+                success: function(result){
+                    $(".modal-dialog").html(result);
+                }});
+                $('#refModal').modal('show');
+            });
+        });
+    </script>
+
     <!-- edit document script-->
     <script>
         $(document).ready(function(){

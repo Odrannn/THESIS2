@@ -116,8 +116,6 @@ if($_SESSION['user_id'] == '') {
                         <b>Method:</b> Gcash <br>
                         <b>Gcash Number:</b> <?php echo $row1['cp_number'];?> <br>
                         <b>Gcash Name:</b> <?php echo $row1['g_name'];?> <br>
-
-                        <b>Note:</b> Take a screenshot of your payment and attach the image to the 'Proof of Payment' input field below.
                         <hr>
                         <form class="g-3" action="submit_request.php" method="post" enctype="multipart/form-data">
                             <div class="row">
@@ -136,10 +134,10 @@ if($_SESSION['user_id'] == '') {
                                     <label class="pb-2" for="quantity">Quantity</label> 
                                     <input class="form-control" type="number" id="quantity" name="quantity" required></td>
                                 </div>
-                                <div class="col-md pt-2">
+                                <!--<div class="col-md pt-2">
                                     <label class="pb-2" for="proof">Proof of Payment</label> 
                                     <input class="form-control" type="file" id="proof" name="proof" required></td>
-                                </div>
+                                </div>-->
                             </div>
 
                             <div class="row">
