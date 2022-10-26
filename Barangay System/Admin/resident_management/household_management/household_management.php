@@ -217,6 +217,20 @@ if($_SESSION['user_id'] == '') {
                     <h5 class="card-header">Household List<button class="addhousehold btn btn-success" style="float: right"><i class="fa-solid fa-plus"></i></button></h5>
                     <div class="card-body">
                         <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md pt-2">
+                                    <input type="text" class="form-control" id="search" placeholder="Enter name...">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                            </div>
+                            <br>
                             <div class="table-responsive" style="width: 100%;">
                                 <table class="table table-striped">
                                     <thead>
@@ -229,21 +243,23 @@ if($_SESSION['user_id'] == '') {
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <?php while($row = $result->fetch_assoc()){ ?>
-                                    <tr>
-                                        <td><?php echo $row["household_id"]; ?></td>
-                                        <td><?php echo $row["household_name"]; ?></td>
-                                        <td><?php echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"] . ' ' . $row["suffix"]; ?></td>
-                                        <td><?php echo $row["household_member"]; ?></td>
-                                        <td><?php echo $row["status"]; ?></td>
-                                        <td><button data-id="<?php echo $row['household_id']; ?>" class="edithousehold btn btn-danger" <?php
-                                            if($row["status"] == "inactive"){
-                                                echo "disabled";
-                                            } 
-                                        ?>><i class="fa-solid fa-box-archive"></i></button></td>
-                                    </tr>
-                                    
-                                    <?php } ?>
+                                    <tbody id="output">
+                                        <?php while($row = $result->fetch_assoc()){ ?>
+                                        <tr>
+                                            <td><?php echo $row["household_id"]; ?></td>
+                                            <td><?php echo $row["household_name"]; ?></td>
+                                            <td><?php echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"] . ' ' . $row["suffix"]; ?></td>
+                                            <td><?php echo $row["household_member"]; ?></td>
+                                            <td><?php echo $row["status"]; ?></td>
+                                            <td><button data-id="<?php echo $row['household_id']; ?>" class="edithousehold btn btn-danger" <?php
+                                                if($row["status"] == "inactive"){
+                                                    echo "disabled";
+                                                } 
+                                            ?>><i class="fa-solid fa-box-archive"></i></button></td>
+                                        </tr>
+                                        
+                                        <?php } ?>
+                                    </tbody>
                                 </table>
                             </div>  
                         </div>
@@ -360,6 +376,24 @@ if($_SESSION['user_id'] == '') {
                     $(".modal-dialog").html(result);
                 }});
                 $('#impModal').modal('show');
+            });
+        });
+    </script>
+
+    <!-- search resident-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#search").keypress(function(){
+            $.ajax({
+                type:'POST',
+                url:'search.php',
+                data:{
+                name:$("#search").val(),
+                },
+                success:function(data){
+                $("#output").html(data);
+                }
+            });
             });
         });
     </script>

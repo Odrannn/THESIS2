@@ -159,7 +159,6 @@ if($_SESSION['user_id'] == '') {
                 <p>Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length:
                     a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality,
                     though, the unity and coherence of ideas among sentences is what constitutes a paragraph.</p>
-
                 <?php
                     if(isset($_GET['page'])){
                         $page = $_GET['page'];
@@ -241,6 +240,20 @@ if($_SESSION['user_id'] == '') {
                     <h5 class="card-header">Application List</h5>
                     <div class="card-body">
                         <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md pt-2">
+                                    <input type="text" class="form-control" id="search" placeholder="Enter name...">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                            </div>
+                            <br>
                             <div class="table-responsive" style="width: 100%;">
                                 <table class="table table-striped">
                                     <thead>
@@ -267,43 +280,48 @@ if($_SESSION['user_id'] == '') {
                                             <th>Educational Attainment</th>
                                             <th>Nationality</th>
                                             <th>Disability</th> 
-                                            <th>Status</th> 
+                                            <th style ="text-align:center;">Status</th> 
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <?php while($row = $result->fetch_assoc()){ ?>
-                                    <tr>
-                                        <td><?php echo $row["id"]; ?></td>
-                                        <td><?php echo $row["fname"]; ?></td>
-                                        <td><?php echo $row["mname"]; ?></td>
-                                        <td><?php echo $row["lname"]; ?></td>
-                                        <td><?php echo $row["suffix"]; ?></td>
-                                        <td><?php echo $row["gender"]; ?></td>
-                                        <td><?php echo $row["birthplace"]; ?></td>
-                                        <td><?php echo $row["civilstatus"]; ?></td>
-                                        <td><?php echo $row["birthday"]; ?></td>
-                                        <td><?php 
-                                            $dateOfBirth = $row["birthday"];
-                                            $today = date("Y-m-d");
-                                            $diff = date_diff(date_create($dateOfBirth), date_create($today));
-                                            echo $diff->format('%y');
-                                        ?></td>
-                                        <td><?php echo $row["unitnumber"]; ?></td>
-                                        <td><?php echo $row["purok"]; ?></td>
-                                        <td><?php echo $row["sitio"]; ?></td>
-                                        <td><?php echo $row["street"]; ?></td>
-                                        <td><?php echo $row["subdivision"]; ?></td>
-                                        <td><?php echo $row["contactnumber"]; ?></td>
-                                        <td><?php echo $row["email"]; ?></td>
-                                        <td><?php echo $row["religion"]; ?></td>
-                                        <td><?php echo $row["occupation"]; ?></td>
-                                        <td><?php echo $row["educational"]; ?></td>
-                                        <td><?php echo $row["nationality"]; ?></td>
-                                        <td><?php echo $row["disability"]; ?></td>
-                                        <td><?php echo $row["status"]; ?></td>
-                                        <td><button data-id="<?php echo $row['id']; ?>" class="userinfo btn btn-primary">View</button></td>
-                                    </tr>
-                                    <?php } ?>
+                                    <tbody id="output">
+                                        <?php while($row = $result->fetch_assoc()){ ?>
+                                        <tr>
+                                            <td><?php echo $row["id"]; ?></td>
+                                            <td><?php echo $row["fname"]; ?></td>
+                                            <td><?php echo $row["mname"]; ?></td>
+                                            <td><?php echo $row["lname"]; ?></td>
+                                            <td><?php echo $row["suffix"]; ?></td>
+                                            <td><?php echo $row["gender"]; ?></td>
+                                            <td><?php echo $row["birthplace"]; ?></td>
+                                            <td><?php echo $row["civilstatus"]; ?></td>
+                                            <td><?php echo $row["birthday"]; ?></td>
+                                            <td><?php 
+                                                $dateOfBirth = $row["birthday"];
+                                                $today = date("Y-m-d");
+                                                $diff = date_diff(date_create($dateOfBirth), date_create($today));
+                                                echo $diff->format('%y');
+                                            ?></td>
+                                            <td><?php echo $row["unitnumber"]; ?></td>
+                                            <td><?php echo $row["purok"]; ?></td>
+                                            <td><?php echo $row["sitio"]; ?></td>
+                                            <td><?php echo $row["street"]; ?></td>
+                                            <td><?php echo $row["subdivision"]; ?></td>
+                                            <td><?php echo $row["contactnumber"]; ?></td>
+                                            <td><?php echo $row["email"]; ?></td>
+                                            <td><?php echo $row["religion"]; ?></td>
+                                            <td><?php echo $row["occupation"]; ?></td>
+                                            <td><?php echo $row["educational"]; ?></td>
+                                            <td><?php echo $row["nationality"]; ?></td>
+                                            <td><?php echo $row["disability"]; ?></td>
+                                            <td style ="text-align:center;"><div style ="width: 100px;" class="btn btn-outline-<?php if($row["status"]=='accepted'){echo 'success';} else {
+                                            echo 'primary';
+                                        }
+                                        ?>"><?php echo $row["status"]; ?></div></td>
+                                            <td><button data-id="<?php echo $row['id']; ?>" class="userinfo btn btn-primary">View</button></td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
                                 </table>
                             </div>  
                         </div>
@@ -400,6 +418,23 @@ if($_SESSION['user_id'] == '') {
                 exportToCSV((start + 50), max);
             }});
         }
+    </script>
+    <!-- search resident-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#search").keypress(function(){
+            $.ajax({
+                type:'POST',
+                url:'search.php',
+                data:{
+                name:$("#search").val(),
+                },
+                success:function(data){
+                $("#output").html(data);
+                }
+            });
+            });
+        });
     </script>
 </body>
 </html>

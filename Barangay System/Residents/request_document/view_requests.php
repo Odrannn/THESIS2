@@ -91,6 +91,7 @@ if($_SESSION['user_id'] == '') {
                             $_SESSION['paymentMessage'] = '';
                         } ?>
                         <div class="container-fluid">
+                            
                             <div class="table-responsive" style="width: 100%;">
                                 <table class="table table-striped">
                                     <thead>

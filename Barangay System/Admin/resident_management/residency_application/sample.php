@@ -58,9 +58,9 @@ function itexmo($email,$password,$number,$message,$apicode)
 }
 
 
-$email = "ORSOLINO.CHRISTIANPHILIP@UE.EDU.PH";
-$password = "Yahoocom12";
-$apicode = "TR-CHRIS339758_OWHXS";
+$email = "bernard.mazo04@gmail.com";
+$password = "Mazo20181132826";
+$apicode = "PR-BERNA461967_SZ8D9";
 $number = "09925119326";
 $message = "Registration Accepted. ACCOUNT DETAILS - Username: ". $number . " Password: 12345678";
 

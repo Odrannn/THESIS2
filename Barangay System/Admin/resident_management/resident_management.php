@@ -214,6 +214,20 @@ if($_SESSION['user_id'] == '') {
                     </a>-->
                     <div class="card-body">
                         <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md pt-2">
+                                    <input type="text" class="form-control" id="search" placeholder="Enter name...">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                            </div>
+                            <br>
                             <div class="table-responsive" style="width: 100%;">
                                 <table class="table table-striped">
                                     <thead>
@@ -242,10 +256,11 @@ if($_SESSION['user_id'] == '') {
                                             <th>Educational Attainment</th>
                                             <th>Nationality</th>
                                             <th>Disability</th> 
-                                            <th>Status</th> 
+                                            <th style ="text-align:center;">Status</th> 
                                             <th>Action</th>
                                         </tr>
                                     </thead>
+                                    <tbody id = "output">
                                     <?php while($row = $result->fetch_assoc()){ ?>
                                     <tr>
                                         <td><?php echo $row["id"]; ?></td>
@@ -277,7 +292,10 @@ if($_SESSION['user_id'] == '') {
                                         <td><?php echo $row["education"]; ?></td>
                                         <td><?php echo $row["nationality"]; ?></td>
                                         <td><?php echo $row["disability"]; ?></td>
-                                        <td><?php echo $row["status"]; ?></td>
+                                        <td style ="text-align:center;"><div style ="width: 100px;" class="btn btn-outline-<?php if($row["status"]=='active'){echo 'success';} else {
+                                            echo 'danger';
+                                        }
+                                        ?>"><?php echo $row["status"]; ?></div></td>
                                         <td><div class="btn-group" role="group" aria-label="Basic example">
                                             <button data-id="<?php echo $row['id']; ?>" class="userinfo btn btn-primary"><i class="fa-solid fa-eye"></i></button>
                                             <button data-id="<?php echo $row['id']; ?>" class="editresident btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -285,6 +303,7 @@ if($_SESSION['user_id'] == '') {
                                         </td>
                                     </tr>
                                     <?php } ?>
+                                    </tbody>
                                 </table>
                                 <!--Add Modal-->
                                 <div class="modal fade modal-xl" id="addModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -430,6 +449,23 @@ if($_SESSION['user_id'] == '') {
                 exportToCSV((start + 50), max);
             }});
         }
+    </script>
+    <!-- search resident-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#search").keypress(function(){
+            $.ajax({
+                type:'POST',
+                url:'search.php',
+                data:{
+                name:$("#search").val(),
+                },
+                success:function(data){
+                $("#output").html(data);
+                }
+            });
+            });
+        });
     </script>
 </body>
 </html>
