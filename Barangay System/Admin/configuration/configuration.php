@@ -241,6 +241,19 @@ if($_SESSION['user_id'] == '') {
                                 <h5 class="card-title">User Management</h5>
                             </div>
                         </div>
+                        <div class="row mt-2">
+                            <div class="col-auto">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" name="modules[]" value="Reports" <?php
+                                    if($availability[6] == 'yes'){
+                                        echo 'checked';
+                                    }?>>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <h5 class="card-title">Reports</h5>
+                            </div>
+                        </div>
                         <div class="row mt-4 d-flex flex-row-reverse">
                             <div class="col-auto">
                                 <input type="submit" class="btn btn-primary mb-3" name="save_module" value="Save">

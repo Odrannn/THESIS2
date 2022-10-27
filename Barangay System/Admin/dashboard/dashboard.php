@@ -133,6 +133,65 @@ if($_SESSION['user_id'] == '') {
                         <?php
                     }
                 ?>
+                <?php if($availability[6] == 'yes'){ ?>
+                        <div class="card mb-3 me-2" style="width: 18rem;display: inline-block;">
+                            <a href="../reports/report.php" class="text-decoration-none text-dark">
+                            <img src="../icons/report.jpg" class="card-img-top" style="filter: brightness(50%);">
+                            <div class="card-body">
+                                <h5 class="card-title">Reports</h5>
+                                <p class="card-text">Generate Report on the Barangay System.</p>
+                            </div></a>
+                        </div>
+                        <?php
+                    }
+                ?>
+
+                <?php include('../../phpfiles/healthcare_time.php');?>
+                <div class="card mb-3 me-2" id="health">
+                    <div class="container-fluid">
+                        <div class="status">
+                            <?php
+                            $timestamp = $rowh[1];
+                            $start = date("g:i a",strtotime($timestamp));
+                            $timestamp = $rowh[2];
+                            $end = date("g:i a",strtotime($timestamp));
+                            ?>
+                            <h1>Healthcare Center Availability</h1>
+                            <h3>Time Available: <br><?php echo $start; ?> - <?php echo $end; ?></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="d-flex justify-content-center">
+                    <h2 class="text fs-5" >Announcements</h2>
+                </div>
+
+                
+                <hr>
+                <?php
+                    $query = "SELECT * FROM announcement";
+                    $result = $conn -> query($query);
+                    
+
+                    while($row = $result->fetch_assoc()) {
+                ?>
+                    
+                    <div class="card mb-3 me-2">
+                        <div class="row no-gutters">
+                            <div class="col-md-3">
+                                <img src="../../announcement_uploads/<?php echo $row['img_url'];
+                                ?>" class="card-img" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $row['title'];?></h5>
+                                    <p class="card-text"><?php echo $row['descrip'];?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </div>

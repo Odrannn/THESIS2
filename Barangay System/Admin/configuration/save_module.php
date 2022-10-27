@@ -53,6 +53,14 @@
             $query = "UPDATE modules_available SET availability = 'no' WHERE id = 6";
             $result = $conn -> query($query);
         }
+
+        if(in_array("Reports", $modules)){
+            $query = "UPDATE modules_available SET availability = 'yes' WHERE id = 7";
+            $result = $conn -> query($query);
+        } else {
+            $query = "UPDATE modules_available SET availability = 'no' WHERE id = 7";
+            $result = $conn -> query($query);
+        }
         header("location:configuration.php");
     }
 ?>

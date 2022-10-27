@@ -107,8 +107,14 @@ if($_SESSION['user_id'] == '') {
                 <div class="card mb-3 me-2" id="health">
                     <div class="container-fluid">
                         <div class="status">
+                            <?php
+                            $timestamp = $rowh[1];
+                            $start = date("g:i a",strtotime($timestamp));
+                            $timestamp = $rowh[2];
+                            $end = date("g:i a",strtotime($timestamp));
+                            ?>
                             <h1>Healthcare Center Availability</h1>
-                            <h3>Time Available (24 hour Time Format): <br><?php echo $rowh[1]; ?> - <?php echo $rowh[2]; ?></h3>
+                            <h3>Time Available: <br><?php echo $start; ?> - <?php echo $end; ?></h3>
                         </div>
                     </div>
                 </div>

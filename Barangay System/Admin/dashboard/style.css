@@ -8,6 +8,12 @@ body{
     transition: all 0.3s;
 }
 
+#health{
+	background: url(health.jpg);
+    background-size: cover;
+	padding: 5px;
+}
+
 .content{
     min-height: 100vh;
     width: 100%;

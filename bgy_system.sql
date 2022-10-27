@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2022 at 04:22 PM
+-- Generation Time: Oct 27, 2022 at 06:10 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -98,7 +98,9 @@ INSERT INTO `admin_notification` (`notification_ID`, `notification_type`, `type_
 (29, 'File Complaint', 16, 'filed a complaint.', 11, '22-10-25 04:39:53', 0),
 (30, 'Send Suggestion', 14, 'sent a suggestion.', 11, '22-10-25 04:55:55', 1),
 (31, 'Request Document', 23, 'requested a document.', 11, '22-10-25 05:18:25', 1),
-(32, 'File Blotter', 11, 'filed a blotter.', 38, '22-10-27 03:48:05', 0);
+(32, 'File Blotter', 11, 'filed a blotter.', 38, '22-10-27 03:48:05', 1),
+(33, 'Residency Registration', NULL, 'New residency application.', NULL, '22-10-09 02:31:04', 1),
+(36, 'Residency Registration', NULL, 'New residency application.', NULL, '22-10-27 05:01:03', 1);
 
 -- --------------------------------------------------------
 
@@ -327,7 +329,7 @@ CREATE TABLE `healthcare_availability` (
 --
 
 INSERT INTO `healthcare_availability` (`id`, `time_start`, `time_end`) VALUES
-(1, '10:00:00', '19:00:00');
+(1, '07:00:00', '19:00:00');
 
 -- --------------------------------------------------------
 
@@ -383,7 +385,8 @@ INSERT INTO `modules_available` (`id`, `modules`, `availability`) VALUES
 (3, 'Healthcare Center', 'yes'),
 (4, 'Request Verification', 'yes'),
 (5, 'Official Management', 'yes'),
-(6, 'User Management', 'yes');
+(6, 'User Management', 'yes'),
+(7, 'Reports', 'yes');
 
 -- --------------------------------------------------------
 
@@ -454,7 +457,8 @@ INSERT INTO `registration` (`id`, `fname`, `mname`, `lname`, `suffix`, `gender`,
 (24, 'Bernardo', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2022-10-22', 1759, 'purok 1', 'sitio 1', 'Grove', 'Magnolia Estate', '96160644831', 'nard_mazo@gmail.com1', 'Roman Catholic', 'none', 'Less Than Highschool', 'Filipino', 'none', 'accepted', 'IMG-633ee85b00dd85.83556750.jpg'),
 (25, 'Nard', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2010-03-27', 1759, '', '', '', '', '09616064483', 'nard_maz@gmail.com', 'Roman Catholic', 'Programmer', 'College', 'Filipino', 'none', 'accepted', 'IMG-635732a9db8c34.29051974.jpg'),
 (26, 'Nardo', 'Kabiling', 'Mazo', 'II', 'male', 'Pampanga', 'Single', '2011-03-29', 1234, 'purok 1', 'sitio 1', 'Grove', 'Magnolia Estate', '09616064483', 'bernard.mazo04@gmail.com', 'Roman Catholic', 'none', 'College', 'Filipino', 'none', 'accepted', 'IMG-635733e3dcbdf6.13061455.jpg'),
-(27, 'Denver', 'Kabiling', 'Mazo', '', 'male', 'Pampanga', 'Single', '1999-01-12', 7894, 'purok 2', 'sitio 2', 'KalyePogi', 'Beverly Woods', '09475044087', 'denver.mazo66@gmail.com', 'Roman Catholic', 'Cook', 'Bachelor\'\'s Degree', 'Filipino', 'none', 'accepted', 'IMG-6357345b7e1345.88315838.jpg');
+(27, 'Denver', 'Kabiling', 'Mazo', '', 'male', 'Pampanga', 'Single', '1999-01-12', 7894, 'purok 2', 'sitio 2', 'KalyePogi', 'Beverly Woods', '09475044087', 'denver.mazo66@gmail.com', 'Roman Catholic', 'Cook', 'Bachelor\'\'s Degree', 'Filipino', 'none', 'accepted', 'IMG-6357345b7e1345.88315838.jpg'),
+(30, 'Jennifer', 'Abella', 'Kabiling', '', 'male', 'Pampanga', 'Single', '2000-06-29', 1759, '', '', '', '', '09206460967', 'jennifer.kabiling@gmail.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'Filipino', 'none', 'pendingforaccountandresidency', 'IMG-635a9d2f2a12a3.68807450.png');
 
 -- --------------------------------------------------------
 
@@ -689,7 +693,7 @@ INSERT INTO `tbluser` (`id`, `username`, `password`, `type`, `profile`) VALUES
 (30, 'poli', 'pol', 'admin', 'default.jpg'),
 (33, '09475044087', '12345678', 'user', 'default.jpg'),
 (39, 'ber', '789', 'user', 'default.jpg'),
-(41, 'HCAdmin', 'hcadmin', 'hadmin', 'default.jpg'),
+(41, 'hcadmin', 'hcadmin', 'hadmin', 'default.jpg'),
 (42, '09283523144', '12345678', 'user', 'default.jpg'),
 (43, '096160644831', '12345678', 'user', 'default.jpg'),
 (44, '09475044087', '12345678', 'user', 'default.jpg'),
@@ -885,7 +889,7 @@ ALTER TABLE `address_fields`
 -- AUTO_INCREMENT for table `admin_notification`
 --
 ALTER TABLE `admin_notification`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `announcement`
@@ -945,13 +949,13 @@ ALTER TABLE `healthcare_logs`
 -- AUTO_INCREMENT for table `modules_available`
 --
 ALTER TABLE `modules_available`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `resident_table`

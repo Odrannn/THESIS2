@@ -94,16 +94,20 @@ if($_SESSION['user_id'] == '') {
                                         $timestamp = $rownot['date_time'];
                                         $dateTime = date("M d, Y, g:i a",strtotime($timestamp));
 
-                                        $query1 = "SELECT * FROM resident_table WHERE id = '". $rownot['source_ID']."'";
-                                        $result1 = $conn -> query($query1);
-                                        $row1 = $result1->fetch_assoc();
-                                        $name = $row1['fname'] . " " . $row1['lname'];
+                                        if($rownot['notification_type'] != 'Residency Registration'){
+                                            $query1 = "SELECT * FROM resident_table WHERE id = '". $rownot['source_ID']."'";
+                                            $result1 = $conn -> query($query1);
+                                            $row1 = $result1->fetch_assoc();
+                                            $name = $row1['fname'] . " " . $row1['lname'];
+                                        }
+                                        
                                         if($rownot['status'] == '0'){ 
                                             $notifID = $rownot['notification_ID'];?>
 
                                             <li><a class="dropdown-item " href="../../../phpfiles/readnotif.php?notifid=<?php echo $notifID?>">
                                             <b><?php echo $rownot['notification_type'];?></b><i class="fa-solid fa-circle text-danger" style="float:right; font-size:12px;"></i><br>
-                                            <?php echo $name . " " . $rownot['message']; ?><br>
+                                            <?php if($rownot['notification_type'] != 'Residency Registration'){ echo $name . " " . $rownot['message']; }
+                                            else {echo $rownot['message'];}?><br>
                                             <b class="text-primary"><?php echo $dateTime;?></b>
                                             </a></li>
                                             <li><hr class="dropdown-divider"></li>
@@ -112,7 +116,8 @@ if($_SESSION['user_id'] == '') {
                                             $notifID = $rownot['notification_ID'];?>
                                             <li ><a class="dropdown-item" href="../../../phpfiles/readnotif.php?notifid=<?php echo $notifID?>">
                                             <?php echo $rownot['notification_type'];?><br>
-                                            <?php echo $name . " " . $rownot['message']; ?><br>
+                                            <?php if($rownot['notification_type'] != 'Residency Registration'){ echo $name . " " . $rownot['message']; }
+                                            else {echo $rownot['message'];}?><br>
                                             <?php echo $dateTime;?>
 
                                             </a></li>

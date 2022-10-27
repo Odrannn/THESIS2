@@ -18,5 +18,7 @@ if($row['notification_type']=="Request Document"){
     header("location:../Admin/case_management/suggestion_management/suggestion_management.php");
 } else if ($row['notification_type']=="File Blotter"){
     header("location:../Admin/case_management/blotter_management/blotter_management.php");
+} else {
+    header("location:../Admin/resident_management/residency_application/residency_application.php");
 }
 ?>
