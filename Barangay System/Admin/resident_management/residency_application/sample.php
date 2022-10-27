@@ -61,7 +61,7 @@ function itexmo($email,$password,$number,$message,$apicode)
 $email = "bernard.mazo04@gmail.com";
 $password = "Mazo20181132826";
 $apicode = "PR-BERNA461967_SZ8D9";
-$number = "09925119326";
+$number = "09616064483";
 $message = "Registration Accepted. ACCOUNT DETAILS - Username: ". $number . " Password: 12345678";
 
 echo itexmo($email, $password, $number, $message, $apicode);

@@ -2,7 +2,7 @@
 
 // Create connection
 include('../../phpfiles/connection.php');
-$sql = "SELECT * FROM resident_table WHERE fname LIKE '%".$_POST['name']."%' OR mname LIKE '%".$_POST['name']."%' OR lname LIKE '%".$_POST['name']."%'";
+$sql = "SELECT * FROM resident_table WHERE fname LIKE '%".$_POST['name']."%' OR mname LIKE '%".$_POST['name']."%' OR lname LIKE '%".$_POST['name']."%' OR id LIKE '%".$_POST['name']."%'";
 $result = mysqli_query($conn, $sql);
 
 if(mysqli_num_rows($result)>0){

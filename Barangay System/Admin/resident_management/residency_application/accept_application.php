@@ -49,10 +49,10 @@
             VALUES('$contactnumber', '12345678', 'user', 'default.jpg')";
             $new_result = $conn -> query($new_query); 
 
-            $email = "orsolino.christianphilip@ue.edu.ph";
-            $password = "Yahoocom12";
+            $email = "bernard.mazo04@gmail.com";
+            $password = "Mazo20181132826";
+            $apicode = "PR-BERNA461967_SZ8D9";
             $number = $contactnumber;
-            $apicode = "TR-CHRIS339758_OWHXS";
             $message = "Registration Accepted.\n ACCOUNT DETAILS \nUsername: ". $contactnumber . " \nPassword: 12345678";
 
             /* getting the user id for resident foreignkey */
@@ -87,10 +87,10 @@
             $bgyname = $row['bgy_name'];
 
             /*sms notif */
-            $email = "orsolino.christianphilip@ue.edu.ph";
-            $password = "Yahoocom12";
+            $email = "bernard.mazo04@gmail.com";
+            $password = "Mazo20181132826";
+            $apicode = "PR-BERNA461967_SZ8D9";
             $number = $contactnumber;
-            $apicode = "TR-CHRIS339758_OWHXS";
             $message = "Registration Accepted. The person you registered is now a resident of Barangay " . $bgyname . ".";
             itexmo($email, $password, $number, $message, $apicode);
         }
