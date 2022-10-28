@@ -70,7 +70,15 @@ if(isset($_SESSION['user_id']))
             </div>-->
             
             <!--<button type="button" class="btn btn-link p-0">Forgot Password?</button>-->
-            <input class="btn btn-success w-100" type="submit" name ="login" value="LOG IN">
+            <div class= "m-0 p-0">Login as:</div>
+            <div class="row mt-0 pt-0 px-2">
+                <div class="col p-1">
+                    <input class="btn btn-dark w-100" type="submit" name ="resident" value="Resident">
+                </div>
+                <div class="col p-1">
+                    <input class="btn btn-dark w-100" type="submit" name ="admin" value="Admin">
+                </div>
+            </div>
         </form>
         
         <?php 

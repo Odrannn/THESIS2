@@ -35,7 +35,7 @@ if(mysqli_num_rows($result)>0){
             <td><?php echo $row["educational"]; ?></td>
             <td><?php echo $row["nationality"]; ?></td>
             <td><?php echo $row["disability"]; ?></td>
-            <td style ="text-align:center;"><div style ="width: 100px;" class="btn btn-outline-<?php if($row["status"]=='accepted'){echo 'success';} else {
+            <td style ="text-align:center;"><div style ="width: 255px;" class="btn btn-outline-<?php if($row["status"]=='accepted'){echo 'success';} else {
                                             echo 'primary';
                                         }
                                         ?>"><?php echo $row["status"]; ?></td>

@@ -153,11 +153,7 @@ if($_SESSION['user_id'] == '') {
                                     <?php while($row = $result->fetch_assoc()){ ?>
                                     <tr>
                                         <td><?php echo $row["id"]; ?></td>
-                                        <td><?php if($row['type'] != 'hadmin'){ echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"] . ' ' . $row["suffix"]; }
-                                            else {
-                                                echo 'Healthcare Administrator';
-                                            }
-                                        ?></td>
+                                        <td><?php echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"] . ' ' . $row["suffix"]; ?></td>
                                         <td><?php echo $row["username"]; ?></td>
                                         <td><?php echo $row["password"]; ?></td>
                                         <td><?php echo $row["type"]; ?></td>
