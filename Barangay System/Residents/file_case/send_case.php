@@ -1,5 +1,6 @@
 <?php
     session_start();
+    date_default_timezone_set('Asia/Manila'); // SET TIMEZONE
     $_SESSION['suggestion_message'] = '';
     $_SESSION['complaint_message'] = '';
     $_SESSION['blotter_message'] = '';
@@ -20,7 +21,7 @@
         $description = $_POST['description'];
         $date = date("Y-m-d");
 
-        if (isset($_FILES['comp_image'])) {
+        if ($_FILES['comp_image']['size'] != 0) {
             $img_name = $_FILES['comp_image']['name'];
             $img_size = $_FILES['comp_image']['size'];
             $tmp_name = $_FILES['comp_image']['tmp_name'];
@@ -55,6 +56,7 @@
             VALUES ('$resident_id','$nature', '$description', '$date', 'pending');";
             $result = $conn -> query($query);
         }
+
         $_SESSION['complaint_message'] = "Your complaint has been successfully submitted.
         Please wait patiently, your case is in process. You can monitor its status in the tracking menu or check your notification for updates.";
         

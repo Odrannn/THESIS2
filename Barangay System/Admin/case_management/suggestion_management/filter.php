@@ -1,7 +1,7 @@
 <?php
 sleep(1);
 session_start();
-
+date_default_timezone_set('Asia/Manila'); // SET TIMEZONE
 include('../../../phpfiles/connection.php');
 if(isset($_POST['request'])){
     $request = $_POST['request'];

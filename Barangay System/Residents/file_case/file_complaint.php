@@ -2,6 +2,7 @@
 session_start();
 include('../../phpfiles/connection.php');
 
+
 if($_SESSION['user_id'] == '') {
     header("location:../../Login/login.php");
 }

@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include('../../../phpfiles/connection.php');
+date_default_timezone_set('Asia/Manila'); // SET TIMEZONE
 
 if($_SESSION['user_id'] == '') {
     header("location:../../../Login/login.php");
@@ -467,6 +468,7 @@ if($_SESSION['user_id'] == '') {
                                         <li class="page-item"><a class="page-link text-dark" href="suggestion_management.php?page=<?php echo $next;?>">Next</a></li>
                                     </ul>
                                 </nav>
+                                <?php $_SESSION['filter']='all';?>
                             </div>  
                         </div>
                     </div>
@@ -595,3 +597,4 @@ if($_SESSION['user_id'] == '') {
     </script>
 </body>
 </html>
+

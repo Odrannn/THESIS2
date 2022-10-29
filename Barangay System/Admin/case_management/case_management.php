@@ -402,6 +402,7 @@ if($_SESSION['user_id'] == '') {
                                     </ul>
                                 </nav>
                             </div>  
+                            <?php $_SESSION['filter']='all';?>
                         </div>
                     </div>
                 </div><br>
