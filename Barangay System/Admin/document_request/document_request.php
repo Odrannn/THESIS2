@@ -277,21 +277,28 @@ if($_SESSION['user_id'] == '') {
                         </div>
                     </div>
                 </div><br>
-                <nav aria-label="Page navigation example">
-                    <div class="btn-group" role="group" aria-label="Basic example" style="float: right;">
-                        <div><a class="import btn btn-outline-success">Import</a></div>
-                        <div id="response">Please wait..</div>
+                <div class="row">
+                    <div class="col">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item"><a class="page-link text-dark" href="document_request.php?page=<?php echo $previous;?>">Previous</a></li>
+                                <?php for($i=1; $i<=$pages;$i++)
+                                {?>
+                                    <li class="page-item"><a class="page-link text-dark" href="document_request.php?page=<?php echo $i;?>"><?php echo $i;?></a></li>
+                                <?php 
+                                }?>
+                                <li class="page-item"><a class="page-link text-dark" href="document_request.php?page=<?php echo $next;?>">Next</a></li>
+                            </ul>
+                        </nav>
                     </div>
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link text-dark" href="document_request.php?page=<?php echo $previous;?>">Previous</a></li>
-                        <?php for($i=1; $i<=$pages;$i++)
-                        {?>
-                            <li class="page-item"><a class="page-link text-dark" href="document_request.php?page=<?php echo $i;?>"><?php echo $i;?></a></li>
-                        <?php 
-                        }?>
-                        <li class="page-item"><a class="page-link text-dark" href="document_request.php?page=<?php echo $next;?>">Next</a></li>
-                    </ul>
-                </nav>
+                    <div class="col">
+                        <div class="btn-group" role="group" aria-label="Basic example" style="float: right;">
+                            <div><a class="import btn btn-outline-success">Import</a></div>
+                            <div id="response">Please wait..</div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>

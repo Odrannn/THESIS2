@@ -227,7 +227,13 @@ if($_SESSION['user_id'] == '') {
                                             echo 'danger';
                                         }
                                         ?>"><?php echo $row1["status"]; ?></td>
-                                        <td><button data-id="<?php echo $row1["blotter_ID"]?>" class="viewbl btn btn-primary"><i class="fa-solid fa-eye"></i></button>   
+                                        <td>
+                                        <div class="btn-group" role="group" aria-label="Basic example">    
+                                            <button data-id="<?php echo $row1["blotter_ID"]?>" class="viewbl btn btn-primary"><i class="fa-solid fa-eye"></i></button>   
+                                            <button data-id="<?php echo $row1["blotter_ID"]?>" class="xbl btn btn-danger" <?php
+                                            if($row1["status"] == 'cancelled'){echo 'disabled';}
+                                            ?>><i class="fa-solid fa-xmark"></i></button>   
+                                        </div>
                                         </td>
                                     </tr>
                                     
@@ -243,6 +249,13 @@ if($_SESSION['user_id'] == '') {
 
     <!--View Modal-->
     <div class="modal fade" id="viewModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            
+        </div>
+    </div>
+
+    <!--CANCEL Modal-->
+    <div class="modal fade" id="xModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             
         </div>
@@ -269,6 +282,23 @@ if($_SESSION['user_id'] == '') {
                     $(".modal-dialog").html(result);
                 }});
                 $('#viewModal').modal('show');
+            });
+        });
+    </script>
+
+    <!-- x script-->
+    <script>
+        $(document).ready(function(){
+            $('.xbl').click(function(){
+                var userid = $(this).data('id');
+                $.ajax({url: "cancel_form.php",
+                method:'post',
+                data: {userid:userid},
+                    
+                success: function(result){
+                    $(".modal-dialog").html(result);
+                }});
+                $('#xModal').modal('show');
             });
         });
     </script>

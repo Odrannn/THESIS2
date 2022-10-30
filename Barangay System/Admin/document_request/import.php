@@ -30,7 +30,7 @@ $sql = "CREATE TABLE `document_request` (
     `quantity` int(10) NOT NULL,
     `payment` varchar(50) NOT NULL,
     `request_date` date NOT NULL,
-    `status` varchar(10) NOT NULL
+    `status` varchar(50) NOT NULL
   );";
 $result = $conn -> query($sql);
 

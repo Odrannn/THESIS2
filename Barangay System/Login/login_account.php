@@ -67,8 +67,10 @@ if(isset($_POST['resident']))
 				{
 					$_SESSION['user_id'] = $user_data['id'];
 					header("location:../Residents/dashboard/dashboard.php");
+
+					die;
 				}
-				die;
+				
 			}
 		}
 		$_SESSION['message'] = "Wrong username or password!";

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2022 at 06:32 PM
+-- Generation Time: Oct 30, 2022 at 05:07 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -102,7 +102,17 @@ INSERT INTO `admin_notification` (`notification_ID`, `notification_type`, `type_
 (33, 'Residency Registration', NULL, 'New residency application.', NULL, '22-10-09 02:31:04', 1),
 (36, 'Residency Registration', NULL, 'New residency application.', NULL, '22-10-27 05:01:03', 1),
 (37, 'Request Document', 24, 'requested a document.', 8, '22-10-28 04:40:35', 1),
-(38, 'Request Document', 24, 'sent a payment.', 8, '22-10-28 04:40:47', 1);
+(38, 'Request Document', 24, 'sent a payment.', 8, '22-10-28 04:40:47', 1),
+(39, 'File Complaint', 17, 'filed a complaint.', 11, '22-10-29 06:49:11', 0),
+(40, 'File Complaint', 17, 'filed a complaint.', 8, '22-10-29 06:54:53', 0),
+(41, 'File Complaint', 17, 'filed a complaint.', 11, '22-10-29 07:01:23', 0),
+(42, 'File Complaint', 17, 'filed a complaint.', 11, '22-10-29 07:02:12', 0),
+(43, 'File Complaint', 17, 'filed a complaint.', 11, '22-10-29 07:02:48', 0),
+(44, 'File Complaint', 17, 'filed a complaint.', 11, '22-10-29 07:02:55', 0),
+(45, 'File Complaint', 18, 'filed a complaint.', 11, '22-10-29 07:04:50', 0),
+(46, 'File Complaint', 19, 'filed a complaint.', 11, '22-10-30 01:05:48', 0),
+(47, 'Residency Registration', NULL, 'New residency registration.', NULL, '22-10-30 01:14:41', 0),
+(48, 'File Blotter', 12, 'filed a blotter.', 8, '22-10-30 11:49:50', 0);
 
 -- --------------------------------------------------------
 
@@ -186,7 +196,8 @@ INSERT INTO `blotter_table` (`blotter_ID`, `official_ID`, `complainant_ID`, `com
 (8, 5, 10, 29, 'john daniel san juan policarpio', '0000-00-00', '00:54:00', 'nanapak', 'sinapak ako sa kanto', '2022-10-20', '21:38:00', '', 'unscheduled'),
 (9, 5, 11, NULL, 'Jhepoy Dizon', '0000-00-00', '18:20:00', 'Bully', 'bullying', '2022-10-07', '21:14:00', '', 'unscheduled'),
 (10, 5, 11, NULL, 'Wilson The Goat', '0000-00-00', '18:23:00', 'Maingay', 'asdawdwadawd', '2022-10-14', '21:40:00', '', 'scheduled'),
-(11, NULL, 38, 7, 'Lenz Janielle Lim Gerongco', '2022-10-10', '21:49:00', 'maganda', 'maganda', '0000-00-00', NULL, '', 'unscheduled');
+(11, NULL, 38, 7, 'Lenz Janielle Lim Gerongco', '2022-10-10', '21:49:00', 'maganda', 'maganda', '0000-00-00', NULL, '', 'unscheduled'),
+(12, NULL, 8, 9, 'Christian Philip Diff Orsolino', '2022-10-05', '23:51:00', 'Bullying', 'bullying me', '0000-00-00', NULL, '', 'cancelled');
 
 -- --------------------------------------------------------
 
@@ -244,7 +255,10 @@ INSERT INTO `complaint_table` (`complaint_ID`, `official_ID`, `sender_ID`, `comp
 (13, 5, 9, 'Other', 'illegal parking', '2022-10-17', 'IMG-633453de511e23.56622787.jpg', 'solved'),
 (14, 5, 9, 'Dirty Barangay', 'street 1 is very dirty', '2022-10-17', 'IMG-63346d10292875.87716455.jpg', 'solved'),
 (15, 5, 9, 'Dirty Barangay', 'asdasdas', '2022-10-18', 'IMG-634563a9e852f8.39870037.jpg', 'solved'),
-(16, NULL, 11, 'Sugalan', 'Sugalan sa kanto', '2022-10-25', 'IMG-6357f538e709c0.67166961.jpg', 'pending');
+(16, NULL, 11, 'Sugalan', 'Sugalan sa kanto', '2022-10-25', 'IMG-6357f538e709c0.67166961.jpg', 'pending'),
+(17, NULL, 11, 'Dirty Barangay', 'sadasdas', '2022-10-29', 'IMG-635d5987b47342.25145990.jpg', 'pending'),
+(18, NULL, 11, 'Dirty Barangay', 'asda', '2022-10-29', '', 'pending'),
+(19, NULL, 11, 'Dirty Barangay', 'sadasd', '2022-10-30', '', 'pending');
 
 -- --------------------------------------------------------
 
@@ -555,7 +569,8 @@ INSERT INTO `suggestion_table` (`suggestion_ID`, `official_ID`, `sender_ID`, `su
 (11, 3, 9, 'Education', 'aasdasdsad', '2022-10-10', 'noted', 'noticed'),
 (12, 5, 9, 'Other', 'sadasd', '2022-10-10', 'opo', 'noticed'),
 (13, 5, 9, 'Other', 'sadasd', '2022-10-10', 'sge po', 'noticed'),
-(14, NULL, 11, 'libreng tuli', 'asdasdas', '2022-10-25', '', 'pending');
+(14, NULL, 11, 'libreng tuli', 'asdasdas', '2022-10-25', '', 'pending'),
+(15, NULL, 8, 'Barangay Improvement', 'sad', '2022-10-30', '', 'pending');
 
 -- --------------------------------------------------------
 
@@ -806,8 +821,8 @@ ALTER TABLE `complaint_table`
 ALTER TABLE `document_request`
   ADD PRIMARY KEY (`request_ID`),
   ADD KEY `OFFICIAL_2` (`official_ID`),
-  ADD KEY `NAME` (`document_ID`),
-  ADD KEY `RESIDENT_2` (`resident_ID`);
+  ADD KEY `RESIDENT_2` (`resident_ID`),
+  ADD KEY `NAME` (`document_ID`);
 
 --
 -- Indexes for table `document_type`
@@ -897,7 +912,7 @@ ALTER TABLE `address_fields`
 -- AUTO_INCREMENT for table `admin_notification`
 --
 ALTER TABLE `admin_notification`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `announcement`
@@ -915,7 +930,7 @@ ALTER TABLE `bgy_info`
 -- AUTO_INCREMENT for table `blotter_table`
 --
 ALTER TABLE `blotter_table`
-  MODIFY `blotter_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `blotter_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `case_option`
@@ -927,7 +942,7 @@ ALTER TABLE `case_option`
 -- AUTO_INCREMENT for table `complaint_table`
 --
 ALTER TABLE `complaint_table`
-  MODIFY `complaint_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `complaint_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `document_request`
@@ -975,7 +990,7 @@ ALTER TABLE `resident_table`
 -- AUTO_INCREMENT for table `suggestion_table`
 --
 ALTER TABLE `suggestion_table`
-  MODIFY `suggestion_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `suggestion_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tblhousehold`
