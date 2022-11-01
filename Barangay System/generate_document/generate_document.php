@@ -15,7 +15,10 @@ $result1 = $conn -> query($query1);
 $row1 = $result1->fetch_assoc();
 $senderName = $row1['fname'] . " " . $row1['mname'] . " " . $row1['lname'];
 $surname = $row1['lname'];
-$age = $row1['age'];
+$dateOfBirth = $row1["birthday"];
+$today = date("Y-m-d");
+$diff = date_diff(date_create($dateOfBirth), date_create($today));
+$age = $diff->format('%y');
 $civstatus = $row1['civilstatus'];
 $nationality = $row1['nationality'];
 
@@ -123,51 +126,10 @@ if($document_Type == 'Barangay Clearance')
 }
 if($document_Type == 'Certificate of Indigency')
 {
-    $html = "
-    <img src='logo.jpg' width='100' style='position:fixed; left:50px;'> 
-    <div style='text-align: center;'>
-    Republic of the Philippines<br>
-    City of $bgycity<br>
-    <h1>Barangay $bgyname</h1>
-    </div>";
-    
-    $html .= '<hr style="margin: 0 40px;">';
-    
-    $html .= "<br>
-    <div style='text-align: center;'>
-    <h3>OFFICE OF THE BARANGAY CAPTAIN</h3>
-    <h1>CERTIFICATE OF INDIGENCY</h1>
-    </div>
-    <br><br>
-    <div style='margin: 0 40px; line-height:200%; text-align: justify;'>
-        <b>TO WHOM IT MAY CONCERN:</b>
-        <p style='text-indent: 50px;'>
-        This is to certify that $senderName, $age years old, $nationality Citizen, and belongs to the indigent family of
-        Barangay $bgyname, $bgycity. 
-        </p>
-        <p style='text-indent: 50px;'>
-        This certification is being issued upon the request of the above-named person for whatever legal purpose it may serve him best.
-        </p>
-        <p style='text-indent: 50px;'>
-        <b>ISSUED</b> this $day of $month, $year at the office of the Punong Barangay, Barangay $bgyname, $bgycity City, Philippines.
-        </p>
-    </div>
-    <br><br><br>
-    ";
-    
-    $html .= "
-    <div style='margin: 0 40px;'>
-        <div style='width:27%;float:right;'>
-            <p><b>$chname</b><br>Barangay Captain</p>
-        </div>
-    </div>
-    <br><br><br><br><br><br><br>
-    <div style='margin: 0 40px;'>
-        O.R. No. $requestID <br>
-        Date Issued: $full_date<br>
-        Doc. Stamp: paid
-    </div>
-    ";
+    ob_start();
+    require('details_pdf.php');
+    $html = ob_get_contents();
+    ob_get_clean();
     
     $options = new Options;
     $options -> setChroot(__DIR__);

@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    date_default_timezone_set('Asia/Manila'); // SET TIMEZONE
     include("../../phpfiles/connection.php");
     
     //check if id don't exists
@@ -35,10 +37,13 @@
         else 
         {
             $query = "INSERT INTO healthcare_logs(patient_id, fullname, date, time, reason)
-            VALUES('0', '$patient_id', '$date','$time','$reason')";
+            VALUES(NULL, '$patient_id', '$date','$time','$reason')";
             $result = $conn -> query($query);
             header("location:healthcare_center.php");
+            
         }
+        $_SESSION['message'] = 'Log successfully added';
+        $_SESSION['status'] = 1;
         
     }
 ?>

@@ -1,7 +1,7 @@
 <?php
+    session_start();
+    include("../../phpfiles/connection.php");
     if (isset($_POST['post']) && isset($_FILES['ann_image'])) {
-        include("../../phpfiles/connection.php");
-
         echo "<pre>";
         print_r($_FILES['ann_image']);
         echo "<pre>";
@@ -29,14 +29,27 @@
                 move_uploaded_file($tmp_name, $img_upload_path);
 
                 //insert to db
-                $query = "INSERT INTO announcement (title, img_url, descrip)
-                VALUES ('$title', '$new_img_name', '$description');";
+                $query = "INSERT INTO announcement (title, img_url, descrip,status)
+                VALUES ('$title', '$new_img_name', '$description' , 'active');";
                 $result = $conn -> query($query);
             } else {
                 echo "You can't upload files of this type.";
             }
         }
+        $_SESSION['message'] = 'Announcement successfully added.';
+        $_SESSION['status'] = 1;
 
-        header("location:announcement.php");
-    } 
+    } else if(isset($_POST['post'])) {
+        $title = $_POST['title'];
+        $description = $_POST['description'];
+
+        //insert to db
+        $query = "INSERT INTO announcement (title, img_url, descrip, status)
+        VALUES ('$title', 'default.jpg', $description', 'active');";
+        $result = $conn -> query($query);
+
+        $_SESSION['message'] = 'Announcement successfully added.';
+        $_SESSION['status'] = 1;
+    }
+    header("location:announcement.php");
 ?>

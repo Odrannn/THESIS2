@@ -170,7 +170,7 @@ if($_SESSION['user_id'] == '') {
                 
                 <hr>
                 <?php
-                    $query = "SELECT * FROM announcement";
+                    $query = "SELECT * FROM announcement WHERE status = 'active' ORDER BY id DESC";
                     $result = $conn -> query($query);
                     
 

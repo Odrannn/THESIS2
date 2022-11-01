@@ -132,7 +132,7 @@ if($_SESSION['user_id'] == '') {
                                 </div>
                                 <div class="col-md pt-2">
                                     <label class="pb-2" for="quantity">Quantity</label> 
-                                    <input class="form-control" type="number" id="quantity" name="quantity" min="10" value="1" required></td>
+                                    <input class="form-control" type="number" id="quantity" name="quantity" min="1" value="1" required></td>
                                 </div>
                                 <!--<div class="col-md pt-2">
                                     <label class="pb-2" for="proof">Proof of Payment</label> 

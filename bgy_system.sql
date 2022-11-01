@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2022 at 05:07 PM
+-- Generation Time: Nov 01, 2022 at 06:53 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -104,15 +104,15 @@ INSERT INTO `admin_notification` (`notification_ID`, `notification_type`, `type_
 (37, 'Request Document', 24, 'requested a document.', 8, '22-10-28 04:40:35', 1),
 (38, 'Request Document', 24, 'sent a payment.', 8, '22-10-28 04:40:47', 1),
 (39, 'File Complaint', 17, 'filed a complaint.', 11, '22-10-29 06:49:11', 0),
-(40, 'File Complaint', 17, 'filed a complaint.', 8, '22-10-29 06:54:53', 0),
-(41, 'File Complaint', 17, 'filed a complaint.', 11, '22-10-29 07:01:23', 0),
-(42, 'File Complaint', 17, 'filed a complaint.', 11, '22-10-29 07:02:12', 0),
-(43, 'File Complaint', 17, 'filed a complaint.', 11, '22-10-29 07:02:48', 0),
-(44, 'File Complaint', 17, 'filed a complaint.', 11, '22-10-29 07:02:55', 0),
-(45, 'File Complaint', 18, 'filed a complaint.', 11, '22-10-29 07:04:50', 0),
-(46, 'File Complaint', 19, 'filed a complaint.', 11, '22-10-30 01:05:48', 0),
-(47, 'Residency Registration', NULL, 'New residency registration.', NULL, '22-10-30 01:14:41', 0),
-(48, 'File Blotter', 12, 'filed a blotter.', 8, '22-10-30 11:49:50', 0);
+(40, 'File Complaint', 17, 'filed a complaint.', 8, '22-10-29 06:54:53', 1),
+(41, 'File Complaint', 17, 'filed a complaint.', 11, '22-10-29 07:01:23', 1),
+(42, 'File Complaint', 17, 'filed a complaint.', 11, '22-10-29 07:02:12', 1),
+(43, 'File Complaint', 17, 'filed a complaint.', 11, '22-10-29 07:02:48', 1),
+(44, 'File Complaint', 17, 'filed a complaint.', 11, '22-10-29 07:02:55', 1),
+(45, 'File Complaint', 18, 'filed a complaint.', 11, '22-10-29 07:04:50', 1),
+(46, 'File Complaint', 19, 'filed a complaint.', 11, '22-10-30 01:05:48', 1),
+(47, 'Residency Registration', NULL, 'New residency registration.', NULL, '22-10-30 01:14:41', 1),
+(48, 'File Blotter', 12, 'filed a blotter.', 8, '22-10-30 11:49:50', 1);
 
 -- --------------------------------------------------------
 
@@ -124,17 +124,18 @@ CREATE TABLE `announcement` (
   `id` int(11) NOT NULL,
   `title` varchar(100) NOT NULL,
   `img_url` varchar(100) NOT NULL,
-  `descrip` varchar(200) NOT NULL
+  `descrip` varchar(200) NOT NULL,
+  `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `announcement`
 --
 
-INSERT INTO `announcement` (`id`, `title`, `img_url`, `descrip`) VALUES
-(11, 'assembly', 'IMG-62f909accac4e9.62604401.jpg', 'hvgvkuyvubbnlb'),
-(12, 'bakuna', 'IMG-62f909ca28c652.09208881.jpg', 'gf cfjc jvckvlbkbnbydfdfugvboihgniogoi7hyo87tngyyybyibyibuyhbuihiuhuihuihuihiygyigy'),
-(13, 'sayaw', 'IMG-62f909eb6b3343.71586801.jpg', 'hnoi gg86g6g67g87huiohbuygvytfrtdredrfkygl');
+INSERT INTO `announcement` (`id`, `title`, `img_url`, `descrip`, `status`) VALUES
+(11, 'assembly', 'IMG-62f909accac4e9.62604401.jpg', 'hvgvkuyvubbnlb', 'active'),
+(12, 'bakuna', 'IMG-62f909ca28c652.09208881.jpg', 'gf cfjc jvckvlbkbnbydfdfugvboihgniogoi7hyo87tngyyybyibyibuyhbuihiuhuihuihuihiygyigy', 'inactive'),
+(13, 'sayaw', 'IMG-62f909eb6b3343.71586801.jpg', 'hnoi gg86g6g67g87huiohbuygvytfrtdredrfkygl', 'inactive');
 
 -- --------------------------------------------------------
 
@@ -356,7 +357,7 @@ INSERT INTO `healthcare_availability` (`id`, `time_start`, `time_end`) VALUES
 
 CREATE TABLE `healthcare_logs` (
   `id` int(11) NOT NULL,
-  `patient_id` int(11) NOT NULL,
+  `patient_id` int(11) DEFAULT NULL,
   `fullname` varchar(100) DEFAULT NULL,
   `date` date NOT NULL,
   `time` time NOT NULL,
@@ -370,15 +371,29 @@ CREATE TABLE `healthcare_logs` (
 INSERT INTO `healthcare_logs` (`id`, `patient_id`, `fullname`, `date`, `time`, `reason`) VALUES
 (2, 8, 'Bernard Kabiling Mazo', '2022-09-19', '15:51:01', 'pogi'),
 (3, 9, 'Christian Philip Diff Orsolino', '2022-09-19', '15:52:12', 'allergy'),
-(4, 0, '', '2022-09-19', '16:19:02', 'nothing'),
-(5, 0, '', '2022-09-19', '16:21:05', 'asdas'),
-(6, 0, '', '2022-09-19', '16:25:41', 'ads'),
-(7, 0, 'Denver Mazo', '2022-09-19', '16:29:04', 'nothing'),
-(8, 0, '10', '2022-09-19', '16:29:17', 'Varsity'),
-(9, 0, '10', '2022-09-19', '16:29:55', 'varsity'),
+(4, NULL, '', '2022-09-19', '16:19:02', 'nothinga'),
+(5, NULL, '', '2022-09-19', '16:21:05', 'asdas'),
+(6, NULL, '', '2022-09-19', '16:25:41', 'ads'),
+(7, NULL, 'Denver Mazo', '2022-09-19', '16:29:04', 'nothing'),
+(8, NULL, '10', '2022-09-19', '16:29:17', 'Varsity'),
+(9, NULL, '10', '2022-09-19', '16:29:55', 'varsity'),
 (10, 10, 'Charles Wilcent Ilustre Urbano', '2022-09-19', '16:40:47', 'Varsity'),
-(11, 0, 'Charles', '2022-09-19', '16:41:23', '12121'),
-(12, 38, 'Bernard Kabilin Mazo', '2022-10-10', '18:38:40', 'stomach ache 1');
+(11, NULL, 'Charles', '2022-09-19', '16:41:23', '12121'),
+(12, 38, 'Bernard Kabilin Mazo', '2022-10-10', '18:38:40', 'stomach ache 1'),
+(13, 38, 'Bernard Kabilin Mazo', '2022-11-01', '16:18:20', 'headachea'),
+(14, NULL, 'asdas', '2022-11-01', '23:24:19', 'asdaaasdasd');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logs`
+--
+
+CREATE TABLE `logs` (
+  `log_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `date_time` datetime(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -762,7 +777,24 @@ INSERT INTO `user_notification` (`notification_ID`, `notification_type`, `messag
 (18, 'Filed Blotter', 'You are invited to the barangay hall on October 12, 2022,<br> 9:01 pm, to settle the blotter you are involved.', 5, 10, '2022-10-27 03:58:13', 0),
 (19, 'Filed Blotter', 'You are invited to the barangay hall on October 14, 2022,<br> 10:06 pm, to settle the blotter you are involved.', 5, 11, '2022-10-27 04:03:25', 1),
 (20, 'Filed Blotter', 'You are invited to the barangay hall on October 14, 2022,<br> 10:06 pm, to settle the blotter you are involved.', 5, 10, '2022-10-27 04:03:25', 0),
-(21, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 8, '2022-10-28 04:41:07', 1);
+(21, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 8, '2022-10-28 04:41:07', 1),
+(22, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 8, '2022-11-01 06:32:00', 0),
+(23, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-01 06:32:31', 0),
+(24, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-01 06:32:48', 0),
+(25, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-01 06:33:36', 0),
+(26, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-01 06:34:08', 0),
+(27, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-01 06:34:43', 0),
+(28, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-01 06:34:56', 0),
+(29, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-01 06:35:05', 0),
+(30, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-01 06:37:12', 0),
+(31, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-01 06:38:12', 0),
+(32, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-01 06:38:50', 0),
+(33, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-01 06:38:54', 0),
+(34, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-01 06:39:41', 0),
+(35, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-01 06:41:04', 0),
+(36, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-01 06:45:43', 0),
+(37, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-01 06:45:56', 0),
+(38, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 8, '2022-11-01 06:52:34', 0);
 
 --
 -- Indexes for dumped tables
@@ -843,6 +875,12 @@ ALTER TABLE `healthcare_logs`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `logs`
+--
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`log_id`);
+
+--
 -- Indexes for table `modules_available`
 --
 ALTER TABLE `modules_available`
@@ -918,7 +956,7 @@ ALTER TABLE `admin_notification`
 -- AUTO_INCREMENT for table `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `bgy_info`
@@ -966,7 +1004,13 @@ ALTER TABLE `healthcare_availability`
 -- AUTO_INCREMENT for table `healthcare_logs`
 --
 ALTER TABLE `healthcare_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `logs`
+--
+ALTER TABLE `logs`
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `modules_available`
@@ -1014,7 +1058,7 @@ ALTER TABLE `tbluser`
 -- AUTO_INCREMENT for table `user_notification`
 --
 ALTER TABLE `user_notification`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- Constraints for dumped tables
