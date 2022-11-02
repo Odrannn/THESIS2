@@ -1,5 +1,5 @@
 <body onLoad="createQr();">
-    <img src='logo.jpg' width='100' style='position:fixed; left:50px;'>
+    <img src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=bernard' width='100' style='position:fixed; left:50px;'>
     <div style='text-align: center;'>
         Republic of the Philippines<br>
         City of <?=$bgycity?><br>

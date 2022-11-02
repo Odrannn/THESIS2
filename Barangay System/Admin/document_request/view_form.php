@@ -17,7 +17,7 @@ $total = (float)($quantity * $price);
 ?>
 
 <div class="modal-content">
-    <form action="../../generate_document/generate_document.php" method="post">
+    <form action="../../generate-document/generate_document.php" method="post">
     <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Request Information</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

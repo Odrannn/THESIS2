@@ -158,7 +158,7 @@ if($_SESSION['user_id'] == '') {
                                         ?>"><?php echo $row1["status"]; ?></div></td>
                                         <td>
                                         <?php if($row1["status"]=='completed'){?>
-                                            <form action="../../generate_document/generate_document.php" method="post">
+                                            <form action="../../generate-document/generate_document.php" method="post">
                                                 <input type="hidden" name="id" value="<?php echo $row1['request_ID'];?>">
                                                 <input type="hidden" name="senderid" value="<?php echo $row1['resident_ID'];?>">
                                                 <input type="hidden" name="documentid" value="<?php echo $row1['document_ID'];?>">
