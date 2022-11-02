@@ -1,5 +1,6 @@
 <?php
 include("../phpfiles/connection.php");
+date_default_timezone_set('Asia/Manila'); // SET TIMEZONE
 
 $requestID = $_POST["id"];
 $officialID = $_POST["officialid"];
@@ -107,6 +108,20 @@ $full_date = date("M j, Y");
         $pdf->cell(0, 0, "Date Issued: $full_date", 0,1,'L');  
         $pdf->cell(0, 0, "Doc. Stamp: paid", 0,1,'L');  
         $pdf->Output("$surname-Certificate-of-Indigency.pdf", 'I');
+
+        if(isset($_POST['generate'])){
+            //create notif
+            $notifdate = date('y-m-d h:i:s');
+            $notifquery = "INSERT INTO user_notification(notification_type, message, source_ID, resident_ID, date_time, status)
+            VALUES ('Requested Document on process','Your Certificate of Indigency request is on process.<br>
+            You can now download the soft copy from view<br>
+            requests tab or claim it in the Barangay Hall.', '$officialID', '$senderID','$notifdate','0');";
+            $notifresult = $conn -> query($notifquery);
+    
+            //update request status
+            $upquery = "UPDATE document_request SET status = 'completed', official_ID = '$officialID' WHERE request_ID = '$requestID';";
+            $upresult = $conn -> query($upquery);
+        }
     }
     if($document_Type == 'Barangay Clearance')
     {
@@ -146,7 +161,21 @@ $full_date = date("M j, Y");
         $pdf->cell(0, 0, "Request No. $requestID", 0,1,'L');  
         $pdf->cell(0, 0, "Date Issued: $full_date", 0,1,'L');  
         $pdf->cell(0, 0, "Doc. Stamp: paid", 0,1,'L');  
-        $pdf->Output("$surname-Certificate-of-Indigency.pdf", 'I');
+        $pdf->Output("$surname-Barangay-Clearance.pdf", 'I');
+
+        if(isset($_POST['generate'])){
+            //create notif
+            $notifdate = date('y-m-d h:i:s');
+            $notifquery = "INSERT INTO user_notification(notification_type, message, source_ID, resident_ID, date_time, status)
+            VALUES ('Requested Document on process','Your Barangay Clearance request is ready.<br>
+            You can now download the soft copy from view<br>
+            requests tab or claim it in the Barangay Hall.', '$officialID', '$senderID','$notifdate','0');";
+            $notifresult = $conn -> query($notifquery);
+    
+            //update request status
+            $upquery = "UPDATE document_request SET status = 'completed', official_ID = '$officialID' WHERE request_ID = '$requestID';";
+            $upresult = $conn -> query($upquery);
+        }
     }
 
     if($document_Type == 'Certificate of Residency')
@@ -187,7 +216,21 @@ $full_date = date("M j, Y");
         $pdf->cell(0, 0, "Request No. $requestID", 0,1,'L');  
         $pdf->cell(0, 0, "Date Issued: $full_date", 0,1,'L');  
         $pdf->cell(0, 0, "Doc. Stamp: paid", 0,1,'L');  
-        $pdf->Output("$surname-Certificate-of-Indigency.pdf", 'I');
+        $pdf->Output("$surname-Certificate-of-Residency.pdf", 'I');
+
+        if(isset($_POST['generate'])){
+            //create notif
+            $notifdate = date('y-m-d h:i:s');
+            $notifquery = "INSERT INTO user_notification(notification_type, message, source_ID, resident_ID, date_time, status)
+            VALUES ('Requested Document on process','Your Certificate of Residency request is on process.<br>
+            You can now download the soft copy from view<br>
+            requests tab or claim it in the Barangay Hall.', '$officialID', '$senderID','$notifdate','0');";
+            $notifresult = $conn -> query($notifquery);
+    
+            //update request status
+            $upquery = "UPDATE document_request SET status = 'completed', official_ID = '$officialID' WHERE request_ID = '$requestID';";
+            $upresult = $conn -> query($upquery);
+        }
     }
 ?>
 
