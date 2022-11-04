@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("../../phpfiles/connection.php");
 
 if(ISSET($_POST['add']))
@@ -19,6 +20,8 @@ if(ISSET($_POST['add']))
     //update household table
     $query = "UPDATE tblhousehold SET household_member = '$totalMembers' WHERE household_id = '$householdID'";
     $result = $conn -> query($query);
+
+    $_SESSION['message'] = 'Resident successfully added to this household!';
 
     header("location:manage_household.php");
 }

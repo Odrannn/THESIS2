@@ -150,6 +150,7 @@ if($_SESSION['user_id'] == '') {
                                             <th>ID</th>
                                             <th>Title</th>
                                             <th>Description</th>
+                                            <th>Date & Time</th>
                                             <th style ="text-align:center;">Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -159,6 +160,10 @@ if($_SESSION['user_id'] == '') {
                                         <td><?php echo $row["id"]; ?></td>
                                         <td><?php echo $row["title"]; ?></td>
                                         <td><?php echo $row["descrip"]; ?></td>
+                                        <td><?php 
+                                        $orgDate = $row['date'];  
+                                        $newDate = date("Y-m-d, h:i:s a", strtotime($orgDate));  
+                                        echo $newDate;?></td>
                                         <td style ="text-align:center;"><div style ="width: 120px;" class="btn btn-outline-<?php if($row["status"]=='active'){echo 'success';} else {
                                             echo 'danger';
                                         }

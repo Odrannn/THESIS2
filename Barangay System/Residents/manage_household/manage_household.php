@@ -43,6 +43,7 @@ if($_SESSION['user_id'] == '') {
             <li class=""><a href="../file_case/send_suggestion/send_suggestion.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Suggest</a></li>
             <li class=""><a href="../file_case/file_blotter/file_blotter.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-stamp"></i>&nbsp;Blotter</a></li>
 			<li class=""><a href="../request_document/request_document.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-file"></i>&nbsp;Request Document</a></li>
+            <li class=""><a href="../announcements/announcements.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-sharp fa-solid fa-radio"></i>&nbsp;Announcements</a></li>
             </ul>
         </div>
 
@@ -56,13 +57,25 @@ if($_SESSION['user_id'] == '') {
                 
                 <h2 class="text fs-5">Manage Household</h2>
                 <p>In this module, you can manage your household information.</p>
-
+                <?php
+                    if(isset($_SESSION['message']) && $_SESSION['message'] != ''){
+                    ?>
+                    <div class="alert alert-success" role="alert">
+                        <h4 class="alert-heading">Successful!</h4>
+                        <p><?php echo $_SESSION['message'];?></p>
+                        
+                    </div>
+                    <?php
+                    }
+                    $_SESSION['message'] = '';
+                    ?>
                 <div class="card">
+                   
                     <h5 class="card-header">Household Member List<button class="addmember btn btn-success" style="float: right"><i class="fa-solid fa-plus"></i></button></h5>
                     <div class="card-body">
                         <div class="container-fluid">
                             <div class="table-responsive" style="width: 100%;">
-                                <table class="table table-bordered">
+                                <table class="table table-striped">
                                     <thead>
                                         <tr class="align-top">
                                             <th>Resident ID</th>
@@ -74,8 +87,8 @@ if($_SESSION['user_id'] == '') {
                                     </thead>
                                     <?php 
                                     $userid = $_SESSION['user_id'];
-                                    //get resident id
-                                    $query = "SELECT household_ID FROM resident_table WHERE user_id = '$userid'";
+                                    //get household id
+                                    $query = "SELECT id,household_ID FROM resident_table WHERE user_id = '$userid'";
                                     $result = $conn -> query($query);
                                     $row = $result->fetch_array();
                                     $householdID = $row['household_ID'];
@@ -91,7 +104,6 @@ if($_SESSION['user_id'] == '') {
                                     //select all members
                                     $query = "SELECT * FROM resident_table WHERE household_ID = '$householdID' LIMIT $start, 10;";
                                     $result = $conn -> query($query);
-                                    $row1 = $result->fetch_array();
                 
                                     $result1 = $conn -> query("SELECT count(id) as id FROM resident_table WHERE household_ID = '$householdID';");
                                     $resCount = $result1->fetch_assoc();
@@ -120,7 +132,7 @@ if($_SESSION['user_id'] == '') {
                                             $diff = date_diff(date_create($dateOfBirth), date_create($today));
                                             echo $diff->format('%y');
                                         ?></td>
-                                        <td><button data-id="<?php echo $row1['id']; ?>" class="edithousehold btn btn-danger"><i class="fa-solid fa-box-archive"></i></button></td>
+                                        <td><button data-id="<?php echo $row1['id']; ?>" class="editmember btn btn-danger" <?php if($row1['id'] == $row['id']){ echo 'disabled';} ?>><i class="fa-solid fa-box-archive"></i></button></td>
                                     </tr>
                                     
                                     <?php } ?>
@@ -182,11 +194,11 @@ if($_SESSION['user_id'] == '') {
     <!-- Edit resident script-->
     <script>
         $(document).ready(function(){
-            $('.editofficial').click(function(){
-                var userid = $(this).data('id');
-                $.ajax({url: "edit_form.php",
+            $('.editmember').click(function(){
+                var rid = $(this).data('id');
+                $.ajax({url: "edit_member_form.php",
                 method:'post',
-                data: {userid:userid},
+                data: {rid:rid},
                     
                 success: function(result){
                     $(".modal-dialog").html(result);

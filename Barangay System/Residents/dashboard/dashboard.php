@@ -11,7 +11,7 @@ if($_SESSION['user_id'] == '') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale1.0">
-    <title></title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -42,6 +42,7 @@ if($_SESSION['user_id'] == '') {
             <li class=""><a href="../file_case/send_suggestion/send_suggestion.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Suggest</a></li>
             <li class=""><a href="../file_case/file_blotter/file_blotter.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-stamp"></i>&nbsp;Blotter</a></li>
 			<li class=""><a href="../request_document/request_document.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-file"></i>&nbsp;Request Document</a></li>
+            <li class=""><a href="../announcements/announcements.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-sharp fa-solid fa-radio"></i>&nbsp;Announcements</a></li>
             </ul>
         </div>
 
@@ -52,10 +53,32 @@ if($_SESSION['user_id'] == '') {
                 $query = "SELECT * FROM resident_table WHERE user_id = '" . $_SESSION['user_id'] . "'";
                 $result = $conn -> query($query);
                 $row = $result -> fetch_array();
+
+                $query1 = "SELECT * FROM complaint_table WHERE sender_ID = '" . $row['id'] . "'";
+                $result1 = $conn -> query($query1);
+                $compcount = mysqli_num_rows($result1);
                 ?>
 
-                <h2 class="text fs-5">Dashboard <?php echo $_SESSION['user_id']?></h2>
+                <h2 class="text fs-5">Dashboard</h2>
                 <h2 class="text fs-5">Welcome <?php echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname']?></h2>
+                <br>    
+
+
+                <div>
+                    <div class="card mb-3 me-2 hover-shadow " style="width: 18rem;display: inline-block; color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>">
+                        <a href="" class="text-decoration-none text-dark">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h1 class="card-title"><i class="fa-sharp fa-solid fa-face-angry"  style="color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>"></i>&nbsp;&nbsp;&nbsp;<?php echo $compcount;?></h1> 
+                                    <h5 class="card-title">Filed Complaints </h5>
+                                </div>
+                            </div>
+                        </div></a>
+                    </div>
+                </div>
+                <hr>
+                <h5 class="card-title">Quick Access</h5>   
                 <br>
                 <?php include('../../phpfiles/modules_available.php');
                     if($availability[0] == 'yes'){ ?>
@@ -119,7 +142,7 @@ if($_SESSION['user_id'] == '') {
                     </div>
                 </div>
                 
-                <hr>
+                <!--<hr>
                 <div class="d-flex justify-content-center">
                     <h2 class="text fs-5" >Announcements</h2>
                 </div>
@@ -148,7 +171,7 @@ if($_SESSION['user_id'] == '') {
                             </div>
                         </div>
                     </div>
-                <?php } ?>
+                <?php } ?>-->
             </div>
         </div>
     </div>

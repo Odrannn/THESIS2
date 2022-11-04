@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2022 at 04:02 AM
+-- Generation Time: Nov 04, 2022 at 06:50 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -112,7 +112,11 @@ INSERT INTO `admin_notification` (`notification_ID`, `notification_type`, `type_
 (45, 'File Complaint', 18, 'filed a complaint.', 11, '22-10-29 07:04:50', 1),
 (46, 'File Complaint', 19, 'filed a complaint.', 11, '22-10-30 01:05:48', 1),
 (47, 'Residency Registration', NULL, 'New residency registration.', NULL, '22-10-30 01:14:41', 1),
-(48, 'File Blotter', 12, 'filed a blotter.', 8, '22-10-30 11:49:50', 1);
+(48, 'File Blotter', 12, 'filed a blotter.', 8, '22-10-30 11:49:50', 1),
+(49, 'Request Document', 25, 'requested a document.', 8, '22-11-02 04:07:47', 0),
+(50, 'File Blotter', 13, 'filed a blotter.', 8, '22-11-02 11:08:03', 0),
+(51, 'Request Document', 25, 'sent a payment.', 8, '22-11-02 04:11:32', 0),
+(52, 'File Complaint', 20, 'filed a complaint.', 8, '22-11-05 01:49:33', 0);
 
 -- --------------------------------------------------------
 
@@ -125,6 +129,7 @@ CREATE TABLE `announcement` (
   `title` varchar(100) NOT NULL,
   `img_url` varchar(100) NOT NULL,
   `descrip` varchar(200) NOT NULL,
+  `date` datetime(6) DEFAULT NULL,
   `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -132,10 +137,11 @@ CREATE TABLE `announcement` (
 -- Dumping data for table `announcement`
 --
 
-INSERT INTO `announcement` (`id`, `title`, `img_url`, `descrip`, `status`) VALUES
-(11, 'assembly', 'IMG-62f909accac4e9.62604401.jpg', 'hvgvkuyvubbnlb', 'active'),
-(12, 'bakuna', 'IMG-62f909ca28c652.09208881.jpg', 'gf cfjc jvckvlbkbnbydfdfugvboihgniogoi7hyo87tngyyybyibyibuyhbuihiuhuihuihuihiygyigy', 'inactive'),
-(13, 'sayaw', 'IMG-62f909eb6b3343.71586801.jpg', 'hnoi gg86g6g67g87huiohbuygvytfrtdredrfkygl', 'inactive');
+INSERT INTO `announcement` (`id`, `title`, `img_url`, `descrip`, `date`, `status`) VALUES
+(11, 'Barangay Assembly', 'IMG-62f909accac4e9.62604401.jpg', 'hvgvkuyvubbnlb', '2018-06-12 10:34:09.000000', 'active'),
+(12, 'Libreng Bakuna', 'IMG-62f909ca28c652.09208881.jpg', 'gf cfjc jvckvlbkbnbydfdfugvboihgniogoi7hyo87tngyyybyibyibuyhbuihiuhuihuihuihiygyigy', '2018-06-12 10:34:09.000000', 'active'),
+(13, 'Dance Contest', 'IMG-62f909eb6b3343.71586801.jpg', 'hnoi gg86g6g67g87huiohbuygvytfrtdredrfkygl', '2018-06-12 10:34:09.000000', 'active'),
+(18, 'Libreng Tuli', 'default.jpg', 'asdasd', '2022-11-04 09:37:05.000000', 'active');
 
 -- --------------------------------------------------------
 
@@ -159,7 +165,7 @@ CREATE TABLE `bgy_info` (
 --
 
 INSERT INTO `bgy_info` (`id`, `color_theme`, `logo_url`, `bgy_name`, `vision`, `mission`, `city`, `background_url`) VALUES
-(1, '#171717', 'IMG-6361dc2a20c772.15043274.png', '310', 'We envision the Barangay Pico to be more progressive, loving and peaceful place to live in where people and residents enjoy harmonious way of life, business, at work and at home, and most especially for a more directed and progressive Barangay Governance.', 'We commit to perform better duties and responsibilities to carry out the plans and objectives of the barangay thru voluntary and excellent performance, most especially in the delivery of the basic needs such as improved roads and environment, water system, health care, education, housing and agricultural farming needs of the farmers and residents of the barangay.', 'Manila ', 'IMG-6310b1e4de2736.84526520.png');
+(1, '#12ab30', 'IMG-6361dc2a20c772.15043274.png', '310', 'We envision the Barangay Pico to be more progressive, loving and peaceful place to live in where people and residents enjoy harmonious way of life, business, at work and at home, and most especially for a more directed and progressive Barangay Governance.', 'We commit to perform better duties and responsibilities to carry out the plans and objectives of the barangay thru voluntary and excellent performance, most especially in the delivery of the basic needs such as improved roads and environment, water system, health care, education, housing and agricultural farming needs of the farmers and residents of the barangay.', 'Manila ', 'IMG-6310b1e4de2736.84526520.png');
 
 -- --------------------------------------------------------
 
@@ -198,7 +204,8 @@ INSERT INTO `blotter_table` (`blotter_ID`, `official_ID`, `complainant_ID`, `com
 (9, 5, 11, NULL, 'Jhepoy Dizon', '0000-00-00', '18:20:00', 'Bully', 'bullying', '2022-10-07', '21:14:00', '', 'unscheduled'),
 (10, 5, 11, NULL, 'Wilson The Goat', '0000-00-00', '18:23:00', 'Maingay', 'asdawdwadawd', '2022-10-14', '21:40:00', '', 'scheduled'),
 (11, NULL, 38, 7, 'Lenz Janielle Lim Gerongco', '2022-10-10', '21:49:00', 'maganda', 'maganda', '0000-00-00', NULL, '', 'unscheduled'),
-(12, NULL, 8, 9, 'Christian Philip Diff Orsolino', '2022-10-05', '23:51:00', 'Bullying', 'bullying me', '0000-00-00', NULL, '', 'cancelled');
+(12, NULL, 8, 9, 'Christian Philip Diff Orsolino', '2022-10-05', '23:51:00', 'Bullying', 'bullying me', '0000-00-00', NULL, '', 'cancelled'),
+(13, NULL, 8, 34, 'Bernandito Malacas Mazo', '2022-11-20', '11:11:00', 'asdas', 'asdas', '0000-00-00', NULL, '', 'cancelled');
 
 -- --------------------------------------------------------
 
@@ -259,7 +266,8 @@ INSERT INTO `complaint_table` (`complaint_ID`, `official_ID`, `sender_ID`, `comp
 (16, NULL, 11, 'Sugalan', 'Sugalan sa kanto', '2022-10-25', 'IMG-6357f538e709c0.67166961.jpg', 'pending'),
 (17, NULL, 11, 'Dirty Barangay', 'sadasdas', '2022-10-29', 'IMG-635d5987b47342.25145990.jpg', 'pending'),
 (18, NULL, 11, 'Dirty Barangay', 'asda', '2022-10-29', '', 'pending'),
-(19, NULL, 11, 'Dirty Barangay', 'sadasd', '2022-10-30', '', 'pending');
+(19, NULL, 11, 'Dirty Barangay', 'sadasd', '2022-10-30', '', 'pending'),
+(20, NULL, 8, 'Dirty Barangay', 'asd', '2022-11-05', '', 'pending');
 
 -- --------------------------------------------------------
 
@@ -306,7 +314,8 @@ INSERT INTO `document_request` (`request_ID`, `official_ID`, `resident_ID`, `doc
 (21, NULL, 10, 2, 'school', 1, '', '2022-10-25', 'pending for payment'),
 (22, NULL, 10, 3, 'none', 3, '', '2022-10-25', 'pending for payment'),
 (23, NULL, 11, 1, 'ad', 3, '', '2022-10-25', 'pending for payment'),
-(24, 5, 8, 1, 'sdasda', 1, 'RCPT-635be9ef7e2571.50044956.jpg', '2022-10-28', 'completed');
+(24, 5, 8, 1, 'sdasda', 1, 'RCPT-635be9ef7e2571.50044956.jpg', '2022-10-28', 'completed'),
+(25, 5, 8, 1, 'aasdas', 1, 'RCPT-6361dfe4988d42.61837782.jpg', '2022-11-02', 'completed');
 
 -- --------------------------------------------------------
 
@@ -530,8 +539,8 @@ CREATE TABLE `resident_table` (
 --
 
 INSERT INTO `resident_table` (`id`, `user_id`, `fname`, `mname`, `lname`, `suffix`, `gender`, `birthplace`, `civilstatus`, `birthday`, `household_ID`, `unitnumber`, `purok`, `sitio`, `street`, `subdivision`, `contactnumber`, `email`, `religion`, `occupation`, `education`, `nationality`, `disability`, `status`) VALUES
-(7, 7, 'Lenz Janielle', 'Lim', 'Gerongco', '', 'female', 'Laguna', 'Single', '2002-09-15', NULL, 1004, 'Purok 3', 'sitio 2', '1', '1', '09123456789', 'lenzgerongco@yahoo.com', 'Roman Catholic', 'Flight attendant', 'College', 'Filipino', 'none', 'active'),
-(8, 8, 'Bernard', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2001-03-27', NULL, 1759, 'purok 1', 'sitio 1', 'TELECOM', 'tinagan', '09616064483', 'nard_mazo@gmail.com', 'Roman Catholic', 'Programmer', 'College', 'Filipino', 'none', 'active'),
+(7, 7, 'Lenz Janielle', 'Lim', 'Gerongco', '', 'female', 'Laguna', 'Single', '2002-09-15', 8, 1004, 'Purok 3', 'sitio 2', '1', '1', '09123456789', 'lenzgerongco@yahoo.com', 'Roman Catholic', 'Flight attendant', 'College', 'Filipino', 'none', 'active'),
+(8, 8, 'Bernard', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2001-03-27', 8, 1759, 'purok 1', 'sitio 1', 'TELECOM', 'tinagan', '09616064483', 'nard_mazo@gmail.com', 'Roman Catholic', 'Programmer', 'College', 'Filipino', 'none', 'active'),
 (9, 9, 'Christian Philip', 'Diff', 'Orsolino', '', 'male', 'Manila', 'Single', '2000-12-11', 3, 1000, 'purok 1', 'sitio 2', 'TELECOM', 'tinagan', '09283523142', 'chris.orsolino@gmail.com', 'Roman Catholic', 'Dancer', 'College', 'Filipino', 'none', 'active'),
 (10, 10, 'Charles Wilcent', 'Ilustre', 'Urbano', '', 'male', 'Manila', 'Single', '2000-12-02', 3, 4598, 'purok 2', 'sitio 3', '1', '1', '09925119326', 'wilson.urbano@gmail.con', 'Roman Catholic', 'Axie player', 'College', 'Filipino', 'none', 'active'),
 (11, 11, 'Jehan', '', 'Hadji Said', '', 'male', 'Manila', 'Single', '2001-06-12', NULL, 12312, 'purok 2', 'sitio 2', '1', '1', '09219657391', 'jehan.said@gmail.com', 'Islam', 'Web developer', 'College', 'Filipino', 'none', 'active'),
@@ -543,9 +552,9 @@ INSERT INTO `resident_table` (`id`, `user_id`, `fname`, `mname`, `lname`, `suffi
 (32, 33, 'Denver ', 'Kabiling', 'Mazo', '', 'male', 'Pampanga', 'Single', '1999-01-12', NULL, 1759, 'purok 1', 'sitio 1', 'KalyePogi', 'Magnolia Estate', '09475044087', 'denver.mazo@gmail.com', 'Roman Catholic', 'Cook', 'College', 'Filipino', 'None', 'active'),
 (34, 42, 'Bernandito', 'Malacas', 'Mazo', '', 'male', 'Mindoro', 'Married', '2003-09-07', 7, 1759, '', '', '', '', '09283523144', 'bernandito.mazo@gmail.com', 'Roman Catholic', 'Machine Operator', 'College', 'Filipino', 'none', 'active'),
 (38, 39, 'Bernard', 'Kabilin', 'Mazo', '', 'female', 'Manila', 'Married', '2002-10-13', 3, 1759, '', '', '', '', '0961606448', 'nard_maz@gmail.com', 'Roman Catholic', 'none', 'Highschool', 'Filipino', 'none', 'active'),
-(39, 43, 'Bernardo', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2002-10-12', NULL, 1759, 'purok 1', 'sitio 1', 'Grove', 'Magnolia Estate', '09616064481', 'chrensan@gmail.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'Filipino', 'none', 'active'),
+(39, 43, 'Bernardo', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2002-10-12', 8, 1759, 'purok 1', 'sitio 1', 'Grove', 'Magnolia Estate', '09616064481', 'chrensan@gmail.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'Filipino', 'none', 'active'),
 (40, NULL, 'Nardo', 'Kabiling', 'Mazo', 'II', 'male', 'Pampanga', 'Single', '2011-03-29', NULL, 1234, 'purok 1', 'sitio 1', 'Grove', 'Magnolia Estate', '09616064483', 'bernard.mazo04@gmail.com', 'Roman Catholic', 'none', 'College', 'Filipino', 'none', 'active'),
-(41, 33, 'Denver', 'Kabiling', 'Mazo', '', 'male', 'Pampanga', 'Single', '1999-01-12', NULL, 7894, 'purok 2', 'sitio 2', 'KalyePogi', 'Beverly Woods', '09475044087', 'orsolino.christianphilip@ue.edu.ph', 'Roman Catholic', 'Cook', 'Bachelor\'s Degree', 'Filipino', 'none', 'active'),
+(41, 33, 'Denver', 'Kabiling', 'Mazo', '', 'male', 'Pampanga', 'Single', '1999-01-12', 8, 7894, 'purok 2', 'sitio 2', 'KalyePogi', 'Beverly Woods', '09475044087', 'orsolino.christianphilip@ue.edu.ph', 'Roman Catholic', 'Cook', 'Bachelor\'s Degree', 'Filipino', 'none', 'active'),
 (42, 45, 'Nard', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2010-03-27', NULL, 1759, '', '', '', '', '09616064483', 'nard_maz@gmail.com', 'Roman Catholic', 'Programmer', 'College', 'Filipino', 'none', 'active'),
 (43, 46, 'Jennifer', 'Abella', 'Kabiling', '', 'male', 'Pampanga', 'Single', '2000-06-29', NULL, 1759, '', '', '', '', '09206460967', 'bernard.mazo04@gmail.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'Filipino', 'none', 'active');
 
@@ -610,7 +619,8 @@ INSERT INTO `tblhousehold` (`household_id`, `household_member`, `household_head_
 (2, 0, 10, 'Urbano', 'inactive'),
 (3, 5, 9, 'Orsolino', 'active'),
 (4, 2, 11, 'Hadji Said', 'inactive'),
-(7, 0, 34, 'Mazo', 'active');
+(7, 0, 34, 'Mazo', 'active'),
+(8, 5, 8, 'Mazo', 'active');
 
 -- --------------------------------------------------------
 
@@ -778,7 +788,7 @@ INSERT INTO `user_notification` (`notification_ID`, `notification_type`, `messag
 (19, 'Filed Blotter', 'You are invited to the barangay hall on October 14, 2022,<br> 10:06 pm, to settle the blotter you are involved.', 5, 11, '2022-10-27 04:03:25', 1),
 (20, 'Filed Blotter', 'You are invited to the barangay hall on October 14, 2022,<br> 10:06 pm, to settle the blotter you are involved.', 5, 10, '2022-10-27 04:03:25', 0),
 (21, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 8, '2022-10-28 04:41:07', 1),
-(22, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 8, '2022-11-01 06:32:00', 0),
+(22, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 8, '2022-11-01 06:32:00', 1),
 (23, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-01 06:32:31', 0),
 (24, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-01 06:32:48', 0),
 (25, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-01 06:33:36', 0),
@@ -794,8 +804,10 @@ INSERT INTO `user_notification` (`notification_ID`, `notification_type`, `messag
 (35, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-01 06:41:04', 0),
 (36, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-01 06:45:43', 0),
 (37, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-01 06:45:56', 0),
-(38, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 8, '2022-11-01 06:52:34', 0),
-(39, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-02 02:16:12', 0);
+(38, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 8, '2022-11-01 06:52:34', 1),
+(39, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\r\n        You can now download the soft copy from view<br>\r\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-02 02:16:12', 0),
+(40, 'Requested Document on process', 'Your Barangay Clearance request is ready.<br>\r\n            You can now download the soft copy from view<br>\r\n            requests tab or claim it in the Barangay Hall.', 5, 8, '2022-11-02 11:11:53', 1),
+(41, 'Requested Document on process', 'Your Certificate of Indigency request is on process.<br>\n        You can now download the soft copy from view<br>\n        requests tab or claim it in the Barangay Hall.', 5, 11, '2022-11-03 06:20:18', 0);
 
 --
 -- Indexes for dumped tables
@@ -951,13 +963,13 @@ ALTER TABLE `address_fields`
 -- AUTO_INCREMENT for table `admin_notification`
 --
 ALTER TABLE `admin_notification`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `bgy_info`
@@ -969,7 +981,7 @@ ALTER TABLE `bgy_info`
 -- AUTO_INCREMENT for table `blotter_table`
 --
 ALTER TABLE `blotter_table`
-  MODIFY `blotter_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `blotter_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `case_option`
@@ -981,13 +993,13 @@ ALTER TABLE `case_option`
 -- AUTO_INCREMENT for table `complaint_table`
 --
 ALTER TABLE `complaint_table`
-  MODIFY `complaint_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `complaint_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `document_request`
 --
 ALTER TABLE `document_request`
-  MODIFY `request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `document_type`
@@ -1041,7 +1053,7 @@ ALTER TABLE `suggestion_table`
 -- AUTO_INCREMENT for table `tblhousehold`
 --
 ALTER TABLE `tblhousehold`
-  MODIFY `household_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `household_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tblofficial`
@@ -1059,7 +1071,7 @@ ALTER TABLE `tbluser`
 -- AUTO_INCREMENT for table `user_notification`
 --
 ALTER TABLE `user_notification`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Constraints for dumped tables

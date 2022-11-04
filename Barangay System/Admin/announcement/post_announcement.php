@@ -1,6 +1,8 @@
 <?php
     session_start();
+    date_default_timezone_set('Asia/Manila'); // SET TIMEZONE
     include("../../phpfiles/connection.php");
+    $datetime = date("Y-m-d h:i:s");
     if (isset($_POST['post']) && isset($_FILES['ann_image'])) {
         echo "<pre>";
         print_r($_FILES['ann_image']);
@@ -29,8 +31,8 @@
                 move_uploaded_file($tmp_name, $img_upload_path);
 
                 //insert to db
-                $query = "INSERT INTO announcement (title, img_url, descrip,status)
-                VALUES ('$title', '$new_img_name', '$description' , 'active');";
+                $query = "INSERT INTO announcement (title, img_url, descrip,date,status)
+                VALUES ('$title', '$new_img_name', '$description' ,'$datetime', 'active');";
                 $result = $conn -> query($query);
             } else {
                 echo "You can't upload files of this type.";
@@ -44,8 +46,8 @@
         $description = $_POST['description'];
 
         //insert to db
-        $query = "INSERT INTO announcement (title, img_url, descrip, status)
-        VALUES ('$title', 'default.jpg', $description', 'active');";
+        $query = "INSERT INTO announcement (title, img_url, descrip, date, status)
+        VALUES ('$title', 'default.jpg', '$description','$datetime', 'active');";
         $result = $conn -> query($query);
 
         $_SESSION['message'] = 'Announcement successfully added.';

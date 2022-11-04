@@ -138,195 +138,274 @@ if($_SESSION['user_id'] == '') {
                         <a class="nav-link active"  href="profile.php" aria-current="page" href="#">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="change_password/password_page.php">Password</a>
+                        <a class="nav-link" href="change_password/password_page.php">Account</a>
                     </li>
                 </ul>
             </div>
-			<div class="tab-content" id="nav-tabContent">
-	  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-			<!-- Button trigger modal -->
-				<div class="text-center">
-					<a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">
-					<img  src="../Admin/resident_management/residentimages/<?php 
-					$query = "SELECT profile from tbluser WHERE id = '" . $_SESSION['user_id'] . "'";
-					$result = $conn -> query($query);
-					$row = $result->fetch_array();
-					echo $row['profile'];?>" class="rounded-circle" id="profileimg" ></a>
+			
+			
+						<div class="tab-content" id="nav-tabContent">
+						<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+							<!-- Button trigger modal -->
+								<div>
+									<a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">
+									<img src="../Admin/resident_management/residentimages/<?php 
+									$query = "SELECT profile from tbluser WHERE id = '" . $_SESSION['user_id'] . "'";
+									$result = $conn -> query($query);
+									$row = $result->fetch_array();
+									echo $row['profile'];?>" class="float-start border border-dark border-4 rounded-circle mx-5" id="profileimg" ></a>
+								</div>
+								<!-- Modal -->
+								<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								  <div class="modal-dialog">
+									<div class="modal-content">
+									  <div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Change Profile</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									  </div>
+									  <div class="modal-body">
+									  <label for="formFileLg" class="form-label">Current Profile</label>
+									  <img src="../Admin/resident_management/residentimages/<?php echo $row['profile'];?>"class="rounded mx-auto d-block" id="profileimg">
+									  <form class="g-3" action="profile_upload.php" method="post" enctype="multipart/form-data" onSubmit= "window.close();">
+										<div>
+										  <label for="formFileLg" class="form-label"></label>
+										  <input class="form-control form-control-lg" id="formFileLg" type="file" name="ann_image">
+										</div>
+									  </div>
+									  <div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+										<button type="submit" class="btn btn-primary" name="submit">Save changes</button>
+									  </div>
+									  </form>
+									</div>
+								  </div>
+								</div>
+						</div>
+						<div class="container-fluid">
+							<div class="row">
+						
+						
+						<?php
+							$query = "SELECT * FROM resident_table WHERE user_id = '" . $_SESSION['user_id'] . "'";
+							$result = $conn -> query($query);
+						?>
+						<?php while($row = $result->fetch_assoc()){ ?>
+					</div>
+
+					</div>
 				</div>
-				<!-- Modal -->
-				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="container-fluid">
+			  <div class="row" >
+				<div class="ps-5 col-5"><h3>PERSONAL INFORMATION:</h3></div>
+				<div class="col-5"></div><BR><BR>
+			  <HR>
+			  
+			  <div class="row">
+				<div class="ps-5 col-4"><strong>FULL NAME :</strong></div>
+				<div class="col-5">
+					<div class="mx-3">
+						<input type="email" class="form-control" value="<?php echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"] . ' ' . $row["suffix"];  ?>" disabled>
+					</div>
+				</div>
+			  </div><BR><BR>
+			  
+			  <div class="row">
+				<div class="ps-5 col-4"><strong>GENDER :</strong></div>
+				<div class="col-5">
+					<div class="mx-3">
+						<input type="email" class="form-control" value="<?php echo $row["gender"]; ?>" disabled>
+					</div>
+				</div>
+			  </div><BR><BR>
+			  
+			  <div class="row">
+				<div class="ps-5 col-4"><strong>BIRTHDAY :</strong></div>
+				<div class="col-5">
+					<div class="mx-3">
+						<input type="email" class="form-control" value="<?php echo $row["birthday"]; ?>" disabled>
+					</div>
+				</div>
+			  </div><BR><BR>
+
+			  <div class="row">
+				<div class="ps-5 col-4"><strong>AGE :</strong></div>
+				<div class="col-5">
+					<div class="mx-3">
+						<input type="email" class="form-control" value="<?php 
+						$dateOfBirth = $row["birthday"];
+						$today = date("Y-m-d");
+						$diff = date_diff(date_create($dateOfBirth), date_create($today));
+						echo $diff->format('%y');
+						?>" disabled>
+					</div>
+				</div>
+			  </div><BR><BR>
+			  
+			  <div class="row">
+				<div class="ps-5 col-4"><strong>CIVIL STATUS :</strong></div>
+				<div class="col-5">
+					<div class="mx-3">
+						<input type="email" class="form-control" value="<?php echo $row["civilstatus"]; ?>" disabled>
+					</div>
+				</div>
+			  </div><BR><BR>
+			  
+			  <div class="row">
+				<div class="ps-5 col-4"><strong>CONTACT NO. :</strong></div>
+				<div class="col-5">
+					<div class="mx-3" width=100>
+						<input type="email" class="form-control" value="<?php echo $row["contactnumber"]; ?>" disabled>
+					</div>
+				</div>
+				
+				<div class="col"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#numberModal">EDIT</button></div>
+			  </div><BR><BR>
+			  <div class="modal fade" id="numberModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				  <div class="modal-dialog">
 					<div class="modal-content">
 					  <div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Change Profile</h5>
+						<h5 class="modal-title" id="exampleModalLabel">Edit Contact Number</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					  </div>
+					  <form name="chnguser" method="post" action="edit_number.php">
+						  <div class="modal-body">
+							  <label for="exampleInputEmail1" class="form-label">Contact Number: </label>
+							  <input name="contactnumber" type="number" class="form-control" value="<?php echo $row["contactnumber"]; ?>" >
+						  </div>
+						  <div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+							<button name="savenum" type="submit" class="btn btn-primary">Save changes</button>
+						  </div>
+					  </form>
+					</div>
+				  </div>
+			  </div>
+			  
+			  <div class="row">
+				<div class="ps-5 col-4"><strong>EMAIL :</strong></div>
+				<div class="col-5">
+					<div class="mx-3">
+						<input type="email" class="form-control" value="<?php echo $row["email"]; ?>" disabled>
+					</div>
+				</div>
+				<div class="col"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#emailModal">EDIT</button></div>
+			  </div><BR><BR>
+			  <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog">
+					<div class="modal-content">
+					  <div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Edit Email</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					  </div>
+					  <form name="chnguser" method="post" action="edit_email.php">
 					  <div class="modal-body">
-					  <label for="formFileLg" class="form-label">Current Profile</label>
-					  <img src="../Admin/resident_management/residentimages/<?php echo $row['profile'];?>"class="rounded mx-auto d-block" id="profileimg">
-					  <form class="g-3" action="profile_upload.php" method="post" enctype="multipart/form-data" onSubmit= "window.close();">
-						<div>
-						  <label for="formFileLg" class="form-label"></label>
-						  <input class="form-control form-control-lg" id="formFileLg" type="file" name="ann_image">
-						</div>
+						  <label for="exampleInputEmail1" class="form-label">Email: </label>
+						  <input name="email" type="email" class="form-control" value="<?php echo $row["email"]; ?>" >
 					  </div>
 					  <div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary" name="submit">Save changes</button>
+						<button  name="saveemail" type="submit" class="btn btn-primary" name="emailsave">Save changes</button>
 					  </div>
 					  </form>
 					</div>
 				  </div>
-				</div>
-			<table class="table table-borderless" id="profiletable">
-			  <tbody>
-				<?php
-					$query = "SELECT * FROM resident_table WHERE user_id = '" . $_SESSION['user_id'] . "'";
-                    $result = $conn -> query($query);
-                ?>
-
-				<?php while($row = $result->fetch_assoc()){ ?>
-				<tr>
-				  <th> 
-					  <div class="mx-3">
-						<label for="exampleInputEmail1" class="form-label">First Name</label>
-						<input type="email" class="form-control" value="<?php echo $row["fname"]; ?>" disabled>
-					  </div>
-				  </th>
-				  <th>
-					  <div class="mx-3">
-						<label for="exampleInputEmail1" class="form-label">Last Name</label>
-						<input type="email" class="form-control" value="<?php echo $row["lname"]; ?>" disabled>
-					  </div>
-				  </th>
-				</tr>
-				<tr>
-				  <th> 
-					  <div class="mx-3">
-						<label for="exampleInputEmail1" class="form-label">Email</label>
-						<input type="email" class="form-control" value="<?php echo $row["email"]; ?>" disabled>
-					  </div>
-				  </th>
-				  <th>
-					  <div class="mx-3">
-						<label for="exampleInputEmail1" class="form-label">Middle Name</label>
-						<input type="email" class="form-control" value="<?php echo $row["mname"]; ?>" disabled>
-					  </div>
-				  </th>
-				</tr>
-				<tr>
-				  <th> 
-					  <div class="mx-3">
-						<label for="exampleInputEmail1" class="form-label">Birthday</label>
-						<input type="email" class="form-control" value="<?php echo $row["birthday"]; ?>" disabled>
-					  </div>
-				  </th>
-				  <th>
-					  <div class="mx-3">
-						<label for="exampleInputEmail1" class="form-label">Phone Number</label>
-						<input type="email" class="form-control" value="<?php echo $row["contactnumber"]; ?>" disabled>
-					  </div>
-				  </th>
-				</tr>
-				<tr>
-				  <th> 
-					  <div class="mx-3">
-						<label for="exampleInputEmail1" class="form-label">Nationality</label>
-						<input type="email" class="form-control" value="<?php echo $row["nationality"]; ?>" disabled>
-					  </div>
-				  </th>
-				  <th>
-					  <div class="mx-3">
-						<label for="exampleInputEmail1" class="form-label">Gender</label>
-						<input type="email" class="form-control" value="<?php echo $row["gender"]; ?>" disabled>
-					  </div>
-				  </th>
-				</tr>
-				<tr>
-				  <th> 
-					  <div class="mx-3">
-						<label for="exampleInputEmail1" class="form-label">Birthplace</label>
-						<input type="email" class="form-control" value="<?php echo $row["birthplace"]; ?>" disabled>
-					  </div>
-				  </th>
-				  <th>
-					  <div class="mx-3">
-						<label for="exampleInputEmail1" class="form-label">Civil Status</label>
-						<input type="email" class="form-control" value="<?php echo $row["civilstatus"]; ?>" disabled>
-					  </div>
-				  </th>
-				</tr>
-				<tr>
-				  <th> 
-					  <div class="mx-3">
-						<label for="exampleInputEmail1" class="form-label">Age</label>
-						<input type="email" class="form-control" value="<?php echo $row["age"]; ?>" disabled>
-					  </div>
-				  </th>
-				  <th>
-					  <div class="mx-3">
-						<label for="exampleInputEmail1" class="form-label">Unit Number</label>
+			  </div>
+				
+				
+				
+				
+			  <div class="row">
+				<div class="ps-5 col-4"><strong>UNIT NUMBER :</strong></div>
+				<div class="col-5">
+					<div class="mx-3">
 						<input type="email" class="form-control" value="<?php echo $row["unitnumber"]; ?>" disabled>
-					  </div>
-				  </th>
-				</tr>
-				<tr>
-				  <th> 
-					  <div class="mx-3">
-						<label for="exampleInputEmail1" class="form-label">Purok</label>
+					</div>
+				</div>
+			  </div><BR><BR>		
+
+			  <div class="row">
+				<div class="ps-5 col-4"><strong>PUROK :</strong></div>
+				<div class="col-5">
+					<div class="mx-3">
 						<input type="email" class="form-control" value="<?php echo $row["purok"]; ?>" disabled>
-					  </div>
-				  </th>
-				  <th>
-					  <div class="mx-3">
-						<label for="exampleInputEmail1" class="form-label">Sitio</label>
+					</div>
+				</div>
+			  </div><BR><BR>
+
+			  <div class="row">
+				<div class="ps-5 col-4"><strong>SITIO :</strong></div>
+				<div class="col-5">
+					<div class="mx-3">
 						<input type="email" class="form-control" value="<?php echo $row["sitio"]; ?>" disabled>
-					  </div>
-				  </th>
-				</tr>
-				<tr>
-				  <th> 
-					  <div class="mx-3">
-						<label for="exampleInputEmail1" class="form-label">Street</label>
+					</div>
+				</div>
+			  </div><BR><BR>
+
+			  <div class="row">
+				<div class="ps-5 col-4"><strong>STREET :</strong></div>
+				<div class="col-5">
+					<div class="mx-3">
 						<input type="email" class="form-control" value="<?php echo $row["street"]; ?>" disabled>
-					  </div>
-				  </th>
-				  <th>
-					  <div class="mx-3">
-						<label for="exampleInputEmail1" class="form-label">Subdivision</label>
+					</div>
+				</div>
+			  </div><BR><BR>
+
+			  <div class="row">
+				<div class="ps-5 col-4"><strong>SUBDIVISION :</strong></div>
+				<div class="col-5">
+					<div class="mx-3">
 						<input type="email" class="form-control" value="<?php echo $row["subdivision"]; ?>" disabled>
-					  </div>
-				  </th>
-				</tr>
-				<tr>
-				  <th> 
-					  <div class="mx-3">
-						<label for="exampleInputEmail1" class="form-label">Religion</label>
+					</div>
+				</div>
+			  </div><BR><BR>
+
+			  <div class="row">
+				<div class="ps-5 col-4"><strong>RELIGION :</strong></div>
+				<div class="col-5">
+					<div class="mx-3">
 						<input type="email" class="form-control" value="<?php echo $row["religion"]; ?>" disabled>
-					  </div>
-				  </th>
-				  <th>
-					  <div class="mx-3">
-						<label for="exampleInputEmail1" class="form-label">Occupation</label>
+					</div>
+				</div>
+			  </div><BR><BR>
+
+			  <div class="row">
+				<div class="ps-5 col-4"><strong>OCCUPATION :</strong></div>
+				<div class="col-5">
+					<div class="mx-3">
 						<input type="email" class="form-control" value="<?php echo $row["occupation"]; ?>" disabled>
-					  </div>
-				  </th>
-				<tr>
-				  <th> 
-					  <div class="mx-3">
-						<label for="exampleInputEmail1" class="form-label">Disability</label>
+					</div>
+				</div>
+			  </div><BR><BR>
+
+			  <div class="row">
+				<div class="ps-5 col-4"><strong>NATIONALITY :</strong></div>
+				<div class="col-5">
+					<div class="mx-3">
+						<input type="email" class="form-control" value="<?php echo $row["nationality"]; ?>" disabled>
+					</div>
+				</div>
+			  </div><BR><BR>
+
+			  <div class="row">
+				<div class="ps-5 col-4"><strong>DISABILITY :</strong></div>
+				<div class="col-5">
+					<div class="mx-3">
 						<input type="email" class="form-control" value="<?php echo $row["disability"]; ?>" disabled>
-					  </div>
-				  </th>
-				</tr>
-				<?php } ?>
-			  </tbody>
-			</table>
+					</div>
+				</div>
+			  </div><BR><BR>
+
+			</div>
 		</div>
-	  </div>
-			
+		<?php } ?>	
+		
+		</div>
 		</div>
 	</div>
-		
+
+
+
+
+
 </body>
 </html>
