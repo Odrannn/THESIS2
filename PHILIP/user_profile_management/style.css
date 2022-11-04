@@ -1,0 +1,117 @@
+body{
+    background: #eee;
+}
+
+#side_nav{
+    min-width: 250px;
+    max-width: 250px;
+    transition: all 0.3s;
+}
+
+#health{
+	background: url(casts.jpg);
+    background-size: cover;
+	padding: 20px;
+}
+
+.content{
+    min-height: 100vh;
+    width: 100%;
+}
+
+hr.h-color{
+    background: #fff;
+}
+
+.sidebar li.active{
+    background: #eee;
+    border-radius: 8px;
+}
+
+.sidebar li.active a, .sidebar li.active a:hover {
+    color: #000;
+}
+
+.sidebar li a{
+    color: #fff;
+}
+
+@media(max-width: 767px){
+    #side_nav{
+        margin-left: -250px;
+        position: fixed;
+        min-height: 100vh;
+        z-index: 1;
+    }
+
+    #side_nav.active{
+        margin-left: 0;
+    }
+}
+
+
+.dashboard_content .text{
+    font-size: 25px;
+    color: #1d1b31;
+    margin: 12px;
+    padding: 0 12px;
+} 
+
+.dashboard_content .cards{
+    padding: 20px 15px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.dashboard_content .cards .card{
+    width: 250px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 20px 10px;
+    border-radius: 8px;
+}
+
+.dashboard_content .cards .card a{
+    text-decoration: none;
+    color: #032c5a;
+}
+
+.dashboard_content .cards .card .box{
+    text-align: center;
+    padding: 10px 20px;
+}
+
+.dashboard_content .cards .card:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+div.card img{
+    width: 250px;
+    border-radius: 8px 8px 0 0;
+    filter: brightness(50%);
+}
+
+.sidebar.active ~ .dashboard_content{
+    width: calc(100% - 240px);
+    left: 240px;
+}
+
+
+div.availability{
+    width: 95%;
+    height: 225px;
+    padding: 25px;
+}
+
+div.availability .status{
+    color:black;
+    border:1px solid #000000;
+    border-radius: 8px;
+    padding: 10px 15px;
+}
+
+#profileimg{
+	height:300px;
+	width:300px;
+}
