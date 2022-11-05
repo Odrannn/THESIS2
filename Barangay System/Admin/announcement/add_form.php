@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="title" name="title">
+                            <input class="form-control" type="text" id="title" name="title" required>
                             <label for="title">Title</label>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <textarea class="form-control" name="description" id="description" cols="30" rows="10"></textarea>
+                            <textarea class="form-control" name="description" id="description" cols="30" rows="10" required></textarea>
                             <label for="description">Description</label>
                         </div>
                     </div>

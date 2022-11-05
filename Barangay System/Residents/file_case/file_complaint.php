@@ -112,7 +112,7 @@ if($_SESSION['user_id'] == '') {
                             <div class="row">
                                 <div class="col pt-2">
                                 <label class="pb-2" for="comp_image">Description</label> 
-                                    <textarea class="form-control" id= "description" name= "description" rows="10"></textarea>
+                                    <textarea class="form-control" id= "description" name= "description" rows="10" required></textarea>
                                 </div>  
                             </div>
                         

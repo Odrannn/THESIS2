@@ -36,16 +36,20 @@ if($_SESSION['user_id'] == '') {
                 <button class="btn d-md-none d-block close-btn px-1 py-0 text-white"><i class="fa-solid fa-bars-staggered"></i></button>
             </div>
             <ul class="list-unstyled px-2">
-            <li class=""><a href="../dashboard/dashboard.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gauge"></i>&nbsp;Dashboard</a></li>
-            <li class=""><a href="../announcement/announcement.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Announcement</a></li>
-            <li class=""><a href="../configuration/configuration.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gear"></i>&nbsp;Configuration</a></li>
+            <li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gauge"></i>&nbsp;Dashboard</a></li>
+            <li class=""><a href="../../Residents/file_case/file_complaint.php" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between">
+                <span><i class="fa-solid fa-headset"></i>&nbsp;Complain</span>
+            <li class=""><a href="../../Residents/file_case/send_suggestion/send_suggestion.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Suggest</a></li>
+            <li class=""><a href="../../Residents/file_case/file_blotter/file_blotter.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-stamp"></i>&nbsp;Blotter</a></li>
+			<li class=""><a href="../../Residents/request_document/request_document.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-file"></i>&nbsp;Request Document</a></li>
+			<li class=""><a href="../../Residents/announcements/announcements.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-sharp fa-solid fa-radio"></i>&nbsp;Announcements</a></li>
             </ul>
         </div>
 
         <div class="content">
             <?php include("../../phpfiles/official_nav.php")?>
             <div class="dashboard-content px-3 py-4">
-                <a href="../../Admin/dashboard/dashboard.php"><button type="button" class="btn btn-dark">Back</button></a>
+                <a href="../../Residents/dashboard/dashboard.php"><button type="button" class="btn btn-dark">Back</button></a>
                 <br>
                 <br>
                 <ul class="nav nav-tabs">
