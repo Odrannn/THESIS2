@@ -91,9 +91,10 @@ $result = $conn -> query($query);
 				<style>
 				*{text-align:center;}
 			
-				table,  td {
-				border: 1px solid black;
-				}
+				table, th, td {
+					border: 1px solid black;
+					border-collapse: collapse;
+				  }
 				</style>
 			</head>
 			<body>	
@@ -191,5 +192,5 @@ $result = $conn -> query($query);
 
     $dompdf->addInfo("Title", "Barangay Clearance");
 
-    $dompdf->stream("BarangayClearance.pdf", ["Attachment" => 0]);
+    $dompdf->stream("$month-MONTHLYSUGGESTREPORT.pdf", ["Attachment" => 0]);
 ?>

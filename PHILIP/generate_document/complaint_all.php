@@ -80,9 +80,10 @@ $gossip = $comp_row5[0];
 				<style>
 				*{text-align:center;}
 			
-				table,  td {
-				border: 1px solid black;
-				}
+				table, th, td {
+					border: 1px solid black;
+					border-collapse: collapse;
+				  }
 				</style>
 			</head>
 			<body>	
@@ -129,18 +130,21 @@ $gossip = $comp_row5[0];
 				$result9 = $conn -> query($query9);
 				while($row9 = $result9->fetch_array()){
 					$nature = $row9["complaint_nature"];
-					//$query10 = "SELECT COUNT(complaint_ID) FROM complaint_table WHERE complaint_nature=$nature;";
-					//$result10 = $conn -> query($query10);
-					//while($row10 = $result10->fetch_array()){
+					$query10 = "SELECT COUNT(complaint_ID) FROM complaint_table WHERE complaint_nature='$nature';";
+					$result10 = $conn -> query($query10);
+					$row10 = $result10 -> fetch_array();
+					$natureCount = $row10[0];
 						//$cnature = $row10["complaint_nature"]; 
 					$nature = strtoupper($nature);
+					
+					echo $row10[0];
 		$html .="		
 					<tr>
 					  <td>$nature</td>
 					  ";		
 					//}
 		$html .="
-					  <td></td>
+					  <td>$natureCount</td>
 					</tr>
 				";
 				}
@@ -219,5 +223,5 @@ $gossip = $comp_row5[0];
 
     $dompdf->addInfo("Title", "Barangay Clearance");
 
-    $dompdf->stream("BarangayClearance.pdf", ["Attachment" => 0]);
+    $dompdf->stream("OVERALLCOMPLAINTREPORT.pdf", ["Attachment" => 0]);
 ?>

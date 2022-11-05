@@ -90,9 +90,10 @@ $other = $comp_row7[0];
 				<style>
 				*{text-align:center;}
 			
-				table,  td {
-				border: 1px solid black;
-				}
+				table, th, td {
+					border: 1px solid black;
+					border-collapse: collapse;
+				  }
 				</style>
 			</head>
 			<body>	
@@ -188,5 +189,5 @@ $other = $comp_row7[0];
 
     $dompdf->addInfo("Title", "Barangay Clearance");
 
-    $dompdf->stream("BarangayClearance.pdf", ["Attachment" => 0]);
+    $dompdf->stream("OVERALLSUGGESTREPORT.pdf", ["Attachment" => 0]);
 ?>

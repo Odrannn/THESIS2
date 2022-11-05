@@ -55,7 +55,7 @@ if($_SESSION['user_id'] == '') {
 				<h5 class="card-header">RANGE REPORT</h5>
                 <div class="card-body">
 					<div class="container">
-					<form class="form-inline" method="POST" action="generate_report_complaint.php">
+					<form class="form-inline" method="POST" action="generate_report.php">
 					  <div class="row">
 						<div class="col">
 								<div class="form-floating">

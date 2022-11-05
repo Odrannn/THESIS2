@@ -88,9 +88,10 @@ $other = $comp_row7[0];
 				<style>
 				*{text-align:center;}
 			
-				table,  td {
-				border: 1px solid black;
-				}
+				table, th, td {
+					border: 1px solid black;
+					border-collapse: collapse;
+				  }
 				</style>
 			</head>
 			<body>	
@@ -120,6 +121,7 @@ $other = $comp_row7[0];
 				</TABLE>
 				<br>";
 				
+		
 		$html .="
 				<table class='table table-bordered' align='center' width='100%'>
 				  <thead>
@@ -133,24 +135,32 @@ $other = $comp_row7[0];
 				$query9 = "SELECT DISTINCT complaint_nature FROM complaint_table;";
 				$result9 = $conn -> query($query9);
 				while($row9 = $result9->fetch_array()){
-					$nature = $row9["complaint_nature"];  
+					$nature = $row9["complaint_nature"];
+					$query10 = "SELECT COUNT(complaint_ID) FROM complaint_table WHERE complaint_nature='$nature' and month(complaint_date) = month(now());";
+					$result10 = $conn -> query($query10);
+					$row10 = $result10 -> fetch_array();
+					$natureCount = $row10[0];
+						//$cnature = $row10["complaint_nature"]; 
 					$nature = strtoupper($nature);
+					
+					echo $row10[0];
 		$html .="		
 					<tr>
 					  <td>$nature</td>
-					  ";				
+					  ";		
+					//}
 		$html .="
-					  <td></td>
+					  <td>$natureCount</td>
 					</tr>
 				";
-
-				}	
+				}
+					
 		$html .="
 				  </tbody>
 				</table>
 				<br>
 				";
-		
+				
 		
 				$html .="
 				<table class='table table-bordered' align='center' width='100%'>
@@ -167,8 +177,7 @@ $other = $comp_row7[0];
                     </thead>
 				
 				";
-
-				
+			
 				$query10 = "SELECT * FROM complaint_table WHERE month(complaint_date) = month(now());";
 				$result10 = $conn -> query($query10);
 				
@@ -213,5 +222,5 @@ $other = $comp_row7[0];
 
     $dompdf->addInfo("Title", "Barangay Clearance");
 
-    $dompdf->stream("BarangayClearance.pdf", ["Attachment" => 0]);
+    $dompdf->stream("$month-MONTHLYCOMPLAINTREPORT.pdf", ["Attachment" => 0]);
 ?>

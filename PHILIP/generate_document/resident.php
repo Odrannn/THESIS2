@@ -1423,5 +1423,5 @@ $td80 = $fDivorced80 + $Divorced80;
 
     $dompdf->addInfo("Title", "Barangay Clearance");
 
-    $dompdf->stream("BarangayClearance.pdf", ["Attachment" => 0]);
+    $dompdf->stream("POPULATIONREPORT.pdf", ["Attachment" => 0]);
 ?>
