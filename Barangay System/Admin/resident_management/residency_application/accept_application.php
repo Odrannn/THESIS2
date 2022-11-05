@@ -45,8 +45,8 @@
 
         if($status == 'pendingforaccountandresidency'){
         /* User creation query */
-            $new_query = "INSERT INTO tbluser(username, password, type, profile)
-            VALUES('$contactnumber', '12345678', 'user', 'default.jpg')";
+            $new_query = "INSERT INTO tbluser(username, password, type, profile, status)
+            VALUES('$contactnumber', '12345678', 'user', 'default.jpg', 'active')";
             $new_result = $conn -> query($new_query); 
 
             $email = "bernard.mazo04@gmail.com";

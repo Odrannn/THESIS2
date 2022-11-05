@@ -37,6 +37,13 @@ if($_SESSION['user_id'] == '') {
             </div>
             <ul class="list-unstyled px-2">
             <li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gauge"></i>&nbsp;Dashboard</a></li>
+            <li class=""><a href="../case_management/case_management.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-paper-plane"></i>&nbsp;Case</a></li>
+            <li class=""><a href="../resident_management/resident_management.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-people-group"></i>&nbsp;Resident</a></li>
+            <li class=""><a href="../document_request/document_request.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-file-invoice"></i>&nbsp;Request</a></li>
+            <li class=""><a href="../official_management/official_management.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-image-portrait"></i>&nbsp;Official</a></li>
+            <li class=""><a href="../user_management/user_management.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-user"></i>&nbsp;User</a></li>
+            <li class=""><a href="../reports/report.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-newspaper"></i>&nbsp;Reports</a></li>
+            <hr class="text-light">
             <li class=""><a href="../announcement/announcement.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Announcement</a></li>
             <li class=""><a href="../configuration/configuration.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gear"></i>&nbsp;Configuration</a></li>
             </ul>
@@ -48,6 +55,26 @@ if($_SESSION['user_id'] == '') {
             $result1 = $conn -> query($query1);
             $row1 = $result1 -> fetch_array();
             $typeOfUser = $row1['type'];
+
+            $query = "SELECT * FROM resident_table";
+            $result = $conn -> query($query);
+            $row = $result -> fetch_array();
+
+            $query1 = "SELECT * FROM complaint_table";
+            $result1 = $conn -> query($query1);
+            $compcount = mysqli_num_rows($result1);
+
+            $query1 = "SELECT * FROM suggestion_table";
+            $result1 = $conn -> query($query1);
+            $sugcount = mysqli_num_rows($result1);
+
+            $query1 = "SELECT * FROM blotter_table";
+            $result1 = $conn -> query($query1);
+            $blotcount = mysqli_num_rows($result1);
+
+            $query1 = "SELECT * FROM document_request";
+            $result1 = $conn -> query($query1);
+            $reqcount = mysqli_num_rows($result1);
             ?>
             <?php include("../../phpfiles/official_nav.php")?>
             <div class="dashboard-content px-3 py-4">
@@ -59,6 +86,119 @@ if($_SESSION['user_id'] == '') {
 
                 <h2 class="text fs-5">Dashboard</h2>
                 <h2 class="text fs-5">Welcome <?php echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname']?></h2>
+                <br>
+                <h5 class="card-title">Transactions Summary</h5>   
+                <br>
+                <div>
+                    <div class="shadow-sm card mb-3 me-2" style="width: 18rem;display: inline-block; color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>">
+                        <div class="card-body text-dark">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h1 class="card-title"><i class="fa-sharp fa-solid fa-face-angry"  style="color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>"></i>&nbsp;&nbsp;&nbsp;<?php echo $compcount;?></h1> 
+                                    <h5 class="card-title">Total Complaints</h5>
+                                </div>
+                            </div>
+                        </div></a>
+                    </div>
+                    <div class="shadow-sm card mb-3 me-2" style="width: 18rem;display: inline-block; color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>">
+                        <div class="card-body text-dark">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h1 class="card-title"><i class="fa-solid fa-lightbulb" style="color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>"></i>&nbsp;&nbsp;&nbsp;<?php echo $sugcount;?></h1> 
+                                    <h5 class="card-title">Total Suggestions</h5>
+                                </div>
+                            </div>
+                        </div></a>
+                    </div>
+                    <div class="shadow-sm card mb-3 me-2" style="width: 18rem;display: inline-block; color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>">
+                        <div class="card-body text-dark">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h1 class="card-title"><i class="fa-solid fa-handcuffs" style="color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>"></i>&nbsp;&nbsp;&nbsp;<?php echo $blotcount;?></h1> 
+                                    <h5 class="card-title">Total Blotters </h5>
+                                </div>
+                            </div>
+                        </div></a>
+                    </div>
+                    <div class="shadow-sm card mb-3 me-2" style="width: 18rem;display: inline-block; color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>">
+                        <div class="card-body text-dark">
+                            <div class="row">
+                                <div class="col-md-15">
+                                    <h1 class="card-title"><i class="fa-solid fa-file-invoice" style="color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>"></i>&nbsp;&nbsp;&nbsp;<?php echo $reqcount;?></h1> 
+                                    <h5 class="card-title">Total Document Requests</h5>
+                                </div>
+                            </div>
+                        </div></a>
+                    </div>
+                </div>
+                <br>
+                <?php
+                $query1 = "SELECT * FROM resident_table";
+                $result1 = $conn -> query($query1);
+                $rescount = mysqli_num_rows($result1);
+
+                $query1 = "SELECT * FROM tblhousehold";
+                $result1 = $conn -> query($query1);
+                $hcount = mysqli_num_rows($result1);
+
+                $query1 = "SELECT * FROM resident_table WHERE gender = 'male';";
+                $result1 = $conn -> query($query1);
+                $mcount = mysqli_num_rows($result1);
+
+                $query1 = "SELECT * FROM resident_table WHERE gender = 'female';";
+                $result1 = $conn -> query($query1);
+                $fcount = mysqli_num_rows($result1);
+
+                $query1 = "SELECT * FROM document_request";
+                $result1 = $conn -> query($query1);
+                $reqcount = mysqli_num_rows($result1);
+                ?>
+                <h5 class="card-title">Population Summary</h5>   
+                <br>
+                <div>
+                    <div class="shadow-sm card mb-3 me-2" style="width: 18rem;display: inline-block; color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>">
+                        <div class="card-body text-dark">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h1 class="card-title"><i class="fa-solid fa-people-group"  style="color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>"></i>&nbsp;&nbsp;&nbsp;<?php echo $rescount;?></h1> 
+                                    <h5 class="card-title">Population</h5>
+                                </div>
+                            </div>
+                        </div></a>
+                    </div>
+                    <div class="shadow-sm card mb-3 me-2" style="width: 18rem;display: inline-block; color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>">
+                        <div class="card-body text-dark">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h1 class="card-title"><i class="fa-solid fa-house-chimney-user" style="color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>"></i>&nbsp;&nbsp;&nbsp;<?php echo $hcount;?></h1> 
+                                    <h5 class="card-title">Total Household</h5>
+                                </div>
+                            </div>
+                        </div></a>
+                    </div>
+                    <div class="shadow-sm card mb-3 me-2" style="width: 18rem;display: inline-block; color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>">
+                        <div class="card-body text-dark">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h1 class="card-title"><i class="fa-solid fa-person" style="color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>"></i>&nbsp;&nbsp;&nbsp;<?php echo $mcount;?></h1> 
+                                    <h5 class="card-title">Total Males </h5>
+                                </div>
+                            </div>
+                        </div></a>
+                    </div>
+                    <div class="shadow-sm card mb-3 me-2" style="width: 18rem;display: inline-block; color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>">
+                        <div class="card-body text-dark">
+                            <div class="row">
+                                <div class="col-md-15">
+                                    <h1 class="card-title"><i class="fa-solid fa-person-dress" style="color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>"></i>&nbsp;&nbsp;&nbsp;<?php echo $fcount;?></h1> 
+                                    <h5 class="card-title">Total Females</h5>
+                                </div>
+                            </div>
+                        </div></a>
+                    </div>
+                </div>
+                <br>
+                <h5 class="card-title">Quick Access</h5>   
                 <br>
                 <?php include('../../phpfiles/modules_available.php');
                     if($availability[0] == 'yes'){ ?>
@@ -161,37 +301,6 @@ if($_SESSION['user_id'] == '') {
                         </div>
                     </div>
                 </div>
-
-                <hr>
-                <div class="d-flex justify-content-center">
-                    <h2 class="text fs-5" >Announcements</h2>
-                </div>
-
-                
-                <hr>
-                <?php
-                    $query = "SELECT * FROM announcement WHERE status = 'active' ORDER BY id DESC";
-                    $result = $conn -> query($query);
-                    
-
-                    while($row = $result->fetch_assoc()) {
-                ?>
-                    
-                    <div class="card mb-3 me-2">
-                        <div class="row no-gutters">
-                            <div class="col-md-3">
-                                <img src="../../announcement_uploads/<?php echo $row['img_url'];
-                                ?>" class="card-img" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo $row['title'];?></h5>
-                                    <p class="card-text"><?php echo $row['descrip'];?></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php } ?>
             </div>
         </div>
     </div>

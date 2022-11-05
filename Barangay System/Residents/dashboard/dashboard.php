@@ -57,32 +57,72 @@ if($_SESSION['user_id'] == '') {
                 $query1 = "SELECT * FROM complaint_table WHERE sender_ID = '" . $row['id'] . "'";
                 $result1 = $conn -> query($query1);
                 $compcount = mysqli_num_rows($result1);
+
+                $query1 = "SELECT * FROM suggestion_table WHERE sender_ID = '" . $row['id'] . "'";
+                $result1 = $conn -> query($query1);
+                $sugcount = mysqli_num_rows($result1);
+
+                $query1 = "SELECT * FROM blotter_table WHERE complainant_ID = '" . $row['id'] . "'";
+                $result1 = $conn -> query($query1);
+                $blotcount = mysqli_num_rows($result1);
+
+                $query1 = "SELECT * FROM document_request WHERE resident_ID = '" . $row['id'] . "'";
+                $result1 = $conn -> query($query1);
+                $reqcount = mysqli_num_rows($result1);
                 ?>
 
                 <h2 class="text fs-5">Dashboard</h2>
                 <h2 class="text fs-5">Welcome <?php echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname']?></h2>
                 <br>    
 
-
                 <div>
-                    <div class="card mb-3 me-2 hover-shadow " style="width: 18rem;display: inline-block; color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>">
-                        <a href="" class="text-decoration-none text-dark">
-                        <div class="card-body">
+                    <div class="shadow-sm card mb-3 me-2" style="width: 18rem;display: inline-block; color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>">
+                        <div class="card-body text-dark">
                             <div class="row">
                                 <div class="col-md-8">
                                     <h1 class="card-title"><i class="fa-sharp fa-solid fa-face-angry"  style="color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>"></i>&nbsp;&nbsp;&nbsp;<?php echo $compcount;?></h1> 
-                                    <h5 class="card-title">Filed Complaints </h5>
+                                    <h5 class="card-title">Filed Complaints</h5>
+                                </div>
+                            </div>
+                        </div></a>
+                    </div>
+                    <div class="shadow-sm card mb-3 me-2" style="width: 18rem;display: inline-block; color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>">
+                        <div class="card-body text-dark">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h1 class="card-title"><i class="fa-solid fa-lightbulb" style="color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>"></i>&nbsp;&nbsp;&nbsp;<?php echo $sugcount;?></h1> 
+                                    <h5 class="card-title">Sent Suggestions</h5>
+                                </div>
+                            </div>
+                        </div></a>
+                    </div>
+                    <div class="shadow-sm card mb-3 me-2" style="width: 18rem;display: inline-block; color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>">
+                        <div class="card-body text-dark">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h1 class="card-title"><i class="fa-solid fa-handcuffs" style="color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>"></i>&nbsp;&nbsp;&nbsp;<?php echo $blotcount;?></h1> 
+                                    <h5 class="card-title">Filed Blotters </h5>
+                                </div>
+                            </div>
+                        </div></a>
+                    </div>
+                    <div class="shadow-sm card mb-3 me-2" style="width: 18rem;display: inline-block; color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>">
+                        <div class="card-body text-dark">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <h1 class="card-title"><i class="fa-solid fa-file-invoice" style="color:<?php include("../../phpfiles/bgy_info.php"); echo $row[1];?>"></i>&nbsp;&nbsp;&nbsp;<?php echo $reqcount;?></h1> 
+                                    <h5 class="card-title">Requested Documents </h5>
                                 </div>
                             </div>
                         </div></a>
                     </div>
                 </div>
-                <hr>
+                <br>
                 <h5 class="card-title">Quick Access</h5>   
                 <br>
                 <?php include('../../phpfiles/modules_available.php');
                     if($availability[0] == 'yes'){ ?>
-                        <div class="card mb-3 me-2 hover-shadow " style="width: 18rem;display: inline-block;">
+                        <div class="dash card mb-3 me-2 hover-shadow " style="width: 18rem;display: inline-block;">
                             <a href="../file_case/file_complaint.php" class="text-decoration-none text-dark">
                             <img src="img/complaint2.jpg" class="card-img-top" style="filter: brightness(50%);">
                             <div class="card-body">
@@ -94,7 +134,7 @@ if($_SESSION['user_id'] == '') {
                     }
                 ?>
                 <?php if($availability[3] == 'yes'){ ?>
-                        <div class="card mb-3 me-2" style="width: 18rem;display: inline-block;">
+                        <div class="dash card mb-3 me-2" style="width: 18rem;display: inline-block;">
                             <a href="../request_document/request_document.php" class="text-decoration-none text-dark">
                             <img src="img/request.jpg" class="card-img-top" style="filter: brightness(50%);">
                             <div class="card-body">
@@ -114,7 +154,7 @@ if($_SESSION['user_id'] == '') {
                 $query = "SELECT * FROM tblhousehold WHERE household_head_ID = '" . $rrow['id'] . "' AND status = 'active'";
                 $result = $conn -> query($query);
                 if (mysqli_num_rows($result)>0){?>
-                <div class="card mb-3 me-2 hover-shadow " style="width: 18rem;display: inline-block;">
+                <div class="dash card mb-3 me-2 hover-shadow " style="width: 18rem;display: inline-block;">
                     <a href="../manage_household/manage_household.php" class="text-decoration-none text-dark">
                     <img src="img/house1.jpg" class="card-img-top" style="filter: brightness(50%);">
                     <div class="card-body">
@@ -189,7 +229,7 @@ if($_SESSION['user_id'] == '') {
         console.log("document is ready");
         
 
-        $( ".card" ).hover(
+        $( ".dash" ).hover(
         function() {
             $(this).addClass('shadow').css('cursor', 'pointer'); 
         }, function() {
