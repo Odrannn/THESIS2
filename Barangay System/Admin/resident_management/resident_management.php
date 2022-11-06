@@ -214,6 +214,23 @@ if($_SESSION['user_id'] == '') {
                     $_SESSION["importMessage"] = "";
                 }
                 ?>
+                <?php if(isset($_SESSION['message']) && $_SESSION['message'] !=''){
+                    if($_SESSION['status'] == 1){?>
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Successful!</h4>
+                            <p class="mb-0"><?php echo $_SESSION['message']?></p>
+                        </div>
+                <?php
+                    } else {?>
+                        <div class="alert alert-danger" role="alert">
+                            <h4 class="alert-heading">Failed!</h4>
+                            <p class="mb-0"><?php echo $_SESSION['message']?></p>
+                        </div>
+                <?php
+                    }
+                    $_SESSION['message'] = '';
+                }
+                ?>
                 <div class="card">
                     <h5 class="card-header">Resident List<button class="addresident btn btn-success" style="float: right">Add</button></h5>
                     <!--<a class="text-decoration-none mx-4 pt-2" href="residency_application/residency_application.php">
@@ -305,7 +322,7 @@ if($_SESSION['user_id'] == '') {
                                         ?>"><?php echo $row["status"]; ?></div></td>
                                         <td><div class="btn-group" role="group" aria-label="Basic example">
                                             <button data-id="<?php echo $row['id']; ?>" class="userinfo btn btn-primary"><i class="fa-solid fa-eye"></i></button>
-                                            <button data-id="<?php echo $row['id']; ?>" class="editresident btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button data-id="<?php echo $row['id']; ?>" class="editresident btn btn-warning" <?php if($row["status"]=='inactive'){echo 'disabled';}?>><i class="fa-solid fa-pen-to-square"></i></button>
                                             </div>
                                         </td>
                                     </tr>

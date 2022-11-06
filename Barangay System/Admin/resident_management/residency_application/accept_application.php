@@ -49,7 +49,7 @@
             VALUES('$contactnumber', '12345678', 'user', 'default.jpg', 'active')";
             $new_result = $conn -> query($new_query); 
 
-            $email = "bernard.mazo04@gmail.com";
+            $smsemail = "bernard.mazo04@gmail.com";
             $password = "Mazo20181132826";
             $apicode = "PR-BERNA461967_SZ8D9";
             $number = $contactnumber;
@@ -60,7 +60,7 @@
             $uinforesult = $conn -> query($uinfoquery); 
             $uinforow = mysqli_fetch_array($uinforesult);
 
-            itexmo($email, $password, $number, $message, $apicode);
+            itexmo($smsemail, $password, $number, $message, $apicode);
 
             $userid = $uinforow['id'];
 
@@ -87,12 +87,12 @@
             $bgyname = $row['bgy_name'];
 
             /*sms notif */
-            $email = "bernard.mazo04@gmail.com";
+            $smsemail = "bernard.mazo04@gmail.com";
             $password = "Mazo20181132826";
             $apicode = "PR-BERNA461967_SZ8D9";
             $number = $contactnumber;
             $message = "Registration Accepted. The person you registered is now a resident of Barangay " . $bgyname . ".";
-            itexmo($email, $password, $number, $message, $apicode);
+            itexmo($smsemail, $password, $number, $message, $apicode);
         }
         $_SESSION['residencyMessage'] = 1;
         header("location:residency_application.php");
