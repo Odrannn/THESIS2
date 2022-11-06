@@ -6,12 +6,14 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
         $type = $_POST['type'];
+        $status = $_POST['status'];
         
         
         $query = "UPDATE tbluser
         SET username = '$username', 
             password = '$password', 
-            type = '$type'
+            type = '$type',
+            status = '$status'
 
         WHERE id = $userID;";
         $result = $conn -> query($query);

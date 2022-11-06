@@ -223,7 +223,7 @@ if($_SESSION['user_id'] == '') {
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md pt-2">
-                                    <input type="text" class="form-control" id="search" placeholder="Enter name...">
+                                    <input type="text" class="form-control" id="search" placeholder="Enter Keyword...">
                                 </div>
                                 <div class="col-md pt-2">
                                 </div>

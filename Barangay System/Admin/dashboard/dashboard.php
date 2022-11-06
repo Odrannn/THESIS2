@@ -68,11 +68,11 @@ if($_SESSION['user_id'] == '') {
             $result1 = $conn -> query($query1);
             $sugcount = mysqli_num_rows($result1);
 
-            $query1 = "SELECT * FROM blotter_table";
+            $query1 = "SELECT * FROM blotter_table WHERE status != 'cancelled';";
             $result1 = $conn -> query($query1);
             $blotcount = mysqli_num_rows($result1);
 
-            $query1 = "SELECT * FROM document_request";
+            $query1 = "SELECT * FROM document_request WHERE status != 'cancelled';";
             $result1 = $conn -> query($query1);
             $reqcount = mysqli_num_rows($result1);
             ?>
@@ -133,19 +133,19 @@ if($_SESSION['user_id'] == '') {
                 </div>
                 <br>
                 <?php
-                $query1 = "SELECT * FROM resident_table";
+                $query1 = "SELECT * FROM resident_table WHERE status ='active';";
                 $result1 = $conn -> query($query1);
                 $rescount = mysqli_num_rows($result1);
 
-                $query1 = "SELECT * FROM tblhousehold";
+                $query1 = "SELECT * FROM tblhousehold WHERE status ='active';";
                 $result1 = $conn -> query($query1);
                 $hcount = mysqli_num_rows($result1);
 
-                $query1 = "SELECT * FROM resident_table WHERE gender = 'male';";
+                $query1 = "SELECT * FROM resident_table WHERE gender = 'male' and status ='active';";
                 $result1 = $conn -> query($query1);
                 $mcount = mysqli_num_rows($result1);
 
-                $query1 = "SELECT * FROM resident_table WHERE gender = 'female';";
+                $query1 = "SELECT * FROM resident_table WHERE gender = 'female' and status ='active';";
                 $result1 = $conn -> query($query1);
                 $fcount = mysqli_num_rows($result1);
 

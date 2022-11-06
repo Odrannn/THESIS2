@@ -181,7 +181,7 @@ if($_SESSION['user_id'] == '') {
                     }
                     
                     $start = ($page-1) * 10;
-                    $query = "SELECT * FROM document_request ORDER BY request_ID DESC LIMIT $start, 10;";
+                    $query = "SELECT D.*, T.* FROM document_request D INNER JOIN document_type T ON D.document_ID = T.id ORDER BY request_ID DESC LIMIT $start, 10;";
                     $result = $conn -> query($query);
 
                     $result1 = $conn -> query("SELECT count(request_ID) as id FROM document_request;");
@@ -239,6 +239,20 @@ if($_SESSION['user_id'] == '') {
                     <h5 class="card-header">Request List</h5>
                     <div class="card-body">
                         <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md pt-2">
+                                    <input type="text" class="form-control" id="search" placeholder="Enter Keyword...">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                            </div>
+                            <br>
                             <div class="table-responsive" style="width: 100%;">
                                 <table class="table table-striped">
                                     <thead>
@@ -246,7 +260,7 @@ if($_SESSION['user_id'] == '') {
                                             <th>Request ID</th>
                                             <th>Official in Charge</th>
                                             <th>Resident ID</th>
-                                            <th>Document ID</th>
+                                            <th>Document</th>
                                             <th>Purpose</th>
                                             <th>Quantity</th>
                                             <th>Payment</th>
@@ -255,30 +269,32 @@ if($_SESSION['user_id'] == '') {
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <?php while($row = $result->fetch_assoc()){ ?>
-                                    <tr>
-                                        <td><?php echo $row["request_ID"]; ?></td>
-                                        <td><?php echo $row["official_ID"]; ?></td>
-                                        <td><?php echo $row["resident_ID"]; ?></td>
-                                        <td><?php echo $row["document_ID"]; ?></td>
-                                        <td><?php echo $row["purpose"]; ?></td>
-                                        <td><?php echo $row["quantity"]; ?></td>
-                                        <td><?php echo $row["payment"]; ?></td>
-                                        <td><?php echo $row["request_date"]; ?></td>
-                                        <td style ="text-align:center;" colspan='2'><div style ="width: 200px;" class="btn btn-outline-<?php if($row["status"]=='completed'){echo 'success';}
-                                        else if($row["status"]=='pending for verification' || $row["status"]=='pending for payment'){
-                                            echo 'primary';
-                                        } else {
-                                            echo 'danger';
-                                        }
-                                        ?>"><?php echo $row["status"]; ?></div></td>
-                                        <td><?php
-                                        if($row["status"]!='cancelled' && $row["status"]!='pending for payment'){
-                                        ?>
-                                            <button data-id="<?php echo $row['request_ID']; ?>" class="viewreq btn btn-primary"><i class="fa-solid fa-eye"></i></button></td>
-                                        <?php }?>
-                                    </tr>
-                                    <?php } ?>
+                                    <tbody id = "output">
+                                        <?php while($row = $result->fetch_assoc()){ ?>
+                                        <tr>
+                                            <td><?php echo $row["request_ID"]; ?></td>
+                                            <td><?php echo $row["official_ID"]; ?></td>
+                                            <td><?php echo $row["resident_ID"]; ?></td>
+                                            <td><?php echo $row["document_type"]; ?></td>
+                                            <td><?php echo $row["purpose"]; ?></td>
+                                            <td><?php echo $row["quantity"]; ?></td>
+                                            <td><?php echo $row["payment"]; ?></td>
+                                            <td><?php echo $row["request_date"]; ?></td>
+                                            <td style ="text-align:center;" colspan='2'><div style ="width: 200px;" class="btn btn-outline-<?php if($row["status"]=='completed'){echo 'success';}
+                                            else if($row["status"]=='pending for verification' || $row["status"]=='pending for payment'){
+                                                echo 'primary';
+                                            } else {
+                                                echo 'danger';
+                                            }
+                                            ?>"><?php echo $row["status"]; ?></div></td>
+                                            <td><?php
+                                            if($row["status"]!='cancelled' && $row["status"]!='pending for payment'){
+                                            ?>
+                                                <button data-id="<?php echo $row['request_ID']; ?>" class="viewreq btn btn-primary"><i class="fa-solid fa-eye"></i></button></td>
+                                            <?php }?>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
                                 </table>
                             </div>  
                         </div>
@@ -453,6 +469,23 @@ if($_SESSION['user_id'] == '') {
                 exportToCSV((start + 50), max);
             }});
         }
+    </script>
+    <!-- search resident-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#search").keypress(function(){
+            $.ajax({
+                type:'POST',
+                url:'search.php',
+                data:{
+                name:$("#search").val(),
+                },
+                success:function(data){
+                $("#output").html(data);
+                }
+            });
+            });
+        });
     </script>
 </body>
 </html>

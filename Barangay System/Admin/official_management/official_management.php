@@ -151,6 +151,20 @@ if($_SESSION['user_id'] == '') {
                     <h5 class="card-header">Official List<button class="addresident btn btn-success" style="float: right">Add</button></h5>
                     <div class="card-body">
                         <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md pt-2">
+                                    <input type="text" class="form-control" id="search" placeholder="Enter Keyword...">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                            </div>
+                            <br>
                             <div class="table-responsive" style="width: 100%;">
                                 <table class="table table-striped">
                                     <thead>
@@ -166,6 +180,7 @@ if($_SESSION['user_id'] == '') {
                                             <th>Action</th>
                                         </tr>
                                     </thead>
+                                    <tbody id = "output">
                                     <?php while($row = $result->fetch_assoc()){ ?>
                                     <tr>
                                         <td><?php echo $row["official_id"]; ?></td>
@@ -192,6 +207,7 @@ if($_SESSION['user_id'] == '') {
                                         </td>
                                     </tr>
                                     <?php } ?>
+                                    </tbody>
                                 </table>
                             </div>  
                         </div>
@@ -335,6 +351,23 @@ if($_SESSION['user_id'] == '') {
                 exportToCSV((start + 50), max);
             }});
         }
+    </script>
+    <!-- search resident-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#search").keypress(function(){
+            $.ajax({
+                type:'POST',
+                url:'search.php',
+                data:{
+                name:$("#search").val(),
+                },
+                success:function(data){
+                $("#output").html(data);
+                }
+            });
+            });
+        });
     </script>
 </body>
 </html>

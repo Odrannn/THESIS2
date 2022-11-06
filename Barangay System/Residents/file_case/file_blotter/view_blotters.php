@@ -156,7 +156,7 @@ if($_SESSION['user_id'] == '') {
                 </ul>
                 <br>
                 <div class="card">
-                    <h5 class="card-header">Suggestion List</h5>
+                    <h5 class="card-header">Blotter List</h5>
                     <div class="card-body">
                         <div class="container-fluid">
                             <div class="table-responsive" style="width: 100%;">

@@ -231,7 +231,7 @@ if($_SESSION['user_id'] == '') {
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md pt-2">
-                                    <input type="text" class="form-control" id="search" placeholder="Enter name...">
+                                    <input type="text" class="form-control" id="search" placeholder="Enter Keyword...">
                                 </div>
                                 <div class="col-md pt-2">
                                 </div>
@@ -251,7 +251,7 @@ if($_SESSION['user_id'] == '') {
                                             <th>Family Name</th>
                                             <th>Family Head</th>
                                             <th>Number of Members</th>
-                                            <th>Status</th> 
+                                            <th style ="text-align:center;">Status</th> 
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -262,7 +262,10 @@ if($_SESSION['user_id'] == '') {
                                             <td><?php echo $row["household_name"]; ?></td>
                                             <td><?php echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"] . ' ' . $row["suffix"]; ?></td>
                                             <td><?php echo $row["household_member"]; ?></td>
-                                            <td><?php echo $row["status"]; ?></td>
+                                            <td style ="text-align:center;"><div style ="width: 100px;" class="btn btn-outline-<?php if($row["status"]=='active'){echo 'success';} else {
+                                            echo 'danger';
+                                        }
+                                        ?>"><?php echo $row["status"]; ?></td>
                                             <td><button data-id="<?php echo $row['household_id']; ?>" class="edithousehold btn btn-danger" <?php
                                                 if($row["status"] == "inactive"){
                                                     echo "disabled";

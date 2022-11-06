@@ -153,6 +153,20 @@ if($row1['type'] == 'user') {
                     <h5 class="card-header">User List<button class="adduser btn btn-success" style="float: right">Add</button></h5>
                     <div class="card-body">
                         <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md pt-2">
+                                    <input type="text" class="form-control" id="search" placeholder="Enter Keyword...">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                            </div>
+                            <br>
                             <div class="table-responsive" style="width: 100%;">
                                 <table class="table table-striped">
                                     <thead>
@@ -166,6 +180,7 @@ if($row1['type'] == 'user') {
                                             <th>Action</th>
                                         </tr>
                                     </thead>
+                                    <tbody id = "output">
                                     <?php while($row = $result->fetch_assoc()){ ?>
                                     <tr>
                                         <td><?php echo $row["id"]; ?></td>
@@ -184,6 +199,7 @@ if($row1['type'] == 'user') {
                                         </td>
                                     </tr>
                                     <?php } ?>
+                                    </tbody>
                                 </table>
                             </div>  
                         </div>
@@ -301,6 +317,23 @@ if($row1['type'] == 'user') {
                     $(".modal-dialog").html(result);
                 }});
                 $('#impModal').modal('show');
+            });
+        });
+    </script>
+    <!-- search user-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#search").keypress(function(){
+            $.ajax({
+                type:'POST',
+                url:'search.php',
+                data:{
+                name:$("#search").val(),
+                },
+                success:function(data){
+                $("#output").html(data);
+                }
+            });
             });
         });
     </script>
