@@ -1,13 +1,28 @@
 <?php 
 session_start();
 include('../../phpfiles/connection.php');
+date_default_timezone_set('Asia/Manila'); // SET TIMEZONE
 
 if($_SESSION['user_id'] == '') {
     header("location:../../Login/login.php");
 }
 ?>
+<?php
+    if (isset($_POST['start'])){
+        $start = $conn -> real_escape_string($_POST['start']);
+
+        $allData = '';
+        $resultm = $conn -> query("SELECT * FROM healthcare_logs LIMIT $start, 50;");
+        while($row = $resultm->fetch_assoc()){ 
+            $allData .= $row["id"] . ',' . $row["patient_id"] . ',' . $row["fullname"] . ',' . $row["date"] . ',' . $row["time"] . ',' . $row["reason"] . ',' . "\n";
+        }
+        exit(json_encode(array("data" => $allData)));
+    } 
+    $sql = $conn -> query("SELECT id FROM healthcare_logs;");
+    $numRows = mysqli_num_rows($sql);
+
+?>
 <!DOCTYPE html>
-<?php include("../../phpfiles/connection.php");?>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
@@ -21,6 +36,8 @@ if($_SESSION['user_id'] == '') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -74,7 +91,7 @@ if($_SESSION['user_id'] == '') {
                 <?php
                     $query = "SELECT * FROM healthcare_availability";
                     $result = $conn -> query($query);
-                    $row = $result->fetch_assoc()
+                    $row = $result->fetch_assoc();
                 ?>
                 <div class="card">
                     <h5 class="card-header">Availability</h5>   
@@ -167,7 +184,7 @@ if($_SESSION['user_id'] == '') {
                 }
                 ?>
                 <?php
-                if(isset($_SESSION['message'])){
+                if(isset($_SESSION['message']) && isset($_SESSION['status'])){
                     if($_SESSION['status'] == 1 && $_SESSION['message'] != ''){
                 ?>
                 <div class="alert alert-success" role="alert">
@@ -184,6 +201,20 @@ if($_SESSION['user_id'] == '') {
                     <h5 class="card-header">Healthcare logs<button class="addlog btn btn-success" style="float: right">Add</button></h5>
                     <div class="card-body">
                         <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md pt-2">
+                                    <input type="text" class="form-control" id="search" placeholder="Enter Keyword...">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                                <div class="col-md pt-2">
+                                </div>
+                            </div>
+                            <br>
                             <div class="table-responsive" style="width: 100%;">
                                 <table class="table table-striped">
                                     <thead>
@@ -197,6 +228,7 @@ if($_SESSION['user_id'] == '') {
                                             <th>Action</th>
                                         </tr>
                                     </thead>
+                                    <tbody id = "output">
                                     <?php while($row = $result->fetch_assoc()){ ?>
                                     <tr>
                                         <td><?php echo $row["id"]; ?></td>
@@ -211,12 +243,17 @@ if($_SESSION['user_id'] == '') {
                                         </td>
                                     </tr>
                                     <?php } ?>
+                                    </tbody>
                                 </table>
                             </div>  
                         </div>
                     </div>
                 </div><br>
                 <nav aria-label="Page navigation example">
+                    <div class="btn-group" role="group" aria-label="Basic example" style="float: right;">
+                        <div><a class="import btn btn-outline-success">Import</a></div>
+                        <div id="response">Please wait..</div>
+                    </div>
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link text-dark" href="healthcare_center.php?page=<?php echo $previous;?>">Previous</a></li>
                         <?php for($i=1; $i<=$pages;$i++)
@@ -285,5 +322,68 @@ if($_SESSION['user_id'] == '') {
             });
         });
     </script>
+    <!--Import Modal-->
+    <div class="modal fade modal-md" id="impModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            
+        </div>
+    </div>
+     <!-- Import CSV script-->
+     <script>
+        $(document).ready(function(){
+            $('.import').click(function(){
+                var userid = $(this).data('id');
+                $.ajax({url: "import_form.php",
+                method:'post',
+                    
+                success: function(result){
+                    $(".modal-dialog").html(result);
+                }});
+                $('#impModal').modal('show');
+            });
+        });
+    </script>
+    <!-- Export CSV-->
+    <script>
+        var data = "data:text/csv;charset=utf-8,";
+
+        $(document).ready(function(){
+            exportToCSV(0,<?php echo $numRows ?>);
+        });
+
+        function exportToCSV(start, max){
+            if (start > max){
+                $("#response").html('<a href="'+data+'" download = "Healthcare-log-table" class="btn btn-outline-primary">Export</a>');
+                return;
+            }
+            $.ajax({ url: "healthcare_center.php",
+            method: 'POST',
+            dataType: 'json',
+            data: {start: start}, 
+            
+            success: function (response) {
+                data += response.data;
+                exportToCSV((start + 50), max);
+            }});
+        }
+    </script>
+    <!-- search resident-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#search").keypress(function(){
+            $.ajax({
+                type:'POST',
+                url:'search.php',
+                data:{
+                name:$("#search").val(),
+                },
+                success:function(data){
+                $("#output").html(data);
+                }
+            });
+            });
+        });
+    </script>
+   
 </body>
 </html>

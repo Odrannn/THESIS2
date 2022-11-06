@@ -26,7 +26,7 @@ if($_SESSION['user_id'] == '') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Suggestion Management</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -315,8 +315,12 @@ if($_SESSION['user_id'] == '') {
                                     </div>
                                     <div class="col-md pt-2">
                                     </div>
+                                    <div class="col-md pt-2">
+                                        <input type="text" class="form-control" id="search" placeholder="Enter Keyword...">
+                                    </div>
                                 </div>
                             </div>
+                            <br>
                             <div class="tableContainer table-responsive" style="width: 100%;">
                             <?php 
                             if(isset($_SESSION['filter'])){
@@ -385,6 +389,7 @@ if($_SESSION['user_id'] == '') {
                                             <th>Action</th>
                                         </tr>
                                     </thead>
+                                    <tbody id = "output">
                                     <?php 
                                     if(isset($_GET['page'])){
                                         $page = $_GET['page'];
@@ -459,6 +464,7 @@ if($_SESSION['user_id'] == '') {
                                         </td>
                                     </tr>
                                     <?php } ?>
+                                    </tbody>
                                 </table>
                                 <nav aria-label="Page navigation example">
                                     <div class="btn-group" role="group" aria-label="Basic example" style="float: right;">
@@ -601,6 +607,23 @@ if($_SESSION['user_id'] == '') {
                 exportToCSV((start + 50), max);
             }});
         }
+    </script>
+    <!-- search resident-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#search").keypress(function(){
+            $.ajax({
+                type:'POST',
+                url:'search.php',
+                data:{
+                name:$("#search").val(),
+                },
+                success:function(data){
+                $("#output").html(data);
+                }
+            });
+            });
+        });
     </script>
 </body>
 </html>
