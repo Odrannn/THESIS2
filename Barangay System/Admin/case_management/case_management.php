@@ -333,29 +333,28 @@ if($_SESSION['user_id'] == '') {
                                     
                                     $start = ($page-1) * 10;
                                     $query = "SELECT * FROM complaint_table ORDER BY complaint_ID DESC LIMIT $start, 10;";
-                                    $result = $conn -> query($query);
 
                                     if(isset($_SESSION['filter'])){
                                         if($_SESSION['filter']=='day'){
                                             $currentDate = date("Y-m-d");
-                                            $query = "SELECT * FROM complaint_table WHERE complaint_date = '$currentDate' LIMIT $start, 10;";
+                                            $query = "SELECT * FROM complaint_table WHERE complaint_date = '$currentDate' ORDER BY complaint_ID DESC LIMIT $start, 10;";
                                             $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table WHERE complaint_date = '$currentDate';");
                                             
                                         } else if($_SESSION['filter']=='week'){
-                                            $query = "SELECT * FROM complaint_table WHERE WEEK(complaint_date) = WEEK(now()) LIMIT $start, 10;";
+                                            $query = "SELECT * FROM complaint_table WHERE WEEK(complaint_date) = WEEK(now()) ORDER BY complaint_ID DESC LIMIT $start, 10;";
                                             $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table WHERE WEEK(complaint_date) = WEEK(now());");
                                         } else if($_SESSION['filter']=='month'){
-                                            $query = "SELECT * FROM complaint_table WHERE MONTH(complaint_date) = MONTH(now()) LIMIT $start, 10;";
+                                            $query = "SELECT * FROM complaint_table WHERE MONTH(complaint_date) = MONTH(now()) ORDER BY complaint_ID DESC LIMIT $start, 10;";
                                             $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table WHERE MONTH(complaint_date) = MONTH(now());");
                                         } else if($_SESSION['filter']=='year'){
-                                            $query = "SELECT * FROM complaint_table WHERE YEAR(complaint_date) = YEAR(now()) LIMIT $start, 10;";
+                                            $query = "SELECT * FROM complaint_table WHERE YEAR(complaint_date) = YEAR(now()) ORDER BY complaint_ID DESC LIMIT $start, 10;";
                                             $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table WHERE YEAR(complaint_date) = YEAR(now());");
                                         } else if($_SESSION['filter']=='all'){
-                                            $query = "SELECT * FROM complaint_table LIMIT $start, 10;";
+                                            $query = "SELECT * FROM complaint_table ORDER BY complaint_ID DESC LIMIT $start, 10;";
                                             $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table;");
                                         }
                                     } else {
-                                        $query = "SELECT * FROM complaint_table LIMIT $start, 10;";
+                                        $query = "SELECT * FROM complaint_table ORDER BY complaint_ID DESC LIMIT $start, 10;";
                                         $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table;");
                                     }
                                     

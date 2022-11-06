@@ -7,49 +7,35 @@ OR settlement_schedule LIKE '%".$_POST['name']."%' OR status LIKE '%".$_POST['na
 $result = mysqli_query($conn, $sql);
 
 if(mysqli_num_rows($result)>0){
-	while($row = $result->fetch_assoc()){ ?>
-
-                                    
+	while($row1 = $result->fetch_assoc()){ ?>
         <tr>
-            <td><?php echo $row["blotter_ID"]; ?></td>
-            <td><?php echo $row["official_ID"]; ?></td>
-            <td><?php echo $row["complainant_ID"]; ?></td>
-            <td><?php echo $row["complainee_ID"]; ?></td>
-            <td><?php echo $row["complainee_name"]; ?></td>
-            <td><?php echo $row["blotter_date"]; ?></td>
-            <td><?php echo $row["blotter_time"]; ?></td>
-            <td><?php echo $row["blotter_accusation"]; ?></td>
-            <td><?php echo $row["blotter_details"]; ?></td>
-            <td><?php echo $row["settlement_schedule"]; ?></td>
-            <td><?php echo $row["settlement_time"]; ?></td>
-            <td><?php echo $row["result_of_settlement"]; ?></td>
-            <td style ="text-align:center;"><div style ="width: 150px;" class="btn btn-outline-<?php if($row["status"]=='settled'){echo 'success';}
-            else if($row["status"]=='unscheduled'){
+            <td><?php echo $row1["blotter_ID"]; ?></td>
+            <td><?php echo $row1["complainee_name"]; ?></td>
+            <td><?php echo $row1["blotter_accusation"]; ?></td>
+            <td><?php echo $row1["blotter_details"]; ?></td>
+            <td><?php echo $row1["settlement_schedule"]; ?></td>
+            <td><?php echo $row1["settlement_time"]; ?></td>
+            <td><?php echo $row1["result_of_settlement"]; ?></td>
+            <td style ="text-align:center;"><div style ="width: 150px;" class="btn btn-outline-<?php if($row1["status"]=='settled'){echo 'success';}
+            else if($row1["status"]=='unscheduled'){
                 echo 'warning';
-            } else if($row["status"]=='scheduled'){
+            } else if($row1["status"]=='scheduled'){
                 echo 'primary';
             } else {
                 echo 'danger';
             }
-            ?>"><?php echo $row["status"]; ?></div></td>
-            <td><div class="btn-group" role="group" aria-label="Basic example">
-                <?php $off_id = $row['official_ID'];
-                    $query2 = "SELECT * FROM tblofficial WHERE official_id = '$off_id'";
-                    $result2 = $conn -> query($query2); 
-                    $row2 = mysqli_fetch_array($result2)
-                ?>
-                <button data-id="<?php echo $row['blotter_ID']; ?>" class="setsched btn btn-primary"<?php 
-                    if($off_id != ""){
-                        if($row['status'] == 'settled' || $row['status'] == 'unsettled' || $row2['user_id'] != $_SESSION['user_id'])
-                        {
-                            echo "disabled"; 
-                        }
-                    } ?>><i class="fa-solid fa-calendar-days"></i></button>
-                <button data-id="<?php echo $row['blotter_ID']; ?>" class="editblotter btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
-                </div>
+            ?>"><?php echo $row1["status"]; ?></td>
+            <td>
+            <div class="btn-group" role="group" aria-label="Basic example">    
+                <button data-id="<?php echo $row1["blotter_ID"]?>" class="viewbl btn btn-primary"><i class="fa-solid fa-eye"></i></button>   
+                <button data-id="<?php echo $row1["blotter_ID"]?>" class="xbl btn btn-danger" <?php
+                if($row1["status"] == 'cancelled'){echo 'disabled';}
+                ?>><i class="fa-solid fa-xmark"></i></button>   
+            </div>
             </td>
         </tr>
-        <?php }
+        
+    <?php }
 }
 else{
 	echo "<tr><td colspan = '26'>0 result's found</td></tr>";
