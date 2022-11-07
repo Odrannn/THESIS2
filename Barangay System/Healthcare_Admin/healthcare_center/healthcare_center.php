@@ -73,7 +73,7 @@ if($_SESSION['user_id'] == '') {
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul class="navbar-nav mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="#"><i class="fa-solid fa-user px-2"></i>Profile</a>
+                                <a class="nav-link" aria-current="page" href="../../hcadmin_profile_management/profile.php"><i class="fa-solid fa-user px-2"></i>Profile</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../Login/logout.php" class="nav-link" aria-current="page"><i class="fa-solid fa-arrow-right-from-bracket px-2"></i>Logout</a>

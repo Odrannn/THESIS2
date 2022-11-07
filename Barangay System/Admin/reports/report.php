@@ -87,18 +87,18 @@ if($_SESSION['user_id'] == '') {
 								</div>
 						</div>
 						<div class="col">
-						<button type="submit" class="btn btn-primary" name="generate">GENERATE</button>
+							<button type="submit" class="btn btn-primary" name="generate">GENERATE</button>
 						</div>
 					</form>
 					  </div>
 					</div>
 				<br>
-				<h5 class="card-header">POPULATION REPORT</h5>
+				<h5 class="card-header">POPULATION REPORT </h5>
                 <div class="card-body">
 					<div class="container">
 					  <div class="row">
 						<div class="col">
-						  BARANGAY RESIDENT<a href="../../generate_document/resident.php" class="btn btn-primary">GENERATE </A>
+						  BARANGAY RESIDENT <a href="../../generate_document/resident.php" class="btn btn-primary">GENERATE </A>
 						</div>
 					  </div>
 					</div>
@@ -109,20 +109,23 @@ if($_SESSION['user_id'] == '') {
 					<div class="container">
 					  <div class="row">
 						<div class="col">
-						  DAILY <a href="../../generate_document/complaint_daily.php" class="btn btn-primary">GENERATE </A>
-						</div>
-						<div class="col"> 
-						  WEEKLY <a href="../../generate_document/complaint_weekly.php" class="btn btn-primary">GENERATE </A>
-						</div>
+						<form class="form-inline" method="POST" action="generate_report_comp.php">
+								<div class="form-floating"> 
+									<select class="form-control" id="status" name="compfreq" required>
+										<option name="compfreq" value="DAILY">DAILY</option>
+										<option name="compfreq" value="WEEKLY">WEEKLY</option>
+										<option name="compfreq" value="MONTHLY">MONTHLY</option>
+										<option name="compfreq" value="YEARLY">YEARLY</option>
+										<option name="compfreq" value="ALL">ALL</option>
+									</select>
+										<label for="status">FREQUENCY</label>
+								</div>
+					    </div>
 						<div class="col">
-						  MONTHLY <a href="../../generate_document/complaint_monthly.php" class="btn btn-primary">GENERATE </A>
+							<button type="submit" class="btn btn-primary" name="generatecomp">GENERATE</button>
 						</div>
-						<div class="col">
-						  YEARLY <a href="../../generate_document/complaint_yearly.php" class="btn btn-primary">GENERATE </A>
-						</div>
-						<div class="col"> 
-						  ALL <a href="../../generate_document/complaint_all.php" class="btn btn-primary">GENERATE </A>
-						</div>
+						</form>
+					
 					  </div>
 					</div>
 				</div>
@@ -132,20 +135,23 @@ if($_SESSION['user_id'] == '') {
 					<div class="container">
 					  <div class="row">
 						<div class="col">
-						  DAILY <a href="../../generate_document/blotter_daily.php" class="btn btn-primary">GENERATE </A>
-						</div>
-						<div class="col"> 
-						  WEEKLY <a href="../../generate_document/blotter_weekly.php" class="btn btn-primary">GENERATE </A>
-						</div>
+								<form class="form-inline" method="POST" action="generate_report_blot.php">
+								<div class="form-floating"> 
+									<select class="form-control" id="status" name="blotfreq" required>
+										<option name="blotfreq" value="DAILY">DAILY</option>
+										<option name="blotfreq" value="WEEKLY">WEEKLY</option>
+										<option name="blotfreq" value="MONTHLY">MONTHLY</option>
+										<option name="blotfreq" value="YEARLY">YEARLY</option>
+										<option name="blotfreq" value="ALL">ALL</option>
+									</select>
+										<label for="status">FREQUENCY</label>
+								</div>
+					    </div>
 						<div class="col">
-						  MONTHLY <a href="../../generate_document/blotter_monthly.php" class="btn btn-primary">GENERATE </A>
+							<button type="submit" class="btn btn-primary" name="generateblot">GENERATE</button>
 						</div>
-						<div class="col">
-						  YEARLY <a href="../../generate_document/blotter_yearly.php" class="btn btn-primary">GENERATE </A>
-						</div>
-						<div class="col"> 
-						  ALL <a href="../../generate_document/blotter_all.php" class="btn btn-primary">GENERATE </A>
-						</div>
+						</form>
+					
 					  </div>
 					</div>
 				</div>
@@ -155,20 +161,23 @@ if($_SESSION['user_id'] == '') {
 					<div class="container">
 					  <div class="row">
 						<div class="col">
-						  DAILY <a href="../../generate_document/suggest_daily.php" class="btn btn-primary">GENERATE </A>
-						</div>
-						<div class="col"> 
-						  WEEKLY <a href="../../generate_document/suggest_weekly.php" class="btn btn-primary">GENERATE </A>
-						</div>
+								<form class="form-inline" method="POST" action="generate_report_sugg.php">
+								<div class="form-floating"> 
+									<select class="form-control" id="status" name="suggfreq" required>
+										<option name="suggfreq" value="DAILY">DAILY</option>
+										<option name="suggfreq" value="WEEKLY">WEEKLY</option>
+										<option name="suggfreq" value="MONTHLY">MONTHLY</option>
+										<option name="suggfreq" value="YEARLY">YEARLY</option>
+										<option name="suggfreq" value="ALL">ALL</option>
+									</select>
+										<label for="status">FREQUENCY</label>
+								</div>
+					    </div>
 						<div class="col">
-						  MONTHLY <a href="../../generate_document/suggest_monthly.php" class="btn btn-primary">GENERATE </A>
+							<button type="submit" class="btn btn-primary" name="generatesugg">GENERATE</button>
 						</div>
-						<div class="col">
-						  YEARLY <a href="../../generate_document/suggest_yearly.php" class="btn btn-primary">GENERATE </A>
-						</div>
-						<div class="col"> 
-						  ALL <a href="../../generate_document/suggest_all.php" class="btn btn-primary">GENERATE </A>
-						</div>
+						</form>
+						
 					  </div>
 					</div>
 				</div>
