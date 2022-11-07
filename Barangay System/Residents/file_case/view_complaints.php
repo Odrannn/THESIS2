@@ -123,7 +123,7 @@ if($_SESSION['user_id'] == '') {
                                     
                                     $start = ($page-1) * 10;
                                     //select allcomplaints
-                                    $query = "SELECT * FROM complaint_table WHERE sender_ID = '$residentID'  LIMIT $start, 10;";
+                                    $query = "SELECT * FROM complaint_table WHERE sender_ID = '$residentID'  ORDER BY complaint_ID DESC LIMIT $start, 10;";
                                     $result = $conn -> query($query);
                 
                                     $result1 = $conn -> query("SELECT count(complaint_ID) as id FROM complaint_table WHERE sender_ID = '$residentID'");

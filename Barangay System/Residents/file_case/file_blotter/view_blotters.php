@@ -206,7 +206,7 @@ if($_SESSION['user_id'] == '') {
                                     
                                     $start = ($page-1) * 10;
                                     //select all blotters
-                                    $query = "SELECT * FROM blotter_table WHERE complainant_ID = '$residentID' LIMIT $start, 10;";
+                                    $query = "SELECT * FROM blotter_table WHERE complainant_ID = '$residentID' ORDER BY blotter_ID DESC LIMIT $start, 10;";
                                     $result = $conn -> query($query);
                 
                                     $result1 = $conn -> query("SELECT count(complainant_ID) as id FROM blotter_table WHERE complainant_ID = '$residentID'");
