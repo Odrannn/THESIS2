@@ -175,7 +175,7 @@ $html .="
 
     $dompdf->addInfo("Title", "Barangay Clearance");
 
-    $dompdf->stream("BarangayClearance.pdf", ["Attachment" => 0]);
+    $dompdf->stream("$date1 to $date2,complaint.pdf", ["Attachment" => 0]);
 
 }
 if($document_Type == 'Suggest')
@@ -321,7 +321,7 @@ if($document_Type == 'Suggest')
     
     $dompdf->addInfo("Title", "Barangay Clearance");
     
-    $dompdf->stream("BarangayClearance.pdf", ["Attachment" => 0]);
+    $dompdf->stream("$date1 to $date2,suggest.pdf", ["Attachment" => 0]);
 
 
 }
@@ -489,6 +489,6 @@ if($document_Type == 'Blotter')
     
     $dompdf->addInfo("Title", "Barangay Clearance");
     
-    $dompdf->stream("BarangayClearance.pdf", ["Attachment" => 0]);
+    $dompdf->stream("$date1 to $date2,blotter.pdf", ["Attachment" => 0]);
 }
 ?>
