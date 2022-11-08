@@ -134,7 +134,7 @@ if($_SESSION['user_id'] == '') {
                 }
                 ?>
                 <?php
-                if(isset($_SESSION['message'])){
+                if(isset($_SESSION['message']) && isset($_SESSION['status'])){
                     if($_SESSION['status'] == 1 && $_SESSION['message'] != ''){
                 ?>
                 <div class="alert alert-success" role="alert">

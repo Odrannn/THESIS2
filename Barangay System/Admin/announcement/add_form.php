@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="title" name="title" required>
+                            <input class="form-control" type="text" id="title" name="title" oninput="this.value = this.value.replace(/[^a-z0-9 ]/g, '').replace(/(\..*)\./g, '$1');" required>
                             <label for="title">Title</label>
                         </div>
                     </div>

@@ -18,7 +18,7 @@ if(isset($_POST['annID'])){
                     <div class="row">
                         <div class="col-md pt-2">
                             <div class="form-floating">
-                                <input class="form-control" type="text" id="title" name="title" value="<?php echo $row["title"];?>">
+                                <input class="form-control" type="text" id="title" name="title" oninput="this.value = this.value.replace(/[^a-z0-9 ]/g, '').replace(/(\..*)\./g, '$1');" value="<?php echo $row["title"];?>" required>
                                 <label for="title">Title</label>
                             </div>
                         </div>
@@ -26,7 +26,7 @@ if(isset($_POST['annID'])){
                     <div class="row">
                         <div class="col-md pt-2">
                             <div class="form-floating">
-                                <textarea class="form-control" name="desc" id="desc" cols="30" rows="10"><?php echo $row["descrip"];?></textarea>
+                                <textarea class="form-control" name="desc" id="desc" cols="30" rows="10" required><?php echo $row["descrip"];?></textarea>
                                 <label for="desc">Description</label>
                             </div>
                         </div>

@@ -193,7 +193,7 @@ if($_SESSION['user_id'] == '') {
                         </tr>
                         <tr>
                             <form action="../add_option.php" method="post">
-                                <td><input class="form-control" type="text" name= "suggestion" placeholder="enter nature...">
+                                <td><input class="form-control" type="text" name= "suggestion" oninput="this.value = this.value.replace(/[^a-z ]/gi, '').replace(/(\..*)\./gi, '$1')" placeholder="enter nature...">
                                 <div class="d-flex flex-row-reverse">
                                     <input class="mt-2 btn btn-success" type="submit" name="add_suggestion" value="Add">
                                 </div></td>

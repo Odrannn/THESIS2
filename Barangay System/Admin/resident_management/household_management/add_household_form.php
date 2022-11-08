@@ -16,7 +16,7 @@ $result = $conn -> query($query);
                     <div class="col-md pt-2">
                         <div>
                             <label for="id" class="p-1">Family Head(Search the name of the resident.)</label>
-                            <input class="form-control" type="text" id="id" name="id" list="reslist" placeholder="Enter the resident ID..." required>
+                            <input class="form-control" type="text" id="id" name="id" list="reslist" oninput="this.value = this.value.replace(/[^a-z0-9]/gi, '').replace(/(\..*)\./g, '$1');" placeholder="Enter the resident ID..." required>
                             <datalist id="reslist">
                                 <?php while($row = $result -> fetch_array()) { ?>
                                     <option value="<?php echo $row['id']?>"><?php echo $row['Fullname']?></option>
@@ -33,3 +33,9 @@ $result = $conn -> query($query);
         </div>
     </form>
 </div>
+<script type="text/javascript">
+    function lettersnumbersOnly(input){
+        var regex = /[^a-z0-9]/gi;
+        input.value = input.value.replace(regex, "");
+    }
+</script>

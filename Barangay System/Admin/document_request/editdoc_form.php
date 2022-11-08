@@ -16,7 +16,7 @@ $row = $result->fetch_assoc();
             <div class="row">
                 <div class="col-md pt-2">
                     <div class="form-floating">
-                        <input class="form-control" name="price" id="price" value="<?php echo $row['price']; ?>" required>
+                        <input class="form-control" name="price" id="price" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" value="<?php echo $row['price']; ?>" required>
                         <label for="type">Price (Php)</label>
                     </div>
                 </div>

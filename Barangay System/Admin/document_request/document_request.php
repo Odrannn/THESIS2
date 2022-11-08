@@ -153,11 +153,11 @@ if($_SESSION['user_id'] == '') {
                                     <table class="table table-borderless">
                                         <tr>
                                             <td><div class="form-floating">
-                                                <input class="form-control" type="text" id="gname" name="gname" value="<?php echo $row1['g_name']?>"required>
+                                                <input class="form-control" type="text" id="gname" name="gname" oninput="this.value = this.value.replace(/[^a-z ]/gi, '').replace(/(\..*)\./gi, '$1')" value="<?php echo $row1['g_name']?>" required>
                                                 <label for="price">G Cash Name</label>
                                             </div></td>
                                             <td><div class="form-floating">
-                                                <input class="form-control" type="text" id="gnum" name="gnum" maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')" value="<?php echo $row1['cp_number']?>" required>
+                                                <input class="form-control" type="text" id="gnum" name="gnum" maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1')" value="<?php echo $row1['cp_number']?>" required>
                                                 <label for="price">G Cash Number</label>
                                             </div></td>
                                             <td><div class="btn-group" role="group" aria-label="Basic example">

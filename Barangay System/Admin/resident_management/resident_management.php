@@ -99,7 +99,7 @@ if($_SESSION['user_id'] == '') {
 
                 <div class="d-flex justify-content-center">
                 <?php
-                    $tquery = "SELECT count(id) FROM resident_table;";
+                    $tquery = "SELECT count(id) FROM resident_table where status ='active';";
                     $tresult = $conn -> query($tquery);
                     $trow = $tresult -> fetch_array();
                 ?>
@@ -124,7 +124,7 @@ if($_SESSION['user_id'] == '') {
                             </div>
                         </div>
                         <?php
-                            $mquery = "SELECT count(id) FROM resident_table WHERE gender = 'male';";
+                            $mquery = "SELECT count(id) FROM resident_table WHERE gender = 'male' and status ='active';";
                             $mresult = $conn -> query($mquery);
                             $mrow = $mresult -> fetch_array();
                         ?>
@@ -137,7 +137,7 @@ if($_SESSION['user_id'] == '') {
                             </div>
                         </div>
                         <?php
-                            $fquery = "SELECT count(id) FROM resident_table WHERE gender = 'female';";
+                            $fquery = "SELECT count(id) FROM resident_table WHERE gender = 'female' and status ='active';";
                             $fresult = $conn -> query($fquery);
                             $frow = $fresult -> fetch_array();
                         ?>

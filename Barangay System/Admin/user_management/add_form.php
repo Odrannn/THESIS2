@@ -36,7 +36,7 @@ $result = $conn -> query($query);
                     <div class="col-md pt-2">
                         <div>
                             <label for="id">Resident ID (Search the name of the resident.)</label>
-                            <input class="form-control" type="text" id="id" name="id" list="reslist" placeholder="Enter the resident ID..." onkeyup="lettersnumbersOnly(this)" required>
+                            <input class="form-control" type="text" id="id" name="id" list="reslist" placeholder="Enter the resident ID..." oninput="this.value = this.value.replace(/[^a-z0-9]/gi, '').replace(/(\..*)\./gi, '$1')" required>
                             <datalist id="reslist">
                                 <?php while($row = $result -> fetch_array()) { ?>
                                     <option value="<?php echo $row['id']?>"><?php echo $row['Fullname']?></option>
@@ -48,7 +48,7 @@ $result = $conn -> query($query);
                 <div class="row">
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="uname" name="uname" placeholder="Enter username..." onkeyup="lettersnumbersOnly(this)" required>
+                            <input class="form-control" type="text" id="uname" name="uname" placeholder="Enter username..." oninput="this.value = this.value.replace(/[^a-z0-9]/gi, '').replace(/(\..*)\./gi, '$1')" required>
                             <label for="id">Username</label>
                         </div>
                     </div>

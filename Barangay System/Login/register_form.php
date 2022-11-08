@@ -28,25 +28,25 @@
                 <div class="row">
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="fname" name="fname" placeholder="First Name" onkeyup="lettersOnly(this)" required>
+                            <input class="form-control" type="text" id="fname" name="fname" placeholder="First Name" oninput="this.value = this.value.replace(/[^a-z ]/gi, '').replace(/(\..*)\./gi, '$1')" required>
                             <label for="fname">First Name</label>
                         </div>
                     </div>
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="mname" name="mname" placeholder="Middle Name" onkeyup="lettersOnly(this)" required>
+                            <input class="form-control" type="text" id="mname" name="mname" placeholder="Middle Name" oninput="this.value = this.value.replace(/[^a-z ]/gi, '').replace(/(\..*)\./gi, '$1')" required>
                             <label for="mname">Middle Name</label>
                         </div>
                     </div>
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="lname" name="lname" placeholder="Last Name" onkeyup="lettersOnly(this)" required>
+                            <input class="form-control" type="text" id="lname" name="lname" placeholder="Last Name" oninput="this.value = this.value.replace(/[^a-z ]/gi, '').replace(/(\..*)\./gi, '$1')" required>
                             <label for="lname">Last Name</label>
                         </div>
                     </div>
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="suffix" name="suffix" placeholder="Suffix" onkeyup="lettersOnly(this)">
+                            <input class="form-control" type="text" id="suffix" name="suffix" placeholder="Suffix" oninput="this.value = this.value.replace(/[^a-z]/gi, '').replace(/(\..*)\./gi, '$1')">
                             <label for="suffix">Suffix (Jr, Sr, I, II, etc.)</label>
                             <p><small class="p-2">leave it blank if none.</small></p>
                         </div>
@@ -70,7 +70,7 @@
                 <div class="row">
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="birthplace" name="birthplace" placeholder="Place of Birth" onkeyup="lettersOnly(this)" required>
+                            <input class="form-control" type="text" id="birthplace" name="birthplace" placeholder="Place of Birth" oninput="this.value = this.value.replace(/[^a-z]/gi, '').replace(/(\..*)\./gi, '$1')" required>
                             <label for="birthplace">Place of Birth</label>
                         </div>
                     </div>
@@ -195,7 +195,7 @@
                 <div class="row">
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="occupation" name="occupation" placeholder="Occupation" onkeyup="lettersOnly(this)">
+                            <input class="form-control" type="text" id="occupation" name="occupation" placeholder="Occupation" oninput="this.value = this.value.replace(/[^a-z]/gi, '').replace(/(\..*)\./gi, '$1')">
                             <label for="occupation">Occupation</label>
                             <p><small class="p-2">leave it blank if none.</small></p>
                         </div>
@@ -213,13 +213,13 @@
                     </div>
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="nationality" name="nationality" placeholder="Nationality" onkeyup="lettersOnly(this)" required>
+                            <input class="form-control" type="text" id="nationality" name="nationality" placeholder="Nationality" oninput="this.value = this.value.replace(/[^a-z]/gi, '').replace(/(\..*)\./gi, '$1')" required>
                             <label for="nationality">Nationality</label>
                         </div>
                     </div>
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="disability" name="disability" onkeyup="lettersOnly(this)" placeholder="Disability">
+                            <input class="form-control" type="text" id="disability" name="disability" oninput="this.value = this.value.replace(/[^a-z]/gi, '').replace(/(\..*)\./gi, '$1')" placeholder="Disability">
                             <p><small class="p-2">leave it blank if none.</small></p>
                             <label for="disability">Disability</label>
                         </div>
@@ -295,10 +295,4 @@
             }
         });
     });
-</script>
-<script type="text/javascript">
-    function lettersOnly(input){
-        var regex = /[^a-z]/gi;
-        input.value = input.value.replace(regex, "");
-    }
 </script>

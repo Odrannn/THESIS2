@@ -15,7 +15,7 @@ $result = $conn -> query($query);
             <div class="row">
                 <div class="col-md pt-2">
                     <div class="form-floating">
-                        <input class="form-control" type="text" id="residentID" name="residentID" placeholder="Resident ID.." list="reslist" required>
+                        <input class="form-control" type="text" id="residentID" name="residentID" placeholder="Resident ID.." oninput="this.value = this.value.replace(/[^a-z0-9]/gi, '').replace(/(\..*)\./gi, '$1')" list="reslist" required>
                         <label for="residentID">Resident ID</label>
                         <datalist id="reslist">
                             <?php while($row = $result -> fetch_array()) { ?>
@@ -83,6 +83,11 @@ $result = $conn -> query($query);
     </div>
     </form>
 </div>
-
+<script type="text/javascript">
+    function lettersnumbersOnly(input){
+        var regex = /[^a-z0-9]/gi;
+        input.value = input.value.replace(regex, "");
+    }
+</script>
 
     

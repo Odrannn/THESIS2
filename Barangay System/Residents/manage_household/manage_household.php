@@ -58,14 +58,20 @@ if($_SESSION['user_id'] == '') {
                 <h2 class="text fs-5">Manage Household</h2>
                 <p>In this module, you can manage your household information.</p>
                 <?php
-                    if(isset($_SESSION['message']) && $_SESSION['message'] != ''){
-                    ?>
-                    <div class="alert alert-success" role="alert">
-                        <h4 class="alert-heading">Successful!</h4>
-                        <p><?php echo $_SESSION['message'];?></p>
-                        
-                    </div>
+                    if(isset($_SESSION['message']) && isset($_SESSION['status'])){
+                        if($_SESSION['message']!= '' && $_SESSION['status'] == 1){?>
+                            <div class="alert alert-success" role="alert">
+                                <h4 class="alert-heading">Successful!</h4>
+                                <p><?php echo $_SESSION['message'];?></p>
+                            </div>
+                    <?php }
+                        else if($_SESSION['message']!= '' && $_SESSION['status'] == 0){ ?>
+                            <div class="alert alert-danger" role="alert">
+                                <h4 class="alert-heading">Failed!</h4>
+                                <p><?php echo $_SESSION['message'];?></p>
+                            </div>
                     <?php
+                        }
                     }
                     $_SESSION['message'] = '';
                     ?>

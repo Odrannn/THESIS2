@@ -17,7 +17,7 @@ if(isset($_POST['userid'])){
                 <div class="row">
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="username" name="username" onkeyup="lettersnumbersOnly(this)" value="<?php echo $row1["username"];?>">
+                            <input class="form-control" type="text" id="username" name="username" oninput="this.value = this.value.replace(/[^a-z0-9]/gi, '').replace(/(\..*)\./gi, '$1')" value="<?php echo $row1["username"];?>">
                             <label for="username">Username</label>
                         </div>
                     </div>
