@@ -45,7 +45,10 @@ if($_SESSION['user_id'] == '') {
         echo $row[1];
         ?>">
             <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
-                <h1 class=fs-4><span class="bg-white text-dark rounded shadow px-2 me-2">BS</span><span class="text-white">Barangay <?php
+                <h1 class=fs-4><span class=""><img src="../configuration/uploads/<?php
+                include("../../phpfiles/bgy_info.php");
+                echo $row[2];
+            ?>" width = "50" height ="50" class="img-thumbnail"></span><span class="text-white">  Barangay <?php
                                                                                                                                     include("../../phpfiles/bgy_info.php");
                                                                                                                                     echo $row[3];
                                                                                                                                     ?></span></h1>
