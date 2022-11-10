@@ -9,6 +9,7 @@
     $resID = $_POST['id'];
     $type = $_POST['type'];
     $uname = $_POST['uname'];
+    $userpassword = date("Y").time();
 
     //getting existing number 
     $exquery = "SELECT * FROM tbluser WHERE username = '$uname';";
@@ -23,7 +24,7 @@
     }else if (mysqli_num_rows($exresult)>0){
         $response['message'] = "Username already exists.";
     } else {
-        $query = "INSERT INTO tbluser(username, password, type) VALUES('$uname','12345678','$type');";
+        $query = "INSERT INTO tbluser(username, password, type, status, profile) VALUES('$uname','$userpassword','$type', 'active', 'default.jpg');";
         $result = $conn -> query($query);
 
         /* getting the user id for resident foreignkey */

@@ -3,7 +3,7 @@
 if(isset($_POST['userid'])){
 
     include("../../phpfiles/connection.php");
-    $query = "SELECT * FROM resident_table WHERE id = '".$_POST['userid']."'";
+    $query = "SELECT resident_table.*, tbluser.profile FROM resident_table INNER JOIN tbluser on resident_table.user_id = tbluser.id WHERE resident_table.id = '".$_POST['userid']."'";
     $result = $conn -> query($query); 
     $row = mysqli_fetch_array($result)?>
     <div class="modal-content">
@@ -14,8 +14,8 @@ if(isset($_POST['userid'])){
         <div class="modal-body">
             <div class="container">
                 <div class="row">
-                    <div class="col pt-2">
-                        <img src="" alt="resident image.." class="img-fluid"    >
+                    <div class="col pt-2">			
+                        <img src="residentimages/<?php echo $row['profile'];?>" alt="resident image.." class="img-fluid">
                     </div>
                     <div class="col pt-2">
                         <p class="m-0"><b>Name: </b><?php echo $row["fname"] . ' ' . $row["mname"] . ' ' . $row["lname"] . ' ' . $row["suffix"] ?></p>

@@ -31,7 +31,7 @@ if(isset($_POST['Submit']))
 	}
 	else
 	{
-		$con=mysqli_query($conn,"update tbluser set password=' $newpassword' where id = '" . $_SESSION['user_id'] . "'");
+		$con=mysqli_query($conn,"update tbluser set password='$newpassword' where id = '" . $_SESSION['user_id'] . "'");
 		$_SESSION['msg4']="PASSWORD SUCCESSFULLY CHANGED";
 		header("location:password_page.php");
 	}

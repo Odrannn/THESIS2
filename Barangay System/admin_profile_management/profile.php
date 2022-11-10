@@ -404,8 +404,13 @@ if($_SESSION['user_id'] == '') {
 		</div>
 		</div>
 	</div>
-		
-
-
+	<script>
+        $('.open-btn').on('click', function(){
+            $('.sidebar').addClass('active');
+        });
+        $('.close-btn').on('click', function(){
+            $('.sidebar').removeClass('active');
+        });
+    </script>
 </body>
 </html>

@@ -45,15 +45,16 @@
 
         if($status == 'pendingforaccountandresidency'){
         /* User creation query */
+            $userpassword = date("Y").time();
             $new_query = "INSERT INTO tbluser(username, password, type, profile, status)
-            VALUES('$contactnumber', '12345678', 'user', 'default.jpg', 'active')";
+            VALUES('$contactnumber', '$userpassword', 'user', 'default.jpg', 'active')";
             $new_result = $conn -> query($new_query); 
 
             $smsemail = "bernard.mazo04@gmail.com";
             $password = "Mazo20181132826";
             $apicode = "PR-BERNA461967_SZ8D9";
             $number = $contactnumber;
-            $message = "Registration Accepted.\n ACCOUNT DETAILS \nUsername: ". $contactnumber . " \nPassword: 12345678";
+            $message = "Registration Accepted.\n ACCOUNT DETAILS \nUsername: ". $contactnumber . " \nPassword: " . $userpassword;
 
             /* getting the user id for resident foreignkey */
             $uinfoquery = "SELECT * FROM tbluser WHERE username = '$contactnumber';";

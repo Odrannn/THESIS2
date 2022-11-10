@@ -88,7 +88,7 @@ if($_SESSION['user_id'] == '') {
                 ?>
 
                 <h2 class="text fs-5">Dashboard</h2>
-                <h2 class="text fs-5">Welcome <?php echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname']?></h2>
+                <h2 class="text fs-5">Welcome <?php echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname']. date("Y").time();?></h2>
                 <br>
                 <h5 class="card-title">Transactions Summary</h5>   
                 <br>
@@ -283,6 +283,18 @@ if($_SESSION['user_id'] == '') {
                             <div class="card-body">
                                 <h5 class="card-title">Reports</h5>
                                 <p class="card-text">Generate Report on the Barangay System.</p>
+                            </div></a>
+                        </div>
+                        <?php
+                    }
+                ?>
+                <?php if($availability[7] == 'yes'){ ?>
+                        <div class="card mb-3 me-2" style="width: 18rem;display: inline-block;">
+                            <a href="../logs/logs.php" class="text-decoration-none text-dark">
+                            <img src="../icons/logs.jpg" class="card-img-top" style="filter: brightness(50%);">
+                            <div class="card-body">
+                                <h5 class="card-title">Logs</h5>
+                                <p class="card-text">Operate who's logging in the Barangay System.</p>
                             </div></a>
                         </div>
                         <?php

@@ -10,7 +10,7 @@ $row = $result -> fetch_array();
 $query = "UPDATE user_notification SET status ='1' WHERE notification_ID = '$notifID';";
 $result = $conn -> query($query);
 
-if($row['notification_type']=="Requested Document on process"){
+if($row['notification_type']=="Requested Document"){
     header("location:../Residents/request_document/view_requests.php");
 } else if ($row['notification_type']=="Filed Complaint"){
     header("location:../Residents/file_case/view_complaints.php");

@@ -3,7 +3,10 @@
 <div class="container-fluid">
     <div class="d-flex justify-content-between d-md-none d-block">
         <button class="btn px-1 py-0 open-btn me-2"><i class="fa-solid fa-bars-staggered"></i></button>
-        <a class="navbar-brand fs-4" href="#"><span class="bg-dark rounded px-2 py-0 text-white">BS</span></a>
+        <a class="navbar-brand fs-4" href="#"><span class=""><img src="../../Admin/configuration/uploads/<?php
+                include("../../phpfiles/bgy_info.php");
+                echo $row[2];
+            ?>" width = "50" height ="50" class="img-thumbnail"></span></a>
     </div>
     <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="collapse" 
         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 

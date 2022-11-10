@@ -29,7 +29,10 @@ if($_SESSION['user_id'] == '') {
         echo $row[1];
         ?>">
             <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
-                <h1 class=fs-4><span class="bg-white text-dark rounded shadow px-2 me-2">BS</span><span class="text-white">Barangay <?php
+                <h1 class=fs-4><span class=""><img src="../Admin/configuration/uploads/<?php
+                include("../phpfiles/bgy_info.php");
+                echo $row[2];
+            ?>" width = "50" height ="50" class="img-thumbnail"></span><span class="text-white">  Barangay <?php
                                                                                                                             include("../phpfiles/bgy_info.php");
                                                                                                                             echo $row[3];
                                                                                                                             ?></span></h1>
@@ -52,7 +55,10 @@ if($_SESSION['user_id'] == '') {
 				<div class="container-fluid">
 					<div class="d-flex justify-content-between d-md-none d-block">
 						<button class="btn px-1 py-0 open-btn me-2"><i class="fa-solid fa-bars-staggered"></i></button>
-						<a class="navbar-brand fs-4" href="#"><span class="bg-dark rounded px-2 py-0 text-white">BS</span></a>
+						<a class="navbar-brand fs-4" href="#"><span class=""><img src="../Admin/configuration/uploads/<?php
+                include("../phpfiles/bgy_info.php");
+                echo $row[2];
+            ?>" width = "50" height ="50" class="img-thumbnail"></span></a>
 					</div>
 					<button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="collapse" 
 						data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
@@ -95,7 +101,7 @@ if($_SESSION['user_id'] == '') {
 											$row1 = $result1->fetch_assoc();
 											if($rownot['status'] == '0'){ 
 												$notifID = $rownot['notification_ID'];?>
-												<li><a class="dropdown-item " href="../../phpfiles/readnotifuser.php?notifid=<?php echo $notifID?>">
+												<li><a class="dropdown-item " href="../phpfiles/readnotifuser.php?notifid=<?php echo $notifID?>">
 												<b><?php echo $rownot['notification_type'];?></b><i class="fa-solid fa-circle text-danger" style="float:right; font-size:12px;"></i><br>
 												<?php echo $rownot['message']; ?><br>
 												<b class="text-primary"><?php echo $dateTime;?></b>
@@ -104,7 +110,7 @@ if($_SESSION['user_id'] == '') {
 										<?php 
 											} else {
 												$notifID = $rownot['notification_ID'];?>
-												<li ><a class="dropdown-item" href="../../phpfiles/readnotifuser.php?notifid=<?php echo $notifID?>">
+												<li ><a class="dropdown-item" href="../phpfiles/readnotifuser.php?notifid=<?php echo $notifID?>">
 												<?php echo $rownot['notification_type'];?><br>
 												<?php echo $rownot['message']; ?><br>
 												<?php echo $dateTime;?>
@@ -403,10 +409,13 @@ if($_SESSION['user_id'] == '') {
 		</div>
 		</div>
 	</div>
-
-
-
-
-
 </body>
 </html>
+<script>
+	$('.open-btn').on('click', function(){
+		$('.sidebar').addClass('active');
+	});
+	$('.close-btn').on('click', function(){
+		$('.sidebar').removeClass('active');
+	});
+</script>

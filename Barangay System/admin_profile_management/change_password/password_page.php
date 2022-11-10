@@ -177,11 +177,13 @@ if($_SESSION['user_id'] == '') {
 			</div>
 		</div>
 	</div>
-		
 </body>
-
-
-
-
-
 </html>
+<script>
+	$('.open-btn').on('click', function(){
+		$('.sidebar').addClass('active');
+	});
+	$('.close-btn').on('click', function(){
+		$('.sidebar').removeClass('active');
+	});
+</script>

@@ -29,7 +29,10 @@ if($_SESSION['user_id'] == '') {
         echo $row[1];
         ?>">
             <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
-                <h1 class=fs-4><span class="bg-white text-dark rounded shadow px-2 me-2">BS</span><span class="text-white">Barangay <?php
+                <h1 class=fs-4><span class=""><img src="../../Admin/configuration/uploads/<?php
+                include("../../phpfiles/bgy_info.php");
+                echo $row[2];
+            ?>" width = "50" height ="50" class="img-thumbnail"></span><span class="text-white">  Barangay <?php
                                                                                                                                     include("../../phpfiles/bgy_info.php");
                                                                                                                                     echo $row[3];
                                                                                                                                     ?></span></h1>
@@ -47,7 +50,7 @@ if($_SESSION['user_id'] == '') {
         </div>
 
         <div class="content">
-            <?php include("../../phpfiles/official_nav.php")?>
+            <?php include("../../phpfiles/user_nav.php")?>
             <div class="dashboard-content px-3 py-4">
                 <a href="../../Residents/dashboard/dashboard.php"><button type="button" class="btn btn-dark">Back</button></a>
                 <br>
@@ -174,11 +177,13 @@ if($_SESSION['user_id'] == '') {
 			</div>
 		</div>
 	</div>
-		
 </body>
-
-
-
-
-
 </html>
+<script>
+	$('.open-btn').on('click', function(){
+		$('.sidebar').addClass('active');
+	});
+	$('.close-btn').on('click', function(){
+		$('.sidebar').removeClass('active');
+	});
+</script>

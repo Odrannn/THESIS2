@@ -29,10 +29,7 @@ if($_SESSION['user_id'] == '') {
         echo $row[1];
         ?>">
             <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
-                <h1 class=fs-4><span class=""><img src="../configuration/uploads/<?php
-                include("../../phpfiles/bgy_info.php");
-                echo $row[2];
-            ?>" width = "50" height ="50" class="img-thumbnail"></span><span class="text-white">  Barangay <?php
+                <h1 class=fs-4><span class="bg-white text-dark rounded shadow px-2 me-2">BS</span><span class="text-white">Barangay <?php
                                                                                                                                     include("../../phpfiles/bgy_info.php");
                                                                                                                                     echo $row[3];
                                                                                                                                     ?></span></h1>
@@ -126,7 +123,7 @@ if($_SESSION['user_id'] == '') {
                                 <h5 class="card-title">Barangay name/number</h5>
                             </div>
                             <div class="col-auto">
-                                <input class="form-control" type="text" placeholder="barangay name/number" name= "bgy_name" oninput="this.value = this.value.replace(/[^a-z0-9]/gi, '').replace(/(\..*)\./gi, '$1')" value="<?php
+                                <input class="form-control" type="text" placeholder="barangay name/number" name= "bgy_name" value="<?php
                                     include("../../phpfiles/bgy_info.php");
                                     echo $row[3]?>">
                             </div><br>
@@ -136,7 +133,7 @@ if($_SESSION['user_id'] == '') {
                                 <h5 class="card-title">City/Municipality</h5>
                             </div>
                             <div class="col-auto">
-                                <input class="form-control" type="text" placeholder="city/municipality" name= "city" oninput="this.value = this.value.replace(/[^a-z ]/gi, '').replace(/(\..*)\./gi, '$1')" value="<?php
+                                <input class="form-control" type="text" placeholder="city/municipality" name= "city" value="<?php
                                     include("../../phpfiles/bgy_info.php");
                                     echo $row[6]?>">
                             </div><br>
@@ -262,6 +259,19 @@ if($_SESSION['user_id'] == '') {
                             </div>
                             <div class="col-auto">
                                 <h5 class="card-title">Reports</h5>
+                            </div>
+                        </div>
+						<div class="row mt-2">
+                            <div class="col-auto">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" name="modules[]" value="Logs" <?php
+                                    if($availability[7] == 'yes'){
+                                        echo 'checked';
+                                    }?>>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <h5 class="card-title">Logs</h5>
                             </div>
                         </div>
                         <div class="row mt-4 d-flex flex-row-reverse">
@@ -399,7 +409,7 @@ if($_SESSION['user_id'] == '') {
                     <div class="row">
                         <div class="col-md pt-2">
                             <form action="add_field_list.php" method="post">
-                                <td><input class="form-control" type="text" name= "purok" oninput="this.value = this.value.replace(/[^a-z0-9 ]/gi, '').replace(/(\..*)\./gi, '$1')" placeholder="enter purok name...">
+                                <td><input class="form-control" type="text" name= "purok" placeholder="enter purok name...">
                                 <div class="d-flex flex-row-reverse">
                                     <input class="mt-2 btn btn-success" type="submit" name="add_purok" value="Add">
                                 </div></td>
@@ -407,7 +417,7 @@ if($_SESSION['user_id'] == '') {
                         </div>
                         <div class="col-md pt-2">
                             <form action="add_field_list.php" method="post">
-                                <td><input class="form-control input-sm" type="text" name= "sitio" oninput="this.value = this.value.replace(/[^a-z0-9 ]/gi, '').replace(/(\..*)\./gi, '$1')" placeholder="enter sitio name...">
+                                <td><input class="form-control input-sm" type="text" name= "sitio" placeholder="enter sitio name...">
                                 <div class="d-flex flex-row-reverse">
                                     <input class="mt-2 btn btn-success" type="submit" name="add_sitio" value="Add">
                                 </div></td>
@@ -415,7 +425,7 @@ if($_SESSION['user_id'] == '') {
                         </div>
                         <div class="col-md pt-2">
                             <form action="add_field_list.php" method="post">
-                                <td><input class="form-control input-sm" type="text" name= "street" oninput="this.value = this.value.replace(/[^a-z0-9 ]/gi, '').replace(/(\..*)\./gi, '$1')" placeholder="enter street name...">
+                                <td><input class="form-control input-sm" type="text" name= "street" placeholder="enter street name...">
                                 <div class="d-flex flex-row-reverse">
                                     <input class="mt-2 btn btn-success" type="submit" name="add_street" value="Add">
                                 </div></td>
@@ -423,7 +433,7 @@ if($_SESSION['user_id'] == '') {
                         </div>
                         <div class="col-md pt-2">
                             <form action="add_field_list.php" method="post">
-                                <td><input class="form-control input-sm" type="text" name= "subdivision" oninput="this.value = this.value.replace(/[^a-z0-9 ]/gi, '').replace(/(\..*)\./gi, '$1')" placeholder="enter subdivision name...">
+                                <td><input class="form-control input-sm" type="text" name= "subdivision" placeholder="enter subdivision name...">
                                 <div class="d-flex flex-row-reverse">
                                     <input class="mt-2 btn btn-success" type="submit" name="add_subdivision" value="Add">
                                 </div></td>
