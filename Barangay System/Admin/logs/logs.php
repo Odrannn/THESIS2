@@ -29,7 +29,10 @@ if($_SESSION['user_id'] == '') {
         echo $row[1];
         ?>">
             <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
-                <h1 class=fs-4><span class="bg-white text-dark rounded shadow px-2 me-2">BS</span><span class="text-white">Barangay <?php
+                <h1 class=fs-4><span class=""><img src="../../Admin/configuration/uploads/<?php
+                include("../../phpfiles/bgy_info.php");
+                echo $row[2];
+            ?>" width = "50" height ="50" class="img-thumbnail"></span><span class="text-white">  Barangay <?php
                                                                                                                                     include("../../phpfiles/bgy_info.php");
                                                                                                                                     echo $row[3];
                                                                                                                                     ?></span></h1>
@@ -37,12 +40,26 @@ if($_SESSION['user_id'] == '') {
             </div>
             <ul class="list-unstyled px-2">
             <li class=""><a href="../dashboard/dashboard.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gauge"></i>&nbsp;Dashboard</a></li>
+            <?php 
+            include('../../phpfiles/modules_available.php');
+            if($availability[0] == 'yes'){ ?>
             <li class=""><a href="../case_management/case_management.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-paper-plane"></i>&nbsp;Case</a></li>
+            <?php } 
+            if($availability[1] == 'yes'){ ?>
             <li class=""><a href="../resident_management/resident_management.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-people-group"></i>&nbsp;Resident</a></li>
+            <?php } 
+            if($availability[3] == 'yes'){ ?>
             <li class=""><a href="../document_request/document_request.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-file-invoice"></i>&nbsp;Request</a></li>
+            <?php } 
+            if($availability[4] == 'yes'){ ?>
             <li class=""><a href="../official_management/official_management.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-image-portrait"></i>&nbsp;Official</a></li>
+            <?php } 
+            if($availability[5] == 'yes'){ ?>
             <li class=""><a href="../user_management/user_management.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-user"></i>&nbsp;User</a></li>
-            <li class="active"><a href="../reports/report.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-newspaper"></i>&nbsp;Reports</a></li>
+            <?php } 
+            if($availability[6] == 'yes'){ ?>
+            <li class=""><a href="../reports/report.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-newspaper"></i>&nbsp;Reports</a></li>
+            <?php } ?>
             <hr class="text-light">
             <li class=""><a href="../announcement/announcement.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Announcement</a></li>
             <li class=""><a href="../configuration/configuration.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-gear"></i>&nbsp;Configuration</a></li>
@@ -55,10 +72,7 @@ if($_SESSION['user_id'] == '') {
                 <br>
                 <br>
                 <h2 class="fs-5">Logs</h2>
-                <p>The barangay administrator or the barangay captain can simply determine who's logging in and logging out in the barangay system.</p>
-			</div>
-			<hr>
-			
+                <p>The barangay administrator or the barangay captain can simply determine who's logging in and logging out in the barangay system.</p>			
 				<?php
 							if(isset($_GET['page'])){
 								$page = $_GET['page'];
@@ -98,9 +112,6 @@ if($_SESSION['user_id'] == '') {
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md pt-2">
-                                    <input type="text" class="form-control" id="search" placeholder="Enter name...">
-                                </div>
-                                <div class="col-md pt-2">
                                 </div>
                                 <div class="col-md pt-2">
                                 </div>
@@ -109,15 +120,13 @@ if($_SESSION['user_id'] == '') {
                                 <div class="col-md pt-2">
                                 </div>
                             </div>
-                            <br>
-                            <div class="table-responsive" style="width: 100%;">
-                                <table class="table table-striped">
+                            <div class="table-responsive"  style="width: 100%;">
+                                <table class="table table-striped" align="center">
                                     <thead>
                                         <tr class="align-top">
                                             <th>LOG ID</th>
                                             <th>User ID</th>
                                             <th>DATE & TIME</th>
-                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id = "output">
@@ -126,30 +135,17 @@ if($_SESSION['user_id'] == '') {
                                         <td><?php echo $row["log_id"]; ?></td>
                                         <td><?php echo $row["user_id"]; ?></td>
                                         <td><?php echo $row["date_time"]; ?></td>
-                                        <td><div class="btn-group" role="group" aria-label="Basic example">
-                                            <button class="userinfo btn btn-primary"><i class="fa-solid fa-eye"></i></button>
-                                            <button class="editresident btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
-                                            </div>
-                                        </td>
                                     </tr>
                                     <?php } ?>
                                     </tbody>
                                 </table>
-                                <!--Add Modal-->
-                                <div class="modal fade modal-xl" id="addModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        
-                                    </div>
-                                </div>
+
+
                             </div>  
                         </div>
                     </div>
                 </div><br>
                 <nav aria-label="Page navigation example">
-                    <div class="btn-group" role="group" aria-label="Basic example" style="float: right;">
-                        <div><a class="import btn btn-outline-success">Import</a></div>
-                        <div id="response">Please wait..</div>
-                    </div>
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link text-dark" href="logs.php?page=<?php echo $previous;?>">Previous</a></li>
                         <?php for($i=1; $i<=$pages;$i++)
@@ -162,8 +158,6 @@ if($_SESSION['user_id'] == '') {
                 </nav>
             </div>
         </div>
-    </div>
-</div>
 
 
 

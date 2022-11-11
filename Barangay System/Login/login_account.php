@@ -7,10 +7,14 @@ if(isset($_POST['admin']))
 {
 	$username = $_POST['username'];
 	$password = $_POST['password'];
+	
+	date_default_timezone_set('Asia/Manila'); // SET TIMEZONE
+	$date1 = date('y-m-d h:i:s');
+	
 
 	if(!empty($username) && !empty($password))
 	{
-		$query = "select * from tbluser where username = '$username' and status ='active' limit 1";
+		$query = "select * from tbluser where username = '$username' limit 1";
 		$result = mysqli_query($conn, $query);
 
 		if($result)
@@ -24,13 +28,20 @@ if(isset($_POST['admin']))
 				{
 
 					$_SESSION['user_id'] = $user_data['id'];
+					$user = $_SESSION['user_id'];
 					if($user_data['type'] == 'user'){
 						$_SESSION['user_id'] = '';
 						$_SESSION['message'] = "Error! You can't log in as Admin.";
 						header("location:login.php");
 					}else if($user_data['type'] == 'hadmin'){
+						$query1 = "INSERT INTO logs (user_id,date_time)
+						VALUES ('$user','$date1');";
+						$result1 = $conn -> query($query1);
 						header("location:../Healthcare_Admin/healthcare_center/healthcare_center.php");
 					}else{
+						$query1 = "INSERT INTO logs (user_id,date_time)
+						VALUES ('$user','$date1');";
+						$result1 = $conn -> query($query1);
 						header("location:../Admin/dashboard/dashboard.php");
 					} 
 					die;
@@ -53,7 +64,7 @@ if(isset($_POST['resident']))
 
 	if(!empty($username) && !empty($password))
 	{
-		$query = "select * from tbluser where username = '$username' and status ='active' limit 1";
+		$query = "select * from tbluser where username = '$username' limit 1";
 		$result = mysqli_query($conn, $query);
 
 		if($result)
@@ -66,8 +77,11 @@ if(isset($_POST['resident']))
 				if($user_data['password'] == $password)
 				{
 					$_SESSION['user_id'] = $user_data['id'];
-					header("location:../Residents/dashboard/dashboard.php");
-
+					$user = $_SESSION['user_id'];
+					$query1 = "INSERT INTO logs (user_id,date_time)
+					VALUES ('$user','$date1');";
+					$result1 = $conn -> query($query1);
+					header("location:../Residents/dashboard/dashboard.php");		
 					die;
 				}
 				

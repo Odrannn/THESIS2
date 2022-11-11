@@ -31,7 +31,10 @@ if($_SESSION['user_id'] == '') {
         echo $row[1];
         ?>">
             <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
-                <h1 class=fs-4><span class="bg-white text-dark rounded shadow px-2 me-2">BS</span><span class="text-white">Barangay <?php
+                <h1 class=fs-4><span class=""><img src="../../Admin/configuration/uploads/<?php
+                include("../../phpfiles/bgy_info.php");
+                echo $row[2];
+            ?>" width = "50" height ="50" class="img-thumbnail"></span><span class="text-white">  Barangay <?php
                                                                                                                             include("../../phpfiles/bgy_info.php");
                                                                                                                             echo $row[3];
                                                                                                                             ?></span></h1>
@@ -42,7 +45,11 @@ if($_SESSION['user_id'] == '') {
             <li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between"><span><i class="fa-solid fa-headset"></i>&nbsp;Complain</span>
             <li class=""><a href="send_suggestion/send_suggestion.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-bullhorn"></i>&nbsp;Suggest</a></li>
             <li class=""><a href="file_blotter/file_blotter.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-stamp"></i>&nbsp;Blotter</a></li>
+			<?php 
+            include('../../phpfiles/modules_available.php');
+            if($availability[3] == 'yes'){ ?>
 			<li class=""><a href="../request_document/request_document.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-file"></i>&nbsp;Request Document</a></li>
+            <?php }?>
             <li class=""><a href="../announcements/announcements.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-sharp fa-solid fa-radio"></i>&nbsp;Announcements</a></li>
             </ul>
         </div>

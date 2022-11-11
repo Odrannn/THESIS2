@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2022 at 05:31 PM
+-- Generation Time: Nov 11, 2022 at 05:57 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -158,7 +158,8 @@ INSERT INTO `admin_notification` (`notification_ID`, `notification_type`, `type_
 (93, 'File Complaint', 29, 'filed a complaint.', 8, '22-11-07 05:37:12', 1),
 (94, 'File Complaint', 30, 'filed a complaint.', 8, '22-11-07 05:41:44', 1),
 (95, 'Residency Registration', NULL, 'New residency application.', NULL, '22-11-10 12:59:40', 1),
-(96, 'Residency Registration', NULL, 'New residency application.', NULL, '22-11-10 01:03:30', 1);
+(96, 'Residency Registration', NULL, 'New residency application.', NULL, '22-11-10 01:03:30', 1),
+(97, 'Residency Registration', NULL, 'New residency application.', NULL, '22-11-11 01:43:04', 1);
 
 -- --------------------------------------------------------
 
@@ -460,8 +461,17 @@ INSERT INTO `healthcare_logs` (`id`, `patient_id`, `fullname`, `date`, `time`, `
 CREATE TABLE `logs` (
   `log_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `date_time` datetime(6) NOT NULL
+  `date_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `logs`
+--
+
+INSERT INTO `logs` (`log_id`, `user_id`, `date_time`) VALUES
+(1, 8, '2022-11-12 12:04:09'),
+(2, 8, '0000-00-00 00:00:00'),
+(3, 8, '2022-11-12 12:31:29');
 
 -- --------------------------------------------------------
 
@@ -569,7 +579,8 @@ INSERT INTO `registration` (`id`, `fname`, `mname`, `lname`, `suffix`, `gender`,
 (44, 'Nick', 'Georgia', 'Conner', '', 'male', 'Spain', 'Married', '1993-06-08', 234, 'purok 1', 'sitio 1', 'KalyePogi', 'Magnolia Estate', '09296738322', 'Nick24@yahoo.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'Spanish/Filipino', 'none', 'accepted', 'IMG-6367a60d846f98.84585604.jpg'),
 (45, 'Blue', 'Abenson', 'Orso', '', 'female', 'Italy', 'Single', '1998-07-11', 455, 'purok 2', 'sitio 2', 'LRC', 'Beverly Woods', '09568735389', 'RAYO.RAFAELLUIGI@UE.EDU.PH', 'Roman Catholic', 'Network Engineer', 'Bachelor\'\'s Degree', 'Half breed', 'none', 'accepted', 'IMG-6367af04ae8482.63267080.jpg'),
 (46, 'Robin Lee', 'Visto', 'Muricho', '', 'male', 'Manila', 'Single', '1999-03-27', 6969, 'purok 1', 'sitio 2', 'Grove', 'Beverly Woods', '09560098112', 'Murichorobinlee@gmail.com ', 'None', 'Customer Service Rep', 'Bachelor\'\'s Degree', 'Filipino', 'none', 'accepted', 'IMG-6367c4ee1c17d9.32575139.jpg'),
-(48, 'Yuki', 'Kabiling', 'Mazo', '', 'female', 'ASDSAD', 'Single', '2001-11-03', 2134, 'purok 1', 'sitio 2', 'LRC', 'Beverly Woods', '09925119326', 'SADASD', 'Roman Catholic', 'none', 'Less Than Highschool', 'Japanese', 'none', 'accepted', 'IMG-636ce892b93335.98174600.png');
+(48, 'Yuki', 'Kabiling', 'Mazo', '', 'female', 'ASDSAD', 'Single', '2001-11-03', 2134, 'purok 1', 'sitio 2', 'LRC', 'Beverly Woods', '09925119326', 'SADASD', 'Roman Catholic', 'none', 'Less Than Highschool', 'Japanese', 'none', 'accepted', 'IMG-636ce892b93335.98174600.png'),
+(49, 'sad', 'asda', 'asd', 'asd', 'male', 'asda', 'Single', '2019-06-04', 12312, '', '', '', '', '121', 'asd', 'Roman Catholic', 'none', 'Less Than Highschool', 'asda', 'as', 'pendingforresidency', 'IMG-636e43585ff329.92322572.jpg');
 
 -- --------------------------------------------------------
 
@@ -997,7 +1008,7 @@ ALTER TABLE `address_fields`
 -- AUTO_INCREMENT for table `admin_notification`
 --
 ALTER TABLE `admin_notification`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT for table `announcement`
@@ -1057,7 +1068,7 @@ ALTER TABLE `healthcare_logs`
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `modules_available`
@@ -1069,7 +1080,7 @@ ALTER TABLE `modules_available`
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `resident_table`

@@ -115,7 +115,7 @@
 
             itexmo($email, $password, $number, $message, $apicode);
 
-            $response['message'] = "Successfully registered";
+            $response['message'] = "Successfully registered. You will receive a confirmation message of your registration via sms.";
             $response['status'] = 1;
         }
     }

@@ -1,5 +1,5 @@
 <?php
-    include("../../phpfiles/connection.php");
+    include("connection.php");
     $query = "SELECT availability FROM modules_available;";
     $result = $conn -> query($query);
 
