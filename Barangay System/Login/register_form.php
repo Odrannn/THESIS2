@@ -70,7 +70,7 @@
                 <div class="row">
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="birthplace" name="birthplace" placeholder="Place of Birth" oninput="this.value = this.value.replace(/[^a-z]/gi, '').replace(/(\..*)\./gi, '$1')" required>
+                            <input class="form-control" type="text" id="birthplace" name="birthplace" placeholder="Place of Birth" oninput="this.value = this.value.replace(/[^a-z ]/gi, '').replace(/(\..*)\./gi, '$1')" required>
                             <label for="birthplace">Place of Birth</label>
                         </div>
                     </div>

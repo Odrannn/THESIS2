@@ -8,9 +8,24 @@
 
 		$contactnumber=$_POST['contactnumber'];
 
-		$query = "UPDATE resident_table SET contactnumber = '$contactnumber' where id = '".$_SESSION['user_id']."'";
-        $result = $conn -> query($query);
-        header("location:profile.php");
+        $exquery = "SELECT * FROM resident_table WHERE contactnumber = '$contactnumber';";
+        $exresult = $conn -> query($exquery); 
+        $sql=mysqli_query($conn,"SELECT contactnumber FROM resident_table where id = '" . $_SESSION['user_id'] . "'");
+        
+
+
+
+        if(mysqli_num_rows($exresult)>0){
+            echo "<script>
+            window.location.href='profile.php';
+            alert('CONTACT NUMBER ALREADRY EXIST');
+            </script>";
+        }else{
+            $query = "UPDATE resident_table SET contactnumber = '$contactnumber' where id = '".$_SESSION['user_id']."'";
+            $result = $conn -> query($query);
+            header("location:profile.php");
+        }
+
 		
 }
 

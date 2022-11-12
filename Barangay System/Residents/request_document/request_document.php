@@ -152,7 +152,7 @@ if($_SESSION['user_id'] == '') {
                             <div class="row">
                                 <div class="col pt-2">
                                 <label class="pb-2" for="purpose">Purpose of Request</label> 
-                                    <textarea class="form-control" id= "purpose" name= "purpose" rows="10" onkeyup="lettersOnly(this)" required></textarea>
+                                    <textarea class="form-control" id= "purpose" name= "purpose" rows="10" oninput="this.value = this.value.replace(/[^a-z ]/gi, '').replace(/(\..*)\./gi, '$1')" required></textarea>
                                 </div>  
                             </div>
                         

@@ -79,17 +79,17 @@ if($_SESSION['user_id'] == '') {
 				<h5 class="card-header">RANGE REPORT</h5>
                 <div class="card-body">
 					<div class="container">
-					<form class="form-inline" method="POST" action="generate_report.php">
+					<form class="form-inline" id="datePickerId" method="POST" action="generate_report.php">
 					  <div class="row">
 						<div class="col">
 								<div class="form-floating">
-								<input type="date" class="form-control" placeholder="Start"  name="date1" value="<?php echo isset($_POST['date1']) ? $_POST['date1'] : '' ?>" required />
+								<input type="date" class="form-control" placeholder="Start"  name="date1" id="datePickerId" value="<?php echo isset($_POST['date1']) ? $_POST['date1'] : '' ?>" required />
 								<label for="status">FROM</label>
 								</div>
 						</div>
 						<div class="col">
 								<div class="form-floating">
-								<input type="date" class="form-control" placeholder="End"  name="date2" value="<?php echo isset($_POST['date2']) ? $_POST['date2'] : '' ?>" required />
+								<input type="date" class="form-control" placeholder="End"  name="date2" id="datePickerId" value="<?php echo isset($_POST['date2']) ? $_POST['date2'] : '' ?>" required />
 								<label for="status">TO</label>
 								</div>
 						</div>
@@ -200,25 +200,19 @@ if($_SESSION['user_id'] == '') {
 				</div>
 			</div>
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 		</div>
 
 		
 		
 	</div>
+	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
+<script src="/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
+<script src="/vendors/formvalidation/dist/js/plugins/StartEndDate.min.js"></script>
+        
+        <script>
+            datePickerId.max = new Date().toISOString().split("T")[0];
+            datePickerId.max = new Date().toLocaleDateString('en-ca')
+        </script>
 </body>
 </html>

@@ -182,14 +182,15 @@ if($_SESSION['user_id'] == '') {
                         } ?>
                         <form class="g-3" action="../send_case.php" method="post" enctype="multipart/form-data">
                             <?php
-                                $query = "SELECT id, concat_ws(' ',fname,mname,lname) as Fullname FROM resident_table
+                                $resiID = $_SESSION['user_id'];
+                                $query = "SELECT id, concat_ws(' ',fname,mname,lname) as Fullname FROM resident_table WHERE user_id !='$resiID' AND status ='active'
                                             ORDER BY Fullname ASC;";
                                 $result = $conn -> query($query);
                             ?>
                             <div class="row">
                                 <div class="col-md pt-2">
                                     <label class="pb-2" for="complaineeID">Complainee ID (Search the name of the resident.)</label>
-                                    <input class="form-control" type="text" id="complaineeID" name="complaineeID" list="reslist" onkeyup="lettersnumbersOnly(this)" required>
+                                    <input class="form-control" type="text" id="complaineeID" name="complaineeID" list="reslist" oninput="this.value = this.value.replace(/[^a-z0-9 ]/gi, '').replace(/(\..*)\./gi, '$1')" required>
                                     <datalist id="reslist">
                                         <?php while($row = $result -> fetch_array()) { ?>
                                             <option value="<?php echo $row['id']?>"><?php echo $row['Fullname']?></option>
@@ -198,7 +199,7 @@ if($_SESSION['user_id'] == '') {
                                 </div>
                                 <div class="col-md pt-2">
                                     <label class="pb-2" for="accusation">Accusation</label> 
-                                    <input class="form-control" type="text" id= "accusation" name="accusation" rows="10" onkeyup="lettersOnly(this)" required>
+                                    <input class="form-control" type="text" id= "accusation" name="accusation" rows="10" oninput="this.value = this.value.replace(/[^a-z ]/gi, '').replace(/(\..*)\./gi, '$1')" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -284,18 +285,6 @@ if($_SESSION['user_id'] == '') {
                 $('#editModal').modal('show');
             });
         });
-    </script>
-    <script type="text/javascript">
-        function lettersnumbersOnly(input){
-            var regex = /[^a-z0-9]/gi;
-            input.value = input.value.replace(regex, "");
-        }
-    </script>
-    <script type="text/javascript">
-        function lettersOnly(input){
-            var regex = /[^a-z]/gi;
-            input.value = input.value.replace(regex, "");
-        }
     </script>
 </body>
 </html>

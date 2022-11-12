@@ -11,7 +11,7 @@ if($_SESSION['user_id'] == '') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Resident Management</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -208,7 +208,7 @@ if($_SESSION['user_id'] == '') {
 					  <form name="chnguser" method="post" action="edit_number.php">
 						  <div class="modal-body">
 							  <label for="exampleInputEmail1" class="form-label">Contact Number: </label>
-							  <input name="contactnumber" type="number" class="form-control" value="<?php echo $row["contactnumber"]; ?>" >
+							  <input name="contactnumber" type="text" maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/gi, '').replace(/(\..*)\./gi, '$1')" class="form-control" value="<?php echo $row["contactnumber"]; ?>" >
 						  </div>
 						  <div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

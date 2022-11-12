@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 12, 2022 at 03:33 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Host: 127.0.0.1:3306
+-- Generation Time: Nov 12, 2022 at 07:24 PM
+-- Server version: 10.5.16-MariaDB-cll-lve
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bgy_system`
+-- Database: `u314764576_bgy_system`
 --
 
 -- --------------------------------------------------------
@@ -166,7 +166,109 @@ INSERT INTO `admin_notification` (`notification_ID`, `notification_type`, `type_
 (101, 'Send Suggestion', NULL, 'sent a suggestion.', 8, '8', 0),
 (102, 'Send Suggestion', NULL, 'sent a suggestion.', 8, '22-11-12 08:55:56', 0),
 (103, 'Send Suggestion', NULL, 'sent a suggestion.', 8, '22-11-12 9:11:10', 0),
-(104, 'Send Suggestion', NULL, 'sent a suggestion.', 8, '22-11-12 09:13:23', 0);
+(104, 'Send Suggestion', NULL, 'sent a suggestion.', 8, '22-11-12 09:13:23', 0),
+(105, 'File Complaint', 32, 'filed a complaint.', 10, '22-11-12 10:53:56', 0),
+(106, 'File Complaint', 33, 'filed a complaint.', 10, '22-11-12 10:55:00', 0),
+(107, 'File Complaint', 34, 'filed a complaint.', 10, '22-11-12 10:57:53', 0),
+(108, 'File Complaint', 35, 'filed a complaint.', 10, '22-11-12 10:58:40', 0),
+(109, 'File Complaint', 36, 'filed a complaint.', 10, '22-11-12 11:01:41', 0),
+(110, 'File Complaint', 37, 'filed a complaint.', 10, '22-11-12 11:02:20', 0),
+(111, 'File Complaint', 38, 'filed a complaint.', 10, '22-11-12 11:03:41', 0),
+(112, 'File Complaint', 39, 'filed a complaint.', 10, '22-11-12 11:04:46', 0),
+(113, 'Send Suggestion', NULL, 'sent a suggestion.', 10, '22-11-12 11:06:06', 0),
+(114, 'Send Suggestion', NULL, 'sent a suggestion.', 10, '22-11-12 11:06:55', 0),
+(115, 'File Complaint', 40, 'filed a complaint.', 8, '22-11-12 11:07:26', 0),
+(116, 'File Complaint', 41, 'filed a complaint.', 29, '22-11-12 11:07:34', 0),
+(117, 'Send Suggestion', NULL, 'sent a suggestion.', 10, '22-11-12 11:07:49', 0),
+(118, 'Send Suggestion', NULL, 'sent a suggestion.', 10, '22-11-12 11:08:39', 0),
+(119, 'File Complaint', 42, 'filed a complaint.', 29, '22-11-12 11:09:01', 0),
+(120, 'Send Suggestion', NULL, 'sent a suggestion.', 10, '22-11-12 11:09:33', 0),
+(121, 'Send Suggestion', NULL, 'sent a suggestion.', 10, '22-11-12 11:10:05', 0),
+(122, 'File Complaint', 43, 'filed a complaint.', 29, '22-11-12 11:10:27', 0),
+(123, 'Send Suggestion', NULL, 'sent a suggestion.', 10, '22-11-12 11:10:46', 0),
+(124, 'Send Suggestion', NULL, 'sent a suggestion.', 10, '22-11-12 11:11:12', 0),
+(125, 'Send Suggestion', NULL, 'sent a suggestion.', 10, '22-11-12 11:11:29', 0),
+(126, 'File Complaint', 44, 'filed a complaint.', 8, '22-11-12 11:12:07', 0),
+(127, 'File Complaint', 45, 'filed a complaint.', 29, '22-11-12 11:12:42', 0),
+(128, 'Send Suggestion', NULL, 'sent a suggestion.', 10, '22-11-12 11:13:03', 0),
+(129, 'Send Suggestion', NULL, 'sent a suggestion.', 10, '22-11-12 11:14:31', 0),
+(130, 'File Complaint', 46, 'filed a complaint.', 29, '22-11-12 11:15:49', 0),
+(131, 'File Complaint', 47, 'filed a complaint.', 10, '22-11-12 11:16:03', 0),
+(132, 'File Complaint', 48, 'filed a complaint.', 10, '22-11-12 11:16:22', 0),
+(133, 'File Complaint', 49, 'filed a complaint.', 10, '22-11-12 11:16:45', 0),
+(134, 'File Complaint', 50, 'filed a complaint.', 29, '22-11-12 11:16:48', 0),
+(135, 'File Complaint', 51, 'filed a complaint.', 10, '22-11-12 11:17:13', 0),
+(136, 'File Complaint', 52, 'filed a complaint.', 29, '22-11-12 11:17:49', 0),
+(137, 'Send Suggestion', NULL, 'sent a suggestion.', 10, '22-11-12 11:18:18', 0),
+(138, 'Send Suggestion', NULL, 'sent a suggestion.', 10, '22-11-12 11:18:46', 0),
+(139, 'Send Suggestion', NULL, 'sent a suggestion.', 10, '22-11-12 11:19:58', 0),
+(140, 'Send Suggestion', NULL, 'sent a suggestion.', 29, '22-11-12 11:20:08', 0),
+(141, 'File Complaint', 53, 'filed a complaint.', 8, '22-11-12 11:20:20', 0),
+(142, 'Send Suggestion', NULL, 'sent a suggestion.', 10, '22-11-12 11:20:55', 0),
+(143, 'Send Suggestion', NULL, 'sent a suggestion.', 10, '22-11-12 11:22:15', 0),
+(144, 'Send Suggestion', NULL, 'sent a suggestion.', 10, '22-11-12 11:22:32', 0),
+(145, 'Send Suggestion', NULL, 'sent a suggestion.', 29, '22-11-12 11:24:10', 0),
+(146, 'Send Suggestion', NULL, 'sent a suggestion.', 8, '22-11-12 11:24:12', 0),
+(147, 'Send Suggestion', NULL, 'sent a suggestion.', 10, '22-11-12 11:24:37', 0),
+(148, 'Send Suggestion', NULL, 'sent a suggestion.', 29, '22-11-12 11:24:59', 0),
+(149, 'Send Suggestion', NULL, 'sent a suggestion.', 8, '22-11-12 11:25:13', 0),
+(150, 'Send Suggestion', NULL, 'sent a suggestion.', 8, '22-11-12 11:26:17', 0),
+(151, 'Send Suggestion', NULL, 'sent a suggestion.', 29, '22-11-12 11:26:30', 0),
+(152, 'Send Suggestion', NULL, 'sent a suggestion.', 10, '22-11-12 11:27:02', 0),
+(153, 'File Blotter', 16, 'filed a blotter.', 10, '22-11-12 11:29:36', 0),
+(154, 'File Blotter', 17, 'filed a blotter.', 10, '22-11-12 11:37:34', 0),
+(155, 'Residency Registration', NULL, 'New residency application.', NULL, '22-11-12 03:40:59', 0),
+(156, 'File Blotter', 17, 'filed a blotter.', 10, '22-11-12 11:41:30', 0),
+(157, 'File Blotter', 17, 'filed a blotter.', 10, '22-11-13 12:12:02', 0),
+(158, 'File Blotter', 20, 'filed a blotter.', 10, '22-11-13 12:15:31', 0),
+(159, 'Request Document', 30, 'requested a document.', 10, '22-11-12 04:45:22', 0),
+(160, 'Request Document', 31, 'requested a document.', 10, '22-11-12 04:49:09', 0),
+(161, 'Request Document', 32, 'requested a document.', 10, '22-11-12 04:49:44', 0),
+(162, 'Request Document', 33, 'requested a document.', 10, '22-11-12 04:52:09', 0),
+(163, 'Request Document', 34, 'requested a document.', 10, '22-11-12 04:56:51', 0),
+(164, 'Request Document', 35, 'requested a document.', 60, '22-11-12 04:58:05', 0),
+(165, 'Request Document', 36, 'requested a document.', 10, '22-11-12 04:58:24', 0),
+(166, 'Request Document', 37, 'requested a document.', 10, '22-11-12 04:59:01', 0),
+(167, 'Request Document', 38, 'requested a document.', 60, '22-11-12 04:59:33', 0),
+(168, 'Request Document', 39, 'requested a document.', 10, '22-11-12 04:59:50', 0),
+(169, 'Request Document', 40, 'requested a document.', 10, '22-11-12 05:00:43', 0),
+(170, 'Request Document', 41, 'requested a document.', 10, '22-11-12 05:04:43', 0),
+(171, 'Request Document', 42, 'requested a document.', 60, '22-11-12 05:05:25', 0),
+(172, 'Request Document', 43, 'requested a document.', 60, '22-11-12 05:09:03', 0),
+(173, 'Request Document', 44, 'requested a document.', 60, '22-11-12 05:09:15', 0),
+(174, 'Request Document', 45, 'requested a document.', 60, '22-11-12 05:09:30', 0),
+(175, 'Request Document', 46, 'requested a document.', 60, '22-11-12 05:09:43', 0),
+(176, 'Request Document', 47, 'requested a document.', 60, '22-11-12 05:10:21', 0),
+(177, 'Request Document', 48, 'requested a document.', 10, '22-11-12 05:10:34', 0),
+(178, 'Request Document', 49, 'requested a document.', 10, '22-11-12 05:10:56', 0),
+(179, 'Request Document', 50, 'requested a document.', 60, '22-11-12 05:10:59', 0),
+(180, 'Request Document', 51, 'requested a document.', 60, '22-11-12 05:11:35', 0),
+(181, 'Request Document', 52, 'requested a document.', 10, '22-11-12 05:12:01', 0),
+(182, 'Request Document', 53, 'requested a document.', 60, '22-11-12 05:12:06', 0),
+(183, 'Request Document', 54, 'requested a document.', 10, '22-11-12 05:13:04', 0),
+(184, 'File Blotter', 21, 'filed a blotter.', 10, '22-11-13 01:14:22', 0),
+(185, 'File Blotter', 22, 'filed a blotter.', 10, '22-11-13 01:16:14', 0),
+(186, 'File Blotter', 23, 'filed a blotter.', 10, '22-11-13 01:17:42', 0),
+(187, 'File Blotter', 24, 'filed a blotter.', 10, '22-11-13 01:19:36', 0),
+(188, 'File Blotter', 25, 'filed a blotter.', 10, '22-11-13 01:19:37', 0),
+(189, 'File Blotter', 26, 'filed a blotter.', 60, '22-11-13 01:21:37', 0),
+(190, 'File Blotter', 27, 'filed a blotter.', 10, '22-11-13 01:21:53', 0),
+(191, 'File Blotter', 28, 'filed a blotter.', 60, '22-11-13 01:27:56', 0),
+(192, 'File Blotter', 29, 'filed a blotter.', 60, '22-11-13 01:33:51', 0),
+(193, 'File Blotter', 30, 'filed a blotter.', 60, '22-11-13 01:34:51', 0),
+(194, 'File Blotter', 31, 'filed a blotter.', 60, '22-11-13 01:40:24', 0),
+(195, 'File Complaint', 54, 'filed a complaint.', 55, '22-11-13 01:46:47', 0),
+(196, 'File Complaint', 55, 'filed a complaint.', 55, '22-11-13 01:46:57', 0),
+(197, 'File Blotter', 32, 'filed a blotter.', 60, '22-11-13 02:59:07', 0),
+(198, 'Residency Registration', NULL, 'New residency application.', NULL, '22-11-12 07:04:23', 1),
+(199, 'File Blotter', 33, 'filed a blotter.', 61, '22-11-13 03:11:15', 0),
+(200, 'File Blotter', 34, 'filed a blotter.', 60, '22-11-13 03:12:19', 0),
+(201, 'File Blotter', 35, 'filed a blotter.', 61, '22-11-13 03:13:19', 0),
+(202, 'File Blotter', 35, 'filed a blotter.', 61, '22-11-13 03:15:27', 0),
+(203, 'File Blotter', 37, 'filed a blotter.', 8, '22-11-13 03:17:53', 0),
+(204, 'File Blotter', 38, 'filed a blotter.', 61, '22-11-13 03:18:02', 0),
+(205, 'File Blotter', 39, 'filed a blotter.', 61, '22-11-13 03:20:10', 0),
+(206, 'File Blotter', 40, 'filed a blotter.', 60, '22-11-13 03:20:57', 0);
 
 -- --------------------------------------------------------
 
@@ -257,7 +359,29 @@ INSERT INTO `blotter_table` (`blotter_ID`, `official_ID`, `complainant_ID`, `com
 (10, 5, 11, NULL, 'Wilson The Goat', '0000-00-00', '18:23:00', 'Maingay', 'madaling araw na karaoke pa rin', '2022-10-14', '21:40:00', '', 'scheduled'),
 (12, NULL, 8, 9, 'Christian Philip Diff Orsolino', '2022-10-05', '23:51:00', 'Bullying', 'bullying me', '0000-00-00', NULL, '', 'cancelled'),
 (13, NULL, 8, 34, 'Bernandito Malacas Mazo', '2022-11-20', '11:11:00', 'bullying', 'nangingikil sa labas ng school', '0000-00-00', NULL, '', 'cancelled'),
-(15, NULL, 8, 44, 'Banana Goat Apple', '2022-11-07', '00:24:00', 'Nanuntok', 'sinuntok sa mukha palakda yung bata', '0000-00-00', NULL, '', 'unscheduled');
+(15, NULL, 8, 44, 'Banana Goat Apple', '2022-11-07', '00:24:00', 'Nanuntok', 'sinuntok sa mukha palakda yung bata', '0000-00-00', NULL, '', 'unscheduled'),
+(16, NULL, 10, 40, 'Nardo Kabiling Mazo', '2022-11-07', '14:31:00', 'Bully', 'Bully po inaaway mga aso dito samen', '0000-00-00', NULL, '', 'unscheduled'),
+(17, NULL, 10, 8, 'Bernard Kabiling Mazo', '2022-11-10', '00:37:00', 'animal cruelty', 'Namamalo ng pusa', '0000-00-00', NULL, '', 'unscheduled'),
+(20, NULL, 10, 60, 'Al Rashied Buenavista Idris', '2022-11-10', '00:16:00', 'nagpapasugal', 'nagpapasugal dito samen baka hindi po legal', '0000-00-00', NULL, '', 'unscheduled'),
+(21, NULL, 10, 44, 'Banana Goat Apple', '2022-11-14', '13:13:00', 'nanuntok', 'lakas mag trip dame sinuntok sa daan. ', '0000-00-00', NULL, '', 'unscheduled'),
+(22, NULL, 10, 17, 'John  Wall', '2022-11-07', '09:16:00', 'Di na sumisipot', 'kinuha po nameng import di na sumisipot sa laro', '0000-00-00', NULL, '', 'unscheduled'),
+(23, NULL, 10, 8, 'Bernard Kabiling Mazo', '2022-11-11', '13:16:00', 'scammer', 'gumawa ng paluwagan sa eskinita namen pero di na nagpapa sweldo', '0000-00-00', NULL, '', 'unscheduled'),
+(24, NULL, 10, 8, 'Bernard Kabiling Mazo', '2022-10-31', '13:22:00', 'brawl fight', 'nanapak ng kalaban matapos mapikon sa basketball', '0000-00-00', NULL, '', 'unscheduled'),
+(25, NULL, 10, 8, 'Bernard Kabiling Mazo', '2022-10-31', '13:22:00', 'brawl fight', 'nanapak ng kalaban matapos mapikon sa basketball', '0000-00-00', NULL, '', 'unscheduled'),
+(26, NULL, 60, 9, 'Christian Philip Diff Orsolino', '2022-01-07', '12:14:00', 'Stealing', 'Kinuha niya po yung iniihaw ko na isda', '0000-00-00', NULL, '', 'unscheduled'),
+(27, NULL, 10, 47, 'Shinna Marie Gonzales  Gonzales', '2022-11-11', '13:20:00', 'marites', 'lagi po maingay dito nakaka perwisyo na', '0000-00-00', NULL, '', 'unscheduled'),
+(28, NULL, 60, 9, 'Christian Philip Diff Orsolino', '2022-02-17', '01:27:00', 'Akyat bahay', 'Umakyat po sa bahay namin ng paalam', '0000-00-00', NULL, '', 'unscheduled'),
+(29, NULL, 60, 10, 'Charles Wilcent Ilustre Urbano', '2022-03-15', '16:35:00', 'Hindi nag babayad ng utang', '1 month na po hindi nag babayad ng utang', '0000-00-00', NULL, '', 'unscheduled'),
+(30, NULL, 60, 40, 'Nardo Kabiling Mazo', '2022-08-03', '04:34:00', 'Nangunguha po ng tsinelas', 'Kinuhya niya po yung bagong bili kong tsinelas ', '0000-00-00', NULL, '', 'unscheduled'),
+(31, NULL, 60, 14, 'Lebron  James', '2022-07-08', '06:40:00', 'Physical attack', 'Sinuntok niya po ako kahit napadaan lang po ako sa eskinita', '0000-00-00', NULL, '', 'unscheduled'),
+(32, NULL, 60, 48, 'Christian Cabrera Mangulabnab', '2022-02-17', '16:19:00', 'Physical assault', 'Sinaktan niya po yung anak ko', '0000-00-00', NULL, '', 'unscheduled'),
+(33, NULL, 61, 55, 'Blue Abenson Orso', '2022-11-02', '16:12:00', 'bullying', 'nang haharas para bigyan sya ng pera', '0000-00-00', NULL, '', 'unscheduled'),
+(34, NULL, 60, 17, 'John  Wall', '2022-04-09', '09:25:00', 'Stealing', 'Ninakaw niya po yung sapatos na naiwan ko sa court', '0000-00-00', NULL, '', 'unscheduled'),
+(35, NULL, 61, 10, 'Charles Wilcent Ilustre Urbano', '2022-11-03', '15:12:00', 'nagnakaw', 'pumuslit ng itlog  sa tindahan namen. Kita sya sa CCTV. Nag smile pa ', '0000-00-00', NULL, '', 'unscheduled'),
+(37, NULL, 8, 29, 'John Daniel San Juan Policarpio', '2022-11-13', '15:19:00', 'mag nanakaw ng tsinelas', 'ninakaw yung tsinelas ko, limang beses na', '0000-00-00', NULL, '', 'unscheduled'),
+(38, NULL, 61, 52, 'Helbert B Capada', '2022-11-04', '15:17:00', 'nambabato ng bubong', 'nambabato ng bubong tuwing madaling araw, kanina lang nakita sa cctv ', '0000-00-00', NULL, '', 'unscheduled'),
+(39, NULL, 61, 59, 'Yuki Kabiling Mazo', '2022-11-04', '15:22:00', 'nagnakaw', 'nagnakaw ng tinola pamulutan ata nila patungo sa nagiinuman eh', '0000-00-00', NULL, '', 'unscheduled'),
+(40, NULL, 60, 13, 'Kobe  Bryant', '2022-06-08', '18:16:00', 'harassment', 'Lagi niya po ako pinapainom sa tuwing dadaan ako sa eskinita, kahit ayaw ko po pinipilit niya po ako', '0000-00-00', NULL, '', 'unscheduled');
 
 -- --------------------------------------------------------
 
@@ -330,7 +454,31 @@ INSERT INTO `complaint_table` (`complaint_ID`, `official_ID`, `sender_ID`, `comp
 (28, NULL, 55, 'Dirty Barangay', 'tagal po ng truck ng basura 2 days delay pwede po bang ma contact yun?', '2022-11-06', '', 'pending'),
 (29, NULL, 8, 'Dirty Barangay', 'nagkalat ng papel mga dayo paki linis po', '2022-11-07', 'IMG-6368d1c8bc3745.06565415.jpg', 'pending'),
 (30, 5, 8, 'Dirty Barangay', 'kalat sa purok dos ', '2022-11-07', 'IMG-6368d2d8157542.27695252.jpg', 'solved'),
-(31, 5, 8, 'Dirty Barangay', 'madumi ditto sa purok 1', '2022-11-12', '', 'solved');
+(31, 5, 8, 'Dirty Barangay', 'madumi ditto sa purok 1', '2022-11-12', '', 'solved'),
+(32, NULL, 10, 'Noise', 'Ingay ng mga aso sa kapitbahay namen.', '2022-11-12', '', 'pending'),
+(33, NULL, 10, 'Dirty Barangay', 'Dame ng basura nagkalat sa tinagan street', '2022-11-12', '', 'pending'),
+(34, NULL, 10, 'Noise', 'Karaoke at night here in Tondo ', '2022-11-12', '', 'pending'),
+(35, NULL, 10, 'Gossip Mongers', 'Grabe chismosa dito mas alam pa ata nila yung tunay na nangyari', '2022-11-12', '', 'pending'),
+(36, NULL, 10, 'Manhole', 'Sira Manhole dito. Ah barado sa street 23\r\n', '2022-11-12', '', 'pending'),
+(37, NULL, 10, 'Noise', 'Ingay ng mga aso kapag nakakakita ng tao', '2022-11-12', '', 'pending'),
+(38, NULL, 10, 'Gossip Mongers', 'Iingay ng mga marites sa kanto, Grabe kumpulan nila parang walang Covid.', '2022-11-12', '', 'pending'),
+(39, NULL, 10, 'Face mask issue', 'Walang facemask mga tambay dito sa sitio 3\r\n', '2022-11-12', '', 'pending'),
+(40, NULL, 8, 'Dirty Barangay', 'Nagtatapon po ng kalat yung kapitbahay namin sa bakuran namin.', '2022-11-12', '', 'pending'),
+(41, NULL, 29, 'Noise', 'Meron mga kabataan dito sa labas namin sa wawa mga nag iinom sobrang ingay hindi nag papatulog.', '2022-11-12', '', 'pending'),
+(42, NULL, 29, 'Dirty Barangay', 'meron mga kabataan na nag tatapon ng basura dito sa tapat naminkahit kahit meron ng nakikitang basur', '2022-11-12', '', 'pending'),
+(43, NULL, 29, 'Drugs', 'meron mga pabalik balik dito samin na mga hindi taga dito sana makareponde agad kayo ng maaga.', '2022-11-12', '', 'pending'),
+(44, NULL, 8, 'Noise', 'Lagi po nag karaoke yung kaptibahay namin tuwing madaling araw', '2022-11-12', '', 'pending'),
+(45, NULL, 29, 'Gossip Mongers', 'may mga tsismosa dito samin nagkakalat ng maling balita', '2022-11-12', '', 'pending'),
+(46, NULL, 29, 'Away', 'Meron mga nagaaway dito na mga kabataan madaming nadadamay.', '2022-11-12', '', 'pending'),
+(47, NULL, 10, 'Dirty Barangay', 'Dame po ng basura sa may ilog nakaka bother', '2022-11-12', '', 'pending'),
+(48, NULL, 10, 'Baha', 'Grabe onting ulan ang bilis bumaha', '2022-11-12', '', 'pending'),
+(49, NULL, 10, 'Baradong Kanal', 'Barado po ulit yung kanal dito sa sitio3', '2022-11-12', '', 'pending'),
+(50, NULL, 29, 'Drugs', 'meron mga paulik ulik dito samin mga hindi taga dito nagtutulak ng droga.', '2022-11-12', '', 'pending'),
+(51, NULL, 10, 'Noise', 'Ingay po ng mga tao dito lakas magpatugtog sa sitio2', '2022-11-12', '', 'pending'),
+(52, NULL, 29, 'Drugs', 'may mga kabataan ng gumagamit ng cocaine paki respondehan agad.', '2022-11-12', '', 'pending'),
+(53, NULL, 8, 'Dirty Barangay', 'Lagi po nag tatambak ng basura sa gilid ng bahay namin kahit hindi naman tapunan', '2022-11-12', '', 'pending'),
+(54, NULL, 55, 'Drugs', '...', '2022-11-13', 'IMG-636fdc0740f6e9.66929703.jpg', 'pending'),
+(55, NULL, 55, 'Dirty Barangay', 'asdasdasdasdasdsa', '2022-11-13', '', 'pending');
 
 -- --------------------------------------------------------
 
@@ -382,7 +530,32 @@ INSERT INTO `document_request` (`request_ID`, `official_ID`, `resident_ID`, `doc
 (26, NULL, 10, 1, 'try', 1, '', '2022-11-05', 'cancelled'),
 (27, NULL, 48, 2, 'Scholarship', 1, '', '2022-11-05', 'pending for payment'),
 (28, 5, 32, 3, 'For work purposes only. ', 1, 'RCPT-6367c5e304e8f1.63059399.png', '2022-11-06', 'completed'),
-(29, 5, 8, 1, 'school', 1, 'RCPT-6367c98403ca52.44798778.jpg', '2022-11-06', 'completed');
+(29, 5, 8, 1, 'school', 1, 'RCPT-6367c98403ca52.44798778.jpg', '2022-11-06', 'completed'),
+(30, NULL, 10, 1, 'for work', 1, '', '2022-11-12', 'pending for payment'),
+(31, NULL, 10, 2, 'scholarship', 1, '', '2022-11-12', 'pending for payment'),
+(32, NULL, 10, 1, 'work related', 1, '', '2022-11-12', 'pending for payment'),
+(33, NULL, 10, 2, 'scholarship purposes', 1, '', '2022-11-12', 'pending for payment'),
+(34, NULL, 10, 1, 'business', 1, '', '2022-11-12', 'pending for payment'),
+(35, NULL, 60, 1, 'Para po sa scholarship', 1, '', '2022-11-12', 'pending for payment'),
+(36, NULL, 10, 1, 'apply po ko work', 1, '', '2022-11-12', 'pending for payment'),
+(37, NULL, 10, 3, 'for scholarship', 1, '', '2022-11-12', 'pending for payment'),
+(38, NULL, 60, 3, 'Para po sa work need lang po', 1, '', '2022-11-12', 'pending for payment'),
+(39, NULL, 10, 1, 'business related', 1, '', '2022-11-12', 'pending for payment'),
+(40, NULL, 10, 3, 'for my business', 1, '', '2022-11-12', 'pending for payment'),
+(41, NULL, 10, 1, 'aapply po ako office work', 1, '', '2022-11-12', 'pending for payment'),
+(42, NULL, 60, 1, 'para po sakin kailangan ko lang in case po na may need na important documents', 1, '', '2022-11-12', 'pending for payment'),
+(43, NULL, 60, 2, 'Kailangan daw po ni nanay para sa work niya', 1, '', '2022-11-12', 'pending for payment'),
+(44, NULL, 60, 1, 'Kailangan po ni kuya para sa work niya', 1, '', '2022-11-12', 'pending for payment'),
+(45, NULL, 60, 1, 'Kailangan po ni ate para sa scholarship niya', 1, '', '2022-11-12', 'pending for payment'),
+(46, NULL, 60, 1, 'Kailangan po ni tatay para sa work niya po', 1, '', '2022-11-12', 'pending for payment'),
+(47, NULL, 60, 3, 'Kailangan ko po para sa trabaho', 1, '', '2022-11-12', 'pending for payment'),
+(48, NULL, 10, 3, 'scholarship purposes', 1, '', '2022-11-12', 'pending for payment'),
+(49, NULL, 10, 2, 'CHED scholarship', 1, '', '2022-11-12', 'pending for payment'),
+(50, NULL, 60, 3, 'Kailangan po ni tito para sa trabaho niya', 1, '', '2022-11-12', 'pending for payment'),
+(51, NULL, 60, 1, 'Kailangan ko lang po para ma kumpleto ang important documents ko para sa trabaho', 1, '', '2022-11-12', 'pending for payment'),
+(52, NULL, 10, 1, 'business ', 1, '', '2022-11-12', 'pending for payment'),
+(53, NULL, 60, 3, 'Kailangan ko po para bukas makapag apply na sa work', 1, '', '2022-11-12', 'pending for payment'),
+(54, NULL, 10, 2, 'para may allowance po', 1, '', '2022-11-12', 'pending for payment');
 
 -- --------------------------------------------------------
 
@@ -487,7 +660,79 @@ INSERT INTO `logs` (`log_id`, `user_id`, `date_time`) VALUES
 (8, 8, '0000-00-00 00:00:00'),
 (9, 10, '0000-00-00 00:00:00'),
 (10, 10, '2022-11-12 09:56:46'),
-(11, 10, '0000-00-00 00:00:00');
+(11, 10, '0000-00-00 00:00:00'),
+(12, 10, '0000-00-00 00:00:00'),
+(13, 10, '2022-11-12 10:51:53'),
+(14, 30, '0000-00-00 00:00:00'),
+(15, 8, '0000-00-00 00:00:00'),
+(16, 8, '2022-11-12 11:05:09'),
+(17, 30, '2022-11-12 11:39:16'),
+(18, 8, '0000-00-00 00:00:00'),
+(19, 10, '2022-11-12 11:47:27'),
+(20, 8, '2022-11-12 11:53:32'),
+(21, 10, '0000-00-00 00:00:00'),
+(22, 10, '2022-11-13 12:06:39'),
+(23, 30, '0000-00-00 00:00:00'),
+(24, 30, '2022-11-13 12:08:58'),
+(25, 30, '0000-00-00 00:00:00'),
+(26, 30, '2022-11-13 12:09:27'),
+(27, 8, '2022-11-13 12:09:44'),
+(28, 30, '0000-00-00 00:00:00'),
+(29, 30, '2022-11-13 12:10:22'),
+(30, 8, '0000-00-00 00:00:00'),
+(31, 66, '2022-11-13 12:10:28'),
+(32, 8, '2022-11-13 12:10:34'),
+(33, 67, '0000-00-00 00:00:00'),
+(34, 30, '0000-00-00 00:00:00'),
+(35, 30, '2022-11-13 12:12:35'),
+(36, 67, '0000-00-00 00:00:00'),
+(37, 66, '2022-11-13 12:13:33'),
+(38, 30, '0000-00-00 00:00:00'),
+(39, 67, '0000-00-00 00:00:00'),
+(40, 30, '0000-00-00 00:00:00'),
+(41, 67, '0000-00-00 00:00:00'),
+(42, 8, '2022-11-13 12:15:32'),
+(43, 30, '0000-00-00 00:00:00'),
+(44, 30, '2022-11-13 12:16:24'),
+(45, 67, '0000-00-00 00:00:00'),
+(46, 67, '0000-00-00 00:00:00'),
+(47, 30, '2022-11-13 12:18:27'),
+(48, 10, '2022-11-13 12:19:02'),
+(49, 66, '2022-11-13 12:20:01'),
+(50, 66, '2022-11-13 12:20:36'),
+(51, 66, '2022-11-13 12:21:10'),
+(52, 67, '2022-11-13 12:21:57'),
+(53, 67, '0000-00-00 00:00:00'),
+(54, 67, '2022-11-13 12:22:39'),
+(55, 30, '0000-00-00 00:00:00'),
+(56, 30, '2022-11-13 01:04:44'),
+(57, 66, '2022-11-13 01:05:02'),
+(58, 30, '2022-11-13 01:05:17'),
+(59, 30, '2022-11-13 01:07:56'),
+(60, 30, '2022-11-13 01:09:00'),
+(61, 30, '2022-11-13 01:09:00'),
+(62, 30, '2022-11-13 01:09:49'),
+(63, 30, '0000-00-00 00:00:00'),
+(64, 8, '2022-11-13 01:12:25'),
+(65, 8, '0000-00-00 00:00:00'),
+(66, 8, '2022-11-13 01:15:03'),
+(67, 61, '0000-00-00 00:00:00'),
+(68, 61, '2022-11-13 01:16:05'),
+(69, 8, '0000-00-00 00:00:00'),
+(70, 8, '2022-11-13 01:24:57'),
+(71, 57, '0000-00-00 00:00:00'),
+(72, 57, '0000-00-00 00:00:00'),
+(73, 57, '0000-00-00 00:00:00'),
+(74, 10, '2022-11-13 01:50:19'),
+(75, 8, '2022-11-13 02:15:28'),
+(76, 8, '0000-00-00 00:00:00'),
+(77, 8, '2022-11-13 02:53:22'),
+(78, 8, '0000-00-00 00:00:00'),
+(79, 30, '2022-11-13 03:05:17'),
+(80, 68, '0000-00-00 00:00:00'),
+(81, 8, '0000-00-00 00:00:00'),
+(82, 8, '2022-11-13 03:19:22'),
+(83, 8, '2022-11-13 03:20:09');
 
 -- --------------------------------------------------------
 
@@ -596,7 +841,9 @@ INSERT INTO `registration` (`id`, `fname`, `mname`, `lname`, `suffix`, `gender`,
 (45, 'Blue', 'Abenson', 'Orso', '', 'female', 'Italy', 'Single', '1998-07-11', 455, 'purok 2', 'sitio 2', 'LRC', 'Beverly Woods', '09568735389', 'RAYO.RAFAELLUIGI@UE.EDU.PH', 'Roman Catholic', 'Network Engineer', 'Bachelor\'\'s Degree', 'Half breed', 'none', 'accepted', 'IMG-6367af04ae8482.63267080.jpg'),
 (46, 'Robin Lee', 'Visto', 'Muricho', '', 'male', 'Manila', 'Single', '1999-03-27', 6969, 'purok 1', 'sitio 2', 'Grove', 'Beverly Woods', '09560098112', 'Murichorobinlee@gmail.com ', 'None', 'Customer Service Rep', 'Bachelor\'\'s Degree', 'Filipino', 'none', 'accepted', 'IMG-6367c4ee1c17d9.32575139.jpg'),
 (48, 'Yuki', 'Kabiling', 'Mazo', '', 'female', 'ASDSAD', 'Single', '2001-11-03', 2134, 'purok 1', 'sitio 2', 'LRC', 'Beverly Woods', '09925119326', 'SADASD', 'Roman Catholic', 'none', 'Less Than Highschool', 'Japanese', 'none', 'accepted', 'IMG-636ce892b93335.98174600.png'),
-(49, 'sad', 'asda', 'asd', 'asd', 'male', 'asda', 'Single', '2019-06-04', 12312, '', '', '', '', '121', 'asd', 'Roman Catholic', 'none', 'Less Than Highschool', 'asda', 'as', 'pendingforresidency', 'IMG-636e43585ff329.92322572.jpg');
+(49, 'sad', 'asda', 'asd', 'asd', 'male', 'asda', 'Single', '2019-06-04', 12312, '', '', '', '', '121', 'asd', 'Roman Catholic', 'none', 'Less Than Highschool', 'asda', 'as', 'pendingforresidency', 'IMG-636e43585ff329.92322572.jpg'),
+(50, 'Al Rashied', 'Buenavista', 'Idris', '', 'male', 'Zamboanga', 'Single', '2000-01-04', 1108, 'purok 1', 'sitio 1', 'Grove', 'Magnolia Estate', '09953253995', 'alrashiedidris@yahoo.com', 'Islam', 'none', 'College', 'Filipino', 'none', 'accepted', 'IMG-636fbe8b4f4781.27818417.jpg'),
+(51, 'johnny', 'san miguel', 'polips', 'II', 'male', 'Rizal', 'Single', '2000-05-09', 22, 'purok 1', 'sitio 1', 'LRC', 'Magnolia Estate', '09496705512', 'johnnypolips@gmail.com', 'Roman Catholic', 'none', 'College', 'filipino', 'none', 'accepted', 'IMG-636fee370d8d26.10273427.jpg');
 
 -- --------------------------------------------------------
 
@@ -637,9 +884,9 @@ CREATE TABLE `resident_table` (
 
 INSERT INTO `resident_table` (`id`, `user_id`, `fname`, `mname`, `lname`, `suffix`, `gender`, `birthplace`, `civilstatus`, `birthday`, `household_ID`, `unitnumber`, `purok`, `sitio`, `street`, `subdivision`, `contactnumber`, `email`, `religion`, `occupation`, `education`, `nationality`, `disability`, `status`) VALUES
 (7, 7, 'Lenz Janielle', 'Lim', 'Gerongco', '', 'female', 'Laguna', 'Single', '2002-09-15', 8, 1004, 'Purok 3', 'sitio 2', '1', '1', '09123456789', 'lenzgerongco@yahoo.com', 'Roman Catholic', 'Flight attendant', 'College', 'Filipino', 'none', 'active'),
-(8, 8, 'Bernard', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2001-03-27', 8, 1759, 'purok 1', 'sitio 1', 'TELECOM', 'tinagan', '09616064483', 'nard_mazo@gmail.com', 'Roman Catholic', 'Programmer', 'College', 'Filipino', 'none', 'active'),
+(8, 8, 'Bernard', 'Kabiling', 'Mazo', '', 'male', 'Manila', 'Single', '2001-03-27', 8, 1759, 'purok 1', 'sitio 1', 'TELECOM', 'tinagan', '09283523142', 'nard_mazo@gmail.com', 'Roman Catholic', 'Programmer', 'College', 'Filipino', 'none', 'active'),
 (9, 9, 'Christian Philip', 'Diff', 'Orsolino', '', 'male', 'Manila', 'Single', '2000-12-11', 3, 1000, 'purok 1', 'sitio 2', 'TELECOM', 'tinagan', '09283523142', 'chris.orsolino@gmail.com', 'Roman Catholic', 'Dancer', 'College', 'Filipino', 'none', 'active'),
-(10, 10, 'Charles Wilcent', 'Ilustre', 'Urbano', '', 'male', 'Manila', 'Single', '2000-12-02', 3, 4598, 'purok 2', 'sitio 3', '1', '1', '09925119325', 'wilson.urbano@gmail.con', 'Roman Catholic', 'Axie player', 'College', 'Filipino', 'none', 'active'),
+(10, 10, 'Charles Wilcent', 'Ilustre', 'Urbano', '', 'male', 'Manila', 'Single', '2000-12-02', 3, 4598, 'purok 2', 'sitio 3', '1', '1', '09925119322', 'wilcenturbano02@gmail.com', 'Roman Catholic', 'Axie player', 'College', 'Filipino', 'none', 'active'),
 (11, 11, 'Jehan', '', 'Hadji Said', '', 'male', 'Manila', 'Single', '2001-06-12', NULL, 12312, 'purok 2', 'sitio 2', '1', '1', '09219657391', 'jehan.said@gmail.com', 'Islam', 'Web developer', 'College', 'Filipino', 'none', 'active'),
 (12, 13, 'Michael', '', 'Jordan', '', 'male', 'Manila', 'Married', '1963-02-17', 8, 2345, 'purok 2', 'sitio 1', 'LRC', 'parking', '09781234567', 'michaejordan@gmail.com', 'Roman Catholic', 'none', 'College', 'American', 'none', 'active'),
 (13, 14, 'Kobe', '', 'Bryant', '', 'male', 'Manila', 'Married', '1978-08-23', NULL, 2408, 'Purok 3', 'sitio 3', 'grove', 'sevilla street', '09244567897', 'kobe.bryant@gmail.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'American', 'none', 'active'),
@@ -663,7 +910,9 @@ INSERT INTO `resident_table` (`id`, `user_id`, `fname`, `mname`, `lname`, `suffi
 (56, 58, 'asda', 'asdasd', 'asd', '', 'male', 'asd', 'Single', '2022-11-07', NULL, 1231, '1', '1', '1', '1', '123213', '123312', 'Roman Catholic', 'none', 'Less Than Highschool', 'sadasdasd', 'none', 'inactive'),
 (57, 59, 'Robin Lee', 'Visto', 'Muricho', '', 'male', 'Manila', 'Single', '1999-03-27', NULL, 6969, 'purok 1', 'sitio 2', 'Grove', 'Beverly Woods', '09560098112', 'Murichorobinlee@gmail.com ', 'None', 'Customer Service Rep', 'Bachelor\'s Degree', 'Filipino', 'none', 'active'),
 (58, 56, 'Nick', 'Georgia', 'Conner', '', 'male', 'Spain', 'Married', '1993-06-08', NULL, 234, 'purok 1', 'sitio 1', 'KalyePogi', 'Magnolia Estate', '09296738322', 'Nick24@yahoo.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'Spanish/Filipino', 'none', 'active'),
-(59, 61, 'Yuki', 'Kabiling', 'Mazo', '', 'female', 'ASDSAD', 'Single', '2001-11-03', NULL, 2134, 'purok 1', 'sitio 2', 'LRC', 'Beverly Woods', '09925119326', 'SADASD', 'Roman Catholic', 'none', 'Less Than Highschool', 'Japanese', 'none', 'active');
+(59, 61, 'Yuki', 'Kabiling', 'Mazo', '', 'female', 'ASDSAD', 'Single', '2001-11-03', NULL, 2134, 'purok 1', 'sitio 2', 'LRC', 'Beverly Woods', '09925119326', 'SADASD', 'Roman Catholic', 'none', 'Less Than Highschool', 'Japanese', 'none', 'active'),
+(60, 67, 'Al Rashied', 'Buenavista', 'Idris', '', 'male', 'Zamboanga', 'Single', '2000-01-04', NULL, 1108, 'purok 1', 'sitio 1', 'Grove', 'Magnolia Estate', '09953253995', 'alrashiedidris@yahoo.com', 'Islam', 'none', 'College', 'Filipino', 'none', 'active'),
+(61, 68, 'johnny', 'san miguel', 'polips', 'II', 'male', 'Rizal', 'Single', '2000-05-09', NULL, 22, 'purok 1', 'sitio 1', 'LRC', 'Magnolia Estate', '09496705512', 'johnnypolips@gmail.com', 'Roman Catholic', 'none', 'College', 'filipino', 'none', 'active');
 
 -- --------------------------------------------------------
 
@@ -710,7 +959,33 @@ INSERT INTO `suggestion_table` (`suggestion_ID`, `official_ID`, `sender_ID`, `su
 (21, 5, 8, 'Barangay Improvement', 'improve basketball court', '2022-11-12', 'sge', 'noticed'),
 (22, 5, 8, 'Education', 'please donate school supplies', '2022-11-12', 'okay noted', 'noticed'),
 (23, NULL, 8, 'Barangay Improvement', 'pabantayan po kanto maraming makulit', '2022-11-12', '', 'pending'),
-(24, 5, 8, 'Sports', 'brangay league', '2022-11-12', 'asdasd', 'noticed');
+(24, 5, 8, 'Sports', 'brangay league', '2022-11-12', 'asdasd', 'noticed'),
+(25, NULL, 10, 'Sports', 'another Vball league po please', '2022-11-12', '', 'pending'),
+(26, NULL, 10, 'Sports', 'Wide Cashrpize po next basketball league kahit mag increase po sana ng quota', '2022-11-12', '', 'pending'),
+(27, NULL, 10, 'Health', 'Bakuna para sa dengue po nakakatakot ilan na po na dengue sa barangay', '2022-11-12', '', 'pending'),
+(28, NULL, 10, 'Health', 'Healthcare Center facilities need to improve po.', '2022-11-12', '', 'pending'),
+(29, NULL, 10, 'Education', 'Sana po maturuan mga batang kalye ', '2022-11-12', '', 'pending'),
+(30, NULL, 10, 'Barangay Improvement', 'school supplies po sana tulong lang po sa mga less fortunate', '2022-11-12', '', 'pending'),
+(31, NULL, 10, 'Sports', 'Basketball league round robin elimination po para cool', '2022-11-12', '', 'pending'),
+(32, NULL, 10, 'Sports', 'Chess tournament po please wala pa po na hohost ', '2022-11-12', '', 'pending'),
+(33, NULL, 10, 'Barangay Improvement', 'Sport fest and team building po para masaya', '2022-11-12', '', 'pending'),
+(34, NULL, 10, 'Barangay Improvement', 'Paki linis naman po bangketa dito saten ang dameng bahay ', '2022-11-12', '', 'pending'),
+(35, NULL, 10, 'Barangay Improvement', 'Sana po paagahan yung schedule sa pag hakot ng basura ang hassle po sa hapon dame naaabala pag dadaa', '2022-11-12', '', 'pending'),
+(36, NULL, 10, 'Dance Contest', 'Contest po nakaka miss mag compete ', '2022-11-12', '', 'pending'),
+(37, NULL, 10, 'Singing Contest', 'Singing Contest din po pala.', '2022-11-12', '', 'pending'),
+(38, NULL, 10, 'ML tournament ', 'Sana meron din po ML tournament, di po kase ako makasali sa mga pa liga', '2022-11-12', '', 'pending'),
+(39, NULL, 29, 'Sports', 'sana po makap paliga tayo ng mga katapusan ng May para ma enjoy ng ating mga kabarangay ang bakasyon', '2022-11-12', '', 'pending'),
+(40, NULL, 10, 'Turuan po sana mga bata', 'Dame po di marunong magbasa', '2022-11-12', '', 'pending'),
+(41, NULL, 10, 'Health', 'add po sana new doctors lagi po kase waiting ', '2022-11-12', '', 'pending'),
+(42, NULL, 10, 'Health', 'sana may guard din po sa healthcare center', '2022-11-12', '', 'pending'),
+(43, NULL, 29, 'Barangay Improvement', 'sana ibalik na ang pagkuha ng basura sa daling araw hindi sa hapon dahil nakakaabala sa barangay nat', '2022-11-12', '', 'pending'),
+(44, NULL, 8, 'Sports', 'Paki dagdagan po sana ang bilang ng team para sa basketball sa susunod na pa liga', '2022-11-12', '', 'pending'),
+(45, NULL, 10, 'Health', 'additional CR din po sana sa healhcare center kahit isa pa', '2022-11-12', '', 'pending'),
+(46, NULL, 29, 'Health', 'Libreng bakuna sa mga kabataan.\r\n', '2022-11-12', '', 'pending'),
+(47, NULL, 8, 'Sports', 'Sana meron din po na palaro para sa mga may disability', '2022-11-12', '', 'pending'),
+(48, NULL, 8, 'Barangay Improvement', 'Sana po magkaron na din ng ilaw yung ibang bahagi ng street ', '2022-11-12', '', 'pending'),
+(49, NULL, 29, 'Health', 'libreng gamot para mga senior citizen.', '2022-11-12', '', 'pending'),
+(50, NULL, 10, 'Connect po sa PNP', 'Connect po sana PNP yung sa blotter para mas mapadali ang paghanap sa mga tao pag kailangan', '2022-11-12', '', 'pending');
 
 -- --------------------------------------------------------
 
@@ -794,13 +1069,13 @@ INSERT INTO `tbluser` (`id`, `username`, `password`, `type`, `profile`, `status`
 (7, 'lenzay', '456', 'admin', 'default.jpg', 'inactive'),
 (8, 'Odrannn', '123', 'admin0', 'USER8-634839116729b9.72061641.jpg', 'active'),
 (9, '09095307513', '12345678', 'admin', 'USER9-63483de9ae6059.84184043.jpg', 'active'),
-(10, 'wil', 'wil', 'admin', 'USER10-6366352ed008a6.49118943.jpg', 'active'),
+(10, 'wil', 'wil', 'admin', 'USER10-636fc68b8dadc6.94387390.jpg', 'active'),
 (11, 'jehan', '456', 'user', 'default.jpg', 'active'),
 (13, '09781234567', '12345678', 'admin0', 'default.jpg', 'active'),
 (14, '09244567897', '12345678', 'admin', 'default.jpg', 'active'),
 (15, '09623456781', '12345678', 'admin', 'default.jpg', 'active'),
 (18, '09020146545', '12345678', 'admin', 'default.jpg', 'active'),
-(30, 'poli', 'pol', 'admin', 'default.jpg', 'active'),
+(30, 'jdaniel', 'pol', 'admin', 'default.jpg', 'active'),
 (33, '09475044087', '12345678', 'admin0', 'default.jpg', 'active'),
 (39, 'ber', '789', 'user', 'default.jpg', 'active'),
 (42, '09283523144', '12345678', 'admin0', 'default.jpg', 'active'),
@@ -821,8 +1096,10 @@ INSERT INTO `tbluser` (`id`, `username`, `password`, `type`, `profile`, `status`
 (58, '123', '12345678', 'user', 'default.jpg', 'inactive'),
 (59, '09560098112', '12345678', 'user', 'default.jpg', 'active'),
 (60, '09296738322', '12345678', 'user', 'default.jpg', 'active'),
-(61, 'yukitong', '789', 'user', 'default.jpg', 'active'),
-(66, 'nardo', '20221668096947', 'hadmin', 'default.jpg', 'active');
+(61, 'yukitong', '789', 'hadmin', 'default.jpg', 'active'),
+(66, 'hnardo', 'nardo', 'hadmin', 'default.jpg', 'active'),
+(67, 'rash', 'r1234', 'admin', 'default.jpg', 'active'),
+(68, '09496705512', '20221668279944', 'user', 'default.jpg', 'active');
 
 -- --------------------------------------------------------
 
@@ -1039,7 +1316,7 @@ ALTER TABLE `address_fields`
 -- AUTO_INCREMENT for table `admin_notification`
 --
 ALTER TABLE `admin_notification`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=207;
 
 --
 -- AUTO_INCREMENT for table `announcement`
@@ -1057,7 +1334,7 @@ ALTER TABLE `bgy_info`
 -- AUTO_INCREMENT for table `blotter_table`
 --
 ALTER TABLE `blotter_table`
-  MODIFY `blotter_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `blotter_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `case_option`
@@ -1069,13 +1346,13 @@ ALTER TABLE `case_option`
 -- AUTO_INCREMENT for table `complaint_table`
 --
 ALTER TABLE `complaint_table`
-  MODIFY `complaint_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `complaint_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `document_request`
 --
 ALTER TABLE `document_request`
-  MODIFY `request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `document_type`
@@ -1099,7 +1376,7 @@ ALTER TABLE `healthcare_logs`
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `modules_available`
@@ -1111,19 +1388,19 @@ ALTER TABLE `modules_available`
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `resident_table`
 --
 ALTER TABLE `resident_table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `suggestion_table`
 --
 ALTER TABLE `suggestion_table`
-  MODIFY `suggestion_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `suggestion_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `tblhousehold`
@@ -1141,7 +1418,7 @@ ALTER TABLE `tblofficial`
 -- AUTO_INCREMENT for table `tbluser`
 --
 ALTER TABLE `tbluser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `user_notification`

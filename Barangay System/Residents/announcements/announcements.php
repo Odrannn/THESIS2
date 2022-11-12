@@ -109,7 +109,7 @@ if($_SESSION['user_id'] == '') {
         </div>
         <!--View Modal-->
         <div class="modal fade modal-md" id="viewModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-dialog modal-dialog-centered">
                 
                         
                     

@@ -270,7 +270,7 @@ if($_SESSION['user_id'] == '') {
 				<div class="ps-5 col-4"><strong>CONTACT NO. :</strong></div>
 				<div class="col-5">
 					<div class="mx-3" width=100>
-						<input type="email" class="form-control" value="<?php echo $row["contactnumber"]; ?>" disabled>
+						<input type="text" class="form-control" value="<?php echo $row["contactnumber"]; ?>" disabled>
 					</div>
 				</div>
 				
@@ -286,7 +286,7 @@ if($_SESSION['user_id'] == '') {
 					  <form name="chnguser" method="post" action="edit_number.php">
 						  <div class="modal-body">
 							  <label for="exampleInputEmail1" class="form-label">Contact Number: </label>
-							  <input name="contactnumber" type="number" class="form-control" value="<?php echo $row["contactnumber"]; ?>" >
+							  <input name="contactnumber" type="text" maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/gi, '').replace(/(\..*)\./gi, '$1')" class="form-control" value="<?php echo $row["contactnumber"]; ?>" >
 						  </div>
 						  <div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

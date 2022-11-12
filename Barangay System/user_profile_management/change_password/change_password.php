@@ -29,6 +29,10 @@ if(isset($_POST['Submit']))
 		$_SESSION['msg3']="OLD PASSWORD AND NEW PASSWORD IS MATCH";
 		header("location:password_page.php");
 	}
+	else if($newpassword!=$confirmpassword){
+	    $_SESSION['msg3']="NEW PASSWORD AND CONFIRM PASSWORD IS NOT MATCH";
+		header("location:password_page.php");
+	}
 	else
 	{
 		$con=mysqli_query($conn,"update tbluser set password='$newpassword' where id = '" . $_SESSION['user_id'] . "'");
