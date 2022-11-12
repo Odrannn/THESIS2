@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 12, 2022 at 07:24 PM
+-- Generation Time: Nov 12, 2022 at 08:18 PM
 -- Server version: 10.5.16-MariaDB-cll-lve
 -- PHP Version: 7.2.34
 
@@ -268,7 +268,26 @@ INSERT INTO `admin_notification` (`notification_ID`, `notification_type`, `type_
 (203, 'File Blotter', 37, 'filed a blotter.', 8, '22-11-13 03:17:53', 0),
 (204, 'File Blotter', 38, 'filed a blotter.', 61, '22-11-13 03:18:02', 0),
 (205, 'File Blotter', 39, 'filed a blotter.', 61, '22-11-13 03:20:10', 0),
-(206, 'File Blotter', 40, 'filed a blotter.', 60, '22-11-13 03:20:57', 0);
+(206, 'File Blotter', 40, 'filed a blotter.', 60, '22-11-13 03:20:57', 0),
+(207, 'Request Document', 53, 'sent a payment.', 60, '22-11-12 07:24:51', 0),
+(208, 'Request Document', 51, 'sent a payment.', 60, '22-11-12 07:25:01', 0),
+(209, 'Request Document', 50, 'sent a payment.', 60, '22-11-12 07:25:09', 0),
+(210, 'Residency Registration', NULL, 'New residency application.', NULL, '22-11-12 07:25:32', 1),
+(211, 'Request Document', 47, 'sent a payment.', 60, '22-11-12 07:26:19', 0),
+(212, 'Request Document', 46, 'sent a payment.', 60, '22-11-12 07:26:24', 1),
+(213, 'Request Document', 45, 'sent a payment.', 60, '22-11-12 07:26:30', 0),
+(214, 'Request Document', 44, 'sent a payment.', 60, '22-11-12 07:26:35', 0),
+(215, 'Request Document', 43, 'sent a payment.', 60, '22-11-12 07:26:46', 0),
+(216, 'Request Document', 42, 'sent a payment.', 60, '22-11-12 07:27:04', 0),
+(217, 'Request Document', 38, 'sent a payment.', 60, '22-11-12 07:27:11', 0),
+(218, 'File Blotter', 41, 'filed a blotter.', 10, '22-11-13 03:31:06', 0),
+(219, 'File Blotter', 42, 'filed a blotter.', 60, '22-11-13 03:31:44', 0),
+(220, 'File Blotter', 42, 'filed a blotter.', 10, '22-11-13 03:34:21', 0),
+(221, 'File Blotter', 44, 'filed a blotter.', 10, '22-11-13 03:38:30', 0),
+(222, 'File Blotter', 45, 'filed a blotter.', 10, '22-11-13 03:40:51', 0),
+(223, 'File Blotter', 46, 'filed a blotter.', 10, '22-11-13 03:44:00', 1),
+(224, 'File Blotter', 47, 'filed a blotter.', 60, '22-11-13 03:52:28', 0),
+(225, 'File Blotter', 48, 'filed a blotter.', 60, '22-11-13 03:54:16', 0);
 
 -- --------------------------------------------------------
 
@@ -381,7 +400,14 @@ INSERT INTO `blotter_table` (`blotter_ID`, `official_ID`, `complainant_ID`, `com
 (37, NULL, 8, 29, 'John Daniel San Juan Policarpio', '2022-11-13', '15:19:00', 'mag nanakaw ng tsinelas', 'ninakaw yung tsinelas ko, limang beses na', '0000-00-00', NULL, '', 'unscheduled'),
 (38, NULL, 61, 52, 'Helbert B Capada', '2022-11-04', '15:17:00', 'nambabato ng bubong', 'nambabato ng bubong tuwing madaling araw, kanina lang nakita sa cctv ', '0000-00-00', NULL, '', 'unscheduled'),
 (39, NULL, 61, 59, 'Yuki Kabiling Mazo', '2022-11-04', '15:22:00', 'nagnakaw', 'nagnakaw ng tinola pamulutan ata nila patungo sa nagiinuman eh', '0000-00-00', NULL, '', 'unscheduled'),
-(40, NULL, 60, 13, 'Kobe  Bryant', '2022-06-08', '18:16:00', 'harassment', 'Lagi niya po ako pinapainom sa tuwing dadaan ako sa eskinita, kahit ayaw ko po pinipilit niya po ako', '0000-00-00', NULL, '', 'unscheduled');
+(40, NULL, 60, 13, 'Kobe  Bryant', '2022-06-08', '18:16:00', 'harassment', 'Lagi niya po ako pinapainom sa tuwing dadaan ako sa eskinita, kahit ayaw ko po pinipilit niya po ako', '0000-00-00', NULL, '', 'unscheduled'),
+(41, NULL, 10, 60, 'Al Rashied Buenavista Idris', '2022-11-01', '15:35:00', 'nagbenta ng peke', 'tinintindahan ako sabe nya legit iphone daw paghawak samsung logo', '0000-00-00', NULL, '', 'unscheduled'),
+(42, NULL, 60, 12, 'Michael  Jordan', '2022-08-25', '18:30:00', 'Ayaw pumayag sa refund', 'Ayaw niya po pumayag sa refund. Sabi niya po in perfect condition pa yung binebenta niya na phone pe', '0000-00-00', NULL, '', 'unscheduled'),
+(44, NULL, 10, 9, 'Christian Philip Diff Orsolino', '2022-11-09', '03:40:00', 'brawl fight', 'Front row sa riot ang ingay sa madaling araw ', '0000-00-00', NULL, '', 'unscheduled'),
+(45, NULL, 10, 55, 'Blue Abenson Orso', '2022-11-09', '03:44:00', 'animal cruelty', 'saw him beating up all of the stray cats ', '0000-00-00', NULL, '', 'unscheduled'),
+(46, NULL, 10, 8, 'Bernard Kabiling Mazo', '2022-11-17', '15:46:00', 'brawl fight', 'initial man who starts riot', '0000-00-00', NULL, '', 'unscheduled'),
+(47, NULL, 60, 54, 'Nick Georgia Conner', '2022-08-20', '08:32:00', 'Stealing', 'Nag nanakaw ng buko kawawa naman yung nagtitinda. Sabe ko ipapa blotter ko nalang yung nangyare. Dit', '0000-00-00', NULL, '', 'unscheduled'),
+(48, NULL, 60, 69, 'Cristina Aragones Acosta', '2022-11-18', '21:53:00', 'Stealing', 'nagnakaw ng pamayong sa palengke. kita namen tapos ipinapasa yung bintang sa nanay ko.', '0000-00-00', NULL, '', 'unscheduled');
 
 -- --------------------------------------------------------
 
@@ -539,22 +565,22 @@ INSERT INTO `document_request` (`request_ID`, `official_ID`, `resident_ID`, `doc
 (35, NULL, 60, 1, 'Para po sa scholarship', 1, '', '2022-11-12', 'pending for payment'),
 (36, NULL, 10, 1, 'apply po ko work', 1, '', '2022-11-12', 'pending for payment'),
 (37, NULL, 10, 3, 'for scholarship', 1, '', '2022-11-12', 'pending for payment'),
-(38, NULL, 60, 3, 'Para po sa work need lang po', 1, '', '2022-11-12', 'pending for payment'),
+(38, NULL, 60, 3, 'Para po sa work need lang po', 1, 'RCPT-636ff38faed785.05940580.jpg', '2022-11-12', 'pending for verification'),
 (39, NULL, 10, 1, 'business related', 1, '', '2022-11-12', 'pending for payment'),
 (40, NULL, 10, 3, 'for my business', 1, '', '2022-11-12', 'pending for payment'),
 (41, NULL, 10, 1, 'aapply po ako office work', 1, '', '2022-11-12', 'pending for payment'),
-(42, NULL, 60, 1, 'para po sakin kailangan ko lang in case po na may need na important documents', 1, '', '2022-11-12', 'pending for payment'),
-(43, NULL, 60, 2, 'Kailangan daw po ni nanay para sa work niya', 1, '', '2022-11-12', 'pending for payment'),
-(44, NULL, 60, 1, 'Kailangan po ni kuya para sa work niya', 1, '', '2022-11-12', 'pending for payment'),
-(45, NULL, 60, 1, 'Kailangan po ni ate para sa scholarship niya', 1, '', '2022-11-12', 'pending for payment'),
-(46, NULL, 60, 1, 'Kailangan po ni tatay para sa work niya po', 1, '', '2022-11-12', 'pending for payment'),
-(47, NULL, 60, 3, 'Kailangan ko po para sa trabaho', 1, '', '2022-11-12', 'pending for payment'),
+(42, NULL, 60, 1, 'para po sakin kailangan ko lang in case po na may need na important documents', 1, 'RCPT-636ff3889ef8d5.88973145.jpg', '2022-11-12', 'pending for verification'),
+(43, NULL, 60, 2, 'Kailangan daw po ni nanay para sa work niya', 1, 'RCPT-636ff3766264a1.60406375.jpg', '2022-11-12', 'pending for verification'),
+(44, NULL, 60, 1, 'Kailangan po ni kuya para sa work niya', 1, 'RCPT-636ff36b854499.87270086.jpg', '2022-11-12', 'pending for verification'),
+(45, NULL, 60, 1, 'Kailangan po ni ate para sa scholarship niya', 1, 'RCPT-636ff366135a39.76078472.jpg', '2022-11-12', 'pending for verification'),
+(46, NULL, 60, 1, 'Kailangan po ni tatay para sa work niya po', 1, 'RCPT-636ff360e954b8.99939221.jpg', '2022-11-12', 'pending for verification'),
+(47, NULL, 60, 3, 'Kailangan ko po para sa trabaho', 1, 'RCPT-636ff35bb5e3c0.77269836.jpg', '2022-11-12', 'pending for verification'),
 (48, NULL, 10, 3, 'scholarship purposes', 1, '', '2022-11-12', 'pending for payment'),
 (49, NULL, 10, 2, 'CHED scholarship', 1, '', '2022-11-12', 'pending for payment'),
-(50, NULL, 60, 3, 'Kailangan po ni tito para sa trabaho niya', 1, '', '2022-11-12', 'pending for payment'),
-(51, NULL, 60, 1, 'Kailangan ko lang po para ma kumpleto ang important documents ko para sa trabaho', 1, '', '2022-11-12', 'pending for payment'),
+(50, NULL, 60, 3, 'Kailangan po ni tito para sa trabaho niya', 1, 'RCPT-636ff3157b5f39.85029460.jpg', '2022-11-12', 'pending for verification'),
+(51, NULL, 60, 1, 'Kailangan ko lang po para ma kumpleto ang important documents ko para sa trabaho', 1, 'RCPT-636ff30d119a23.99551095.jpg', '2022-11-12', 'pending for verification'),
 (52, NULL, 10, 1, 'business ', 1, '', '2022-11-12', 'pending for payment'),
-(53, NULL, 60, 3, 'Kailangan ko po para bukas makapag apply na sa work', 1, '', '2022-11-12', 'pending for payment'),
+(53, NULL, 60, 3, 'Kailangan ko po para bukas makapag apply na sa work', 1, 'RCPT-636ff303ad8b36.17595227.jpg', '2022-11-12', 'pending for verification'),
 (54, NULL, 10, 2, 'para may allowance po', 1, '', '2022-11-12', 'pending for payment');
 
 -- --------------------------------------------------------
@@ -732,7 +758,9 @@ INSERT INTO `logs` (`log_id`, `user_id`, `date_time`) VALUES
 (80, 68, '0000-00-00 00:00:00'),
 (81, 8, '0000-00-00 00:00:00'),
 (82, 8, '2022-11-13 03:19:22'),
-(83, 8, '2022-11-13 03:20:09');
+(83, 8, '2022-11-13 03:20:09'),
+(84, 30, '2022-11-13 03:26:26'),
+(85, 10, '2022-11-13 03:44:30');
 
 -- --------------------------------------------------------
 
@@ -843,7 +871,8 @@ INSERT INTO `registration` (`id`, `fname`, `mname`, `lname`, `suffix`, `gender`,
 (48, 'Yuki', 'Kabiling', 'Mazo', '', 'female', 'ASDSAD', 'Single', '2001-11-03', 2134, 'purok 1', 'sitio 2', 'LRC', 'Beverly Woods', '09925119326', 'SADASD', 'Roman Catholic', 'none', 'Less Than Highschool', 'Japanese', 'none', 'accepted', 'IMG-636ce892b93335.98174600.png'),
 (49, 'sad', 'asda', 'asd', 'asd', 'male', 'asda', 'Single', '2019-06-04', 12312, '', '', '', '', '121', 'asd', 'Roman Catholic', 'none', 'Less Than Highschool', 'asda', 'as', 'pendingforresidency', 'IMG-636e43585ff329.92322572.jpg'),
 (50, 'Al Rashied', 'Buenavista', 'Idris', '', 'male', 'Zamboanga', 'Single', '2000-01-04', 1108, 'purok 1', 'sitio 1', 'Grove', 'Magnolia Estate', '09953253995', 'alrashiedidris@yahoo.com', 'Islam', 'none', 'College', 'Filipino', 'none', 'accepted', 'IMG-636fbe8b4f4781.27818417.jpg'),
-(51, 'johnny', 'san miguel', 'polips', 'II', 'male', 'Rizal', 'Single', '2000-05-09', 22, 'purok 1', 'sitio 1', 'LRC', 'Magnolia Estate', '09496705512', 'johnnypolips@gmail.com', 'Roman Catholic', 'none', 'College', 'filipino', 'none', 'accepted', 'IMG-636fee370d8d26.10273427.jpg');
+(51, 'johnny', 'san miguel', 'polips', 'II', 'male', 'Rizal', 'Single', '2000-05-09', 22, 'purok 1', 'sitio 1', 'LRC', 'Magnolia Estate', '09496705512', 'johnnypolips@gmail.com', 'Roman Catholic', 'none', 'College', 'filipino', 'none', 'accepted', 'IMG-636fee370d8d26.10273427.jpg'),
+(52, 'Junie ', 'Magdangal', 'Espirito', '', 'male', 'Manila', 'Married', '1988-05-20', 21, 'purok 1', 'sitio 3', 'Telecom', 'Beverly Woods', '09458862255', 'junie.boy@gmail.com', 'Aglipayan', 'none', 'College', 'Filipino', 'none', 'accepted', 'IMG-636ff32c478463.38264828.jpg');
 
 -- --------------------------------------------------------
 
@@ -910,9 +939,25 @@ INSERT INTO `resident_table` (`id`, `user_id`, `fname`, `mname`, `lname`, `suffi
 (56, 58, 'asda', 'asdasd', 'asd', '', 'male', 'asd', 'Single', '2022-11-07', NULL, 1231, '1', '1', '1', '1', '123213', '123312', 'Roman Catholic', 'none', 'Less Than Highschool', 'sadasdasd', 'none', 'inactive'),
 (57, 59, 'Robin Lee', 'Visto', 'Muricho', '', 'male', 'Manila', 'Single', '1999-03-27', NULL, 6969, 'purok 1', 'sitio 2', 'Grove', 'Beverly Woods', '09560098112', 'Murichorobinlee@gmail.com ', 'None', 'Customer Service Rep', 'Bachelor\'s Degree', 'Filipino', 'none', 'active'),
 (58, 56, 'Nick', 'Georgia', 'Conner', '', 'male', 'Spain', 'Married', '1993-06-08', NULL, 234, 'purok 1', 'sitio 1', 'KalyePogi', 'Magnolia Estate', '09296738322', 'Nick24@yahoo.com', 'Roman Catholic', 'none', 'Less Than Highschool', 'Spanish/Filipino', 'none', 'active'),
-(59, 61, 'Yuki', 'Kabiling', 'Mazo', '', 'female', 'ASDSAD', 'Single', '2001-11-03', NULL, 2134, 'purok 1', 'sitio 2', 'LRC', 'Beverly Woods', '09925119326', 'SADASD', 'Roman Catholic', 'none', 'Less Than Highschool', 'Japanese', 'none', 'active'),
+(59, 61, 'Yuki', 'Kabiling', 'Mazo', '', 'female', 'ASDSAD', 'Single', '2001-11-03', NULL, 2134, 'purok 1', 'sitio 2', 'LRC', 'Beverly Woods', '09925119325', 'SADASD', 'Roman Catholic', 'none', 'Less Than Highschool', 'Japanese', 'none', 'active'),
 (60, 67, 'Al Rashied', 'Buenavista', 'Idris', '', 'male', 'Zamboanga', 'Single', '2000-01-04', NULL, 1108, 'purok 1', 'sitio 1', 'Grove', 'Magnolia Estate', '09953253995', 'alrashiedidris@yahoo.com', 'Islam', 'none', 'College', 'Filipino', 'none', 'active'),
-(61, 68, 'johnny', 'san miguel', 'polips', 'II', 'male', 'Rizal', 'Single', '2000-05-09', NULL, 22, 'purok 1', 'sitio 1', 'LRC', 'Magnolia Estate', '09496705512', 'johnnypolips@gmail.com', 'Roman Catholic', 'none', 'College', 'filipino', 'none', 'active');
+(61, 68, 'johnny', 'san miguel', 'polips', 'II', 'male', 'Rizal', 'Single', '2000-05-09', NULL, 22, 'purok 1', 'sitio 1', 'LRC', 'Magnolia Estate', '09496705512', 'johnnypolips@gmail.com', 'Roman Catholic', 'none', 'College', 'filipino', 'none', 'active'),
+(62, 69, 'Junie ', 'Magdangal', 'Espirito', '', 'male', 'Manila', 'Married', '1988-05-20', NULL, 21, 'purok 1', 'sitio 3', 'Telecom', 'Beverly Woods', '09458862255', 'junie.boy@gmail.com', 'Aglipayan', 'none', 'College', 'Filipino', 'none', 'active'),
+(63, 70, 'Jhonny', 'SanJuan', 'Donald', '', 'female', 'TeresaRizal', 'Single', '2000-03-04', NULL, 1, 'purok 2', 'sitio 3', 'Oroqueta', 'Beverly Woods', '09567835667', 'jhonny.donald@gmail.com', 'Roman Catholic', 'janitor', 'Highschool', 'Filipino', 'deaf', 'active'),
+(64, 71, 'James', 'San Jose', 'Deen', '', 'male', 'Tanay', 'Married', '1997-02-27', NULL, 21, 'purok 2', 'sitio 3', 'Grove', 'Magnolia Estate', '09786527789', 'james.deen@gmail.com', 'Iglesia ni Cristo', 'none', 'College', 'Filipino', 'none', 'active'),
+(65, 72, 'Natalie', 'jose', 'Gonzales', '', 'male', 'Tanay', 'Single', '0000-00-00', NULL, 45, 'purok 1', 'sitio 2', 'Oroqueta', 'Beverly Woods', '09786552778', 'natalie.gonzales@gmail.com', 'Roman Catholic', 'none', 'College', 'Filipino', 'none', 'active'),
+(66, 73, 'Joana', 'natividad', 'Arjona', '', 'male', 'Morong', 'Single', '1999-01-15', NULL, 7, 'purok 2', 'sitio 3', 'Grove', 'Magnolia Estate', '09456878465', 'joana.arjona', 'Roman Catholic', 'none', 'College', 'Filipino', 'none', 'active'),
+(67, 74, 'Sophia', 'Amores', 'Reyes', '', 'male', 'Baras', 'Single', '1998-12-28', NULL, 64, 'purok 1', 'sitio 2', 'LRC', 'Brittany Oaks', '09871516546', 'sophia.reyes@gmail.com', 'Roman Catholic', 'none', 'College', 'Filipino', 'none', 'active'),
+(68, 75, 'Abigail', 'jose', 'Yguinto', '', 'female', 'Tanay', 'Single', '2022-09-27', NULL, 6, 'purok 2', 'sitio 2', 'Grove', 'Magnolia Estate', '09654892313', 'abigail.yguinto@gmail.com', 'Roman Catholic', 'none', 'Bachelor\'\'s Degree', 'Filipino', 'none', 'active'),
+(69, 76, 'Cristina', 'Aragones', 'Acosta', '', 'female', 'Manila', 'Single', '1998-03-02', NULL, 78, 'purok 1', 'sitio 2', 'Telecom', 'Magnolia Estate', '09753154654', 'cristina.acosta@gmail.com', 'Roman Catholic', 'none', 'College', 'Filipino', 'none', 'active'),
+(70, 77, 'John', 'Ropher', 'Co', '', 'female', 'Cainta', 'Single', '1988-01-29', NULL, 3, 'purok 2', 'sitio 3', 'Grove', 'Beverly Woods', '09216962166', 'john.co@gmail.com', 'Roman Catholic', 'none', 'Highschool', 'Filipino', 'none', 'active'),
+(71, 78, 'Leanrd', 'miguel', 'Amores', '', 'male', 'Sampaloc', 'Divorced', '1999-06-25', NULL, 8, 'purok 1', 'sitio 2', 'LRC', 'Beverly Woods', '09321849846', 'lenard.amores@gmail.com', 'Roman Catholic', 'none', 'College', 'Filipino', 'none', 'active'),
+(72, 79, 'Lian', 'Jose', 'Aragones', '', 'female', 'Tanay', 'Single', '2000-05-04', NULL, 8, 'purok 2', 'sitio 2', 'Grove', 'Brittany Oaks', '09123189989', 'lian.aragones@gmail.com', 'Roman Catholic', 'none', 'College', 'Filipino', 'none', 'active'),
+(73, 80, 'James', 'Lian', 'Navarro', '', 'female', 'Cainta', 'Single', '1989-12-06', NULL, 2, 'purok 1', 'sitio 3', 'Grove', 'Brittany Oaks', '09453437434', 'james.navarro@gmail.com', 'Jehovah\'\'s Witnesses', 'none', 'Bachelor\'\'s Degree', 'Filipino', 'none', 'active'),
+(74, 81, 'Rhian', 'Amara', 'Ramos', '', 'female', 'Manila', 'Single', '1996-05-12', NULL, 78, 'purok 2', 'sitio 3', 'Grove', 'Brittany Oaks', '09231549898', 'rhian.ramos@gmail.com', 'Roman Catholic', 'none', 'Bachelor\'\'s Degree', 'Filipino', 'none', 'active'),
+(75, 82, 'Andrea', 'Juan', 'Brilliantes', '', 'female', 'Quezon city', 'Single', '2000-07-03', NULL, 7, 'purok 2', 'sitio 3', 'Oroqueta', 'Magnolia Estate', '09231899879', 'andrea.brilliantes@gmail.com', 'Roman Catholic', 'none', 'Bachelor\'\'s Degree', 'Filipino', 'none', 'active'),
+(76, 83, 'Venus', 'Jose', 'Climente', '', 'female', 'Tanay', 'Single', '1999-07-12', NULL, 9, 'purok 2', 'sitio 3', 'Grove', 'Brittany Oaks', '09323546464', 'venus.climente@gmail.com', 'Jehovah\'\'s Witnesses', 'none', 'College', 'Filipino', 'none', 'active'),
+(78, 85, 'John MCdonald', 'Orsolino', 'Policarpio', 'Junior', 'male', 'Manila', 'Single', '2001-07-19', NULL, 1234, 'purok 2', 'sitio 2', 'Oroqueta', 'Brittany Oaks', '09925119326', 'mcdonald@gmail.com', 'Roman Catholic', 'none', 'College', 'Filipino', 'none', 'active');
 
 -- --------------------------------------------------------
 
@@ -1082,7 +1127,7 @@ INSERT INTO `tbluser` (`id`, `username`, `password`, `type`, `profile`, `status`
 (43, '096160644831', '12345678', 'user', 'default.jpg', 'active'),
 (44, '09475044087', '12345678', 'user', 'default.jpg', 'active'),
 (46, '09206460967', '12345678', 'user', 'default.jpg', 'active'),
-(47, '09553473449', '12345678', 'user', 'default.jpg', ''),
+(47, '09553473449', '12345678', 'user', 'default.jpg', 'active'),
 (48, '09260828469', '12345678', 'admin', 'default.jpg', 'active'),
 (49, '09054149433', '12345678', 'hadmin', 'default.jpg', 'active'),
 (50, '09176590417', '12345678', 'admin', 'default.jpg', 'active'),
@@ -1099,7 +1144,23 @@ INSERT INTO `tbluser` (`id`, `username`, `password`, `type`, `profile`, `status`
 (61, 'yukitong', '789', 'hadmin', 'default.jpg', 'active'),
 (66, 'hnardo', 'nardo', 'hadmin', 'default.jpg', 'active'),
 (67, 'rash', 'r1234', 'admin', 'default.jpg', 'active'),
-(68, '09496705512', '20221668279944', 'user', 'default.jpg', 'active');
+(68, '09496705512', '20221668279944', 'user', 'default.jpg', 'active'),
+(69, '09458862255', '20221668281232', 'user', 'default.jpg', 'active'),
+(70, '09567835667', '12345678', 'user', 'default.jpg', 'active'),
+(71, '09786527789', '12345678', 'user', 'default.jpg', 'active'),
+(72, '09786552778', '12345678', 'user', 'default.jpg', 'active'),
+(73, '09456878465', '12345678', 'user', 'default.jpg', 'active'),
+(74, '09871516546', '12345678', 'user', 'default.jpg', 'active'),
+(75, '09654892313', '12345678', 'user', 'default.jpg', 'active'),
+(76, '09753154654', '12345678', 'user', 'default.jpg', 'active'),
+(77, '09216962166', '12345678', 'user', 'default.jpg', 'active'),
+(78, '09321849846', '12345678', 'user', 'default.jpg', 'active'),
+(79, '09123189989', '12345678', 'user', 'default.jpg', 'active'),
+(80, '09453437434', '12345678', 'user', 'default.jpg', 'active'),
+(81, '09231549898', '12345678', 'user', 'default.jpg', 'active'),
+(82, '09231899879', '12345678', 'user', 'default.jpg', 'active'),
+(83, '09323546464', '12345678', 'user', 'default.jpg', 'active'),
+(85, '09925119326', '20221668284246', 'user', 'default.jpg', 'active');
 
 -- --------------------------------------------------------
 
@@ -1316,7 +1377,7 @@ ALTER TABLE `address_fields`
 -- AUTO_INCREMENT for table `admin_notification`
 --
 ALTER TABLE `admin_notification`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=207;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=226;
 
 --
 -- AUTO_INCREMENT for table `announcement`
@@ -1334,7 +1395,7 @@ ALTER TABLE `bgy_info`
 -- AUTO_INCREMENT for table `blotter_table`
 --
 ALTER TABLE `blotter_table`
-  MODIFY `blotter_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `blotter_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `case_option`
@@ -1376,7 +1437,7 @@ ALTER TABLE `healthcare_logs`
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `modules_available`
@@ -1388,13 +1449,13 @@ ALTER TABLE `modules_available`
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `resident_table`
 --
 ALTER TABLE `resident_table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `suggestion_table`
@@ -1418,7 +1479,7 @@ ALTER TABLE `tblofficial`
 -- AUTO_INCREMENT for table `tbluser`
 --
 ALTER TABLE `tbluser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `user_notification`

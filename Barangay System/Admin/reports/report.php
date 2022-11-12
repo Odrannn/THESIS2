@@ -14,12 +14,12 @@ if($_SESSION['user_id'] == '') {
     <title>User Management</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"/>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
 </head>
 
 <body>
@@ -79,17 +79,17 @@ if($_SESSION['user_id'] == '') {
 				<h5 class="card-header">RANGE REPORT</h5>
                 <div class="card-body">
 					<div class="container">
-					<form class="form-inline" id="datePickerId" method="POST" action="generate_report.php">
+					<form class="form-inline" method="POST" action="generate_report.php" id="assignmentForm" name="assignmentForm" method="post" onsubmit="return validateForm();">
 					  <div class="row">
 						<div class="col">
 								<div class="form-floating">
-								<input type="date" class="form-control" placeholder="Start"  name="date1" id="datePickerId" value="<?php echo isset($_POST['date1']) ? $_POST['date1'] : '' ?>" required />
+								<input type="date" class="form-control txtDate"  id="demo" placeholder="Start"  name="date1" value="<?php echo isset($_POST['date1']) ? $_POST['date1'] : '' ?>" required />
 								<label for="status">FROM</label>
 								</div>
 						</div>
 						<div class="col">
 								<div class="form-floating">
-								<input type="date" class="form-control" placeholder="End"  name="date2" id="datePickerId" value="<?php echo isset($_POST['date2']) ? $_POST['date2'] : '' ?>" required />
+								<input type="date" class="form-control txtDate" id="demo1" placeholder="End"  name="date2" value="<?php echo isset($_POST['date2']) ? $_POST['date2'] : '' ?>" required />
 								<label for="status">TO</label>
 								</div>
 						</div>
@@ -199,20 +199,52 @@ if($_SESSION['user_id'] == '') {
 					</div>
 				</div>
 			</div>
-			
 		</div>
-
-		
-		
 	</div>
 	
-<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
-<script src="/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
-<script src="/vendors/formvalidation/dist/js/plugins/StartEndDate.min.js"></script>
-        
-        <script>
-            datePickerId.max = new Date().toISOString().split("T")[0];
-            datePickerId.max = new Date().toLocaleDateString('en-ca')
-        </script>
+	<script>
+    var todayDate = new Date();
+    var month = todayDate.getMonth() +1 ; //04 - current month
+    var year = todayDate.getUTCFullYear(); //2021 - current year
+    var tdate = todayDate.getDate(); // 27 - current date 
+    if (month < 10) {
+        month = "0" + month //'0' + 4 = 04
+    }
+    if (tdate < 10) {
+        tdate = "0" + tdate;
+    }
+    var maxDate = year + "-" + month + "-" + tdate;
+    document.getElementById("demo").setAttribute("max", maxDate);
+    console.log(maxDate);
+	</script>
+		<script>
+    var todayDate = new Date();
+    var month = todayDate.getMonth() +1 ; //04 - current month
+    var year = todayDate.getUTCFullYear(); //2021 - current year
+    var tdate = todayDate.getDate(); // 27 - current date 
+    if (month < 10) {
+        month = "0" + month //'0' + 4 = 04
+    }
+    if (tdate < 10) {
+        tdate = "0" + tdate;
+    }
+    var maxDate = year + "-" + month + "-" + tdate;
+    document.getElementById("demo1").setAttribute("max", maxDate);
+    console.log(maxDate);
+	</script>
+	
+	<script type="text/Javascript">
+	function validateForm(assignmentForm)   
+	{
+		valid = true
+		if (document.assignmentForm.date1.value>document.assignmentForm.date2.value)
+		{
+			alert ("FROM DATE1 MUST BE EARLIER THAN DATE.");
+			valid = false;
+		}
+
+		return valid;
+	}
+	</script>
 </body>
 </html>

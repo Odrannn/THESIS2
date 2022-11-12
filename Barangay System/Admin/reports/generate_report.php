@@ -34,7 +34,9 @@ $full_date = date("M j, Y");
 
 //"SELECT * FROM member WHERE date(date_submit) BETWEEN '$date1' AND '$date2'")
 
-
+//if ($date1 > $date2){
+//	alert("Message");
+//}
 
 if($document_Type == 'Complaint')
 {
@@ -78,9 +80,10 @@ if($document_Type == 'Complaint')
 				<style>
 				*{text-align:center;}
 			
-				table,  td {
-				border: 1px solid black;
-				}
+				table, th, td {
+					border: 1px solid black;
+					border-collapse: collapse;
+				  }
 				</style>
 			</head>
 			<body>	
@@ -220,9 +223,10 @@ if($document_Type == 'Suggest')
 				<style>
 				*{text-align:center;}
 			
-				table,  td {
-				border: 1px solid black;
-				}
+				table, th, td {
+					border: 1px solid black;
+					border-collapse: collapse;
+				  }
 				</style>
 			</head>
 			<body>	
@@ -378,9 +382,10 @@ if($document_Type == 'Blotter')
 				<style>
 				*{text-align:center;}
 			
-				table,  td {
-				border: 1px solid black;
-				}
+				table, th, td {
+					border: 1px solid black;
+					border-collapse: collapse;
+				  }
 				</style>
 			</head>
 			<body>	

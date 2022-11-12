@@ -102,7 +102,7 @@ if($_SESSION['user_id'] == '') {
                 ?>
 
                 <h2 class="text fs-5">Dashboard</h2>
-                <h2 class="text fs-5">Welcome <?php echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname']. date("Y").time();?></h2>
+                <h2 class="text fs-5">Welcome <?php echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'];?></h2>
                 <br>
                 <h5 class="card-title">Transactions Summary</h5>   
                 <br>
