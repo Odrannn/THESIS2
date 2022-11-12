@@ -1,5 +1,6 @@
 <?php 
 session_start();
+date_default_timezone_set('Asia/Manila'); // SET TIMEZONE
 include('../../../phpfiles/connection.php');
 
 if($_SESSION['user_id'] == '') {

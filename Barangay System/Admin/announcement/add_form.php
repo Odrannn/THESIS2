@@ -1,5 +1,5 @@
 <div class="modal-content">
-    <form action="post_announcement.php" method="post">
+    <form action="post_announcement.php" method="post" enctype="multipart/form-data">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Add Announcement</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-md pt-2">
                         <div class="form-floating">
-                            <input class="form-control" type="text" id="title" name="title" oninput="this.value = this.value.replace(/[^a-z0-9 ]/g, '').replace(/(\..*)\./g, '$1');" required>
+                            <input class="form-control" type="text" id="title" name="title" oninput="this.value = this.value.replace(/[^a-z0-9 ]/gi, '').replace(/(\..*)\./g, '$1');" required>
                             <label for="title">Title</label>
                         </div>
                     </div>

@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include("../../phpfiles/connection.php");
     if(isset($_POST['save_module']))
     {
@@ -68,6 +69,10 @@
             $query = "UPDATE modules_available SET availability = 'no' WHERE id = 8";
             $result = $conn -> query($query);
         }
+
+        $_SESSION['message'] = "Modules availability successfully updated.";
+        $_SESSION['status'] = "1";
+
         header("location:configuration.php");
     }
 ?>

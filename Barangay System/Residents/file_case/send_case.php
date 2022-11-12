@@ -95,11 +95,11 @@
         WHERE suggestion_ID = (SELECT MAX(suggestion_ID) FROM suggestion_table);";
         $result = $conn -> query($query);
         $row = $result -> fetch_array();
-        $compID = $row[0];
+        $sugID = $row[0];
 
         $date1 = date('y-m-d h:i:s');
         $query = "INSERT INTO admin_notification(notification_type, message, source_ID, date_time, status)
-        VALUES ('Residency Registration','New residency registration.',NULL,'$date1','0');";
+        VALUES ('Send Suggestion','sent a suggestion.','$resident_id','$date1','0');";
         $result = $conn -> query($query);
         header("location:send_suggestion/send_suggestion.php");
     } 

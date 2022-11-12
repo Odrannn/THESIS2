@@ -1,4 +1,5 @@
 <?php
+    session_start();
     if (isset($_POST['upload']) && isset($_FILES['logo']) || isset($_FILES['background'])) {
         include("../../phpfiles/connection.php");
         echo "<pre>";
@@ -29,8 +30,12 @@
                 $query = "UPDATE bgy_info SET logo_url = '$new_img_name' WHERE id = 1";
                 $result = $conn -> query($query);
                 echo $img_ex_lc . "\n";
+
+                $_SESSION['message'] = "Image succesfully uploaded.";
+                $_SESSION['status'] = "1";
             } else {
-                echo "You can't upload files of this type.";
+                $_SESSION['message'] = "Failed to upload image.";
+                $_SESSION['status'] = "0";
             }
         }
 
@@ -58,8 +63,12 @@
                 $query = "UPDATE bgy_info SET background_url = '$new_img_name' WHERE id = 1";
                 $result = $conn -> query($query);
                 echo $img_ex_lc . "\n";
+
+                $_SESSION['message'] = "Image succesfully uploaded.";
+                $_SESSION['status'] = "1";
             } else {
-                echo "You can't upload files of this type.";
+                $_SESSION['message'] = "Failed to upload image.";
+                $_SESSION['status'] = "0";
             }
         }
         header("location:configuration.php");

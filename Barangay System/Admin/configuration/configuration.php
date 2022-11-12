@@ -86,6 +86,24 @@ if($_SESSION['user_id'] == '') {
                     </form>
                 </div>
             </div>-->
+            
+            <?php if(isset($_SESSION['message']) && $_SESSION['message'] !=''){
+                    if($_SESSION['status'] == 1){?>
+                        <div class="alert alert-success mt-2 mx-3" role="alert">
+                            <h4 class="alert-heading">Successful!</h4>
+                            <p class="mb-0"><?php echo $_SESSION['message']?></p>
+                        </div>
+                <?php
+                    } else {?>
+                        <div class="alert alert-danger mt-2 mx-3" role="alert">
+                            <h4 class="alert-heading">Failed!</h4>
+                            <p class="mb-0"><?php echo $_SESSION['message']?></p>
+                        </div>
+                <?php
+                    }
+                    $_SESSION['message'] = '';
+                }
+                ?>
             <div class="card mt-2 mx-3">
                 <h5 class="card-header">Theme Color</h5>
                 <div class="card-body">
@@ -175,7 +193,22 @@ if($_SESSION['user_id'] == '') {
                                         echo $row[4]?></textarea>
                             </div><br>
                         </div>
-                        
+                        <div class="row mt-2">
+                            <div class="col-auto">
+                                <h5 class="card-title">Barangay Telephone Number</h5>
+                            </div>
+                            <div class="col-auto">
+                                <input class="form-control" type="text" placeholder="Telephone number..." maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" name= "tp_number" value="<?php echo $row[8]?>">
+                            </div><br>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-auto">
+                                <h5 class="card-title">Barangay Email</h5>
+                            </div>
+                            <div class="col-auto">
+                                <input class="form-control" type="text" placeholder="Email" name= "bgy_email" value="<?php echo $row[9]?>">
+                            </div><br>
+                        </div>
                         <div class="row mt-4 d-flex flex-row-reverse">
                             <div class="col-auto">
                                 <button type="submit" class="btn btn-primary mb-3" name="BI_save" value="Save">Save</button>

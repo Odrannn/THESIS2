@@ -42,7 +42,7 @@
                     if($count1 != 0){
                         while($rownot = $result2->fetch_assoc()){
                             $timestamp = $rownot['date_time'];
-                            $dateTime = date("M d, Y, g:i a",strtotime($timestamp));
+                            $dateTime = date("M d, Y, h:i a",strtotime($timestamp));
 
                             $query1 = "SELECT * FROM resident_table WHERE id = '". $rownot['source_ID']."'";
                             $result1 = $conn -> query($query1);

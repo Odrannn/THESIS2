@@ -438,11 +438,11 @@ if($_SESSION['user_id'] == '') {
                                             $query = "SELECT * FROM suggestion_table WHERE YEAR(suggestion_date) = YEAR(now()) LIMIT $start, 10;";
                                             $result1 = $conn -> query("SELECT count(suggestion_ID) as id FROM suggestion_table WHERE YEAR(suggestion_date) = YEAR(now());");
                                         } else if($_SESSION['filter']=='all'){
-                                            $query = "SELECT * FROM suggestion_table LIMIT $start, 10;";
+                                            $query = "SELECT * FROM suggestion_table ORDER BY suggestion_ID DESC LIMIT $start, 10;";
                                             $result1 = $conn -> query("SELECT count(suggestion_ID) as id FROM suggestion_table;");
                                         }
                                     } else {
-                                        $query = "SELECT * FROM suggestion_table LIMIT $start, 10;";
+                                        $query = "SELECT * FROM suggestion_table ORDER BY suggestion_ID DESC LIMIT $start, 10;";
                                         $result1 = $conn -> query("SELECT count(suggestion_ID) as id FROM suggestion_table;");
                                     }
                                     
