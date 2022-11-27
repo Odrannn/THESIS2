@@ -170,9 +170,9 @@ $total = $pending + $noticed;
 
     $dompdf->render();
 
-    $dompdf->addInfo("Title", "Barangay Clearance");
+    $dompdf->addInfo("Title", "DAILYSUGGESTREPORT");
 
-    $dompdf->stream("DAILYCOMPLAINTREPORT.pdf", ["Attachment" => 0]);
+    $dompdf->stream("DAILYSUGGESTREPORT.pdf", ["Attachment" => 0]);
 
 
 
@@ -317,7 +317,7 @@ $total = $pending + $noticed;
 
     $dompdf->render();
 
-    $dompdf->addInfo("Title", "Barangay Clearance");
+    $dompdf->addInfo("Title", "WEEKLYSUGGESTREPORT");
 
     $dompdf->stream("WEEKLYSUGGESTREPORT.pdf", ["Attachment" => 0]);
 }
@@ -465,7 +465,7 @@ $total = $pending + $noticed;
 
     $dompdf->render();
 
-    $dompdf->addInfo("Title", "Barangay Clearance");
+    $dompdf->addInfo("Title", "MONTHLYSUGGESTREPORT");
 
     $dompdf->stream("MONTHLYSUGGESTREPORT.pdf", ["Attachment" => 0]);
 }
@@ -609,7 +609,7 @@ $total = $pending + $noticed;
 
     $dompdf->render();
 
-    $dompdf->addInfo("Title", "Barangay Clearance");
+    $dompdf->addInfo("Title", "YEARLYSUGGESTREPORT");
 
     $dompdf->stream("YEARLYSUGGESTREPORT.pdf", ["Attachment" => 0]);
 }
@@ -753,7 +753,7 @@ $total = $pending + $noticed;
 
     $dompdf->render();
 
-    $dompdf->addInfo("Title", "Barangay Clearance");
+    $dompdf->addInfo("Title", "OVERALLSUGGESTREPORT");
 
     $dompdf->stream("OVERALLSUGGESTREPORT.pdf", ["Attachment" => 0]);
 

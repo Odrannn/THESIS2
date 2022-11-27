@@ -185,7 +185,7 @@ $unscheduled = $comp_row4[0];
 
     $dompdf->render();
 
-    $dompdf->addInfo("Title", "Barangay Clearance");
+    $dompdf->addInfo("Title", "DAILYBLOTTERREPORT");
 
     $dompdf->stream("DAILYBLOTTERREPORT", ["Attachment" => 0]);
 
@@ -349,7 +349,7 @@ $unscheduled = $comp_row4[0];
 
     $dompdf->render();
 
-    $dompdf->addInfo("Title", "Barangay Clearance");
+    $dompdf->addInfo("Title", "WEEKLYBLOTTERREPORT");
 
     $dompdf->stream("WEEKLYBLOTTERREPORT", ["Attachment" => 0]);	
 	
@@ -515,7 +515,7 @@ $unscheduled = $comp_row4[0];
 
     $dompdf->render();
 
-    $dompdf->addInfo("Title", "Barangay Clearance");
+    $dompdf->addInfo("Title", "MONTHLYBLOTTERREPORT");
 
     $dompdf->stream("MONTHLYBLOTTERREPORT", ["Attachment" => 0]);	
 
@@ -678,7 +678,7 @@ $unscheduled = $comp_row4[0];
 
     $dompdf->render();
 
-    $dompdf->addInfo("Title", "Barangay Clearance");
+    $dompdf->addInfo("Title", "YEARLYBLOTTERREPORT");
 
     $dompdf->stream("YEARLYBLOTTERREPORT", ["Attachment" => 0]);	
 
@@ -839,7 +839,7 @@ $unscheduled = $comp_row4[0];
 
     $dompdf->render();
 
-    $dompdf->addInfo("Title", "Barangay Clearance");
+    $dompdf->addInfo("Title", "OVERALLBLOTTERREPORT");
 
     $dompdf->stream("OVERALLBLOTTERREPORT", ["Attachment" => 0]);	
 

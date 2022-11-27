@@ -202,7 +202,7 @@ $html = "
 
     $dompdf->render();
 
-    $dompdf->addInfo("Title", "Barangay Clearance");
+    $dompdf->addInfo("Title", "DAILYCOMPLAINTREPORT");
 
     $dompdf->stream("DAILYCOMPLAINTREPORT.pdf", ["Attachment" => 0]);
 
@@ -371,7 +371,7 @@ $html = "
 
     $dompdf->render();
 
-    $dompdf->addInfo("Title", "Barangay Clearance");
+    $dompdf->addInfo("Title", "WEEKLYCOMPLAINTREPORT");
 
     $dompdf->stream("WEEKLYCOMPLAINTREPORT.pdf", ["Attachment" => 0]);
 	
@@ -543,7 +543,7 @@ $total = $pending + $solved;
 
     $dompdf->render();
 
-    $dompdf->addInfo("Title", "Barangay Clearance");
+    $dompdf->addInfo("Title", "MONTHLYCOMPLAINTREPORT");
 
     $dompdf->stream("MONTHLYCOMPLAINTREPORT.pdf", ["Attachment" => 0]);
 	
@@ -722,7 +722,7 @@ $total = $pending + $solved;
 
     $dompdf->render();
 
-    $dompdf->addInfo("Title", "Barangay Clearance");
+    $dompdf->addInfo("Title", "YEARLYCOMPLAINTREPORT");
 
     $dompdf->stream("YEARLYCOMPLAINTREPORT.pdf", ["Attachment" => 0]);
 	
@@ -907,7 +907,7 @@ $total = $pending + $solved;
 
     $dompdf->render();
 
-    $dompdf->addInfo("Title", "Barangay Clearance");
+    $dompdf->addInfo("Title", "OVERALLCOMPLAINTREPORT");
 
     $dompdf->stream("ALLCOMPLAINTREPORT.pdf", ["Attachment" => 0]);
 

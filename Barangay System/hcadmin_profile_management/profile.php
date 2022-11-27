@@ -192,7 +192,7 @@ if($_SESSION['user_id'] == '') {
 				<div class="ps-5 col-4"><strong>CONTACT NO. :</strong></div>
 				<div class="col-5">
 					<div class="mx-3" width=100>
-						<input type="email" class="form-control" value="<?php echo $row["contactnumber"]; ?>" disabled>
+						<input type="text" class="form-control" value="<?php echo $row["contactnumber"]; ?>" disabled>
 					</div>
 				</div>
 				

@@ -1,12 +1,12 @@
 <?php
-include("../phpfiles/connection.php");
+include("../../phpfiles/connection.php");
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
 require __DIR__ . "/vendor/autoload.php";
 
 //get barangay info
-include("../phpfiles/bgy_info.php");
+include("../../phpfiles/bgy_info.php");
 $bgyname = $row['bgy_name'];
 $bgycity = $row['city'];
 $logo = $row[2];
@@ -1260,7 +1260,7 @@ $td80 = $fdage80+ $mdage80;
 
     $dompdf->render();
 
-    $dompdf->addInfo("Title", "Barangay Clearance");
+    $dompdf->addInfo("Title", "POPULATION REPORT");
 
     $dompdf->stream("populationreport.pdf", ["Attachment" => 0]);
 ?>

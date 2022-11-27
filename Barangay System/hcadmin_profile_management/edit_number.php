@@ -10,7 +10,7 @@
 
         $exquery = "SELECT * FROM resident_table WHERE contactnumber = '$contactnumber';";
         $exresult = $conn -> query($exquery); 
-        $sql=mysqli_query($conn,"SELECT contactnumber FROM resident_table where id = '" . $_SESSION['user_id'] . "'");
+        $sql=mysqli_query($conn,"SELECT contactnumber FROM resident_table where user_id = '" . $_SESSION['user_id'] . "'");
         
 
 
@@ -21,7 +21,7 @@
             alert('CONTACT NUMBER ALREADRY EXIST');
             </script>";
         }else{
-            $query = "UPDATE resident_table SET contactnumber = '$contactnumber' where id = '".$_SESSION['user_id']."'";
+            $query = "UPDATE resident_table SET contactnumber = '$contactnumber' where user_id = '".$_SESSION['user_id']."'";
             $result = $conn -> query($query);
             header("location:profile.php");
         }

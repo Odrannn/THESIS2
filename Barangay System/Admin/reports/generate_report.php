@@ -176,7 +176,7 @@ $html .="
 
     $dompdf->render();
 
-    $dompdf->addInfo("Title", "Barangay Clearance");
+    $dompdf->addInfo("Title", "COMPLAINT REPORT");
 
     $dompdf->stream("$date1 to $date2,complaint.pdf", ["Attachment" => 0]);
 
@@ -323,7 +323,7 @@ if($document_Type == 'Suggest')
     
     $dompdf->render();
     
-    $dompdf->addInfo("Title", "Barangay Clearance");
+    $dompdf->addInfo("Title", "SUGGESTION REPORT");
     
     $dompdf->stream("$date1 to $date2,suggest.pdf", ["Attachment" => 0]);
 
@@ -492,7 +492,7 @@ if($document_Type == 'Blotter')
     
     $dompdf->render();
     
-    $dompdf->addInfo("Title", "Barangay Clearance");
+    $dompdf->addInfo("Title", "BLOTTER REPORT");
     
     $dompdf->stream("$date1 to $date2,blotter.pdf", ["Attachment" => 0]);
 }

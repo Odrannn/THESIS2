@@ -25,7 +25,7 @@ if($_SESSION['user_id'] == '') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Official Management</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -100,7 +100,7 @@ if($_SESSION['user_id'] == '') {
                     }
                     
                     $start = ($page-1) * 10;
-                    $query = "SELECT * FROM tblofficial LIMIT $start, 10;";
+                    $query = "SELECT * FROM tblofficial ORDER BY status LIMIT $start, 10;";
                     $result = $conn -> query($query);
 
                     $result1 = $conn -> query("SELECT count(official_id) as id FROM tblofficial;");
@@ -207,19 +207,26 @@ if($_SESSION['user_id'] == '') {
                                         <td><?php echo $row["position"]; ?></td>
                                         <td><?php echo $row["term_start"]; ?></td>
                                         <td><?php echo $row["term_end"]; 
-                                        if($row["term_end"] == date("Y-m-d")){
+                                        if($row["status"] != "term ended" && $row["term_end"] <= date("Y-m-d")){
                                             /* official end query */
                                             $query11 = "UPDATE tblofficial SET status = 'term ended' WHERE official_id = " . $row["official_id"] . ";";
                                             $result11 = $conn -> query($query11);
+                                            
+                                            $query24 = "UPDATE tbluser SET type = 'user' WHERE id = " . $row["user_id"] . ";";
+                                            $result24 = $conn -> query($query24);
+                                            
                                         }
+                                        $query12 = "select * from tbluser WHERE id = '" . $_SESSION['user_id'] . "';";
+                                        $result12 = $conn -> query($query12);
+                                        $row12 = mysqli_fetch_array($result12);
                                         ?></td>
                                         <td style ="text-align:center;"><div style ="width: 120px;" class="btn btn-outline-<?php if($row["status"]=='active'){echo 'success';} else {
                                             echo 'danger';
                                         }
                                         ?>"><?php echo $row["status"]; ?></div></td>
                                         <td><div class="btn-group" role="group" aria-label="Basic example">
-                                            <button data-id="<?php echo $row['official_id']; ?>" class="editofficial btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
-                                            <button data-id="<?php echo $row['official_id']; ?>" class="endterm btn btn-danger" <?php if($row["status"]=='term ended'){ echo 'disabled'; } ?>><i class="fa-sharp fa-solid fa-hourglass-end"></i></button>
+                                            <button data-id="<?php echo $row['official_id']; ?>" class="editofficial btn btn-warning" <?php if($row["status"]=='term ended' || $row12["type"]!='admin0' ){ echo 'disabled'; } ?>><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button data-id="<?php echo $row['official_id']; ?>" class="endterm btn btn-danger" <?php if($row["status"]=='term ended' || $row12["type"]!='admin0'){ echo 'disabled'; } ?>><i class="fa-sharp fa-solid fa-hourglass-end"></i></button>
                                             </div>
                                         </td>
                                     </tr>

@@ -17,15 +17,15 @@ if(isset($_POST['userid'])){
                     <div class="row">
                         <div class="col-md pt-2">
 							<label for="exampleInputEmail1" class="form-label">First Name: </label>
-                            <input class="form-control" type="text" id="fname" name="fname" placeholder="First Name.." value="<?php echo $row1["fname"];?>" onkeyup="lettersOnly(this)">
+                            <input class="form-control" type="text" id="fname" name="fname" placeholder="First Name.." value="<?php echo $row1["fname"];?>" oninput="this.value = this.value.replace(/[^a-z ]/gi, '').replace(/(\..*)\./gi, '$1')">
                         </div>
                         <div class="col-md pt-2">
 							<label for="exampleInputEmail1" class="form-label">Middle Name: </label>
-                            <input class="form-control" type="text" id="mname" name="mname" placeholder="Middle Name" value="<?php echo $row1["mname"];?>" onkeyup="lettersOnly(this)">
+                            <input class="form-control" type="text" id="mname" name="mname" placeholder="Middle Name" value="<?php echo $row1["mname"];?>" oninput="this.value = this.value.replace(/[^a-z ]/gi, '').replace(/(\..*)\./gi, '$1')">
                         </div>
                         <div class="col-md pt-2">
 							<label for="exampleInputEmail1" class="form-label">Last Name: </label>
-                            <input class="form-control" type="text" id="lname" name="lname" placeholder="Last Name" value="<?php echo $row1["lname"];?>" onkeyup="lettersOnly(this)">
+                            <input class="form-control" type="text" id="lname" name="lname" placeholder="Last Name" value="<?php echo $row1["lname"];?>" oninput="this.value = this.value.replace(/[^a-z ]/gi, '').replace(/(\..*)\./gi, '$1')">
                         </div>
                         <div class="col-md">
                             <h6 class="mb-2 pb-1">Gender: </h6>
@@ -46,7 +46,7 @@ if(isset($_POST['userid'])){
                     <div class="row">
                         <div class="col-md pt-2">
 							<label for="exampleInputEmail1" class="form-label">Birth Place: </label>
-                            <input class="form-control" type="text" id="birthplace" name="birthplace" placeholder="Place of Birth" value="<?php echo $row1["birthplace"];?>" onkeyup="lettersOnly(this)">
+                            <input class="form-control" type="text" id="birthplace" name="birthplace" placeholder="Place of Birth" value="<?php echo $row1["birthplace"];?>" oninput="this.value = this.value.replace(/[^a-z ]/gi, '').replace(/(\..*)\./gi, '$1')">
                         </div>
                         <div class="col-md pt-2">
 							<label for="exampleInputEmail1" class="form-label">Birthday: </label>
@@ -173,7 +173,7 @@ if(isset($_POST['userid'])){
                     <div class="row">
                         <div class="col-md pt-2">
 							<label for="exampleInputEmail1" class="form-label">Occupation: </label>
-                            <input class="form-control" type="text" id="occupation" name="occupation" placeholder="Occupation" onkeyup="lettersOnly(this)" value="<?php echo $row1['occupation'];?>">
+                            <input class="form-control" type="text" id="occupation" name="occupation" placeholder="Occupation" oninput="this.value = this.value.replace(/[^a-z ]/gi, '').replace(/(\..*)\./gi, '$1')" value="<?php echo $row1['occupation'];?>">
                         </div>
                         <div class="col-md pt-2">
 							<label for="exampleInputEmail1" class="form-label">Education: </label>
@@ -186,11 +186,11 @@ if(isset($_POST['userid'])){
                         </div>
                         <div class="col-md pt-2">
 							<label for="exampleInputEmail1" class="form-label">Nationality: </label>
-                            <input class="form-control" type="text" id="mname" name="nationality" placeholder="Nationality" onkeyup="lettersOnly(this)" value="<?php echo $row1['nationality'];?>">
+                            <input class="form-control" type="text" id="mname" name="nationality" placeholder="Nationality" oninput="this.value = this.value.replace(/[^a-z ]/gi, '').replace(/(\..*)\./gi, '$1')" value="<?php echo $row1['nationality'];?>">
                         </div>
                         <div class="col-md pt-2">
 							<label for="exampleInputEmail1" class="form-label">Disability: </label>
-                            <input class="form-control" type="text" id="lname" name="disability" placeholder="Disability" onkeyup="lettersOnly(this)" value="<?php echo $row1['disability'];?>">
+                            <input class="form-control" type="text" id="lname" name="disability" placeholder="Disability" oninput="this.value = this.value.replace(/[^a-z ]/gi, '').replace(/(\..*)\./gi, '$1')" value="<?php echo $row1['disability'];?>">
                             <p><small class="p-2">leave it blank if none.</small></p>
                         </div>
                     </div>
